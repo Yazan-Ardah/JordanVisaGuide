@@ -1,0 +1,23 @@
+{
+  "name": "jordan-visa-guide",
+  "version": "1.0.0",
+  "description": "The definitive visa resource for Jordanian passport holders",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.6.1"
+  },
+  "keywords": [
+    "visa",
+    "jordan",
+    "travel"
+  ],
+  "author": "Yazan Ardah",
+  "license": "MIT"
+}
