@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jordan Visa Guide — Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@400;600;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a3e; background: #ffffff; }
+
+  /* ─ NAV ─ */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    transition: all 0.3s ease; padding: 0 32px; height: 68px;
+    display: flex; align-items: center;
+  }
+  .nav.scrolled {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .nav-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; align-items: center; gap: 40px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: linear-gradient(135deg, #e85d2f, #ff8c5a);
+    display: flex; align-items: center; justify-content: center; font-size: 18px;
+  }
+  .logo-text strong { font-weight: 700; font-size: 16px; color: #1a1a3e; }
+  .logo-text span { font-weight: 400; font-size: 16px; color: #6b7280; }
+  .nav.scrolled .logo-text strong { color: #1a1a3e; }
+  .nav-links { margin-left: auto; display: flex; gap: 4px; }
+  .nav-link {
+    color: rgba(255,255,255,0.85); text-decoration: none;
+    font-size: 14px; font-weight: 500; padding: 8px 14px; border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .nav.scrolled .nav-link { color: #374151; }
+  .nav-link:hover { background: rgba(255,255,255,0.12); }
+  .nav.scrolled .nav-link:hover { background: #f3f4f6; }
+
+  /* ─ HERO ─ */
+  .hero {
+    background: linear-gradient(150deg, #1a1a3e 0%, #2d2a72 50%, #1a1a3e 100%);
+    padding: 140px 32px 100px; text-align: center; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -80px; right: -80px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(232,93,47,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -60px; left: -60px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(99,102,241,0.22) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 100px; padding: 6px 18px; margin-bottom: 28px;
+    font-size: 13px; color: rgba(255,255,255,0.8); font-weight: 500;
+    position: relative; z-index: 1;
+  }
+  .hero h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(38px, 6vw, 72px); font-weight: 800; color: #fff;
+    line-height: 1.08; margin: 0 auto 20px; max-width: 820px;
+    letter-spacing: -0.03em; position: relative; z-index: 1;
+  }
+  .hero h1 .accent {
+    background: linear-gradient(90deg, #ff8c5a, #e85d2f);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: clamp(15px, 2vw, 19px); color: rgba(255,255,255,0.62);
+    max-width: 520px; margin: 0 auto 44px; line-height: 1.65;
+    position: relative; z-index: 1;
+  }
+
+  /* ─ SEARCH BAR ─ */
+  .search-wrap { max-width: 620px; margin: 0 auto; position: relative; z-index: 1; }
+  .search-box {
+    display: flex; align-items: center;
+    background: #fff; border-radius: 16px;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    transition: all 0.2s ease; overflow: hidden; padding: 6px 6px 6px 20px;
+  }
+  .search-box:focus-within {
+    border-color: #e85d2f;
+    box-shadow: 0 0 0 4px rgba(232,93,47,0.12), 0 8px 32px rgba(0,0,0,0.14);
+  }
+  .search-icon { color: #9ca3af; flex-shrink: 0; }
+  .search-box input {
+    flex: 1; border: none; outline: none; font-size: 16px;
+    color: #1a1a3e; background: transparent; padding: 10px 12px;
+    font-family: 'Inter', sans-serif;
+  }
+  .search-box input::placeholder { color: #9ca3af; }
+  .search-btn {
+    background: #e85d2f; color: #fff; border: none; border-radius: 12px;
+    padding: 13px 26px; font-size: 15px; font-weight: 600; cursor: pointer;
+    transition: background 0.2s; white-space: nowrap; font-family: 'Inter', sans-serif;
+  }
+  .search-btn:hover { background: #cf4a1e; }
+
+  .hero-tags { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px; position: relative; z-index: 1; }
+  .hero-tag {
+    background: rgba(255,255,255,0.09); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px; padding: 7px 16px; font-size: 13px;
+    color: rgba(255,255,255,0.72); text-decoration: none; transition: all 0.2s;
+  }
+  .hero-tag:hover { background: rgba(255,255,255,0.16); color: #fff; }
+
+  /* ─ STATS ─ */
+  .stats-bar { background: #f5f0e8; padding: 36px 32px; border-bottom: 1px solid #ece6da; }
+  .stats-inner {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr); text-align: center;
+  }
+  .stat { padding: 16px; }
+  .stat:not(:last-child) { border-right: 1px solid #ddd5c8; }
+  .stat-value { font-size: 34px; font-weight: 800; color: #1a1a3e; line-height: 1; letter-spacing: -0.03em; }
+  .stat-label { font-size: 13px; color: #8a7f72; margin-top: 4px; font-weight: 500; }
+
+  /* ─ CATEGORIES ─ */
+  .section { padding: 80px 32px; }
+  .section-white { background: #fff; }
+  .section-gray { background: #fafafa; }
+  .section-dark { background: #1a1a3e; }
+  .section-coral { background: linear-gradient(135deg, #e85d2f, #ff7043); }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-label { font-size: 12px; font-weight: 600; color: #e85d2f; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .section-title { font-family: 'Sora', sans-serif; font-size: clamp(28px, 4vw, 42px); font-weight: 800; color: #1a1a3e; letter-spacing: -0.02em; }
+  .section-dark .section-title { color: #fff; }
+  .section-coral .section-title { color: #fff; }
+  .section-sub { font-size: 16px; color: #6b7280; margin-top: 10px; }
+  .section-dark .section-sub { color: rgba(255,255,255,0.55); }
+  .section-coral .section-sub { color: rgba(255,255,255,0.78); }
+  .section-header { text-align: center; margin-bottom: 48px; }
+
+  .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .cat-card {
+    border-radius: 16px; padding: 28px 24px; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s; display: block;
+  }
+  .cat-card:hover { transform: translateY(-4px); }
+  .cat-card.green  { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .cat-card.amber  { background: #fffbeb; border: 1px solid #fde68a; }
+  .cat-card.blue   { background: #eff6ff; border: 1px solid #bfdbfe; }
+  .cat-card.coral  { background: #fff7ed; border: 1px solid #fed7aa; }
+  .cat-number { font-size: 44px; font-weight: 900; line-height: 1; letter-spacing: -0.03em; margin-bottom: 8px; }
+  .cat-card.green  .cat-number { color: #16a34a; }
+  .cat-card.amber  .cat-number { color: #d97706; }
+  .cat-card.blue   .cat-number { color: #2563eb; }
+  .cat-card.coral  .cat-number { color: #ea580c; }
+  .cat-name { font-size: 16px; font-weight: 600; color: #1a1a3e; margin-bottom: 4px; }
+  .cat-sub { font-size: 13px; color: #6b7280; }
+
+  /* ─ SEARCH PAGE ─ */
+  .search-page-section { background: #fafafa; padding: 0 32px 80px; }
+  .search-controls {
+    background: #fff; border-bottom: 1px solid #e8e8f0;
+    padding: 0 32px; position: sticky; top: 68px; z-index: 50;
+  }
+  .search-controls-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 0; flex-wrap: wrap;
+  }
+  .filter-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filter-pill {
+    padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 500;
+    border: 1px solid #e5e7eb; background: #fff; color: #6b7280;
+    cursor: pointer; transition: all 0.15s ease; white-space: nowrap; font-family: 'Inter', sans-serif;
+  }
+  .filter-pill.active { background: #1a1a3e; border-color: #1a1a3e; color: #fff; }
+  .filter-divider { width: 1px; height: 24px; background: #e5e7eb; flex-shrink: 0; }
+  .filter-select {
+    padding: 6px 32px 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 500;
+    border: 1px solid #e5e7eb; background: #fff; color: #374151; cursor: pointer;
+    appearance: none; font-family: 'Inter', sans-serif;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 10px center;
+  }
+  .result-count { margin-left: auto; font-size: 13px; color: #6b7280; flex-shrink: 0; }
+  .result-count strong { color: #1a1a3e; }
+  .view-toggle { display: flex; gap: 2px; background: #f3f4f6; border-radius: 8px; padding: 2px; }
+  .view-btn {
+    padding: 6px 10px; border-radius: 6px; font-size: 14px; border: none;
+    background: transparent; color: #9ca3af; cursor: pointer; transition: all 0.15s ease; font-family: 'Inter', sans-serif;
+  }
+  .view-btn.active { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); color: #1a1a3e; }
+
+  .search-results-wrap { max-width: 1100px; margin: 0 auto; padding-top: 24px; }
+
+  /* List view table */
+  .results-table { background: #fff; border-radius: 16px; border: 1px solid #e8e8f0; overflow: hidden; }
+  .results-table-head {
+    display: grid; grid-template-columns: 2fr 1.2fr 0.8fr 0.8fr 1fr 100px;
+    gap: 16px; padding: 12px 20px;
+    border-bottom: 1px solid #f0f0f6; background: #f8f8fc;
+  }
+  .results-table-head span { font-size: 11px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.05em; }
+  .results-row {
+    display: grid; grid-template-columns: 2fr 1.2fr 0.8fr 0.8fr 1fr 100px;
+    gap: 16px; padding: 16px 20px; align-items: center;
+    border-bottom: 1px solid #f0f0f6; text-decoration: none; color: inherit;
+    transition: background 0.15s ease;
+  }
+  .results-row:last-child { border-bottom: none; }
+  .results-row:hover { background: #fafafa; }
+  .row-country { display: flex; align-items: center; gap: 12px; }
+  .row-flag { font-size: 26px; line-height: 1; flex-shrink: 0; }
+  .row-name { font-weight: 600; font-size: 15px; color: #1a1a3e; }
+  .row-region { font-size: 12px; color: #9ca3af; margin-top: 1px; }
+  .row-cell { font-size: 13px; color: #374151; }
+  .row-actions { display: flex; align-items: center; gap: 8px; }
+
+  /* Grid view */
+  .results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+
+  /* Empty state */
+  .empty-state { text-align: center; padding: 80px 24px; }
+  .empty-icon { font-size: 48px; margin-bottom: 16px; }
+  .empty-title { font-size: 20px; font-weight: 700; color: #1a1a3e; margin-bottom: 8px; }
+  .empty-sub { color: #6b7280; margin-bottom: 20px; }
+  .reset-btn {
+    background: #e85d2f; color: #fff; border: none; border-radius: 10px;
+    padding: 10px 22px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif;
+  }
+
+  /* ─ COUNTRY CARDS ─ */
+  .section-head-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 12px; }
+  .view-all { color: #e85d2f; text-decoration: none; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 5px; }
+  .view-all:hover { text-decoration: underline; }
+
+  .countries-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .country-card {
+    background: #fff; border-radius: 16px; border: 1px solid #e8e8f0;
+    padding: 20px; text-decoration: none; color: inherit; display: block;
+    transition: all 0.2s ease;
+  }
+  .country-card:hover {
+    border-color: #c7d2fe;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(26,26,62,0.10);
+  }
+  .country-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .country-flag { font-size: 36px; line-height: 1; }
+  .country-name { font-weight: 600; font-size: 16px; color: #1a1a3e; }
+  .country-type { font-size: 12px; color: #6b7280; margin-top: 2px; }
+  .badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 600; margin-left: auto; }
+  .badge-green { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+  .badge-amber { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+  .badge-red   { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+  .country-meta {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;
+    padding: 12px; background: #f8f8fc; border-radius: 10px;
+  }
+  .meta-label { font-size: 11px; color: #9ca3af; margin-bottom: 3px; }
+  .meta-value { font-size: 13px; font-weight: 500; color: #1a1a3e; }
+  .country-link { margin-top: 12px; font-size: 13px; color: #e85d2f; font-weight: 500; display: flex; align-items: center; gap: 4px; }
+
+  /* ─ FEATURES ─ */
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+  .feature-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 16px; padding: 28px;
+  }
+  .feature-icon { font-size: 32px; margin-bottom: 16px; }
+  .feature-title { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+  .feature-desc { font-size: 14px; color: rgba(255,255,255,0.52); line-height: 1.65; }
+
+  /* ─ CTA ─ */
+  .cta-section { padding: 80px 32px; text-align: center; }
+  .cta-title { font-family: 'Sora', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 800; color: #fff; margin-bottom: 16px; letter-spacing: -0.02em; }
+  .cta-sub { color: rgba(255,255,255,0.78); font-size: 18px; margin-bottom: 36px; }
+  .cta-btn {
+    display: inline-block; background: #fff; color: #e85d2f;
+    border-radius: 14px; padding: 16px 40px; font-weight: 700;
+    font-size: 16px; text-decoration: none; font-family: 'Inter', sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.14);
+  }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.22); }
+
+  /* ─ FOOTER ─ */
+  footer { background: #0e0e22; padding: 60px 32px 36px; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+  .footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .footer-brand-name { font-weight: 700; font-size: 15px; color: #fff; }
+  .footer-desc { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 250px; }
+  .footer-col-head { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+  .footer-link { display: block; font-size: 14px; color: rgba(255,255,255,0.55); text-decoration: none; margin-bottom: 10px; transition: color 0.15s; }
+  .footer-link:hover { color: #fff; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.28); }
+
+  /* ─ LANGUAGE TOGGLE ─ */
+  .lang-toggle {
+    display: flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.9);
+    font-size: 13px; font-weight: 600; cursor: pointer;
+    transition: all 0.2s; white-space: nowrap; font-family: 'Inter', sans-serif;
+    flex-shrink: 0;
+  }
+  .lang-toggle:hover { background: rgba(255,255,255,0.2); color: #fff; }
+  .nav.scrolled .lang-toggle { border-color: #d1d5db; background: #f3f4f6; color: #374151; }
+  .nav.scrolled .lang-toggle:hover { background: #e5e7eb; }
+
+  /* ─ RTL SUPPORT ─ */
+  [dir="rtl"] body { font-family: 'Noto Sans Arabic', 'Inter', system-ui, sans-serif; }
+  [dir="rtl"] .nav-inner { flex-direction: row-reverse; }
+  [dir="rtl"] .nav-links { margin-left: 0; margin-right: auto; flex-direction: row-reverse; }
+  [dir="rtl"] .hero { direction: rtl; }
+  [dir="rtl"] .search-box { padding: 6px 20px 6px 6px; flex-direction: row-reverse; }
+  [dir="rtl"] .hero-tags { direction: rtl; }
+  [dir="rtl"] .stats-inner { direction: rtl; }
+  [dir="rtl"] .section-header { direction: rtl; }
+  [dir="rtl"] .section-head-row { flex-direction: row-reverse; }
+  [dir="rtl"] .search-controls-inner { flex-direction: row-reverse; }
+  [dir="rtl"] .filter-pills { flex-direction: row-reverse; }
+  [dir="rtl"] .result-count { margin-left: 0; margin-right: auto; }
+  [dir="rtl"] .results-table-head { direction: rtl; }
+  [dir="rtl"] .results-row { direction: rtl; }
+  [dir="rtl"] .row-country { flex-direction: row-reverse; text-align: right; }
+  [dir="rtl"] .row-actions { flex-direction: row-reverse; }
+  [dir="rtl"] .country-top { flex-direction: row-reverse; }
+  [dir="rtl"] .country-card { direction: rtl; text-align: right; }
+  [dir="rtl"] .badge { margin-left: 0; margin-right: auto; }
+  [dir="rtl"] .country-link { flex-direction: row-reverse; }
+  [dir="rtl"] .section-head-row .view-all { flex-direction: row-reverse; }
+  [dir="rtl"] .footer-grid { direction: rtl; }
+  [dir="rtl"] .footer-bottom { flex-direction: row-reverse; }
+  [dir="rtl"] .features-grid { direction: rtl; }
+  [dir="rtl"] .cat-grid { direction: rtl; }
+  [dir="rtl"] .section-label { text-align: right; }
+  [dir="rtl"] .hero-eyebrow { direction: rtl; }
+  [dir="rtl"] .filter-select {
+    padding: 6px 12px 6px 32px;
+    background-position: left 10px center;
+  }
+
+  /* ─ RESPONSIVE ─ */
+  @media (max-width: 768px) {
+    .nav { padding: 0 16px; }
+    .hero { padding: 120px 16px 80px; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .stat:not(:last-child) { border-right: none; }
+    .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid #ddd5c8; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .section { padding: 60px 16px; }
+    .search-btn { padding: 13px 16px; font-size: 14px; }
+    .nav-links a:nth-child(n+2) { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .section-head-row { flex-direction: column; }
+    .cat-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ────────────────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">🇯🇴</div>
+      <div class="logo-text"><strong>Jordan</strong><span> Visa Guide</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="#countries" class="nav-link" data-i18n="nav.countries">All countries</a>
+      <a href="#faq"       class="nav-link" data-i18n="nav.faq">FAQ</a>
+      <a href="#about"     class="nav-link" data-i18n="nav.about">About</a>
+      <button class="lang-toggle" id="langToggle" onclick="toggleLang()">عربي</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ───────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span>🇯🇴</span> <span data-i18n="hero.eyebrow">The definitive visa resource for Jordanian passport holders</span>
+  </div>
+  <h1 id="heroH1">
+    Where can your<br>
+    <span class="accent">Jordanian passport</span> take you?
+  </h1>
+  <p class="hero-sub" data-i18n="hero.sub">
+    Instant, accurate visa requirements for 193 countries. No guesswork.
+    No outdated data. Updated daily from official sources.
+  </p>
+
+  <div class="search-wrap">
+    <div class="search-box">
+      <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/>
+      </svg>
+      <input type="text" id="searchInput" data-i18n-placeholder="hero.search.placeholder" placeholder="Search any country — Turkey, Germany, USA…" />
+      <button class="search-btn" onclick="handleSearch()" data-i18n="hero.search.btn">Check visa</button>
+    </div>
+  </div>
+
+  <div class="hero-tags" style="margin-top:20px">
+    <a href="#" class="hero-tag" data-i18n="hero.tag.free">🟢 Visa-free countries</a>
+    <a href="#" class="hero-tag" data-i18n="hero.tag.voa">⚡ Visa on arrival</a>
+    <a href="#" class="hero-tag" data-i18n="hero.tag.evisa">📱 eVisa available</a>
+    <a href="#" class="hero-tag" data-i18n="hero.tag.arab">🌍 Arab world</a>
+  </div>
+</section>
+
+<!-- ── STATS ───────────────────────────────────────────── -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-value">193</div><div class="stat-label" data-i18n="stats.countries">Countries covered</div></div>
+    <div class="stat"><div class="stat-value">42</div><div class="stat-label" data-i18n="stats.visafree">Visa-free destinations</div></div>
+    <div class="stat"><div class="stat-value">98</div><div class="stat-label" data-i18n="stats.voa">Visa on arrival</div></div>
+    <div class="stat"><div class="stat-value" data-i18n="stats.daily.val">Daily</div><div class="stat-label" data-i18n="stats.updates">Data updates</div></div>
+  </div>
+</div>
+
+<!-- ── VISA CATEGORIES ─────────────────────────────────── -->
+<section class="section section-white">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label" data-i18n="glance.label">At a glance</div>
+      <h2 class="section-title" data-i18n="glance.title">193 countries, four paths</h2>
+      <p class="section-sub" data-i18n="glance.sub">Every country sorted by how easy it is to enter with a Jordanian passport.</p>
+    </div>
+    <div class="cat-grid">
+      <a href="#" class="cat-card green">
+        <div class="cat-number">42</div>
+        <div class="cat-name" data-i18n="cat.free">Visa free</div>
+        <div class="cat-sub" data-i18n="cat.free.sub">No visa required →</div>
+      </a>
+      <a href="#" class="cat-card amber">
+        <div class="cat-number">56</div>
+        <div class="cat-name" data-i18n="cat.voa">Visa on arrival</div>
+        <div class="cat-sub" data-i18n="cat.voa.sub">Get visa at airport →</div>
+      </a>
+      <a href="#" class="cat-card blue">
+        <div class="cat-number">38</div>
+        <div class="cat-name" data-i18n="cat.evisa">eVisa</div>
+        <div class="cat-sub" data-i18n="cat.evisa.sub">Apply online before travel →</div>
+      </a>
+      <a href="#" class="cat-card coral">
+        <div class="cat-number">57</div>
+        <div class="cat-name" data-i18n="cat.embassy">Embassy visa</div>
+        <div class="cat-sub" data-i18n="cat.embassy.sub">In-person application →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── SEARCH CONTROLS ─────────────────────────────────── -->
+<div class="search-controls" id="searchControls">
+  <div class="search-controls-inner">
+    <div class="filter-pills" id="regionPills"><!-- rendered by JS --></div>
+    <div class="filter-divider"></div>
+    <select class="filter-select" id="visaTypeSelect"><!-- rendered by JS --></select>
+    <div class="result-count"><strong id="resultCount">0</strong> <span id="resultLabel">countries</span></div>
+    <div class="view-toggle">
+      <button class="view-btn active" id="btnList" onclick="setView('list')" title="List view">☰</button>
+      <button class="view-btn" id="btnGrid" onclick="setView('grid')" title="Grid view">⊞</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── SEARCH RESULTS ──────────────────────────────────── -->
+<div class="search-page-section" id="countries">
+  <div class="search-results-wrap">
+    <div id="searchResults"><!-- rendered by JS --></div>
+  </div>
+</div>
+
+<!-- ── FEATURES ───────────────────────────────────────── -->
+<section class="section section-dark">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title" style="color:#fff" data-i18n="features.title">Built for Jordanian travellers</h2>
+      <p class="section-sub" data-i18n="features.sub">Every feature designed around the reality of travelling on a Jordanian passport.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title" data-i18n="feature.1.title">Real-time accuracy</div>
+        <div class="feature-desc" data-i18n="feature.1.desc">Visa data verified against official embassy portals and updated daily. Never rely on outdated information again.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗺</div>
+        <div class="feature-title" data-i18n="feature.2.title">Full country coverage</div>
+        <div class="feature-desc" data-i18n="feature.2.desc">Every country on earth, with detailed requirements including fees, processing times, documents needed, and embassy contacts.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <div class="feature-title" data-i18n="feature.3.title">Step-by-step guides</div>
+        <div class="feature-desc" data-i18n="feature.3.desc">Not just requirements — we walk you through the exact application process for every major visa type.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <div class="feature-title" data-i18n="feature.4.title">Requirement alerts</div>
+        <div class="feature-desc" data-i18n="feature.4.desc">Get notified when visa rules change for countries on your travel wishlist. Never get caught off-guard.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────── -->
+<section class="section section-coral cta-section">
+  <div class="cta-title" data-i18n="cta.title">Start planning your trip today</div>
+  <p class="cta-sub" data-i18n="cta.sub">Search any country and get visa requirements in seconds.</p>
+  <a href="#countries" class="cta-btn" data-i18n="cta.btn">Explore all countries →</a>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span style="font-size:24px">🇯🇴</span>
+          <span class="footer-brand-name">Jordan Visa Guide</span>
+        </div>
+        <p class="footer-desc" data-i18n="footer.desc">The most accurate and up-to-date visa resource for Jordanian passport holders. Data sourced from official embassy portals and verified daily.</p>
+      </div>
+      <div>
+        <div class="footer-col-head" data-i18n="footer.explore">Explore</div>
+        <a href="#" class="footer-link" data-i18n="footer.l.countries">All countries</a>
+        <a href="#" class="footer-link" data-i18n="footer.l.visafree">Visa-free list</a>
+        <a href="#" class="footer-link" data-i18n="footer.l.schengen">Schengen guide</a>
+        <a href="#" class="footer-link" data-i18n="footer.l.arab">Arab world</a>
+      </div>
+      <div>
+        <div class="footer-col-head" data-i18n="footer.resources">Resources</div>
+        <a href="#" class="footer-link" data-i18n="footer.l.faq">FAQ</a>
+        <a href="#" class="footer-link" data-i18n="footer.l.blog">Blog</a>
+        <a href="#" class="footer-link" data-i18n="footer.l.tips">Visa tips</a>
+        <a href="#" class="footer-link" data-i18n="footer.l.embassy">Embassy finder</a>
+      </div>
+      <div>
+        <div class="footer-col-head" data-i18n="footer.company">Company</div>
+        <a href="#" class="footer-link" data-i18n="footer.l.about">About</a>
+        <a href="#" class="footer-link" data-i18n="footer.l.contact">Contact</a>
+        <a href="#" class="footer-link" data-i18n="footer.l.privacy">Privacy policy</a>
+        <a href="#" class="footer-link" data-i18n="footer.l.terms">Terms of use</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy" data-i18n="footer.copy">© 2025 Jordan Visa Guide. Visa information is provided for reference only — always verify with the official embassy before travelling.</div>
+      <div class="footer-copy"><span data-i18n="footer.updated">Data last updated:</span> <span id="date"></span></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// i18n
+// ─────────────────────────────────────────────────────────────────────────────
+const I18N = {
+  en: {
+    'nav.countries': 'All countries',
+    'nav.faq':       'FAQ',
+    'nav.about':     'About',
+    'hero.eyebrow':  'The definitive visa resource for Jordanian passport holders',
+    'hero.h1':       'Where can your <br><span class="accent">Jordanian passport</span> take you?',
+    'hero.sub':      'Instant, accurate visa requirements for 193 countries. No guesswork. No outdated data. Updated daily from official sources.',
+    'hero.search.placeholder': 'Search any country — Turkey, Germany, USA…',
+    'hero.search.btn': 'Check visa',
+    'hero.tag.free':  '🟢 Visa-free countries',
+    'hero.tag.voa':   '⚡ Visa on arrival',
+    'hero.tag.evisa': '📱 eVisa available',
+    'hero.tag.arab':  '🌍 Arab world',
+    'stats.countries': 'Countries covered',
+    'stats.visafree':  'Visa-free destinations',
+    'stats.voa':       'Visa on arrival',
+    'stats.daily.val': 'Daily',
+    'stats.updates':   'Data updates',
+    'glance.label': 'At a glance',
+    'glance.title': '193 countries, four paths',
+    'glance.sub':   'Every country sorted by how easy it is to enter with a Jordanian passport.',
+    'cat.free':        'Visa free',
+    'cat.free.sub':    'No visa required →',
+    'cat.voa':         'Visa on arrival',
+    'cat.voa.sub':     'Get visa at airport →',
+    'cat.evisa':       'eVisa',
+    'cat.evisa.sub':   'Apply online before travel →',
+    'cat.embassy':     'Embassy visa',
+    'cat.embassy.sub': 'In-person application →',
+    'filter.all':      'All visa types',
+    'filter.free':     'Visa Free',
+    'filter.voa':      'Visa on Arrival',
+    'filter.evisa':    'eVisa',
+    'filter.apply':    'Apply ahead',
+    'filter.complex':  'Complex',
+    'result.label':    'countries',
+    'table.country':   'Country',
+    'table.visatype':  'Visa type',
+    'table.stay':      'Max stay',
+    'table.fee':       'Fee',
+    'table.processing':'Processing',
+    'table.status':    'Status',
+    'card.view':       'View full requirements',
+    'meta.stay':       'Stay',
+    'meta.fee':        'Fee',
+    'meta.processing': 'Processing',
+    'empty.title':     'No countries found',
+    'empty.sub':       'Try a different search term or reset your filters.',
+    'empty.reset':     'Reset filters',
+    'features.title':  'Built for Jordanian travellers',
+    'features.sub':    'Every feature designed around the reality of travelling on a Jordanian passport.',
+    'feature.1.title': 'Real-time accuracy',
+    'feature.1.desc':  'Visa data verified against official embassy portals and updated daily. Never rely on outdated information again.',
+    'feature.2.title': 'Full country coverage',
+    'feature.2.desc':  'Every country on earth, with detailed requirements including fees, processing times, documents needed, and embassy contacts.',
+    'feature.3.title': 'Step-by-step guides',
+    'feature.3.desc':  'Not just requirements — we walk you through the exact application process for every major visa type.',
+    'feature.4.title': 'Requirement alerts',
+    'feature.4.desc':  'Get notified when visa rules change for countries on your travel wishlist. Never get caught off-guard.',
+    'cta.title': 'Start planning your trip today',
+    'cta.sub':   'Search any country and get visa requirements in seconds.',
+    'cta.btn':   'Explore all countries →',
+    'footer.desc':       'The most accurate and up-to-date visa resource for Jordanian passport holders. Data sourced from official embassy portals and verified daily.',
+    'footer.explore':    'Explore',
+    'footer.resources':  'Resources',
+    'footer.company':    'Company',
+    'footer.l.countries':'All countries',
+    'footer.l.visafree': 'Visa-free list',
+    'footer.l.schengen': 'Schengen guide',
+    'footer.l.arab':     'Arab world',
+    'footer.l.faq':      'FAQ',
+    'footer.l.blog':     'Blog',
+    'footer.l.tips':     'Visa tips',
+    'footer.l.embassy':  'Embassy finder',
+    'footer.l.about':    'About',
+    'footer.l.contact':  'Contact',
+    'footer.l.privacy':  'Privacy policy',
+    'footer.l.terms':    'Terms of use',
+    'footer.copy':       '© 2025 Jordan Visa Guide. Visa information is provided for reference only — always verify with the official embassy before travelling.',
+    'footer.updated':    'Data last updated:',
+  },
+  ar: {
+    'nav.countries': 'جميع الدول',
+    'nav.faq':       'الأسئلة الشائعة',
+    'nav.about':     'عن الموقع',
+    'hero.eyebrow':  'المرجع الشامل لمتطلبات التأشيرة لحاملي جوازات السفر الأردنية',
+    'hero.h1':       'إلى أين يأخذك <br><span class="accent">جواز سفرك الأردني</span>؟',
+    'hero.sub':      'متطلبات تأشيرة فورية ودقيقة لـ 193 دولة. بلا تخمين. بلا بيانات قديمة. يُحدَّث يومياً من المصادر الرسمية.',
+    'hero.search.placeholder': 'ابحث عن أي دولة — تركيا، ألمانيا، أمريكا…',
+    'hero.search.btn': 'تحقق من التأشيرة',
+    'hero.tag.free':  '🟢 دول بدون تأشيرة',
+    'hero.tag.voa':   '⚡ تأشيرة عند الوصول',
+    'hero.tag.evisa': '📱 تأشيرة إلكترونية',
+    'hero.tag.arab':  '🌍 العالم العربي',
+    'stats.countries': 'دولة مشمولة',
+    'stats.visafree':  'وجهة بدون تأشيرة',
+    'stats.voa':       'تأشيرة عند الوصول',
+    'stats.daily.val': 'يومي',
+    'stats.updates':   'تحديثات البيانات',
+    'glance.label': 'نظرة عامة',
+    'glance.title': '193 دولة، أربعة مسارات',
+    'glance.sub':   'كل دولة مرتبة حسب سهولة الدخول بجواز السفر الأردني.',
+    'cat.free':        'بدون تأشيرة',
+    'cat.free.sub':    'لا تأشيرة مطلوبة ←',
+    'cat.voa':         'تأشيرة عند الوصول',
+    'cat.voa.sub':     'احصل على التأشيرة في المطار ←',
+    'cat.evisa':       'تأشيرة إلكترونية',
+    'cat.evisa.sub':   'قدّم طلبك أونلاين قبل السفر ←',
+    'cat.embassy':     'تأشيرة سفارة',
+    'cat.embassy.sub': 'تقديم شخصي ←',
+    'filter.all':      'جميع أنواع التأشيرات',
+    'filter.free':     'بدون تأشيرة',
+    'filter.voa':      'تأشيرة عند الوصول',
+    'filter.evisa':    'تأشيرة إلكترونية',
+    'filter.apply':    'تقديم مسبق',
+    'filter.complex':  'إجراءات معقدة',
+    'result.label':    'دولة',
+    'table.country':   'الدولة',
+    'table.visatype':  'نوع التأشيرة',
+    'table.stay':      'أقصى مدة إقامة',
+    'table.fee':       'الرسوم',
+    'table.processing':'وقت المعالجة',
+    'table.status':    'الحالة',
+    'card.view':       'عرض المتطلبات الكاملة',
+    'meta.stay':       'المدة',
+    'meta.fee':        'الرسوم',
+    'meta.processing': 'وقت المعالجة',
+    'empty.title':     'لا توجد دول مطابقة',
+    'empty.sub':       'جرب كلمة بحث مختلفة أو أعد ضبط الفلاتر.',
+    'empty.reset':     'إعادة ضبط الفلاتر',
+    'features.title':  'مصمم للمسافر الأردني',
+    'features.sub':    'كل ميزة صُمِّمت لتتناسب مع واقع السفر بجواز السفر الأردني.',
+    'feature.1.title': 'دقة فورية',
+    'feature.1.desc':  'بيانات التأشيرة مُتحقَّق منها عبر بوابات السفارات الرسمية وتُحدَّث يومياً.',
+    'feature.2.title': 'تغطية شاملة',
+    'feature.2.desc':  'جميع دول العالم، مع متطلبات تفصيلية تشمل الرسوم وأوقات المعالجة والوثائق المطلوبة.',
+    'feature.3.title': 'أدلة خطوة بخطوة',
+    'feature.3.desc':  'لا نكتفي بالمتطلبات — بل نأخذك خلال عملية التقديم الدقيقة لكل نوع تأشيرة.',
+    'feature.4.title': 'تنبيهات المتطلبات',
+    'feature.4.desc':  'احصل على إشعار عند تغيير قواعد التأشيرة للدول في قائمة رغباتك السياحية.',
+    'cta.title': 'ابدأ التخطيط لرحلتك اليوم',
+    'cta.sub':   'ابحث عن أي دولة واحصل على متطلبات التأشيرة في ثوانٍ.',
+    'cta.btn':   'استكشف جميع الدول ←',
+    'footer.desc':       'أدق وأحدث مرجع لمتطلبات التأشيرة لحاملي جوازات السفر الأردنية. البيانات مصدرها بوابات السفارات الرسمية.',
+    'footer.explore':    'استكشاف',
+    'footer.resources':  'موارد',
+    'footer.company':    'الشركة',
+    'footer.l.countries':'جميع الدول',
+    'footer.l.visafree': 'قائمة الدول بدون تأشيرة',
+    'footer.l.schengen': 'دليل شنغن',
+    'footer.l.arab':     'العالم العربي',
+    'footer.l.faq':      'الأسئلة الشائعة',
+    'footer.l.blog':     'المدونة',
+    'footer.l.tips':     'نصائح التأشيرة',
+    'footer.l.embassy':  'دليل السفارات',
+    'footer.l.about':    'عن الموقع',
+    'footer.l.contact':  'اتصل بنا',
+    'footer.l.privacy':  'سياسة الخصوصية',
+    'footer.l.terms':    'شروط الاستخدام',
+    'footer.copy':       '© 2025 دليل تأشيرة الأردن. المعلومات مقدمة للمرجعية فقط — تحقق دائماً من السفارة الرسمية قبل السفر.',
+    'footer.updated':    'آخر تحديث للبيانات:',
+  }
+};
+
+let currentLang = localStorage.getItem('jvg_lang') || 'en';
+
+function T(key) {
+  return (I18N[currentLang] && I18N[currentLang][key]) || (I18N.en[key]) || key;
+}
+
+function applyTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (key === 'hero.h1') return; // handled separately
+    el.textContent = T(key);
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    el.placeholder = T(el.getAttribute('data-i18n-placeholder'));
+  });
+  // Hero h1 uses innerHTML (has <br> and <span class="accent">)
+  document.getElementById('heroH1').innerHTML = T('hero.h1');
+  // Result label
+  const rl = document.getElementById('resultLabel');
+  if (rl) rl.textContent = T('result.label');
+  // Rebuild select options
+  renderVisaSelect();
+  // Rebuild region pills (label translation)
+  renderRegionPills();
+}
+
+function applyLang() {
+  document.documentElement.setAttribute('lang', currentLang);
+  document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+  document.getElementById('langToggle').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+  // Date locale
+  document.getElementById('date').textContent = new Date().toLocaleDateString(
+    currentLang === 'ar' ? 'ar-EG' : 'en-GB',
+    { day: 'numeric', month: 'long', year: 'numeric' }
+  );
+  applyTranslations();
+  renderResults();
+}
+
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'ar' : 'en';
+  localStorage.setItem('jvg_lang', currentLang);
+  applyLang();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Sticky nav
+// ─────────────────────────────────────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Hero search
+// ─────────────────────────────────────────────────────────────────────────────
+function handleSearch() {
+  const q = document.getElementById('searchInput').value.trim();
+  if (!q) return;
+  document.getElementById('countries').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => { activeQuery = q.toLowerCase(); renderResults(); }, 350);
+}
+document.getElementById('searchInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') handleSearch();
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BASE COUNTRY DATA  (Jordanian passport — accurate as of 2025)
+// Fields: code, name, name_ar, flag, region, type, badge, bc, stay, fee, time,
+//         notes_en, notes_ar
+// ─────────────────────────────────────────────────────────────────────────────
+const BASE_COUNTRIES = [
+  // ── MIDDLE EAST ──────────────────────────────────────────────────────────
+  { code:'AE', name:'UAE',          name_ar:'الإمارات',       flag:'🇦🇪', region:'Middle East', type:'Visa Free',       badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',    time:'No wait',    notes_en:'',                                                   notes_ar:'' },
+  { code:'QA', name:'Qatar',        name_ar:'قطر',            flag:'🇶🇦', region:'Middle East', type:'Visa Free',       badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',    time:'No wait',    notes_en:'',                                                   notes_ar:'' },
+  { code:'KW', name:'Kuwait',       name_ar:'الكويت',         flag:'🇰🇼', region:'Middle East', type:'Visa Free',       badge:'Easy',        bc:'green', stay:'3 months',    fee:'Free',    time:'No wait',    notes_en:'',                                                   notes_ar:'' },
+  { code:'LB', name:'Lebanon',      name_ar:'لبنان',          flag:'🇱🇧', region:'Middle East', type:'Visa Free',       badge:'Easy',        bc:'green', stay:'1 month',     fee:'Free',    time:'No wait',    notes_en:'',                                                   notes_ar:'' },
+  { code:'TR', name:'Turkey',       name_ar:'تركيا',          flag:'🇹🇷', region:'Middle East', type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'90 days',     fee:'Free',    time:'On arrival', notes_en:'90 days per 180-day period',                         notes_ar:'90 يوماً لكل فترة 180 يوماً' },
+  { code:'BH', name:'Bahrain',      name_ar:'البحرين',        flag:'🇧🇭', region:'Middle East', type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',    time:'On arrival', notes_en:'',                                                   notes_ar:'' },
+  { code:'OM', name:'Oman',         name_ar:'عُمان',          flag:'🇴🇲', region:'Middle East', type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',    time:'On arrival', notes_en:'',                                                   notes_ar:'' },
+  { code:'IQ', name:'Iraq',         name_ar:'العراق',         flag:'🇮🇶', region:'Middle East', type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',    time:'On arrival', notes_en:'Kurdish region: VOA at Erbil / Sulaymaniyah airports',notes_ar:'المنطقة الكردية: تأشيرة عند الوصول في مطاري أربيل والسليمانية' },
+  { code:'IR', name:'Iran',         name_ar:'إيران',          flag:'🇮🇷', region:'Middle East', type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',    time:'On arrival', notes_en:'Available at most international airports',           notes_ar:'متاحة في معظم المطارات الدولية' },
+  { code:'SA', name:'Saudi Arabia', name_ar:'المملكة العربية السعودية', flag:'🇸🇦', region:'Middle East', type:'eVisa', badge:'eVisa',      bc:'amber', stay:'90 days',     fee:'SAR 440', time:'Instant',    notes_en:'Multiple-entry e-Visa valid 1 year',                 notes_ar:'تأشيرة إلكترونية متعددة الدخول صالحة لمدة سنة' },
+  { code:'YE', name:'Yemen',        name_ar:'اليمن',          flag:'🇾🇪', region:'Middle East', type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',    time:'On arrival', notes_en:'Check travel advisories — ongoing conflict',         notes_ar:'راجع تحذيرات السفر — نزاع مسلح مستمر' },
+
+  // ── AFRICA ───────────────────────────────────────────────────────────────
+  { code:'EG', name:'Egypt',        name_ar:'مصر',            flag:'🇪🇬', region:'Africa',      type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'$25',     time:'On arrival', notes_en:'',                                                   notes_ar:'' },
+  { code:'MA', name:'Morocco',      name_ar:'المغرب',         flag:'🇲🇦', region:'Africa',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'90 days',     fee:'Free',    time:'No wait',    notes_en:'',                                                   notes_ar:'' },
+  { code:'TN', name:'Tunisia',      name_ar:'تونس',           flag:'🇹🇳', region:'Africa',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'90 days',     fee:'Free',    time:'No wait',    notes_en:'',                                                   notes_ar:'' },
+  { code:'SD', name:'Sudan',        name_ar:'السودان',        flag:'🇸🇩', region:'Africa',      type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',    time:'On arrival', notes_en:'Bilateral agreement with Jordan',                    notes_ar:'اتفاقية ثنائية مع الأردن' },
+  { code:'KE', name:'Kenya',        name_ar:'كينيا',          flag:'🇰🇪', region:'Africa',      type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'90 days',     fee:'$51',     time:'3–5 days',   notes_en:'',                                                   notes_ar:'' },
+  { code:'TZ', name:'Tanzania',     name_ar:'تنزانيا',        flag:'🇹🇿', region:'Africa',      type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'90 days',     fee:'$50',     time:'3–5 days',   notes_en:'',                                                   notes_ar:'' },
+  { code:'ET', name:'Ethiopia',     name_ar:'إثيوبيا',        flag:'🇪🇹', region:'Africa',      type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'30 days',     fee:'$52',     time:'3 days',     notes_en:'',                                                   notes_ar:'' },
+  { code:'RW', name:'Rwanda',       name_ar:'رواندا',         flag:'🇷🇼', region:'Africa',      type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'30 days',     fee:'$50',     time:'3 days',     notes_en:'Or VOA at Kigali airport',                           notes_ar:'أو تأشيرة عند الوصول في مطار كيغالي' },
+  { code:'UG', name:'Uganda',       name_ar:'أوغندا',         flag:'🇺🇬', region:'Africa',      type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'90 days',     fee:'$50',     time:'3–5 days',   notes_en:'',                                                   notes_ar:'' },
+  { code:'MU', name:'Mauritius',    name_ar:'موريشيوس',       flag:'🇲🇺', region:'Africa',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'60 days',     fee:'Free',    time:'No wait',    notes_en:'',                                                   notes_ar:'' },
+  { code:'ZA', name:'South Africa', name_ar:'جنوب أفريقيا',  flag:'🇿🇦', region:'Africa',      type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'30 days',     fee:'ZAR 425', time:'5–10 days',  notes_en:'Apply at SA embassy in Amman',                       notes_ar:'قدّم الطلب في سفارة جنوب أفريقيا بعمّان' },
+  { code:'DZ', name:'Algeria',      name_ar:'الجزائر',        flag:'🇩🇿', region:'Africa',      type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'30 days',     fee:'~$30',    time:'2–4 weeks',  notes_en:'Apply at Algerian embassy; invite letter helps',     notes_ar:'قدّم في السفارة الجزائرية؛ خطاب دعوة مفيد' },
+  { code:'NG', name:'Nigeria',      name_ar:'نيجيريا',        flag:'🇳🇬', region:'Africa',      type:'Embassy Visa',    badge:'Complex',     bc:'red',   stay:'30 days',     fee:'$80',     time:'5–10 days',  notes_en:'',                                                   notes_ar:'' },
+
+  // ── EUROPE ───────────────────────────────────────────────────────────────
+  { code:'DE', name:'Germany',      name_ar:'ألمانيا',        flag:'🇩🇪', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',     time:'15–30 days', notes_en:'Covers all 27 Schengen states',                      notes_ar:'تشمل جميع دول شنغن الـ27' },
+  { code:'FR', name:'France',       name_ar:'فرنسا',          flag:'🇫🇷', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',     time:'15–30 days', notes_en:'',                                                   notes_ar:'' },
+  { code:'IT', name:'Italy',        name_ar:'إيطاليا',        flag:'🇮🇹', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',     time:'15–30 days', notes_en:'Apply via Italian consulate in Amman',               notes_ar:'قدّم عبر القنصلية الإيطالية في عمّان' },
+  { code:'ES', name:'Spain',        name_ar:'إسبانيا',        flag:'🇪🇸', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',     time:'15–30 days', notes_en:'Book appointment at VFS Global Amman',               notes_ar:'احجز موعداً في مركز VFS Global عمّان' },
+  { code:'NL', name:'Netherlands',  name_ar:'هولندا',         flag:'🇳🇱', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',     time:'15–30 days', notes_en:'',                                                   notes_ar:'' },
+  { code:'SE', name:'Sweden',       name_ar:'السويد',         flag:'🇸🇪', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',     time:'15–30 days', notes_en:'',                                                   notes_ar:'' },
+  { code:'CH', name:'Switzerland',  name_ar:'سويسرا',         flag:'🇨🇭', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'CHF 80',  time:'15–30 days', notes_en:'',                                                   notes_ar:'' },
+  { code:'AT', name:'Austria',      name_ar:'النمسا',         flag:'🇦🇹', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',     time:'15–30 days', notes_en:'',                                                   notes_ar:'' },
+  { code:'BE', name:'Belgium',      name_ar:'بلجيكا',         flag:'🇧🇪', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',     time:'15–30 days', notes_en:'',                                                   notes_ar:'' },
+  { code:'PT', name:'Portugal',     name_ar:'البرتغال',       flag:'🇵🇹', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',     time:'15–30 days', notes_en:'',                                                   notes_ar:'' },
+  { code:'GR', name:'Greece',       name_ar:'اليونان',        flag:'🇬🇷', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',     time:'15–30 days', notes_en:'',                                                   notes_ar:'' },
+  { code:'PL', name:'Poland',       name_ar:'بولندا',         flag:'🇵🇱', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',     time:'15–30 days', notes_en:'',                                                   notes_ar:'' },
+  { code:'CZ', name:'Czech Rep.',   name_ar:'التشيك',         flag:'🇨🇿', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',     time:'15–30 days', notes_en:'',                                                   notes_ar:'' },
+  { code:'NO', name:'Norway',       name_ar:'النرويج',        flag:'🇳🇴', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',     time:'15–30 days', notes_en:'',                                                   notes_ar:'' },
+  { code:'DK', name:'Denmark',      name_ar:'الدنمارك',       flag:'🇩🇰', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',     time:'15–30 days', notes_en:'',                                                   notes_ar:'' },
+  { code:'FI', name:'Finland',      name_ar:'فنلندا',         flag:'🇫🇮', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',     time:'15–30 days', notes_en:'',                                                   notes_ar:'' },
+  { code:'GB', name:'UK',           name_ar:'المملكة المتحدة',flag:'🇬🇧', region:'Europe',      type:'Standard Visitor',badge:'Apply ahead', bc:'amber', stay:'6 months',    fee:'£115',    time:'3 weeks',    notes_en:'Apply at UK Visas online; biometrics required',      notes_ar:'قدّم أونلاين عبر UK Visas؛ بصمة حيوية مطلوبة' },
+  { code:'IE', name:'Ireland',      name_ar:'أيرلندا',        flag:'🇮🇪', region:'Europe',      type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€100',    time:'8 weeks',    notes_en:'Not Schengen — separate visa required',             notes_ar:'ليست شنغن — تأشيرة منفصلة مطلوبة' },
+  { code:'GE', name:'Georgia',      name_ar:'جورجيا',         flag:'🇬🇪', region:'Europe',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'1 year',      fee:'Free',    time:'No wait',    notes_en:'One of the best for Jordanians — 365 days/year',    notes_ar:'من أفضل الوجهات للأردنيين — 365 يوماً في السنة' },
+  { code:'UA', name:'Ukraine',      name_ar:'أوكرانيا',       flag:'🇺🇦', region:'Europe',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'90 days',     fee:'Free',    time:'No wait',    notes_en:'Check travel advisories — ongoing conflict',        notes_ar:'راجع تحذيرات السفر — نزاع مسلح مستمر' },
+  { code:'RS', name:'Serbia',       name_ar:'صربيا',          flag:'🇷🇸', region:'Europe',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',    time:'No wait',    notes_en:'',                                                   notes_ar:'' },
+  { code:'BA', name:'Bosnia',       name_ar:'البوسنة',        flag:'🇧🇦', region:'Europe',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',    time:'No wait',    notes_en:'',                                                   notes_ar:'' },
+  { code:'AL', name:'Albania',      name_ar:'ألبانيا',        flag:'🇦🇱', region:'Europe',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'90 days',     fee:'Free',    time:'No wait',    notes_en:'Summer-only visa-free (Apr–Oct); confirm',          notes_ar:'بدون تأشيرة صيفاً (أبريل–أكتوبر)؛ تحقق' },
+  { code:'ME', name:'Montenegro',   name_ar:'الجبل الأسود',   flag:'🇲🇪', region:'Europe',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',    time:'No wait',    notes_en:'',                                                   notes_ar:'' },
+  { code:'MK', name:'N. Macedonia', name_ar:'مقدونيا الشمالية',flag:'🇲🇰',region:'Europe',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'90 days',     fee:'Free',    time:'No wait',    notes_en:'',                                                   notes_ar:'' },
+  { code:'RU', name:'Russia',       name_ar:'روسيا',          flag:'🇷🇺', region:'Europe',      type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'30 days',     fee:'€35',     time:'3–20 days',  notes_en:'Check sanctions & travel advisories',               notes_ar:'راجع العقوبات وتحذيرات السفر' },
+
+  // ── ASIA ─────────────────────────────────────────────────────────────────
+  { code:'MV', name:'Maldives',     name_ar:'المالديف',       flag:'🇲🇻', region:'Asia',        type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',    time:'On arrival', notes_en:'',                                                   notes_ar:'' },
+  { code:'MY', name:'Malaysia',     name_ar:'ماليزيا',        flag:'🇲🇾', region:'Asia',        type:'Visa Free',       badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',    time:'No wait',    notes_en:'',                                                   notes_ar:'' },
+  { code:'TH', name:'Thailand',     name_ar:'تايلاند',        flag:'🇹🇭', region:'Asia',        type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'THB 2,000',time:'On arrival',notes_en:'Free VOA for many nationalities; verify current fee',notes_ar:'مجانية لكثير من الجنسيات؛ تحقق من الرسوم الحالية' },
+  { code:'ID', name:'Indonesia',    name_ar:'إندونيسيا',      flag:'🇮🇩', region:'Asia',        type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'$35',     time:'On arrival', notes_en:'Also available as eVisa before travel',             notes_ar:'متاحة أيضاً كتأشيرة إلكترونية قبل السفر' },
+  { code:'PH', name:'Philippines',  name_ar:'الفلبين',        flag:'🇵🇭', region:'Asia',        type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',    time:'On arrival', notes_en:'Extendable up to 59 days',                          notes_ar:'قابلة للتمديد حتى 59 يوماً' },
+  { code:'NP', name:'Nepal',        name_ar:'نيبال',          flag:'🇳🇵', region:'Asia',        type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'90 days',     fee:'$25–$100',time:'On arrival', notes_en:'15d $25 / 30d $40 / 90d $100',                      notes_ar:'15 يوم $25 / 30 يوم $40 / 90 يوم $100' },
+  { code:'PK', name:'Pakistan',     name_ar:'باكستان',        flag:'🇵🇰', region:'Asia',        type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',    time:'On arrival', notes_en:'Bilateral VOA for Jordanians',                       notes_ar:'تأشيرة عند الوصول بموجب اتفاقية ثنائية' },
+  { code:'BD', name:'Bangladesh',   name_ar:'بنغلاديش',       flag:'🇧🇩', region:'Asia',        type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'$51',     time:'On arrival', notes_en:'',                                                   notes_ar:'' },
+  { code:'AM', name:'Armenia',      name_ar:'أرمينيا',        flag:'🇦🇲', region:'Asia',        type:'Visa Free',       badge:'Easy',        bc:'green', stay:'180 days',    fee:'Free',    time:'No wait',    notes_en:'Up to 180 days per year',                           notes_ar:'حتى 180 يوماً في السنة' },
+  { code:'AZ', name:'Azerbaijan',   name_ar:'أذربيجان',       flag:'🇦🇿', region:'Asia',        type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'30 days',     fee:'$26',     time:'3 days',     notes_en:'Apply at evisa.gov.az',                             notes_ar:'قدّم الطلب على evisa.gov.az' },
+  { code:'UZ', name:'Uzbekistan',   name_ar:'أوزبكستان',      flag:'🇺🇿', region:'Asia',        type:'Visa Free',       badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',    time:'No wait',    notes_en:'',                                                   notes_ar:'' },
+  { code:'KZ', name:'Kazakhstan',   name_ar:'كازاخستان',      flag:'🇰🇿', region:'Asia',        type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'30 days',     fee:'Free',    time:'3–5 days',   notes_en:'eVisa at eVisa.kz — free of charge',                notes_ar:'تأشيرة إلكترونية على eVisa.kz — مجانية' },
+  { code:'IN', name:'India',        name_ar:'الهند',          flag:'🇮🇳', region:'Asia',        type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'60 days',     fee:'$25',     time:'3–5 days',   notes_en:'e-Tourist Visa at indianvisaonline.gov.in',         notes_ar:'تأشيرة سياحية إلكترونية على indianvisaonline.gov.in' },
+  { code:'LK', name:'Sri Lanka',    name_ar:'سريلانكا',       flag:'🇱🇰', region:'Asia',        type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'30 days',     fee:'$20',     time:'1–2 days',   notes_en:'ETA at eta.gov.lk',                                 notes_ar:'تصريح إلكتروني على eta.gov.lk' },
+  { code:'VN', name:'Vietnam',      name_ar:'فيتنام',         flag:'🇻🇳', region:'Asia',        type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'90 days',     fee:'$25',     time:'3 days',     notes_en:'Single or multiple entry',                          notes_ar:'دخول مفرد أو متعدد' },
+  { code:'KH', name:'Cambodia',     name_ar:'كمبوديا',        flag:'🇰🇭', region:'Asia',        type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'30 days',     fee:'$36',     time:'3 days',     notes_en:'Or VOA at Phnom Penh / Siem Reap airports',        notes_ar:'أو عند الوصول في مطاري بنوم بنه وسيم ريب' },
+  { code:'MM', name:'Myanmar',      name_ar:'ميانمار',        flag:'🇲🇲', region:'Asia',        type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'28 days',     fee:'$50',     time:'3 days',     notes_en:'Check travel advisories — political instability',   notes_ar:'راجع تحذيرات السفر — عدم استقرار سياسي' },
+  { code:'JP', name:'Japan',        name_ar:'اليابان',        flag:'🇯🇵', region:'Asia',        type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'¥3,000',  time:'5–7 days',   notes_en:'Apply at Japanese Embassy Amman; detailed itinerary required', notes_ar:'قدّم في سفارة اليابان بعمّان؛ جدول رحلة تفصيلي مطلوب' },
+  { code:'KR', name:'South Korea',  name_ar:'كوريا الجنوبية', flag:'🇰🇷', region:'Asia',        type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'$45',     time:'5–7 days',   notes_en:'Apply at Korean Embassy Amman',                     notes_ar:'قدّم في سفارة كوريا بعمّان' },
+  { code:'SG', name:'Singapore',    name_ar:'سنغافورة',       flag:'🇸🇬', region:'Asia',        type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'30 days',     fee:'SGD $30', time:'3–5 days',   notes_en:'Apply online at mom.gov.sg',                        notes_ar:'قدّم أونلاين على mom.gov.sg' },
+  { code:'CN', name:'China',        name_ar:'الصين',          flag:'🇨🇳', region:'Asia',        type:'Embassy Visa',    badge:'Complex',     bc:'red',   stay:'30 days',     fee:'~$140',   time:'4–7 days',   notes_en:'Apply at Chinese Embassy Amman; in-depth background check', notes_ar:'قدّم في السفارة الصينية بعمّان؛ فحص تفصيلي للخلفية' },
+
+  // ── AMERICAS ─────────────────────────────────────────────────────────────
+  { code:'DO', name:'Dom. Republic',name_ar:'الدومينيكان',    flag:'🇩🇴', region:'Americas',    type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'$10',     time:'On arrival', notes_en:'Tourist card purchased on arrival or online',       notes_ar:'بطاقة سياحية تُشترى عند الوصول أو أونلاين' },
+  { code:'CO', name:'Colombia',     name_ar:'كولومبيا',       flag:'🇨🇴', region:'Americas',    type:'Visa Free',       badge:'Easy',        bc:'green', stay:'90 days',     fee:'Free',    time:'No wait',    notes_en:'',                                                   notes_ar:'' },
+  { code:'EC', name:'Ecuador',      name_ar:'الإكوادور',      flag:'🇪🇨', region:'Americas',    type:'Visa Free',       badge:'Easy',        bc:'green', stay:'90 days',     fee:'Free',    time:'No wait',    notes_en:'',                                                   notes_ar:'' },
+  { code:'MX', name:'Mexico',       name_ar:'المكسيك',        flag:'🇲🇽', region:'Americas',    type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'180 days',    fee:'$36',     time:'3–5 days',   notes_en:'Or apply via MEXITEL for tourist visa',             notes_ar:'أو قدّم عبر MEXITEL للتأشيرة السياحية' },
+  { code:'BR', name:'Brazil',       name_ar:'البرازيل',       flag:'🇧🇷', region:'Americas',    type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'$80',     time:'10–15 days', notes_en:'',                                                   notes_ar:'' },
+  { code:'AR', name:'Argentina',    name_ar:'الأرجنتين',      flag:'🇦🇷', region:'Americas',    type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'$50',     time:'5–10 days',  notes_en:'',                                                   notes_ar:'' },
+  { code:'CL', name:'Chile',        name_ar:'تشيلي',          flag:'🇨🇱', region:'Americas',    type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'$30',     time:'5–7 days',   notes_en:'',                                                   notes_ar:'' },
+  { code:'CA', name:'Canada',       name_ar:'كندا',           flag:'🇨🇦', region:'Americas',    type:'Embassy Visa',    badge:'Complex',     bc:'red',   stay:'6 months',    fee:'CAD $100',time:'4–8 weeks',  notes_en:'TRV required; strong-ties evidence essential',      notes_ar:'تأشيرة TRV مطلوبة؛ أدلة على الروابط القوية بالوطن ضرورية' },
+  { code:'US', name:'USA',          name_ar:'الولايات المتحدة',flag:'🇺🇸', region:'Americas',   type:'B1/B2 Visa',      badge:'Complex',     bc:'red',   stay:'Up to 6 mo.', fee:'$185',    time:'2–6 months', notes_en:'Interview required at US Embassy Amman',            notes_ar:'مقابلة شخصية مطلوبة في السفارة الأمريكية بعمّان' },
+
+  // ── OCEANIA ──────────────────────────────────────────────────────────────
+  { code:'AU', name:'Australia',    name_ar:'أستراليا',       flag:'🇦🇺', region:'Oceania',     type:'eVisa',           badge:'Apply ahead', bc:'amber', stay:'3 months',    fee:'AUD $145',time:'4–6 weeks',  notes_en:'Visitor visa (subclass 600) via ImmiAccount',       notes_ar:'تأشيرة زائر (فئة 600) عبر ImmiAccount' },
+  { code:'NZ', name:'New Zealand',  name_ar:'نيوزيلندا',      flag:'🇳🇿', region:'Oceania',     type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'9 months',    fee:'NZD $211',time:'4–6 weeks',  notes_en:'Visitor visa online at immigration.govt.nz',        notes_ar:'تأشيرة زائر أونلاين على immigration.govt.nz' },
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LocalStorage merge
+// ─────────────────────────────────────────────────────────────────────────────
+const LS_KEY = 'jvg_overrides';
+
+function getOverrides() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); }
+  catch { return {}; }
+}
+
+function getCountries() {
+  const overrides = getOverrides();
+  return BASE_COUNTRIES.map(c => {
+    const ov = overrides[c.code];
+    if (!ov) return c;
+    const merged = { ...c, ...ov };
+    if (ov.type && !ov.badge) {
+      const d = deriveBadge(ov.type);
+      merged.badge = d.badge;
+      merged.bc    = d.bc;
+    }
+    return merged;
+  });
+}
+
+function deriveBadge(type) {
+  if (type === 'Visa Free')        return { badge: 'Easy',        bc: 'green' };
+  if (type === 'Visa on Arrival')  return { badge: 'Easy',        bc: 'green' };
+  if (type === 'eVisa')            return { badge: 'eVisa',       bc: 'amber' };
+  if (type === 'B1/B2 Visa')       return { badge: 'Complex',     bc: 'red'   };
+  if (type === 'Embassy Visa')     return { badge: 'Complex',     bc: 'red'   };
+  if (type === 'Schengen Visa')    return { badge: 'Apply ahead', bc: 'amber' };
+  return { badge: 'Apply ahead', bc: 'amber' };
+}
+
+// ── Arabic lookup maps ────────────────────────────────────────────────────────
+const BADGE_AR = {
+  'Easy':        'سهل',
+  'eVisa':       'تأشيرة إلكترونية',
+  'Apply ahead': 'تقديم مسبق',
+  'Complex':     'إجراءات معقدة',
+};
+
+const REGION_AR = {
+  'All regions': 'كل المناطق',
+  'Middle East': 'الشرق الأوسط',
+  'Europe':      'أوروبا',
+  'Asia':        'آسيا',
+  'Africa':      'أفريقيا',
+  'Americas':    'الأمريكتان',
+  'Oceania':     'أوقيانوسيا',
+};
+
+const TYPE_AR = {
+  'Visa Free':        'بدون تأشيرة',
+  'Visa on Arrival':  'تأشيرة عند الوصول',
+  'eVisa':            'تأشيرة إلكترونية',
+  'Schengen Visa':    'تأشيرة شنغن',
+  'Standard Visitor': 'تأشيرة زائر',
+  'Embassy Visa':     'تأشيرة سفارة',
+  'B1/B2 Visa':       'تأشيرة B1/B2',
+};
+
+const STAY_AR = {
+  '30 days':      '٣٠ يوماً',
+  '60 days':      '٦٠ يوماً',
+  '90 days':      '٩٠ يوماً',
+  '28 days':      '٢٨ يوماً',
+  '180 days':     '١٨٠ يوماً',
+  '1 month':      'شهر واحد',
+  '3 months':     '٣ أشهر',
+  '6 months':     '٦ أشهر',
+  '9 months':     '٩ أشهر',
+  '1 year':       'سنة كاملة',
+  'Up to 6 mo.':  'حتى ٦ أشهر',
+};
+
+const TIME_AR = {
+  'No wait':     'فوري',
+  'On arrival':  'عند الوصول',
+  'Instant':     'فوري',
+  '1–2 days':    '١–٢ أيام',
+  '3 days':      '٣ أيام',
+  '3–5 days':    '٣–٥ أيام',
+  '4–7 days':    '٤–٧ أيام',
+  '5–7 days':    '٥–٧ أيام',
+  '5–10 days':   '٥–١٠ أيام',
+  '3–20 days':   '٣–٢٠ يوماً',
+  '2–4 weeks':   '٢–٤ أسابيع',
+  '3 weeks':     '٣ أسابيع',
+  '4–6 weeks':   '٤–٦ أسابيع',
+  '4–8 weeks':   '٤–٨ أسابيع',
+  '8 weeks':     '٨ أسابيع',
+  '10–15 days':  '١٠–١٥ يوماً',
+  '15–30 days':  '١٥–٣٠ يوماً',
+  '2–6 months':  '٢–٦ أشهر',
+};
+
+// fee: only "Free" needs translation; currency amounts (€80, $25…) are kept as-is
+function displayType  (c) { return currentLang === 'ar' ? (TYPE_AR[c.type]   || c.type)  : c.type; }
+function displayStay  (c) { return currentLang === 'ar' ? (STAY_AR[c.stay]   || c.stay)  : c.stay; }
+function displayTime  (c) { return currentLang === 'ar' ? (TIME_AR[c.time]   || c.time)  : c.time; }
+function displayFee   (c) { return currentLang === 'ar' && c.fee === 'Free' ? 'مجاني' : c.fee; }
+
+// ─────────────────────────────────────────────────────────────────────────────
+const REGIONS   = ['All regions','Middle East','Europe','Asia','Africa','Americas','Oceania'];
+const BADGE_CSS = { green:'badge-green', amber:'badge-amber', red:'badge-red' };
+
+let activeRegion = 'All regions';
+let activeVisa   = '';
+let activeQuery  = '';
+let activeView   = 'list';
+
+// ── Visa type select ──────────────────────────────────────────────────────────
+function renderVisaSelect() {
+  const sel = document.getElementById('visaTypeSelect');
+  const cur = sel.value;
+  sel.innerHTML = [
+    ['', T('filter.all')],
+    ['Visa Free', T('filter.free')],
+    ['Visa on Arrival', T('filter.voa')],
+    ['eVisa', T('filter.evisa')],
+    ['Apply ahead', T('filter.apply')],
+    ['Complex', T('filter.complex')],
+  ].map(([v, l]) => `<option value="${v}"${v===cur?' selected':''}>${l}</option>`).join('');
+}
+
+// ── Region pills ──────────────────────────────────────────────────────────────
+function renderRegionPills() {
+  document.getElementById('regionPills').innerHTML = REGIONS.map(r => `
+    <button class="filter-pill${r === activeRegion ? ' active' : ''}"
+            onclick="setRegion('${r}')">${currentLang === 'ar' ? REGION_AR[r] : r}</button>
+  `).join('');
+}
+
+document.getElementById('visaTypeSelect').addEventListener('change', function() {
+  activeVisa = this.value; renderResults();
+});
+
+function setRegion(r) {
+  activeRegion = r;
+  document.querySelectorAll('.filter-pill').forEach(btn => {
+    const label = currentLang === 'ar' ? REGION_AR[r] : r;
+    btn.classList.toggle('active', btn.textContent.trim() === (currentLang === 'ar' ? REGION_AR[r] : r));
+  });
+  renderResults();
+}
+
+function setView(v) {
+  activeView = v;
+  document.getElementById('btnList').classList.toggle('active', v === 'list');
+  document.getElementById('btnGrid').classList.toggle('active', v === 'grid');
+  renderResults();
+}
+
+// ── Filter ────────────────────────────────────────────────────────────────────
+function getFiltered() {
+  const countries = getCountries();
+  return countries.filter(c => {
+    const q      = activeQuery.toLowerCase();
+    const matchQ = !q || c.name.toLowerCase().includes(q)
+                      || (c.name_ar || '').includes(q)
+                      || c.region.toLowerCase().includes(q);
+    const matchR = activeRegion === 'All regions' || c.region === activeRegion;
+    const matchV = !activeVisa || c.type.includes(activeVisa) || c.badge.includes(activeVisa);
+    return matchQ && matchR && matchV;
+  });
+}
+
+// ── Render ────────────────────────────────────────────────────────────────────
+function renderResults() {
+  const filtered  = getFiltered();
+  const overrides = getOverrides();
+  const ar        = currentLang === 'ar';
+  document.getElementById('resultCount').textContent = filtered.length;
+  const container = document.getElementById('searchResults');
+
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">🔍</div>
+        <div class="empty-title">${T('empty.title')}</div>
+        <p class="empty-sub">${T('empty.sub')}</p>
+        <button class="reset-btn" onclick="resetFilters()">${T('empty.reset')}</button>
+      </div>`;
+    return;
+  }
+
+  const editedDot = (code) => overrides[code]
+    ? '<span title="Edited in admin" style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#e85d2f;margin-left:5px;vertical-align:middle"></span>'
+    : '';
+
+  const displayName   = c => ar && c.name_ar  ? c.name_ar  : c.name;
+  const displayNotes  = c => ar && c.notes_ar ? c.notes_ar : (c.notes_en || c.notes || '');
+  const displayBadge  = c => ar ? (BADGE_AR[c.badge] || c.badge) : c.badge;
+  const displayRegion = c => ar ? (REGION_AR[c.region] || c.region) : c.region;
+
+  if (activeView === 'list') {
+    container.innerHTML = `
+      <div class="results-table">
+        <div class="results-table-head">
+          <span>${T('table.country')}</span><span>${T('table.visatype')}</span>
+          <span>${T('table.stay')}</span><span>${T('table.fee')}</span>
+          <span>${T('table.processing')}</span><span>${T('table.status')}</span>
+        </div>
+        ${filtered.map(c => `
+        <a href="visa-info.html?country=${encodeURIComponent(c.name)}" class="results-row">
+          <div class="row-country">
+            <span class="row-flag">${c.flag}</span>
+            <div>
+              <div class="row-name">${displayName(c)}${editedDot(c.code)}</div>
+              <div class="row-region">${displayRegion(c)}</div>
+            </div>
+          </div>
+          <div class="row-cell">${displayType(c)}</div>
+          <div class="row-cell">${displayStay(c)}</div>
+          <div class="row-cell">${displayFee(c)}</div>
+          <div class="row-cell">${displayTime(c)}</div>
+          <div class="row-actions">
+            <span class="badge ${BADGE_CSS[c.bc]}">${displayBadge(c)}</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.5"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </a>`).join('')}
+      </div>`;
+  } else {
+    container.innerHTML = `
+      <div class="results-grid">
+        ${filtered.map(c => `
+        <a href="visa-info.html?country=${encodeURIComponent(c.name)}" class="country-card">
+          <div class="country-top">
+            <span class="country-flag">${c.flag}</span>
+            <div>
+              <div class="country-name">${displayName(c)}${editedDot(c.code)}</div>
+              <div class="country-type">${displayType(c)}</div>
+            </div>
+            <span class="badge ${BADGE_CSS[c.bc]}">${displayBadge(c)}</span>
+          </div>
+          <div class="country-meta">
+            <div><div class="meta-label">${T('meta.stay')}</div><div class="meta-value">${displayStay(c)}</div></div>
+            <div><div class="meta-label">${T('meta.fee')}</div><div class="meta-value">${displayFee(c)}</div></div>
+            <div><div class="meta-label">${T('meta.processing')}</div><div class="meta-value">${displayTime(c)}</div></div>
+          </div>
+          <div class="country-link">${T('card.view')}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </a>`).join('')}
+      </div>`;
+  }
+}
+
+function resetFilters() {
+  activeQuery = ''; activeRegion = 'All regions'; activeVisa = '';
+  document.getElementById('searchInput').value = '';
+  document.getElementById('visaTypeSelect').value = '';
+  renderRegionPills();
+  renderResults();
+}
+
+document.getElementById('searchInput').addEventListener('input', function() {
+  activeQuery = this.value.toLowerCase(); renderResults();
+});
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+applyLang();
+</script>
+</body>
+</html>

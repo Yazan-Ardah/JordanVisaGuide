@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Visa Info — Jordan Visa Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@400;600;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a3e; background: #fafafa; }
+
+  /* ── NAV ── */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(16px);
+    border-bottom: 1px solid #e8e8f0; padding: 0 32px; height: 64px;
+    display: flex; align-items: center;
+  }
+  .nav-inner { max-width: 1100px; margin: 0 auto; width: 100%; display: flex; align-items: center; gap: 16px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+  .logo-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, #e85d2f, #ff8c5a);
+    display: flex; align-items: center; justify-content: center; font-size: 16px;
+  }
+  .logo-text { font-size: 15px; font-weight: 700; color: #1a1a3e; }
+  .logo-text span { font-weight: 400; color: #6b7280; }
+  .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #9ca3af; }
+  .breadcrumb a { color: #6b7280; text-decoration: none; }
+  .breadcrumb a:hover { color: #1a1a3e; }
+  .nav-links { margin-left: auto; display: flex; gap: 4px; }
+  .nav-link { color: #374151; text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 12px; border-radius: 8px; transition: background 0.15s; }
+  .nav-link:hover { background: #f3f4f6; }
+
+  /* ── HERO STRIP ── */
+  .hero-strip {
+    background: linear-gradient(150deg, #1a1a3e 0%, #2d2a72 100%);
+    padding: 48px 32px;
+  }
+  .hero-strip-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .hero-flag { font-size: 72px; line-height: 1; flex-shrink: 0; }
+  .hero-meta { flex: 1; min-width: 200px; }
+  .hero-region { font-size: 13px; color: rgba(255,255,255,0.5); font-weight: 500; margin-bottom: 6px; }
+  .hero-name { font-family: 'Sora', sans-serif; font-size: clamp(28px, 5vw, 44px); font-weight: 800; color: #fff; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .hero-chips { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .hero-visa-type { font-size: 14px; color: rgba(255,255,255,0.6); }
+
+  .hero-stats { display: flex; gap: 1px; background: rgba(255,255,255,0.1); border-radius: 14px; overflow: hidden; flex-shrink: 0; }
+  .hero-stat { padding: 14px 20px; background: rgba(255,255,255,0.06); text-align: center; }
+  .hero-stat-label { font-size: 10px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .hero-stat-value { font-size: 14px; font-weight: 700; color: #fff; white-space: nowrap; }
+
+  /* ── TAB BAR ── */
+  .tab-bar {
+    background: #fff; border-bottom: 1px solid #e8e8f0;
+    position: sticky; top: 64px; z-index: 50; padding: 0 32px;
+  }
+  .tab-bar-inner { max-width: 1100px; margin: 0 auto; display: flex; }
+  .tab-btn {
+    padding: 16px 20px; background: none; border: none;
+    border-bottom: 2px solid transparent; color: #6b7280;
+    font-weight: 500; font-size: 14px; cursor: pointer;
+    transition: all 0.15s ease; font-family: 'Inter', sans-serif;
+    text-transform: capitalize;
+  }
+  .tab-btn.active { border-bottom-color: #e85d2f; color: #e85d2f; font-weight: 600; }
+
+  /* ── LAYOUT ── */
+  .content-wrap { max-width: 1100px; margin: 0 auto; padding: 40px 32px; display: grid; grid-template-columns: 1fr 300px; gap: 32px; align-items: start; }
+  .main-col { min-width: 0; }
+  .sidebar { display: flex; flex-direction: column; gap: 16px; }
+
+  /* ── SECTION HEADING ── */
+  .sec-title { font-size: 20px; font-weight: 700; color: #1a1a3e; margin-bottom: 20px; letter-spacing: -0.01em; }
+
+  /* ── OVERVIEW TEXT ── */
+  .overview-text { font-size: 15px; color: #4b5563; line-height: 1.75; margin-bottom: 36px; }
+
+  /* ── STEPS ── */
+  .steps { display: flex; flex-direction: column; }
+  .step { display: flex; gap: 20px; padding-bottom: 28px; position: relative; }
+  .step:not(:last-child)::before {
+    content: ''; position: absolute; left: 18px; top: 38px; bottom: 0;
+    width: 2px; background: #e8e8f0;
+  }
+  .step-num {
+    width: 38px; height: 38px; border-radius: 50%; background: #1a1a3e; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0; z-index: 1;
+  }
+  .step-body { padding-top: 8px; }
+  .step-title { font-size: 15px; font-weight: 700; color: #1a1a3e; margin-bottom: 6px; }
+  .step-desc { font-size: 14px; color: #4b5563; line-height: 1.65; }
+
+  /* ── DOCUMENTS ── */
+  .doc-list { display: flex; flex-direction: column; gap: 10px; }
+  .doc-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 16px 18px; background: #fff;
+    border: 1px solid #e8e8f0; border-radius: 12px;
+  }
+  .doc-check {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: #f0fdf4; border: 1px solid #bbf7d0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; flex-shrink: 0; margin-top: 1px; color: #16a34a; font-weight: 700;
+  }
+  .doc-name { font-size: 14px; font-weight: 600; color: #1a1a3e; margin-bottom: 2px; }
+  .doc-note { font-size: 13px; color: #6b7280; }
+  .doc-warning {
+    margin-top: 16px; padding: 14px 18px;
+    background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px;
+    font-size: 13px; color: #92400e; line-height: 1.6;
+  }
+
+  /* ── FAQ ── */
+  .faq-list { background: #fff; border: 1px solid #e8e8f0; border-radius: 16px; padding: 0 24px; }
+  .faq-item { border-bottom: 1px solid #f0f0f6; }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q {
+    width: 100%; background: none; border: none; padding: 18px 0;
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+    cursor: pointer; text-align: left; font-family: 'Inter', sans-serif;
+  }
+  .faq-q-text { font-size: 15px; font-weight: 600; color: #1a1a3e; }
+  .faq-icon { font-size: 18px; color: #9ca3af; flex-shrink: 0; transition: transform 0.2s ease; }
+  .faq-icon.open { transform: rotate(45deg); }
+  .faq-a { font-size: 14px; color: #4b5563; line-height: 1.7; padding-bottom: 18px; display: none; }
+  .faq-a.open { display: block; }
+
+  /* ── TIPS ── */
+  .tips-list { display: flex; flex-direction: column; gap: 12px; }
+  .tip-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 18px 20px; background: #fff; border: 1px solid #e8e8f0; border-radius: 12px;
+  }
+  .tip-icon {
+    width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+    background: linear-gradient(135deg, #e85d2f, #ff8c5a);
+    display: flex; align-items: center; justify-content: center; font-size: 13px;
+  }
+  .tip-text { font-size: 14px; color: #374151; line-height: 1.7; }
+
+  /* ── SIDEBAR CARDS ── */
+  .sidebar-card { background: #fff; border: 1px solid #e8e8f0; border-radius: 16px; overflow: hidden; }
+  .sidebar-card-head { padding: 14px 18px; border-bottom: 1px solid #f0f0f6; background: #f8f8fc; }
+  .sidebar-card-head-label { font-size: 11px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.06em; }
+  .sidebar-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 12px 18px; border-bottom: 1px solid #f7f7fb; }
+  .sidebar-row:last-child { border-bottom: none; }
+  .sidebar-row-label { font-size: 13px; color: #9ca3af; flex-shrink: 0; }
+  .sidebar-row-value { font-size: 13px; font-weight: 500; color: #1a1a3e; text-align: right; }
+
+  .embassy-card-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+  .embassy-row { display: flex; gap: 10px; align-items: flex-start; }
+  .embassy-icon { font-size: 14px; flex-shrink: 0; }
+  .embassy-text { font-size: 13px; color: #374151; line-height: 1.5; }
+  .embassy-text a { color: #e85d2f; text-decoration: none; font-weight: 500; }
+
+  .status-card { padding: 16px 18px; border-radius: 12px; }
+  .status-card-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .status-card-desc { font-size: 13px; line-height: 1.55; color: #4b5563; }
+
+  /* ── RELATED ── */
+  .related-section { background: #fff; border-top: 1px solid #e8e8f0; padding: 48px 32px; }
+  .related-inner { max-width: 1100px; margin: 0 auto; }
+  .related-title { font-size: 18px; font-weight: 700; color: #1a1a3e; margin-bottom: 20px; }
+  .related-grid { display: flex; gap: 12px; flex-wrap: wrap; }
+  .related-card {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 18px; border-radius: 12px;
+    border: 1px solid #e8e8f0; background: #fff;
+    text-decoration: none; color: inherit; transition: all 0.15s ease;
+  }
+  .related-card:hover { border-color: #c7d2fe; transform: translateY(-2px); }
+  .related-flag { font-size: 24px; }
+  .related-name { font-size: 14px; font-weight: 600; color: #1a1a3e; }
+
+  /* ── BADGE ── */
+  .badge { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: 100px; font-size: 13px; font-weight: 600; }
+  .badge-green { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+  .badge-amber { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+  .badge-red   { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+
+  /* ── NOT FOUND ── */
+  .not-found { text-align: center; padding: 100px 24px; }
+  .not-found-icon { font-size: 56px; margin-bottom: 20px; }
+  .not-found-title { font-size: 24px; font-weight: 700; color: #1a1a3e; margin-bottom: 10px; }
+  .not-found-sub { font-size: 15px; color: #6b7280; margin-bottom: 28px; }
+  .back-btn {
+    display: inline-block; background: #e85d2f; color: #fff; border-radius: 12px;
+    padding: 12px 28px; font-weight: 600; font-size: 15px; text-decoration: none;
+  }
+
+  /* ── FOOTER ── */
+  footer { background: #0e0e22; padding: 36px 32px; }
+  .footer-bottom { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.28); }
+
+  /* ── LANG TOGGLE ── */
+  .lang-toggle {
+    display: flex; align-items: center; padding: 6px 14px;
+    border-radius: 8px; border: 1px solid #d1d5db;
+    background: #f3f4f6; color: #374151;
+    font-size: 13px; font-weight: 600; cursor: pointer;
+    transition: all 0.2s; white-space: nowrap;
+    font-family: 'Inter', sans-serif; margin-left: auto;
+  }
+  .lang-toggle:hover { background: #e5e7eb; }
+
+  /* ── RTL ── */
+  [dir="rtl"] body { font-family: 'Noto Sans Arabic', 'Inter', system-ui, sans-serif; }
+  [dir="rtl"] .nav-inner { flex-direction: row-reverse; }
+  [dir="rtl"] .breadcrumb { flex-direction: row-reverse; }
+  [dir="rtl"] .lang-toggle { margin-left: 0; margin-right: auto; }
+  [dir="rtl"] .nav-links { margin-left: 0; }
+  [dir="rtl"] .hero-strip-inner { flex-direction: row-reverse; }
+  [dir="rtl"] .hero-meta { text-align: right; }
+  [dir="rtl"] .hero-chips { flex-direction: row-reverse; }
+  [dir="rtl"] .faq-q { text-align: right; flex-direction: row-reverse; }
+  [dir="rtl"] .step { flex-direction: row-reverse; }
+  [dir="rtl"] .step:not(:last-child)::before { left: auto; right: 18px; }
+  [dir="rtl"] .doc-item { flex-direction: row-reverse; text-align: right; }
+  [dir="rtl"] .embassy-row { flex-direction: row-reverse; text-align: right; }
+  [dir="rtl"] .sidebar-row { flex-direction: row-reverse; }
+  [dir="rtl"] .sidebar-row-value { text-align: left; }
+  [dir="rtl"] .tip-item { flex-direction: row-reverse; text-align: right; }
+  [dir="rtl"] .related-card { flex-direction: row-reverse; }
+  [dir="rtl"] .tab-bar-inner { flex-direction: row-reverse; }
+  [dir="rtl"] .content-wrap { direction: rtl; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    .content-wrap { grid-template-columns: 1fr; }
+    .sidebar { order: -1; }
+    .hero-stats { display: none; }
+  }
+  @media (max-width: 600px) {
+    .hero-strip, .tab-bar, .related-section { padding-left: 16px; padding-right: 16px; }
+    .content-wrap { padding: 24px 16px; }
+    .hero-strip { padding-top: 32px; padding-bottom: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="JordanVisaGuide_Preview.html" class="logo">
+      <div class="logo-icon">🇯🇴</div>
+      <div class="logo-text">Jordan <span>Visa Guide</span></div>
+    </a>
+    <div class="breadcrumb">
+      <span>/</span>
+      <a href="JordanVisaGuide_Preview.html#countries">All countries</a>
+      <span>/</span>
+      <span id="breadcrumbCountry">—</span>
+    </div>
+    <button class="lang-toggle" id="langToggle" onclick="toggleLang()">عربي</button>
+    <div class="nav-links">
+      <a href="JordanVisaGuide_Preview.html#countries" class="nav-link" id="navAllCountries">All countries</a>
+      <a href="#" class="nav-link" id="navFaq">FAQ</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO STRIP ────────────────────────────────────── -->
+<div class="hero-strip" id="heroStrip">
+  <div class="hero-strip-inner">
+    <div class="hero-flag" id="heroFlag">🌍</div>
+    <div class="hero-meta">
+      <div class="hero-region" id="heroRegion">—</div>
+      <div class="hero-name" id="heroName">Loading…</div>
+      <div class="hero-chips">
+        <span class="badge badge-amber" id="heroBadge">—</span>
+        <span class="hero-visa-type" id="heroVisaType">—</span>
+      </div>
+    </div>
+    <div class="hero-stats" id="heroStats">
+      <div class="hero-stat">
+        <div class="hero-stat-label">Fee</div>
+        <div class="hero-stat-value" id="statFee">—</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Processing</div>
+        <div class="hero-stat-value" id="statProcessing">—</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Max stay</div>
+        <div class="hero-stat-value" id="statStay">—</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TAB BAR ──────────────────────────────────────── -->
+<div class="tab-bar">
+  <div class="tab-bar-inner" id="tabBar">
+    <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+    <button class="tab-btn" onclick="showTab('documents')">Documents</button>
+    <button class="tab-btn" onclick="showTab('faq')">FAQ</button>
+    <button class="tab-btn" onclick="showTab('tips')">Tips</button>
+  </div>
+</div>
+
+<!-- ── MAIN CONTENT + SIDEBAR ───────────────────────── -->
+<div class="content-wrap" id="mainContent">
+
+  <!-- Main column -->
+  <div class="main-col">
+    <div id="tab-overview"></div>
+    <div id="tab-documents" style="display:none"></div>
+    <div id="tab-faq"       style="display:none"></div>
+    <div id="tab-tips"      style="display:none"></div>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+
+    <!-- Visa snapshot -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-head"><div class="sidebar-card-head-label">Visa snapshot</div></div>
+      <div id="snapshotRows"></div>
+    </div>
+
+    <!-- Country info -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-head"><div class="sidebar-card-head-label">Country info</div></div>
+      <div id="countryInfoRows"></div>
+    </div>
+
+    <!-- Embassy -->
+    <div class="sidebar-card" id="embassyCard">
+      <div class="sidebar-card-head"><div class="sidebar-card-head-label">Embassy in Amman</div></div>
+      <div class="embassy-card-body" id="embassyBody"></div>
+    </div>
+
+    <!-- Status -->
+    <div class="status-card" id="statusCard">
+      <div class="status-card-label" id="statusLabel">—</div>
+      <div class="status-card-desc" id="statusDesc">—</div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- ── RELATED COUNTRIES ─────────────────────────────── -->
+<div class="related-section" id="relatedSection" style="display:none">
+  <div class="related-inner">
+    <div class="related-title">Similar destinations</div>
+    <div class="related-grid" id="relatedGrid"></div>
+  </div>
+</div>
+
+<!-- ── NOT FOUND (hidden by default) ────────────────── -->
+<div class="not-found" id="notFound" style="display:none">
+  <div class="not-found-icon">🔍</div>
+  <div class="not-found-title">Country not found</div>
+  <p class="not-found-sub">We don't have detailed visa data for this country yet.<br>Check back soon — we're adding new countries every week.</p>
+  <a href="JordanVisaGuide_Preview.html#countries" class="back-btn">← Back to all countries</a>
+</div>
+
+<!-- ── FOOTER ────────────────────────────────────────── -->
+<footer>
+  <div class="footer-bottom">
+    <div style="display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🇯🇴</span>
+      <span style="font-weight:700;font-size:14px;color:#fff">Jordan Visa Guide</span>
+    </div>
+    <div class="footer-copy">© 2025 Jordan Visa Guide · Always verify with the official embassy before travelling.</div>
+  </div>
+</footer>
+
+<script>
+// ─── Language ─────────────────────────────────────────────────────────────────
+let currentLang = localStorage.getItem('jvg_lang') || 'en';
+const ar = () => currentLang === 'ar';
+
+function toggleLang() {
+  currentLang = ar() ? 'en' : 'ar';
+  localStorage.setItem('jvg_lang', currentLang);
+  applyLang();
+  rebuildPage();
+}
+
+function applyLang() {
+  document.documentElement.setAttribute('lang', currentLang);
+  document.documentElement.setAttribute('dir', ar() ? 'rtl' : 'ltr');
+  document.getElementById('langToggle').textContent = ar() ? 'English' : 'عربي';
+  document.getElementById('navAllCountries').textContent = ar() ? 'جميع الدول' : 'All countries';
+  document.getElementById('navFaq').textContent          = ar() ? 'الأسئلة الشائعة' : 'FAQ';
+}
+
+// ─── Visa data store ──────────────────────────────────────────────────────────
+const VISA_DATA = {
+  "Germany": {
+    flag: "🇩🇪",
+    region_en: "Europe",          region_ar: "أوروبا",
+    visaType_en: "Schengen Visa (Type C)", visaType_ar: "تأشيرة شنغن (نوع C)",
+    badge_en: "Apply ahead",      badge_ar: "تقديم مسبق",   badgeColor: "amber",
+    fee: "€80",
+    processing_en: "15–30 days",  processing_ar: "١٥–٣٠ يوماً",
+    maxStay_en: "90 days",        maxStay_ar: "٩٠ يوماً",
+    validity_en: "Single / double / multiple entry, up to 5 years",
+    validity_ar: "دخول مفرد / مزدوج / متعدد، حتى 5 سنوات",
+    capital_en: "Berlin",         capital_ar: "برلين",
+    currency_en: "Euro (€)",      currency_ar: "يورو (€)",
+    language_en: "German",        language_ar: "الألمانية",
+    timezone_en: "CET (UTC+1)",   timezone_ar: "CET (UTC+1)",
+    embassyPhone: "+962 6 590 0000",
+    embassyAddress_en: "4 Benghazi St, Abdoun, Amman",
+    embassyAddress_ar: "شارع بنغازي 4، عبدون، عمّان",
+    embassyHours_en: "Mon–Fri 09:00–12:00",
+    embassyHours_ar: "الاثنين–الجمعة ٩:٠٠–١٢:٠٠",
+    overview_en: "Germany is part of the Schengen Area, so a single German Schengen visa lets you travel freely across 27 European countries. For Jordanians the process is straightforward but requires advance planning — apply at the German Embassy in Amman at least 3–4 weeks before your trip.",
+    overview_ar: "ألمانيا جزء من منطقة شنغن، لذا تتيح لك تأشيرة شنغن الألمانية التنقل بحرية عبر 27 دولة أوروبية. العملية للأردنيين واضحة لكنها تتطلب تخطيطاً مسبقاً — قدّم طلبك في السفارة الألمانية بعمّان قبل رحلتك بـ3-4 أسابيع على الأقل.",
+    steps_en: [
+      { n:"01", title:"Complete the online application", desc:"Fill out the Schengen visa application form on the German embassy portal. Print and sign the completed form." },
+      { n:"02", title:"Gather your documents",           desc:"Compile your full document package. All documents need originals plus one photocopy." },
+      { n:"03", title:"Book your embassy appointment",   desc:"Schedule via the German Embassy Amman appointment system. Peak season (June–August) slots fill up fast — book 6–8 weeks ahead." },
+      { n:"04", title:"Attend your appointment",         desc:"Arrive 10 minutes early with all documents. You will submit your application, provide biometrics, and pay the fee in cash (JOD equivalent)." },
+      { n:"05", title:"Wait for processing",             desc:"Standard processing takes 15 business days. You will receive an SMS or email when your passport is ready." },
+      { n:"06", title:"Collect your passport",           desc:"Pick up your passport in person or arrange courier collection. Double-check visa dates before leaving the embassy." },
+    ],
+    steps_ar: [
+      { n:"٠١", title:"أكمل طلب التأشيرة أونلاين", desc:"امل استمارة تأشيرة شنغن عبر بوابة السفارة الألمانية. اطبع الاستمارة ووقّعها." },
+      { n:"٠٢", title:"اجمع وثائقك",               desc:"رتّب ملف وثائقك كاملاً. كل وثيقة تحتاج إلى أصل وصورة." },
+      { n:"٠٣", title:"احجز موعداً في السفارة",    desc:"احجز عبر نظام المواعيد في السفارة الألمانية بعمّان. مواسم الذروة (يونيو–أغسطس) تمتلئ سريعاً — احجز قبل 6-8 أسابيع." },
+      { n:"٠٤", title:"احضر موعدك",                desc:"احضر قبل 10 دقائق مع جميع الوثائق. ستقدم الطلب وتُعطي بصماتك وتدفع الرسوم نقداً." },
+      { n:"٠٥", title:"انتظر معالجة الطلب",        desc:"المعالجة الاعتيادية تستغرق 15 يوم عمل. ستتلقى رسالة نصية أو بريداً إلكترونياً عند جاهزية جوازك." },
+      { n:"٠٦", title:"استلم جوازك",               desc:"استلمه شخصياً أو رتّب للاستلام عبر مندوب. تحقق من تواريخ التأشيرة قبل مغادرة السفارة." },
+    ],
+    documents_en: [
+      { item: "Valid passport",               note: "Must be valid at least 3 months beyond your return date" },
+      { item: "Completed application form",   note: "Signed and dated" },
+      { item: "2 passport photos",            note: "35×45 mm, white background, within last 6 months" },
+      { item: "Travel itinerary",             note: "Flight bookings (confirmed or provisional) for entire trip" },
+      { item: "Hotel reservations",           note: "For all nights in the Schengen Area" },
+      { item: "Travel insurance",             note: "Minimum €30,000 coverage, valid across all Schengen countries" },
+      { item: "Bank statements",              note: "Last 3 months — min. €50/day recommended" },
+      { item: "Employment proof",             note: "Letter from employer, payslips, or trade licence if self-employed" },
+      { item: "Proof of ties to Jordan",      note: "Property, family commitments, or other strong reason to return" },
+    ],
+    documents_ar: [
+      { item: "جواز سفر ساري",                note: "يجب أن يكون صالحاً لمدة 3 أشهر بعد تاريخ العودة" },
+      { item: "استمارة الطلب مكتملة",         note: "موقّعة ومؤرخة" },
+      { item: "صورتان شخصيتان",               note: "35×45 ملم، خلفية بيضاء، خلال آخر 6 أشهر" },
+      { item: "برنامج الرحلة",                note: "حجوزات الطيران (مؤكدة أو مبدئية) لكامل الرحلة" },
+      { item: "حجوزات الفنادق",               note: "لجميع ليالي الإقامة في منطقة شنغن" },
+      { item: "تأمين سفر",                    note: "تغطية لا تقل عن €30,000 في جميع دول شنغن" },
+      { item: "كشوف حساب بنكية",              note: "آخر 3 أشهر — يُنصح بـ€50/يوم كحد أدنى" },
+      { item: "إثبات التوظيف",                note: "خطاب من صاحب العمل أو كشوف الراتب أو الرخصة التجارية" },
+      { item: "إثبات الارتباط بالأردن",       note: "عقارات أو التزامات عائلية أو سبب قوي للعودة" },
+    ],
+    faqs_en: [
+      { q: "Can I visit other Schengen countries with a German visa?",   a: "Yes. A German Schengen visa (Type C) allows free movement across all 27 Schengen states. Germany should be your main or first stop." },
+      { q: "How much money do I need to prove?",                          a: "The embassy recommends at least €50 per day of your stay, evidenced by 3 months of bank statements." },
+      { q: "Can I extend a Schengen visa from inside Germany?",           a: "Extensions are only granted in exceptional circumstances (medical emergency, force majeure) — not for tourism." },
+      { q: "What if my visa is refused?",                                  a: "You'll receive written grounds and can appeal within one month. Common reasons: insufficient funds, weak ties to Jordan, unclear itinerary." },
+    ],
+    faqs_ar: [
+      { q: "هل يمكنني زيارة دول شنغن الأخرى بتأشيرة ألمانية؟", a: "نعم. تأشيرة شنغن الألمانية (نوع C) تتيح التنقل الحر بين جميع دول شنغن الـ27. يجب أن تكون ألمانيا وجهتك الرئيسية أو الأولى." },
+      { q: "كم مبلغاً مالياً يجب إثباته؟",                      a: "توصي السفارة بما لا يقل عن €50 لكل يوم من إقامتك، مدعوماً بكشوف حساب بنكية لآخر 3 أشهر." },
+      { q: "هل يمكن تمديد تأشيرة شنغن من داخل ألمانيا؟",       a: "التمديد يُمنح فقط في ظروف استثنائية (طوارئ طبية، قوة قاهرة) — ليس لأغراض السياحة." },
+      { q: "ماذا أفعل إذا رُفض طلبي؟",                          a: "ستتلقى أسباباً مكتوبة ويمكنك الاستئناف خلال شهر. أشيع الأسباب: رصيد غير كافٍ، ضعف الارتباط بالأردن، برنامج رحلة غير واضح." },
+    ],
+    tips_en: [
+      "Apply at the German Embassy even if France or Italy is your main stop — Amman's German embassy is known for faster processing.",
+      "Use a travel insurance provider that issues a certificate immediately (AXA, Allianz) so you can attach it to your application the same day.",
+      "All non-English documents must be translated by a certified translator — the embassy does not accept Google Translate.",
+    ],
+    tips_ar: [
+      "قدّم في السفارة الألمانية حتى لو كانت فرنسا أو إيطاليا وجهتك الرئيسية — السفارة الألمانية في عمّان معروفة بسرعة المعالجة.",
+      "استخدم شركة تأمين سفر تُصدر الشهادة فوراً (AXA، Allianz) حتى تُرفق مع طلبك في نفس اليوم.",
+      "جميع الوثائق غير الإنجليزية يجب ترجمتها من مترجم معتمد — السفارة لا تقبل ترجمة Google.",
+    ],
+    related: [
+      { name:"France",      flag:"🇫🇷", badgeColor:"amber" },
+      { name:"Italy",       flag:"🇮🇹", badgeColor:"amber" },
+      { name:"Spain",       flag:"🇪🇸", badgeColor:"amber" },
+      { name:"Netherlands", flag:"🇳🇱", badgeColor:"amber" },
+    ],
+  },
+
+  "USA": {
+    flag: "🇺🇸",
+    region_en: "Americas",              region_ar: "الأمريكتان",
+    visaType_en: "B1/B2 Visitor Visa", visaType_ar: "تأشيرة زيارة B1/B2",
+    badge_en: "Complex",               badge_ar: "إجراءات معقدة", badgeColor: "red",
+    fee: "$185",
+    processing_en: "2–6 months",       processing_ar: "٢–٦ أشهر",
+    maxStay_en: "Up to 6 months",      maxStay_ar: "حتى ٦ أشهر",
+    validity_en: "10 years, multiple entry",
+    validity_ar: "١٠ سنوات، دخول متعدد",
+    capital_en: "Washington, D.C.",    capital_ar: "واشنطن العاصمة",
+    currency_en: "US Dollar ($)",      currency_ar: "دولار أمريكي ($)",
+    language_en: "English",            language_ar: "الإنجليزية",
+    timezone_en: "EST–PST (UTC−5 to −8)", timezone_ar: "EST–PST (UTC−5 إلى −8)",
+    embassyPhone: "+962 6 590 6000",
+    embassyAddress_en: "Al-Umawyeen St, Abdoun, Amman",
+    embassyAddress_ar: "شارع الأمويين، عبدون، عمّان",
+    embassyHours_en: "Mon–Fri 08:00–10:30 (appointment required)",
+    embassyHours_ar: "الاثنين–الجمعة ٨:٠٠–١٠:٣٠ (بموعد مسبق)",
+    overview_en: "The US B1/B2 visa is one of the most scrutinised visitor visas in the world. For Jordanians it requires an in-person interview at the US Embassy in Amman. Approval depends heavily on demonstrating strong ties to Jordan. Apply 3–6 months in advance — processing times are unpredictable.",
+    overview_ar: "تأشيرة B1/B2 الأمريكية من أكثر تأشيرات الزيارة تدقيقاً في العالم. تتطلب من الأردنيين مقابلة شخصية في السفارة الأمريكية بعمّان. يعتمد القبول بشكل كبير على إثبات الارتباط القوي بالأردن. قدّم الطلب قبل 3-6 أشهر — أوقات المعالجة غير متوقعة.",
+    steps_en: [
+      { n:"01", title:"Pay the MRV fee",          desc:"Pay the $185 fee at an approved bank in Jordan. Keep the receipt — you cannot book your interview without it." },
+      { n:"02", title:"Complete DS-160 form",      desc:"Fill out the DS-160 at ceac.state.gov. Set aside 90–120 minutes. Print the confirmation page with barcode." },
+      { n:"03", title:"Schedule your interview",   desc:"Book via the US Embassy scheduling portal. Current wait times fluctuate — check early as slots book up weeks in advance." },
+      { n:"04", title:"Prepare your documents",    desc:"Assemble all required documents. Organise them in the order listed on the embassy website — originals and copies." },
+      { n:"05", title:"Attend the interview",      desc:"Arrive 15 minutes early. Security screening takes time. The interview itself is typically 2–5 minutes — be concise and direct." },
+      { n:"06", title:"Administrative processing", desc:"If placed under 221(g) processing, wait for the embassy to contact you. This can add weeks or months." },
+    ],
+    steps_ar: [
+      { n:"٠١", title:"ادفع رسوم MRV",            desc:"ادفع $185 في بنك معتمد في الأردن. احتفظ بالإيصال — لا يمكنك حجز المقابلة بدونه." },
+      { n:"٠٢", title:"أكمل استمارة DS-160",       desc:"امل الاستمارة على ceac.state.gov. خصص 90-120 دقيقة. اطبع صفحة التأكيد مع الرمز الشريطي." },
+      { n:"٠٣", title:"احجز موعد المقابلة",        desc:"احجز عبر بوابة حجز مواعيد السفارة الأمريكية. أوقات الانتظار تتفاوت — تحقق مبكراً." },
+      { n:"٠٤", title:"جهّز وثائقك",              desc:"اجمع جميع الوثائق المطلوبة ورتّبها بحسب الترتيب المذكور على موقع السفارة." },
+      { n:"٠٥", title:"احضر المقابلة",             desc:"احضر قبل 15 دقيقة. الفحص الأمني يستغرق وقتاً. المقابلة عادةً 2-5 دقائق — كن موجزاً." },
+      { n:"٠٦", title:"المعالجة الإدارية",         desc:"إذا وُضع طلبك تحت المعالجة 221(g)، انتظر تواصل السفارة. قد يستغرق ذلك أسابيع أو أشهراً." },
+    ],
+    documents_en: [
+      { item: "DS-160 confirmation page",   note: "Printed, barcode visible" },
+      { item: "MRV fee receipt",            note: "From bank payment" },
+      { item: "Interview appointment page", note: "Printed from the scheduling system" },
+      { item: "Valid passport",             note: "Plus all passports from the last 10 years" },
+      { item: "One passport photo",         note: "5×5 cm, white background" },
+      { item: "Strong ties to Jordan",      note: "Property deeds, employment letter, family documents — the single most important factor" },
+      { item: "Bank statements",            note: "Last 6 months showing stable finances" },
+      { item: "Invitation letter",          note: "If visiting family or attending a conference — include host's US address and status" },
+    ],
+    documents_ar: [
+      { item: "صفحة تأكيد DS-160",          note: "مطبوعة، الرمز الشريطي ظاهر" },
+      { item: "إيصال رسوم MRV",             note: "من الدفع البنكي" },
+      { item: "صفحة موعد المقابلة",         note: "مطبوعة من نظام الحجز" },
+      { item: "جواز سفر ساري",              note: "إضافةً لجميع جوازاتك السابقة خلال آخر 10 سنوات" },
+      { item: "صورة شخصية واحدة",           note: "5×5 سم، خلفية بيضاء" },
+      { item: "إثبات الارتباط بالأردن",     note: "صكوك عقارية، خطاب عمل، وثائق عائلية — العامل الأهم" },
+      { item: "كشوف حساب بنكية",            note: "آخر 6 أشهر تُظهر استقراراً مالياً" },
+      { item: "خطاب دعوة",                  note: "إن كنت تزور عائلة أو تحضر مؤتمراً — أذكر عنوان المضيف وإقامته" },
+    ],
+    faqs_en: [
+      { q: "What is the most common reason for refusals?",       a: "Section 214(b) — the officer was not convinced you have strong enough ties to Jordan to ensure you'll return. Counter this with documented property, a stable job, and family commitments." },
+      { q: "Can I reapply after a refusal?",                      a: "Yes, immediately. But reapply with genuinely new or stronger evidence — the same documents rarely change the outcome." },
+      { q: "Does the 10-year validity mean I can stay 10 years?", a: "No. The visa validity is how long you can use it to enter. Each time you arrive, a CBP officer stamps how long you may stay — usually 6 months." },
+    ],
+    faqs_ar: [
+      { q: "ما أكثر أسباب الرفض شيوعاً؟",                       a: "المادة 214(b) — لم يقتنع الضابط بأن لديك ارتباطاً كافياً بالأردن يضمن عودتك. تغلّب عليها بتوثيق الممتلكات ووظيفة مستقرة والتزامات عائلية." },
+      { q: "هل يمكنني إعادة التقديم بعد الرفض؟",                a: "نعم، فوراً. لكن أعد التقديم بأدلة جديدة وأقوى — نفس الوثائق نادراً ما تغير النتيجة." },
+      { q: "هل صلاحية 10 سنوات تعني إمكانية البقاء 10 سنوات؟", a: "لا. الصلاحية تعني المدة التي يمكنك خلالها استخدام التأشيرة للدخول. عند كل وصول، يحدد ضابط CBP مدة إقامتك — عادةً 6 أشهر." },
+    ],
+    tips_en: [
+      "Dress professionally for the interview. First impressions matter more than you might expect.",
+      "Be specific about your ties: 'I own an apartment in Amman and manage a team of 12' is more convincing than 'I have family here'.",
+      "Do not book non-refundable flights or hotels until your visa is in hand.",
+    ],
+    tips_ar: [
+      "ارتدِ ملابس رسمية للمقابلة. الانطباع الأول أهم مما تتخيل.",
+      "كن محدداً في وصف ارتباطك بالأردن: 'أملك شقة في عمّان وأدير فريقاً من 12 شخصاً' أقنع بكثير من 'لديّ عائلة هنا'.",
+      "لا تحجز تذاكر طيران أو فنادق غير قابلة للاسترداد حتى تستلم تأشيرتك.",
+    ],
+    related: [
+      { name:"Canada",    flag:"🇨🇦", badgeColor:"amber" },
+      { name:"Australia", flag:"🇦🇺", badgeColor:"amber" },
+      { name:"UK",        flag:"🇬🇧", badgeColor:"amber" },
+    ],
+  },
+
+  "UAE": {
+    flag: "🇦🇪",
+    region_en: "Middle East",         region_ar: "الشرق الأوسط",
+    visaType_en: "Visa Free",         visaType_ar: "بدون تأشيرة",
+    badge_en: "Easy",                 badge_ar: "سهل", badgeColor: "green",
+    fee: "Free",
+    processing_en: "No visa required", processing_ar: "لا تأشيرة مطلوبة",
+    maxStay_en: "30 days",            maxStay_ar: "٣٠ يوماً",
+    validity_en: "Multiple entries, 30 days each",
+    validity_ar: "دخول متعدد، ٣٠ يوماً لكل دخول",
+    capital_en: "Abu Dhabi",          capital_ar: "أبوظبي",
+    currency_en: "UAE Dirham (AED)",  currency_ar: "درهم إماراتي (AED)",
+    language_en: "Arabic / English",  language_ar: "العربية / الإنجليزية",
+    timezone_en: "GST (UTC+4)",       timezone_ar: "GST (UTC+4)",
+    embassyPhone: "N/A — no visa required",
+    embassyAddress_en: null,          embassyAddress_ar: null,
+    embassyHours_en: null,            embassyHours_ar: null,
+    overview_en: "Jordanian passport holders can enter the UAE without a visa and receive a 30-day stamp on arrival at any UAE airport or land border. No prior arrangement is needed — just a valid passport and a return ticket. You can extend your stay once for another 30 days at any immigration office inside the UAE.",
+    overview_ar: "يمكن لحاملي جوازات السفر الأردنية دخول الإمارات بدون تأشيرة والحصول على ختم 30 يوماً عند الوصول في أي مطار أو منفذ بري. لا يلزم أي ترتيب مسبق — فقط جواز سفر ساري وتذكرة عودة. يمكنك تمديد إقامتك مرة واحدة لـ30 يوماً إضافية في أي مكتب هجرة.",
+    steps_en: [
+      { n:"01", title:"Book your flight",       desc:"No visa application required. Book flights to Dubai (DXB), Abu Dhabi (AUH), or Sharjah (SHJ)." },
+      { n:"02", title:"Arrive at UAE entry",    desc:"Present your Jordanian passport at immigration. You'll receive a 30-day stamp automatically." },
+      { n:"03", title:"Explore all 7 Emirates", desc:"Travel freely across Dubai, Abu Dhabi, Sharjah, Ras Al Khaimah, Fujairah, Umm Al Quwain, and Ajman." },
+      { n:"04", title:"Extend if needed",       desc:"Visit any UAE immigration office before your stamp expires to apply for a 30-day extension." },
+    ],
+    steps_ar: [
+      { n:"٠١", title:"احجز رحلتك",            desc:"لا حاجة لطلب تأشيرة. احجز رحلات إلى دبي (DXB) أو أبوظبي (AUH) أو الشارقة (SHJ)." },
+      { n:"٠٢", title:"الوصول إلى الإمارات",   desc:"قدّم جواز سفرك الأردني عند الهجرة. ستحصل تلقائياً على ختم 30 يوماً." },
+      { n:"٠٣", title:"استكشف الإمارات السبع", desc:"تنقّل بحرية بين دبي وأبوظبي والشارقة ورأس الخيمة والفجيرة وأم القيوين وعجمان." },
+      { n:"٠٤", title:"مدّد إقامتك عند الحاجة", desc:"زر أي مكتب هجرة قبل انتهاء ختمك للتقدم بطلب تمديد 30 يوماً." },
+    ],
+    documents_en: [
+      { item: "Valid Jordanian passport", note: "Must be valid for at least 6 months from entry date" },
+      { item: "Return or onward ticket",  note: "Required as proof you plan to leave" },
+      { item: "Accommodation proof",      note: "Hotel booking or host address — may be asked at immigration" },
+      { item: "Sufficient funds",         note: "No fixed amount; AED 3,000+ is a safe baseline" },
+    ],
+    documents_ar: [
+      { item: "جواز سفر أردني ساري",      note: "يجب أن يكون صالحاً لمدة 6 أشهر على الأقل من تاريخ الدخول" },
+      { item: "تذكرة عودة أو مغادرة",     note: "كإثبات على نيتك المغادرة" },
+      { item: "إثبات الإقامة",             note: "حجز فندق أو عنوان مضيف — قد يُطلب عند الهجرة" },
+      { item: "أموال كافية",               note: "لا يوجد مبلغ محدد؛ AED 3,000+ خط أمان مناسب" },
+    ],
+    faqs_en: [
+      { q: "Do I need to arrange a visa before flying?", a: "No. Jordanians receive a visa-free stamp on arrival. No pre-arrangement needed." },
+      { q: "Can I work on a visa-free entry?",            a: "No. The stamp is for tourism and visits only. Working without a proper UAE work visa is illegal." },
+      { q: "Can I extend beyond 30 days?",                a: "Yes, once, for another 30 days. Apply at an immigration office or approved travel agency before your stamp expires." },
+    ],
+    faqs_ar: [
+      { q: "هل أحتاج لترتيب تأشيرة قبل السفر؟", a: "لا. يحصل الأردنيون على ختم دخول مجاني عند الوصول. لا يلزم أي ترتيب مسبق." },
+      { q: "هل يمكنني العمل بدخول بدون تأشيرة?", a: "لا. الختم للسياحة والزيارات فقط. العمل بدون تأشيرة عمل إماراتية مخالف للقانون." },
+      { q: "هل يمكن التمديد بعد 30 يوماً؟",       a: "نعم، مرة واحدة، لـ30 يوماً إضافية. قدّم الطلب في مكتب هجرة أو وكالة سفر معتمدة قبل انتهاء ختمك." },
+    ],
+    tips_en: [
+      "Download the UAE GDRFA app before you travel — it lets you check your visa status and apply for extensions.",
+      "Carry a credit card or cash. Immigration may ask about funds.",
+      "Ramadan doesn't restrict entry, but respect local customs around eating and drinking in public.",
+    ],
+    tips_ar: [
+      "حمّل تطبيق UAE GDRFA قبل سفرك — يتيح لك التحقق من حالة إقامتك وتقديم طلبات التمديد.",
+      "احمل بطاقة ائتمان أو نقداً. قد تسأل الهجرة عن الأموال.",
+      "رمضان لا يقيّد الدخول، لكن احترم العادات المحلية بشأن الأكل والشرب في الأماكن العامة.",
+    ],
+    related: [
+      { name:"Qatar",   flag:"🇶🇦", badgeColor:"green" },
+      { name:"Bahrain", flag:"🇧🇭", badgeColor:"green" },
+      { name:"Kuwait",  flag:"🇰🇼", badgeColor:"green" },
+      { name:"Oman",    flag:"🇴🇲", badgeColor:"green" },
+    ],
+  },
+
+  "Japan": {
+    flag: "🇯🇵",
+    region_en: "Asia",                    region_ar: "آسيا",
+    visaType_en: "Tourist Visa",          visaType_ar: "تأشيرة سياحية",
+    badge_en: "Apply ahead",              badge_ar: "تقديم مسبق", badgeColor: "amber",
+    fee: "¥3,000 (~$20)",
+    processing_en: "5–7 business days",   processing_ar: "٥–٧ أيام عمل",
+    maxStay_en: "90 days",                maxStay_ar: "٩٠ يوماً",
+    validity_en: "Usually single or double entry",
+    validity_ar: "عادةً دخول مفرد أو مزدوج",
+    capital_en: "Tokyo",                  capital_ar: "طوكيو",
+    currency_en: "Japanese Yen (¥)",      currency_ar: "ين ياباني (¥)",
+    language_en: "Japanese",              language_ar: "اليابانية",
+    timezone_en: "JST (UTC+9)",           timezone_ar: "JST (UTC+9)",
+    embassyPhone: "+962 6 593 0363",
+    embassyAddress_en: "4th Circle, Al-Mutanabbi St, Amman",
+    embassyAddress_ar: "الدوار الرابع، شارع المتنبي، عمّان",
+    embassyHours_en: "Mon–Fri 09:00–12:00",
+    embassyHours_ar: "الاثنين–الجمعة ٩:٠٠–١٢:٠٠",
+    overview_en: "Japan requires Jordanian passport holders to apply for a tourist visa at the Japanese Embassy in Amman before travelling. The process is relatively quick (5–7 business days) and the embassy in Amman has a good approval rate when applications are complete. Japan is a highly sought-after destination — well worth the extra planning.",
+    overview_ar: "تشترط اليابان على حاملي جوازات السفر الأردنية التقدم بطلب تأشيرة سياحية في السفارة اليابانية بعمّان قبل السفر. العملية سريعة نسبياً (5-7 أيام عمل) ومعدل قبول السفارة مرتفع للطلبات المكتملة. اليابان وجهة رائعة تستحق التخطيط المسبق.",
+    steps_en: [
+      { n:"01", title:"Download and fill the application", desc:"Get the application form from the Japanese Embassy Amman website. Fill it out clearly in English or Japanese." },
+      { n:"02", title:"Prepare your documents",            desc:"Compile the full document checklist. Japan is strict about complete applications — missing anything can cause delays." },
+      { n:"03", title:"Submit in person",                  desc:"Visit the Japanese Embassy in Amman during submission hours. No appointment usually needed for tourist visas, but confirm on the embassy website." },
+      { n:"04", title:"Wait for processing",               desc:"Standard processing is 5–7 business days. The embassy will notify you when your passport is ready." },
+      { n:"05", title:"Collect your passport",             desc:"Pick up in person. Check the visa start date, end date, and number of entries before leaving." },
+    ],
+    steps_ar: [
+      { n:"٠١", title:"حمّل الاستمارة وأكملها",  desc:"احصل على الاستمارة من موقع السفارة اليابانية في عمّان. أكملها بوضوح باللغة الإنجليزية أو اليابانية." },
+      { n:"٠٢", title:"جهّز وثائقك",              desc:"اجمع قائمة الوثائق كاملة. اليابان صارمة في اكتمال الطلبات — أي وثيقة ناقصة تسبب تأخيراً." },
+      { n:"٠٣", title:"قدّم الطلب شخصياً",        desc:"زر السفارة اليابانية في عمّان خلال ساعات التقديم. عادةً لا يلزم موعد للتأشيرة السياحية، لكن تأكد من الموقع." },
+      { n:"٠٤", title:"انتظر المعالجة",            desc:"المعالجة الاعتيادية 5-7 أيام عمل. السفارة ستخطرك عند جاهزية جوازك." },
+      { n:"٠٥", title:"استلم جوازك",               desc:"استلم شخصياً. تحقق من تاريخ بدء التأشيرة وانتهائها وعدد الدخولات قبل المغادرة." },
+    ],
+    documents_en: [
+      { item: "Valid passport",                note: "Valid for the duration of your stay" },
+      { item: "Completed visa application",    note: "Signed and dated, with one recent passport photo attached" },
+      { item: "Itinerary / travel plan",       note: "Detailed day-by-day schedule in Japan with accommodation addresses" },
+      { item: "Flight bookings",               note: "Confirmed return flights" },
+      { item: "Hotel reservations",            note: "For all nights in Japan" },
+      { item: "Bank statements",               note: "Last 3 months, showing sufficient balance (¥500,000+ recommended)" },
+      { item: "Employment / enrollment proof", note: "Letter from employer or university confirming you will return to Jordan" },
+    ],
+    documents_ar: [
+      { item: "جواز سفر ساري",                 note: "صالح طوال فترة إقامتك" },
+      { item: "استمارة تأشيرة مكتملة",         note: "موقّعة ومؤرخة، مع صورة شخصية حديثة مرفقة" },
+      { item: "برنامج / خطة الرحلة",           note: "جدول يومي تفصيلي في اليابان مع عناوين الإقامة" },
+      { item: "حجوزات الطيران",                note: "رحلات عودة مؤكدة" },
+      { item: "حجوزات الفنادق",                note: "لجميع ليالي الإقامة في اليابان" },
+      { item: "كشوف حساب بنكية",               note: "آخر 3 أشهر، تُظهر رصيداً كافياً (¥500,000+ يُنصح به)" },
+      { item: "إثبات التوظيف أو التسجيل",      note: "خطاب من صاحب العمل أو الجامعة تؤكد عودتك للأردن" },
+    ],
+    faqs_en: [
+      { q: "Is it hard for Jordanians to get a Japan visa?",           a: "No — Japan's embassy in Amman processes applications efficiently and approval rates are high for well-prepared applications. The key is a clear, detailed itinerary." },
+      { q: "Can I extend my visa inside Japan?",                        a: "Extensions are possible at a local immigration office in Japan but are not guaranteed for tourists. It's easier to apply for the duration you need upfront." },
+      { q: "Do I need to show proof of accommodation for every night?", a: "Yes. Japan expects a hotel booking or host letter for every night of your stay. Book refundable hotels and cancel after approval if plans change." },
+    ],
+    faqs_ar: [
+      { q: "هل من الصعب على الأردنيين الحصول على تأشيرة اليابان؟", a: "لا — السفارة اليابانية في عمّان تعالج الطلبات بكفاءة ومعدل القبول مرتفع للطلبات المكتملة. المفتاح هو برنامج رحلة واضح ومفصّل." },
+      { q: "هل يمكن تمديد التأشيرة داخل اليابان؟",                 a: "التمديد ممكن في مكتب الهجرة المحلي لكن غير مضمون للسياح. أيسر أن تطلب المدة التي تحتاجها من البداية." },
+      { q: "هل أحتاج لإثبات الإقامة لكل ليلة؟",                   a: "نعم. اليابان تتوقع حجز فندق أو خطاب مضيف لكل ليلة من إقامتك. احجز فنادق قابلة للإلغاء وألغِها بعد القبول إن تغيرت الخطط." },
+    ],
+    tips_en: [
+      "Book a JR Pass before you leave Jordan — it cannot be purchased inside Japan and saves significant money on bullet trains.",
+      "Get a pocket WiFi or SIM card reserved online before you fly. Japan's connectivity is excellent but roaming is expensive.",
+      "Carry cash. Japan is still largely cash-based outside of major tourist areas and department stores.",
+    ],
+    tips_ar: [
+      "احجز تصريح JR Pass قبل مغادرة الأردن — لا يمكن شراؤه داخل اليابان ويوفر مالاً كبيراً على القطارات فائقة السرعة.",
+      "احجز WiFi محمول أو شريحة اتصال أونلاين قبل السفر. الاتصال في اليابان ممتاز لكن التجوال مكلف.",
+      "احمل نقوداً. اليابان لا تزال تعتمد النقد بشكل كبير خارج مناطق السياحة الكبرى والمراكز التجارية.",
+    ],
+    related: [
+      { name:"South Korea", flag:"🇰🇷", badgeColor:"amber" },
+      { name:"Singapore",   flag:"🇸🇬", badgeColor:"amber" },
+      { name:"Malaysia",    flag:"🇲🇾", badgeColor:"green" },
+      { name:"Thailand",    flag:"🇹🇭", badgeColor:"green" },
+    ],
+  },
+
+  "UK": {
+    region_en:"Europe", region_ar:"أوروبا",
+    visaType_en:"Standard Visitor Visa", visaType_ar:"تأشيرة زائر قياسية",
+    badge_en:"Visa Required", badge_ar:"تأشيرة مطلوبة", badgeColor:"red",
+    fee:"£115",
+    processing_en:"3–4 weeks", processing_ar:"٣–٤ أسابيع",
+    maxStay_en:"Up to 6 months", maxStay_ar:"حتى ٦ أشهر",
+    validity_en:"Up to 6 months (single or multiple entry)", validity_ar:"حتى ٦ أشهر (دخول واحد أو متعدد)",
+    capital_en:"London", capital_ar:"لندن",
+    currency_en:"British Pound (GBP)", currency_ar:"الجنيه الإسترليني",
+    language_en:"English", language_ar:"الإنجليزية",
+    timezone_en:"GMT / BST (UTC+0 / UTC+1)", timezone_ar:"GMT / BST",
+    embassyPhone:"+962 6 592 3100",
+    embassyAddress_en:"Abdoun, Amman, Jordan", embassyAddress_ar:"عبدون، عمّان، الأردن",
+    embassyHours_en:"Mon–Fri 08:00–16:00", embassyHours_ar:"الإثنين–الجمعة ٠٨:٠٠–١٦:٠٠",
+    overview_en:"Jordanian passport holders require a Standard Visitor Visa to enter the United Kingdom. The visa is applied for online through the UK Visas and Immigration portal before travel, and grants stays of up to 6 months per visit.",
+    overview_ar:"يحتاج حاملو الجواز الأردني إلى تأشيرة زائر قياسية لدخول المملكة المتحدة. تُقدَّم الطلبات عبر الإنترنت من خلال بوابة UKVI قبل السفر، وتتيح البقاء حتى ٦ أشهر لكل زيارة.",
+    steps_en:[
+      {n:1, title:"Apply Online", desc:"Create an account on the UK Visas and Immigration (UKVI) portal and complete the application form."},
+      {n:2, title:"Pay the Fee", desc:"Pay the £115 visa application fee online by card."},
+      {n:3, title:"Book Biometrics", desc:"Schedule a biometrics appointment at a UK visa application centre in Amman."},
+      {n:4, title:"Submit Documents", desc:"Upload or submit supporting documents including bank statements, itinerary, and hotel bookings."},
+      {n:5, title:"Await Decision", desc:"Processing typically takes 3–4 weeks. You may track your application online."},
+    ],
+    steps_ar:[
+      {n:1, title:"تقديم الطلب إلكترونياً", desc:"أنشئ حساباً على بوابة UKVI وأكمل استمارة الطلب."},
+      {n:2, title:"دفع الرسوم", desc:"ادفع رسوم التأشيرة البالغة ١١٥ جنيهاً إسترلينياً عبر الإنترنت."},
+      {n:3, title:"حجز موعد البصمة", desc:"احجز موعداً لأخذ البيانات البيومترية في مركز تأشيرات المملكة المتحدة بعمّان."},
+      {n:4, title:"تقديم المستندات", desc:"ارفع المستندات الداعمة ككشوف الحساب وخطة الرحلة وحجوزات الفنادق."},
+      {n:5, title:"انتظار القرار", desc:"تستغرق المعالجة ٣–٤ أسابيع عادةً ويمكنك تتبع طلبك إلكترونياً."},
+    ],
+    documents_en:[
+      {item:"Valid passport", note:"Must be valid for the duration of your stay"},
+      {item:"Completed online application", note:"Printed confirmation page"},
+      {item:"Bank statements", note:"Last 6 months showing sufficient funds"},
+      {item:"Proof of accommodation", note:"Hotel bookings or host invitation letter"},
+      {item:"Return flight ticket", note:"Confirmed itinerary"},
+      {item:"Travel insurance", note:"Recommended but not mandatory"},
+    ],
+    documents_ar:[
+      {item:"جواز سفر ساري المفعول", note:"صالح طوال فترة الإقامة"},
+      {item:"نموذج الطلب المكتمل", note:"صفحة التأكيد المطبوعة"},
+      {item:"كشوف الحساب البنكي", note:"آخر ٦ أشهر تُثبت توافر أموال كافية"},
+      {item:"إثبات الإقامة", note:"حجوزات فندقية أو خطاب دعوة من مضيف"},
+      {item:"تذكرة العودة", note:"مسار الرحلة المؤكد"},
+      {item:"تأمين السفر", note:"موصى به وليس إلزامياً"},
+    ],
+    faqs_en:[
+      {q:"Can I work on a Standard Visitor Visa?", a:"No. The Standard Visitor Visa does not permit employment in the UK. You must apply for a work visa separately."},
+      {q:"Can I extend my stay in the UK?", a:"In most cases, visitor visas cannot be extended inside the UK. You must leave and re-apply if needed."},
+      {q:"Is the visa decision guaranteed?", a:"No. The decision is at the discretion of UK Visas and Immigration. Ensure your documents are complete and accurate."},
+    ],
+    faqs_ar:[
+      {q:"هل يمكنني العمل بتأشيرة الزائر؟", a:"لا. لا تتيح تأشيرة الزائر القياسية العمل في المملكة المتحدة. يجب التقديم على تأشيرة عمل منفصلة."},
+      {q:"هل يمكنني تمديد إقامتي؟", a:"في معظم الحالات لا يمكن تمديد تأشيرة الزيارة داخل المملكة المتحدة؛ يجب المغادرة وإعادة التقديم."},
+      {q:"هل قرار المنح مضمون؟", a:"لا. القرار متروك لتقدير UKVI؛ احرص على اكتمال مستنداتك ودقتها."},
+    ],
+    tips_en:[
+      "Apply at least 6 weeks before your travel date to allow sufficient processing time.",
+      "Show strong ties to Jordan (employment, property, family) to demonstrate intent to return.",
+      "The UK is not part of the Schengen Area — a Schengen visa does not cover the UK.",
+    ],
+    tips_ar:[
+      "قدّم طلبك قبل ٦ أسابيع على الأقل من موعد السفر لضمان وقت كافٍ للمعالجة.",
+      "أثبت ارتباطك القوي بالأردن (عمل، عقارات، عائلة) لإظهار نيتك بالعودة.",
+      "المملكة المتحدة ليست جزءاً من منطقة شنغن — تأشيرة شنغن لا تصلح للدخول إليها.",
+    ],
+    related:[
+      {name:"France",      flag:"🇫🇷", badgeColor:"red"},
+      {name:"Germany",     flag:"🇩🇪", badgeColor:"red"},
+      {name:"Netherlands", flag:"🇳🇱", badgeColor:"red"},
+    ],
+  },
+
+  "France": {
+    region_en:"Europe", region_ar:"أوروبا",
+    visaType_en:"Schengen Visa", visaType_ar:"تأشيرة شنغن",
+    badge_en:"Schengen Visa", badge_ar:"تأشيرة شنغن", badgeColor:"red",
+    fee:"€80",
+    processing_en:"15–30 days", processing_ar:"١٥–٣٠ يوماً",
+    maxStay_en:"90 days within any 180-day period", maxStay_ar:"٩٠ يوماً خلال أي فترة ١٨٠ يوماً",
+    validity_en:"Single or multiple entry, up to 90 days", validity_ar:"دخول واحد أو متعدد، حتى ٩٠ يوماً",
+    capital_en:"Paris", capital_ar:"باريس",
+    currency_en:"Euro (EUR)", currency_ar:"اليورو",
+    language_en:"French", language_ar:"الفرنسية",
+    timezone_en:"CET (UTC+1) / CEST (UTC+2)", timezone_ar:"CET / CEST",
+    embassyPhone:"+962 6 592 0200",
+    embassyAddress_en:"Mutanabi St, Jabal Amman, Jordan", embassyAddress_ar:"شارع المتنبي، جبل عمّان، الأردن",
+    embassyHours_en:"Mon–Fri 08:30–12:30", embassyHours_ar:"الإثنين–الجمعة ٠٨:٣٠–١٢:٣٠",
+    overview_en:"Jordanian passport holders must obtain a Schengen Visa through the French Embassy or consulate before travelling to France. The Schengen Visa also permits travel within the 27 Schengen member states for up to 90 days in any 180-day period.",
+    overview_ar:"يحتاج حاملو الجواز الأردني للحصول على تأشيرة شنغن من السفارة أو القنصلية الفرنسية قبل السفر إلى فرنسا. تتيح هذه التأشيرة أيضاً التنقل داخل الدول الأعضاء في منطقة شنغن الـ٢٧ لمدة تصل إلى ٩٠ يوماً خلال أي فترة ١٨٠ يوماً.",
+    steps_en:[
+      {n:1, title:"Book Appointment", desc:"Schedule a visa appointment at the French Embassy visa section or VFS Global centre in Amman."},
+      {n:2, title:"Prepare Documents", desc:"Gather all required documents including bank statements, hotel bookings, and flight itinerary."},
+      {n:3, title:"Attend Appointment", desc:"Attend in person to submit documents and provide biometrics (fingerprints and photo)."},
+      {n:4, title:"Pay the Fee", desc:"Pay the €80 Schengen visa fee at the time of submission."},
+      {n:5, title:"Await Decision", desc:"Processing typically takes 15–30 days. Your passport is returned with the visa sticker if approved."},
+    ],
+    steps_ar:[
+      {n:1, title:"حجز موعد", desc:"احجز موعداً في قسم التأشيرات بالسفارة الفرنسية أو مركز VFS Global بعمّان."},
+      {n:2, title:"تجهيز المستندات", desc:"اجمع جميع المستندات المطلوبة ككشوف الحساب وحجوزات الفنادق ومسار الرحلة."},
+      {n:3, title:"حضور الموعد", desc:"احضر شخصياً لتقديم المستندات وتقديم البيانات البيومترية (بصمات وصورة)."},
+      {n:4, title:"دفع الرسوم", desc:"ادفع رسوم تأشيرة شنغن البالغة ٨٠ يورو عند تقديم الطلب."},
+      {n:5, title:"انتظار القرار", desc:"تستغرق المعالجة ١٥–٣٠ يوماً عادةً ويُعاد جوازك بملصق التأشيرة عند الموافقة."},
+    ],
+    documents_en:[
+      {item:"Valid passport", note:"At least 3 months validity beyond your intended stay, with 2 blank pages"},
+      {item:"Completed Schengen visa application form", note:"Signed"},
+      {item:"Recent passport photos", note:"Two photos meeting Schengen specifications"},
+      {item:"Flight itinerary", note:"Round-trip confirmed bookings"},
+      {item:"Hotel/accommodation proof", note:"Booking confirmations for all nights"},
+      {item:"Travel insurance", note:"Minimum €30,000 coverage valid across Schengen zone"},
+      {item:"Bank statements", note:"Last 3 months, showing sufficient daily funds"},
+      {item:"Proof of employment or study", note:"Letter from employer or university"},
+    ],
+    documents_ar:[
+      {item:"جواز سفر ساري المفعول", note:"صالح ٣ أشهر على الأقل بعد انتهاء الإقامة، مع صفحتين فارغتين"},
+      {item:"نموذج طلب تأشيرة شنغن مكتمل", note:"موقّع"},
+      {item:"صور جواز حديثة", note:"صورتان وفق مواصفات شنغن"},
+      {item:"مسار رحلة الطيران", note:"حجوزات مؤكدة ذهاباً وإياباً"},
+      {item:"إثبات الإقامة", note:"تأكيدات الحجز لجميع الليالي"},
+      {item:"تأمين السفر", note:"تغطية لا تقل عن ٣٠,٠٠٠ يورو سارية في منطقة شنغن"},
+      {item:"كشوف الحساب البنكي", note:"آخر ٣ أشهر تُثبت توافر أموال يومية كافية"},
+      {item:"إثبات العمل أو الدراسة", note:"خطاب من صاحب العمل أو الجامعة"},
+    ],
+    faqs_en:[
+      {q:"Can I visit other Schengen countries with a French Schengen visa?", a:"Yes. A Schengen visa issued by France allows entry to all 27 Schengen member states."},
+      {q:"Do I need a French visa if I already have a valid Schengen visa from another country?", a:"No. A valid Schengen visa from any member state permits entry into France within its validity and allowed stay."},
+      {q:"What if France is not my main destination?", a:"You should apply at the embassy of the country where you will spend the most nights. If equal, apply at the country of first entry."},
+    ],
+    faqs_ar:[
+      {q:"هل يمكنني زيارة دول شنغن الأخرى بتأشيرة شنغن فرنسية؟", a:"نعم. تأشيرة شنغن الصادرة عن فرنسا تتيح الدخول إلى جميع دول منطقة شنغن الـ٢٧."},
+      {q:"هل أحتاج تأشيرة فرنسية إذا كانت لديّ تأشيرة شنغن سارية من دولة أخرى؟", a:"لا. تأشيرة شنغن السارية من أي دولة عضو تتيح الدخول إلى فرنسا ضمن صلاحيتها ومدة الإقامة المسموح بها."},
+      {q:"ماذا لو لم تكن فرنسا وجهتي الرئيسية؟", a:"يجب التقديم في سفارة الدولة التي ستقضي فيها أكثر الليالي؛ وإذا تساوت فقدّم في سفارة دولة الدخول الأول."},
+    ],
+    tips_en:[
+      "Apply at least 3 weeks before your trip; peak summer months may see longer queues.",
+      "Ensure your travel insurance policy explicitly covers all Schengen countries.",
+      "A Schengen visa from France is valid in Germany, Italy, Spain, and 23 other countries.",
+    ],
+    tips_ar:[
+      "قدّم طلبك قبل ٣ أسابيع على الأقل من رحلتك؛ قد تطول طوابير الانتظار في أشهر الصيف.",
+      "تأكد من أن بوليصة تأمين سفرك تغطي جميع دول شنغن صراحةً.",
+      "تأشيرة شنغن الفرنسية صالحة في ألمانيا وإيطاليا وإسبانيا و٢٣ دولة أخرى.",
+    ],
+    related:[
+      {name:"Germany",     flag:"🇩🇪", badgeColor:"red"},
+      {name:"Italy",       flag:"🇮🇹", badgeColor:"red"},
+      {name:"Spain",       flag:"🇪🇸", badgeColor:"red"},
+      {name:"Netherlands", flag:"🇳🇱", badgeColor:"red"},
+    ],
+  },
+
+  "Italy": {
+    region_en:"Europe", region_ar:"أوروبا",
+    visaType_en:"Schengen Visa", visaType_ar:"تأشيرة شنغن",
+    badge_en:"Schengen Visa", badge_ar:"تأشيرة شنغن", badgeColor:"red",
+    fee:"€80",
+    processing_en:"15–30 days", processing_ar:"١٥–٣٠ يوماً",
+    maxStay_en:"90 days within any 180-day period", maxStay_ar:"٩٠ يوماً خلال أي فترة ١٨٠ يوماً",
+    validity_en:"Single or multiple entry, up to 90 days", validity_ar:"دخول واحد أو متعدد، حتى ٩٠ يوماً",
+    capital_en:"Rome", capital_ar:"روما",
+    currency_en:"Euro (EUR)", currency_ar:"اليورو",
+    language_en:"Italian", language_ar:"الإيطالية",
+    timezone_en:"CET (UTC+1) / CEST (UTC+2)", timezone_ar:"CET / CEST",
+    embassyPhone:"+962 6 592 2700",
+    embassyAddress_en:"5 Haddad St, 3rd Circle, Jabal Amman, Jordan", embassyAddress_ar:"شارع الحداد، الدوار الثالث، جبل عمّان، الأردن",
+    embassyHours_en:"Mon–Fri 09:00–12:00", embassyHours_ar:"الإثنين–الجمعة ٠٩:٠٠–١٢:٠٠",
+    overview_en:"Jordanian passport holders must obtain a Schengen Visa through the Italian Embassy or VFS Global before travelling to Italy. Italy is one of the most visited Schengen destinations and the visa covers all 27 Schengen member states.",
+    overview_ar:"يحتاج حاملو الجواز الأردني للحصول على تأشيرة شنغن من السفارة الإيطالية أو VFS Global قبل السفر إلى إيطاليا. إيطاليا من أكثر وجهات شنغن زيارةً، والتأشيرة تغطي جميع دول المنطقة الـ٢٧.",
+    steps_en:[
+      {n:1, title:"Book Appointment", desc:"Schedule an appointment with the Italian Embassy visa section or VFS Global in Amman."},
+      {n:2, title:"Prepare Documents", desc:"Collect passport, photos, bank statements, insurance, and travel bookings."},
+      {n:3, title:"Attend & Submit", desc:"Appear in person to submit your application and provide biometric data."},
+      {n:4, title:"Pay the Fee", desc:"Pay €80 at the time of submission."},
+      {n:5, title:"Collect Passport", desc:"Retrieve your passport with the visa sticker once processing is complete (15–30 days)."},
+    ],
+    steps_ar:[
+      {n:1, title:"حجز موعد", desc:"احجز موعداً في قسم التأشيرات بالسفارة الإيطالية أو مركز VFS Global بعمّان."},
+      {n:2, title:"تجهيز المستندات", desc:"اجمع الجواز والصور وكشوف الحساب والتأمين وحجوزات السفر."},
+      {n:3, title:"الحضور والتقديم", desc:"احضر شخصياً لتقديم طلبك وتزويد البيانات البيومترية."},
+      {n:4, title:"دفع الرسوم", desc:"ادفع ٨٠ يورو عند تقديم الطلب."},
+      {n:5, title:"استلام الجواز", desc:"استلم جوازك بملصق التأشيرة بعد انتهاء المعالجة (١٥–٣٠ يوماً)."},
+    ],
+    documents_en:[
+      {item:"Valid passport", note:"3 months beyond stay, 2 blank pages"},
+      {item:"Visa application form", note:"Completed and signed"},
+      {item:"Passport photos", note:"Two recent Schengen-spec photos"},
+      {item:"Flight itinerary", note:"Round-trip confirmed"},
+      {item:"Hotel reservations", note:"All nights covered"},
+      {item:"Travel insurance", note:"€30,000 minimum, Schengen-wide"},
+      {item:"Bank statements", note:"Last 3 months"},
+    ],
+    documents_ar:[
+      {item:"جواز سفر ساري المفعول", note:"صالح ٣ أشهر بعد انتهاء الإقامة، صفحتان فارغتان"},
+      {item:"نموذج طلب التأشيرة", note:"مكتمل وموقّع"},
+      {item:"صور جواز", note:"صورتان حديثتان وفق مواصفات شنغن"},
+      {item:"مسار رحلة الطيران", note:"حجوزات مؤكدة ذهاباً وإياباً"},
+      {item:"حجوزات الفنادق", note:"تغطية جميع الليالي"},
+      {item:"تأمين السفر", note:"٣٠,٠٠٠ يورو على الأقل يغطي منطقة شنغن"},
+      {item:"كشوف الحساب البنكي", note:"آخر ٣ أشهر"},
+    ],
+    faqs_en:[
+      {q:"Is a Schengen visa from Italy valid in France?", a:"Yes. Any Schengen visa is valid across all 27 Schengen member states."},
+      {q:"How far in advance can I apply?", a:"You can apply up to 6 months before your travel date, and no later than 15 days before departure."},
+    ],
+    faqs_ar:[
+      {q:"هل تأشيرة شنغن الإيطالية صالحة في فرنسا؟", a:"نعم. أي تأشيرة شنغن صالحة في جميع دول المنطقة الـ٢٧."},
+      {q:"قبل كم يمكنني التقديم؟", a:"يمكن التقديم قبل ٦ أشهر من موعد السفر وليس أقل من ١٥ يوماً قبل المغادرة."},
+    ],
+    tips_en:[
+      "If visiting multiple Schengen countries, apply at the embassy of the country where you will spend the most nights.",
+      "Rome, Florence, and Venice require advance bookings during peak summer season.",
+    ],
+    tips_ar:[
+      "إذا كنت ستزور دول شنغن متعددة قدّم طلبك في سفارة الدولة التي ستقضي فيها أكثر الليالي.",
+      "روما وفلورنسا والبندقية تستلزم حجوزات مبكرة في موسم الذروة الصيفي.",
+    ],
+    related:[
+      {name:"France",      flag:"🇫🇷", badgeColor:"red"},
+      {name:"Spain",       flag:"🇪🇸", badgeColor:"red"},
+      {name:"Germany",     flag:"🇩🇪", badgeColor:"red"},
+      {name:"Switzerland", flag:"🇨🇭", badgeColor:"red"},
+    ],
+  },
+
+  "Spain": {
+    region_en:"Europe", region_ar:"أوروبا",
+    visaType_en:"Schengen Visa", visaType_ar:"تأشيرة شنغن",
+    badge_en:"Schengen Visa", badge_ar:"تأشيرة شنغن", badgeColor:"red",
+    fee:"€80",
+    processing_en:"15–30 days", processing_ar:"١٥–٣٠ يوماً",
+    maxStay_en:"90 days within any 180-day period", maxStay_ar:"٩٠ يوماً خلال أي فترة ١٨٠ يوماً",
+    validity_en:"Single or multiple entry, up to 90 days", validity_ar:"دخول واحد أو متعدد، حتى ٩٠ يوماً",
+    capital_en:"Madrid", capital_ar:"مدريد",
+    currency_en:"Euro (EUR)", currency_ar:"اليورو",
+    language_en:"Spanish", language_ar:"الإسبانية",
+    timezone_en:"CET (UTC+1) / CEST (UTC+2)", timezone_ar:"CET / CEST",
+    embassyPhone:"+962 6 546 4166",
+    embassyAddress_en:"10 Zahran St, Amman, Jordan", embassyAddress_ar:"شارع الزهران ١٠، عمّان، الأردن",
+    embassyHours_en:"Mon–Fri 09:00–13:00", embassyHours_ar:"الإثنين–الجمعة ٠٩:٠٠–١٣:٠٠",
+    overview_en:"Jordanian passport holders require a Schengen Visa to enter Spain. Applications are submitted at the Spanish Embassy in Amman or via BLS International, the authorised visa application centre.",
+    overview_ar:"يحتاج حاملو الجواز الأردني إلى تأشيرة شنغن لدخول إسبانيا. تُقدَّم الطلبات في السفارة الإسبانية بعمّان أو عبر مركز BLS International المعتمد.",
+    steps_en:[
+      {n:1, title:"Book Appointment", desc:"Schedule through the Spanish Embassy or BLS International centre in Amman."},
+      {n:2, title:"Prepare Documents", desc:"Gather passport, photos, insurance, bank statements, and travel plan."},
+      {n:3, title:"Attend Appointment", desc:"Submit documents and provide biometrics in person."},
+      {n:4, title:"Pay the Fee", desc:"Pay €80 visa application fee."},
+      {n:5, title:"Collect Visa", desc:"Retrieve passport with visa sticker after 15–30 days processing."},
+    ],
+    steps_ar:[
+      {n:1, title:"حجز موعد", desc:"احجز من خلال السفارة الإسبانية أو مركز BLS International بعمّان."},
+      {n:2, title:"تجهيز المستندات", desc:"اجمع الجواز والصور والتأمين وكشوف الحساب وخطة السفر."},
+      {n:3, title:"حضور الموعد", desc:"قدّم المستندات وأعطِ البيانات البيومترية حضورياً."},
+      {n:4, title:"دفع الرسوم", desc:"ادفع ٨٠ يورو رسوم التأشيرة."},
+      {n:5, title:"استلام التأشيرة", desc:"استلم جوازك بملصق التأشيرة بعد ١٥–٣٠ يوماً."},
+    ],
+    documents_en:[
+      {item:"Valid passport", note:"3 months beyond stay, 2 blank pages"},
+      {item:"Completed application form", note:"Signed"},
+      {item:"Two passport photos", note:"Schengen specifications"},
+      {item:"Travel insurance", note:"€30,000 minimum coverage"},
+      {item:"Hotel bookings", note:"Full trip covered"},
+      {item:"Flight itinerary", note:"Round-trip confirmed"},
+      {item:"Bank statements", note:"Last 3 months"},
+    ],
+    documents_ar:[
+      {item:"جواز سفر ساري", note:"صالح ٣ أشهر بعد الإقامة، صفحتان فارغتان"},
+      {item:"نموذج الطلب مكتملاً", note:"موقّع"},
+      {item:"صورتا جواز", note:"وفق مواصفات شنغن"},
+      {item:"تأمين السفر", note:"تغطية لا تقل عن ٣٠,٠٠٠ يورو"},
+      {item:"حجوزات الفنادق", note:"تغطية كامل الرحلة"},
+      {item:"مسار رحلة الطيران", note:"حجوزات مؤكدة ذهاباً وإياباً"},
+      {item:"كشوف الحساب البنكي", note:"آخر ٣ أشهر"},
+    ],
+    faqs_en:[
+      {q:"Does a Spanish Schengen visa allow entry to Portugal?", a:"Yes. A valid Schengen visa allows travel to all 27 Schengen member states, including Portugal."},
+      {q:"Can I apply for a multiple-entry Schengen visa?", a:"Yes, if you have a history of previous Schengen visits you may be granted a multiple-entry visa."},
+    ],
+    faqs_ar:[
+      {q:"هل تأشيرة شنغن الإسبانية تتيح الدخول إلى البرتغال؟", a:"نعم. تأشيرة شنغن الصالحة تتيح السفر إلى جميع دول المنطقة الـ٢٧ بما فيها البرتغال."},
+      {q:"هل يمكنني التقديم على تأشيرة متعددة الدخول؟", a:"نعم، إذا كان لديك سجل سابق بزيارات شنغن فقد تحصل على تأشيرة متعددة الدخول."},
+    ],
+    tips_en:[
+      "Barcelona and Madrid are popular year-round — book flights and hotels early.",
+      "BLS International in Amman handles Spanish visa appointments; check their website for slots.",
+    ],
+    tips_ar:[
+      "برشلونة ومدريد وجهتان شهيرتان على مدار العام — احجز رحلاتك وفنادقك مبكراً.",
+      "يتولى مركز BLS International في عمّان مواعيد التأشيرة الإسبانية؛ تحقق من موقعهم للحجز.",
+    ],
+    related:[
+      {name:"France",      flag:"🇫🇷", badgeColor:"red"},
+      {name:"Italy",       flag:"🇮🇹", badgeColor:"red"},
+      {name:"Germany",     flag:"🇩🇪", badgeColor:"red"},
+      {name:"Morocco",     flag:"🇲🇦", badgeColor:"green"},
+    ],
+  },
+
+  "Switzerland": {
+    region_en:"Europe", region_ar:"أوروبا",
+    visaType_en:"Schengen Visa", visaType_ar:"تأشيرة شنغن",
+    badge_en:"Schengen Visa", badge_ar:"تأشيرة شنغن", badgeColor:"red",
+    fee:"CHF 80",
+    processing_en:"15–30 days", processing_ar:"١٥–٣٠ يوماً",
+    maxStay_en:"90 days within any 180-day period", maxStay_ar:"٩٠ يوماً خلال أي فترة ١٨٠ يوماً",
+    validity_en:"Single or multiple entry, up to 90 days", validity_ar:"دخول واحد أو متعدد، حتى ٩٠ يوماً",
+    capital_en:"Bern", capital_ar:"برن",
+    currency_en:"Swiss Franc (CHF)", currency_ar:"الفرنك السويسري",
+    language_en:"German, French, Italian, Romansh", language_ar:"الألمانية، الفرنسية، الإيطالية، الرومانشية",
+    timezone_en:"CET (UTC+1) / CEST (UTC+2)", timezone_ar:"CET / CEST",
+    embassyPhone:"+962 6 593 0600",
+    embassyAddress_en:"10 Ibrahim Ayoub St, Amman, Jordan", embassyAddress_ar:"شارع إبراهيم أيوب ١٠، عمّان، الأردن",
+    embassyHours_en:"Mon–Fri 09:00–12:00", embassyHours_ar:"الإثنين–الجمعة ٠٩:٠٠–١٢:٠٠",
+    overview_en:"Although not an EU member, Switzerland is a full Schengen member. Jordanian passport holders must obtain a Schengen Visa through the Swiss Embassy or TLS Contact before entering Switzerland. The visa also covers all other Schengen countries.",
+    overview_ar:"على الرغم من أن سويسرا ليست عضواً في الاتحاد الأوروبي فهي عضو كامل في منطقة شنغن. يحتاج حاملو الجواز الأردني للحصول على تأشيرة شنغن من السفارة السويسرية أو TLS Contact قبل الدخول، والتأشيرة تغطي دول شنغن الأخرى أيضاً.",
+    steps_en:[
+      {n:1, title:"Book Appointment", desc:"Book through the Swiss Embassy or TLS Contact centre in Amman."},
+      {n:2, title:"Prepare Documents", desc:"Collect all required documents including insurance, itinerary, and bank statements."},
+      {n:3, title:"Attend Appointment", desc:"Submit in person and provide biometrics."},
+      {n:4, title:"Pay Fee", desc:"Pay CHF 80 at the time of submission."},
+      {n:5, title:"Collect Passport", desc:"Passport returned with visa sticker after 15–30 days."},
+    ],
+    steps_ar:[
+      {n:1, title:"حجز موعد", desc:"احجز عبر السفارة السويسرية أو مركز TLS Contact بعمّان."},
+      {n:2, title:"تجهيز المستندات", desc:"اجمع جميع المستندات المطلوبة كالتأمين ومسار الرحلة وكشوف الحساب."},
+      {n:3, title:"حضور الموعد", desc:"قدّم المستندات حضورياً وأعطِ البيانات البيومترية."},
+      {n:4, title:"دفع الرسوم", desc:"ادفع ٨٠ فرنكاً سويسرياً عند التقديم."},
+      {n:5, title:"استلام الجواز", desc:"يُعاد جوازك بملصق التأشيرة بعد ١٥–٣٠ يوماً."},
+    ],
+    documents_en:[
+      {item:"Valid passport", note:"3 months beyond stay, 2 blank pages"},
+      {item:"Application form", note:"Completed and signed"},
+      {item:"Passport photos", note:"Two Schengen-spec photos"},
+      {item:"Travel insurance", note:"€30,000 / CHF 30,000 minimum"},
+      {item:"Hotel reservations", note:"All nights"},
+      {item:"Flight itinerary", note:"Round-trip confirmed"},
+      {item:"Bank statements", note:"Last 3 months"},
+    ],
+    documents_ar:[
+      {item:"جواز سفر ساري", note:"صالح ٣ أشهر بعد الإقامة، صفحتان فارغتان"},
+      {item:"نموذج الطلب", note:"مكتمل وموقّع"},
+      {item:"صور جواز", note:"صورتان وفق مواصفات شنغن"},
+      {item:"تأمين السفر", note:"٣٠,٠٠٠ يورو / فرنك سويسري على الأقل"},
+      {item:"حجوزات الفنادق", note:"جميع الليالي"},
+      {item:"مسار رحلة الطيران", note:"حجوزات مؤكدة ذهاباً وإياباً"},
+      {item:"كشوف الحساب البنكي", note:"آخر ٣ أشهر"},
+    ],
+    faqs_en:[
+      {q:"Is Switzerland part of the EU?", a:"No, but it is a full member of the Schengen Area. A Swiss Schengen visa is valid across all Schengen countries."},
+      {q:"Do I need a separate visa for Liechtenstein?", a:"No. Liechtenstein is also a Schengen member, so your Swiss Schengen visa covers it."},
+    ],
+    faqs_ar:[
+      {q:"هل سويسرا عضو في الاتحاد الأوروبي؟", a:"لا، لكنها عضو كامل في منطقة شنغن؛ وتأشيرة شنغن السويسرية صالحة في جميع دول المنطقة."},
+      {q:"هل أحتاج تأشيرة منفصلة لليختنشتاين؟", a:"لا. ليختنشتاين عضو في شنغن أيضاً وتأشيرتك السويسرية تغطيها."},
+    ],
+    tips_en:[
+      "Switzerland is not in the EU — prices are in Swiss Francs and are generally higher than neighbouring EU countries.",
+      "Zurich, Geneva, and Lucerne are major tourist hubs with excellent public transport connections.",
+    ],
+    tips_ar:[
+      "سويسرا ليست في الاتحاد الأوروبي — الأسعار بالفرنك السويسري وأعلى عموماً من دول الاتحاد المجاورة.",
+      "زيورخ وجنيف ولوسيرن مراكز سياحية رئيسية ذات شبكة مواصلات عامة ممتازة.",
+    ],
+    related:[
+      {name:"Germany",     flag:"🇩🇪", badgeColor:"red"},
+      {name:"France",      flag:"🇫🇷", badgeColor:"red"},
+      {name:"Italy",       flag:"🇮🇹", badgeColor:"red"},
+      {name:"Netherlands", flag:"🇳🇱", badgeColor:"red"},
+    ],
+  },
+
+  "Netherlands": {
+    region_en:"Europe", region_ar:"أوروبا",
+    visaType_en:"Schengen Visa", visaType_ar:"تأشيرة شنغن",
+    badge_en:"Schengen Visa", badge_ar:"تأشيرة شنغن", badgeColor:"red",
+    fee:"€80",
+    processing_en:"15–30 days", processing_ar:"١٥–٣٠ يوماً",
+    maxStay_en:"90 days within any 180-day period", maxStay_ar:"٩٠ يوماً خلال أي فترة ١٨٠ يوماً",
+    validity_en:"Single or multiple entry, up to 90 days", validity_ar:"دخول واحد أو متعدد، حتى ٩٠ يوماً",
+    capital_en:"Amsterdam", capital_ar:"أمستردام",
+    currency_en:"Euro (EUR)", currency_ar:"اليورو",
+    language_en:"Dutch", language_ar:"الهولندية",
+    timezone_en:"CET (UTC+1) / CEST (UTC+2)", timezone_ar:"CET / CEST",
+    embassyPhone:"+962 6 590 2200",
+    embassyAddress_en:"4 Abu Bakr Al-Siddiq St, Amman, Jordan", embassyAddress_ar:"شارع أبو بكر الصديق ٤، عمّان، الأردن",
+    embassyHours_en:"Mon–Fri 09:00–12:00", embassyHours_ar:"الإثنين–الجمعة ٠٩:٠٠–١٢:٠٠",
+    overview_en:"Jordanian passport holders must obtain a Schengen Visa from the Dutch Embassy or VFS Global in Amman to visit the Netherlands. The visa is valid across all 27 Schengen member states.",
+    overview_ar:"يحتاج حاملو الجواز الأردني للحصول على تأشيرة شنغن من السفارة الهولندية أو VFS Global بعمّان لزيارة هولندا. التأشيرة صالحة في جميع دول منطقة شنغن الـ٢٧.",
+    steps_en:[
+      {n:1, title:"Book Appointment", desc:"Schedule via the Dutch Embassy or VFS Global in Amman."},
+      {n:2, title:"Prepare Documents", desc:"Gather passport, photos, insurance, hotel bookings, and bank statements."},
+      {n:3, title:"Attend & Submit", desc:"Attend in person and provide biometrics."},
+      {n:4, title:"Pay the Fee", desc:"Pay €80 visa fee at submission."},
+      {n:5, title:"Collect Passport", desc:"Receive passport with visa sticker after 15–30 days."},
+    ],
+    steps_ar:[
+      {n:1, title:"حجز موعد", desc:"احجز عبر السفارة الهولندية أو VFS Global بعمّان."},
+      {n:2, title:"تجهيز المستندات", desc:"اجمع الجواز والصور والتأمين وحجوزات الفنادق وكشوف الحساب."},
+      {n:3, title:"الحضور والتقديم", desc:"احضر شخصياً وأعطِ البيانات البيومترية."},
+      {n:4, title:"دفع الرسوم", desc:"ادفع ٨٠ يورو عند التقديم."},
+      {n:5, title:"استلام الجواز", desc:"استلم جوازك بملصق التأشيرة بعد ١٥–٣٠ يوماً."},
+    ],
+    documents_en:[
+      {item:"Valid passport", note:"3 months beyond stay, 2 blank pages"},
+      {item:"Application form", note:"Completed and signed"},
+      {item:"Two passport photos", note:"Schengen specifications"},
+      {item:"Travel insurance", note:"€30,000 minimum, Schengen-wide"},
+      {item:"Hotel bookings", note:"All nights"},
+      {item:"Flight itinerary", note:"Round-trip confirmed"},
+      {item:"Bank statements", note:"Last 3 months"},
+    ],
+    documents_ar:[
+      {item:"جواز سفر ساري", note:"صالح ٣ أشهر بعد الإقامة، صفحتان فارغتان"},
+      {item:"نموذج الطلب", note:"مكتمل وموقّع"},
+      {item:"صورتا جواز", note:"وفق مواصفات شنغن"},
+      {item:"تأمين السفر", note:"٣٠,٠٠٠ يورو على الأقل يغطي شنغن"},
+      {item:"حجوزات الفنادق", note:"جميع الليالي"},
+      {item:"مسار رحلة الطيران", note:"مؤكد ذهاباً وإياباً"},
+      {item:"كشوف الحساب البنكي", note:"آخر ٣ أشهر"},
+    ],
+    faqs_en:[
+      {q:"Is Amsterdam the capital of the Netherlands?", a:"Amsterdam is the capital, but The Hague is the seat of government and home to the Dutch Parliament and many embassies."},
+      {q:"Can I fly via Amsterdam to another Schengen country without a visa?", a:"No. If you enter the Schengen Area (including at Amsterdam Schiphol), you need a valid Schengen visa."},
+    ],
+    faqs_ar:[
+      {q:"هل أمستردام عاصمة هولندا؟", a:"أمستردام هي العاصمة، أما لاهاي فهي مقر الحكومة والبرلمان وكثير من السفارات."},
+      {q:"هل يمكنني العبور عبر أمستردام إلى دولة شنغن أخرى بدون تأشيرة؟", a:"لا. عند الدخول إلى منطقة شنغن بما فيها مطار أمستردام شيبول تحتاج تأشيرة شنغن سارية."},
+    ],
+    tips_en:[
+      "Amsterdam Schiphol is a major European hub — consider it for transit or stopovers on other routes.",
+      "The Netherlands also includes the Caribbean islands of Aruba, Curaçao, and Sint Maarten which have different visa rules.",
+    ],
+    tips_ar:[
+      "مطار أمستردام شيبول مركز رئيسي في أوروبا — استخدمه للعبور أو التوقف في رحلات أخرى.",
+      "تشمل هولندا أيضاً جزر أروبا وكوراساو وسانت مارتن في البحر الكاريبي التي لها قواعد تأشيرة مختلفة.",
+    ],
+    related:[
+      {name:"Germany",     flag:"🇩🇪", badgeColor:"red"},
+      {name:"France",      flag:"🇫🇷", badgeColor:"red"},
+      {name:"Belgium",     flag:"🇧🇪", badgeColor:"red"},
+      {name:"UK",          flag:"🇬🇧", badgeColor:"red"},
+    ],
+  },
+
+  "Thailand": {
+    region_en:"Asia", region_ar:"آسيا",
+    visaType_en:"Visa on Arrival", visaType_ar:"تأشيرة عند الوصول",
+    badge_en:"Visa on Arrival", badge_ar:"تأشيرة عند الوصول", badgeColor:"green",
+    fee:"Free (as of 2024 waiver)",
+    processing_en:"On arrival", processing_ar:"عند الوصول",
+    maxStay_en:"30 days per entry", maxStay_ar:"٣٠ يوماً لكل دخول",
+    validity_en:"Single entry per visit", validity_ar:"دخول واحد لكل زيارة",
+    capital_en:"Bangkok", capital_ar:"بانكوك",
+    currency_en:"Thai Baht (THB)", currency_ar:"البات التايلاندي",
+    language_en:"Thai", language_ar:"التايلاندية",
+    timezone_en:"ICT (UTC+7)", timezone_ar:"ICT (UTC+7)",
+    embassyPhone:"+962 6 593 5555",
+    embassyAddress_en:"Dahiyat Al-Rashid, Amman, Jordan", embassyAddress_ar:"ضاحية الرشيد، عمّان، الأردن",
+    embassyHours_en:"Mon–Fri 09:00–12:00", embassyHours_ar:"الإثنين–الجمعة ٠٩:٠٠–١٢:٠٠",
+    overview_en:"Jordanian passport holders can enter Thailand visa-free or obtain a Visa on Arrival (VOA) at major airports. Thailand extended a visa exemption for Jordanians in 2024, making short stays straightforward with no prior visa needed.",
+    overview_ar:"يمكن لحاملي الجواز الأردني دخول تايلاند بدون تأشيرة مسبقة أو الحصول على تأشيرة عند الوصول في المطارات الكبرى. مدّدت تايلاند الإعفاء من التأشيرة للأردنيين عام ٢٠٢٤، مما يُسهّل الإقامات القصيرة دون الحاجة إلى تأشيرة مسبقة.",
+    steps_en:[
+      {n:1, title:"Book Flights", desc:"No advance visa needed. Book your flights and accommodation."},
+      {n:2, title:"Prepare Entry Documents", desc:"Carry return ticket, proof of accommodation, and sufficient funds (THB 10,000 per person recommended)."},
+      {n:3, title:"Arrive at Airport", desc:"Proceed to immigration. If visa exemption is in force you go straight to the immigration counter."},
+      {n:4, title:"Entry Stamp", desc:"Immigration officer stamps your passport for 30 days."},
+    ],
+    steps_ar:[
+      {n:1, title:"حجز الرحلات", desc:"لا تأشيرة مسبقة مطلوبة. احجز رحلاتك وإقامتك."},
+      {n:2, title:"تجهيز وثائق الدخول", desc:"احمل تذكرة العودة وإثبات الإقامة وأموالاً كافية (يُوصى بـ١٠,٠٠٠ بات لكل شخص)."},
+      {n:3, title:"الوصول إلى المطار", desc:"توجّه إلى الهجرة؛ إذا كان الإعفاء سارياً اتجه مباشرةً إلى كاونتر الهجرة."},
+      {n:4, title:"ختم الدخول", desc:"يختم ضابط الهجرة جوازك لـ٣٠ يوماً."},
+    ],
+    documents_en:[
+      {item:"Valid passport", note:"At least 6 months validity"},
+      {item:"Return or onward ticket", note:"Proof you will leave within 30 days"},
+      {item:"Proof of accommodation", note:"Hotel booking or host address"},
+      {item:"Sufficient funds", note:"THB 10,000 per person recommended (approx. USD 280)"},
+    ],
+    documents_ar:[
+      {item:"جواز سفر ساري المفعول", note:"صالح ٦ أشهر على الأقل"},
+      {item:"تذكرة عودة أو مغادرة", note:"دليل على المغادرة خلال ٣٠ يوماً"},
+      {item:"إثبات الإقامة", note:"حجز فندقي أو عنوان المضيف"},
+      {item:"أموال كافية", note:"يُوصى بـ١٠,٠٠٠ بات لكل شخص (نحو ٢٨٠ دولار أمريكي)"},
+    ],
+    faqs_en:[
+      {q:"Can I extend my stay beyond 30 days?", a:"Yes. You can extend your stay by 30 days at any Thai Immigration office for a fee of THB 1,900."},
+      {q:"Is the visa waiver for Jordanians permanent?", a:"Thailand has extended the waiver multiple times; always check the latest policy before travel as it is subject to change."},
+    ],
+    faqs_ar:[
+      {q:"هل يمكنني تمديد إقامتي أكثر من ٣٠ يوماً؟", a:"نعم. يمكن تمديد الإقامة ٣٠ يوماً إضافية لدى أي مكتب هجرة تايلاندي مقابل ١,٩٠٠ بات."},
+      {q:"هل الإعفاء من التأشيرة للأردنيين دائم؟", a:"مدّدت تايلاند الإعفاء عدة مرات؛ تحقق دائماً من أحدث السياسات قبل السفر لأنها قابلة للتغيير."},
+    ],
+    tips_en:[
+      "Bangkok (Suvarnabhumi), Phuket, and Chiang Mai airports all accept visa-exempt arrivals.",
+      "Carry USD or THB cash for initial expenses — currency exchange is widely available at airports.",
+      "Check thailand.go.th or your airline for the latest visa policy before departure.",
+    ],
+    tips_ar:[
+      "مطارات بانكوك (سوفارنابومي) وبوكيت وشيانغ ماي تقبل جميعها الواصلين بالإعفاء من التأشيرة.",
+      "احمل نقوداً بالدولار أو البات للمصاريف الأولية — صرف العملات متاح على نطاق واسع في المطارات.",
+      "تحقق من موقع thailand.go.th أو شركة الطيران لمعرفة أحدث سياسات التأشيرة قبل المغادرة.",
+    ],
+    related:[
+      {name:"Indonesia", flag:"🇮🇩", badgeColor:"green"},
+      {name:"Malaysia",  flag:"🇲🇾", badgeColor:"green"},
+      {name:"Japan",     flag:"🇯🇵", badgeColor:"amber"},
+      {name:"UAE",       flag:"🇦🇪", badgeColor:"green"},
+    ],
+  },
+
+  "Indonesia": {
+    region_en:"Asia", region_ar:"آسيا",
+    visaType_en:"Visa on Arrival / eVisa", visaType_ar:"تأشيرة عند الوصول / تأشيرة إلكترونية",
+    badge_en:"Visa on Arrival", badge_ar:"تأشيرة عند الوصول", badgeColor:"green",
+    fee:"USD 35",
+    processing_en:"On arrival (VOA) or 3–5 days (eVisa)", processing_ar:"عند الوصول (VOA) أو ٣–٥ أيام (تأشيرة إلكترونية)",
+    maxStay_en:"30 days (extendable once to 60 days)", maxStay_ar:"٣٠ يوماً (قابلة للتمديد مرة واحدة إلى ٦٠ يوماً)",
+    validity_en:"Single entry per visa", validity_ar:"دخول واحد لكل تأشيرة",
+    capital_en:"Jakarta", capital_ar:"جاكرتا",
+    currency_en:"Indonesian Rupiah (IDR)", currency_ar:"الروبية الإندونيسية",
+    language_en:"Indonesian (Bahasa Indonesia)", language_ar:"الإندونيسية (بهاسا إندونيسيا)",
+    timezone_en:"WIB (UTC+7) / WITA (UTC+8) / WIT (UTC+9)", timezone_ar:"WIB / WITA / WIT حسب المنطقة",
+    embassyPhone:"+962 6 592 4100",
+    embassyAddress_en:"Dabouq District, Amman, Jordan", embassyAddress_ar:"منطقة الدابوق، عمّان، الأردن",
+    embassyHours_en:"Mon–Fri 09:00–12:00", embassyHours_ar:"الإثنين–الجمعة ٠٩:٠٠–١٢:٠٠",
+    overview_en:"Jordanian passport holders can enter Indonesia by obtaining a Visa on Arrival (VOA) at major international airports and sea ports for USD 35, or by applying for an eVisa (B211A) online before travel. Both options allow a 30-day stay, extendable once.",
+    overview_ar:"يمكن لحاملي الجواز الأردني دخول إندونيسيا بالحصول على تأشيرة عند الوصول في المطارات والموانئ الدولية الكبرى مقابل ٣٥ دولاراً أمريكياً، أو التقديم على تأشيرة إلكترونية (B211A) عبر الإنترنت قبل السفر. كلا الخيارين يتيح الإقامة ٣٠ يوماً قابلة للتمديد مرة واحدة.",
+    steps_en:[
+      {n:1, title:"Choose VOA or eVisa", desc:"Decide between getting a Visa on Arrival at the airport or applying for an eVisa online before travel at molina.imigrasi.go.id."},
+      {n:2, title:"Prepare Documents", desc:"Carry your passport, return ticket, proof of accommodation, and USD 35 in cash for VOA."},
+      {n:3, title:"Queue at VOA Counter (if VOA)", desc:"On arrival, pay at the VOA counter and proceed to immigration for your stamp."},
+      {n:4, title:"Entry Stamp", desc:"Receive a 30-day entry stamp in your passport."},
+      {n:5, title:"Extend if Needed", desc:"Visit a local immigration office to extend your stay by another 30 days (max 60 days total)."},
+    ],
+    steps_ar:[
+      {n:1, title:"اختيار VOA أو تأشيرة إلكترونية", desc:"حدد بين تأشيرة عند الوصول في المطار أو التقديم على تأشيرة إلكترونية عبر molina.imigrasi.go.id قبل السفر."},
+      {n:2, title:"تجهيز المستندات", desc:"احمل جوازك وتذكرة العودة وإثبات الإقامة و٣٥ دولاراً نقداً لـVOA."},
+      {n:3, title:"طابور كاونتر VOA (إذا اخترت VOA)", desc:"عند الوصول ادفع في كاونتر VOA ثم توجّه إلى الهجرة للحصول على ختم الدخول."},
+      {n:4, title:"ختم الدخول", desc:"تحصل على ختم دخول ٣٠ يوماً في جوازك."},
+      {n:5, title:"التمديد إذا لزم", desc:"زر مكتب هجرة محلياً لتمديد إقامتك ٣٠ يوماً إضافية (٦٠ يوماً كحد أقصى)."},
+    ],
+    documents_en:[
+      {item:"Valid passport", note:"At least 6 months validity"},
+      {item:"Return or onward ticket", note:"Proof of departure within 30 days"},
+      {item:"Proof of accommodation", note:"Hotel booking or host address"},
+      {item:"USD 35 cash (for VOA)", note:"Exact amount preferred; card not always accepted"},
+    ],
+    documents_ar:[
+      {item:"جواز سفر ساري المفعول", note:"صالح ٦ أشهر على الأقل"},
+      {item:"تذكرة عودة أو مغادرة", note:"دليل على المغادرة خلال ٣٠ يوماً"},
+      {item:"إثبات الإقامة", note:"حجز فندقي أو عنوان المضيف"},
+      {item:"٣٥ دولاراً نقداً (لـVOA)", note:"يُفضَّل المبلغ المحدد؛ البطاقة لا تُقبل دائماً"},
+    ],
+    faqs_en:[
+      {q:"Can I get a VOA at Bali airport?", a:"Yes. Ngurah Rai International Airport in Bali is one of the main VOA entry points."},
+      {q:"Can I extend my VOA stay?", a:"Yes, once only, for an additional 30 days at a local immigration office for a fee."},
+    ],
+    faqs_ar:[
+      {q:"هل يمكنني الحصول على VOA في مطار بالي؟", a:"نعم. مطار نغوراه راي الدولي في بالي هو أحد نقاط الدخول الرئيسية لـVOA."},
+      {q:"هل يمكن تمديد VOA؟", a:"نعم، مرة واحدة فقط، لمدة ٣٠ يوماً إضافية في مكتب هجرة محلي مقابل رسوم."},
+    ],
+    tips_en:[
+      "Bali, Jakarta, and Lombok are the most popular entry points with full VOA facilities.",
+      "The eVisa option (B211A) is recommended to save time at the airport on arrival.",
+      "Indonesian Rupiah cannot be taken out of the country in large amounts — exchange on arrival.",
+    ],
+    tips_ar:[
+      "بالي وجاكرتا ولومبوك هي نقاط الدخول الأكثر شهرة وتوفّر خدمة VOA الكاملة.",
+      "يُنصح بالتأشيرة الإلكترونية (B211A) لتوفير الوقت عند الوصول في المطار.",
+      "لا يمكن إخراج كميات كبيرة من الروبية الإندونيسية خارج البلاد — قم بالصرف عند الوصول.",
+    ],
+    related:[
+      {name:"Thailand",  flag:"🇹🇭", badgeColor:"green"},
+      {name:"Malaysia",  flag:"🇲🇾", badgeColor:"green"},
+      {name:"UAE",       flag:"🇦🇪", badgeColor:"green"},
+      {name:"Japan",     flag:"🇯🇵", badgeColor:"amber"},
+    ],
+  },
+
+  "Oman": {
+    region_en:"Middle East", region_ar:"الشرق الأوسط",
+    visaType_en:"eVisa", visaType_ar:"تأشيرة إلكترونية",
+    badge_en:"eVisa", badge_ar:"تأشيرة إلكترونية", badgeColor:"amber",
+    fee:"OMR 5–20 (approx. USD 13–52)",
+    processing_en:"1–3 business days", processing_ar:"١–٣ أيام عمل",
+    maxStay_en:"10 days (short) or 30 days (standard)", maxStay_ar:"١٠ أيام (قصيرة) أو ٣٠ يوماً (قياسية)",
+    validity_en:"Single or multiple entry", validity_ar:"دخول واحد أو متعدد",
+    capital_en:"Muscat", capital_ar:"مسقط",
+    currency_en:"Omani Rial (OMR)", currency_ar:"الريال العُماني",
+    language_en:"Arabic", language_ar:"العربية",
+    timezone_en:"GST (UTC+4)", timezone_ar:"GST (UTC+4)",
+    embassyPhone:"+962 6 593 4175",
+    embassyAddress_en:"Abdoun, Amman, Jordan", embassyAddress_ar:"عبدون، عمّان، الأردن",
+    embassyHours_en:"Mon–Fri 09:00–14:00", embassyHours_ar:"الإثنين–الجمعة ٠٩:٠٠–١٤:٠٠",
+    overview_en:"Jordanian passport holders can apply for an Omani eVisa online through the Royal Oman Police portal before travel. Visas are typically approved within 1–3 business days and allow stays of 10 or 30 days depending on the visa type chosen.",
+    overview_ar:"يمكن لحاملي الجواز الأردني التقديم على التأشيرة الإلكترونية العُمانية عبر بوابة شرطة عُمان الملكية قبل السفر. تُعتمد التأشيرات عادةً خلال ١–٣ أيام عمل وتتيح إقامة لمدة ١٠ أو ٣٠ يوماً بحسب نوع التأشيرة المختار.",
+    steps_en:[
+      {n:1, title:"Apply Online", desc:"Visit evisa.rop.gov.om and complete the eVisa application form."},
+      {n:2, title:"Upload Documents", desc:"Upload your passport scan, photo, and travel details."},
+      {n:3, title:"Pay the Fee", desc:"Pay OMR 5 (10-day) or OMR 20 (30-day) by card online."},
+      {n:4, title:"Receive Approval", desc:"Visa approval is emailed within 1–3 business days. Print a copy."},
+      {n:5, title:"Travel to Oman", desc:"Present your printed eVisa alongside your passport at the port of entry."},
+    ],
+    steps_ar:[
+      {n:1, title:"التقديم إلكترونياً", desc:"زر evisa.rop.gov.om وأكمل نموذج التأشيرة الإلكترونية."},
+      {n:2, title:"رفع المستندات", desc:"ارفع صورة جوازك وصورتك الشخصية وتفاصيل رحلتك."},
+      {n:3, title:"دفع الرسوم", desc:"ادفع ٥ ريالات عُمانية (١٠ أيام) أو ٢٠ ريالاً (٣٠ يوماً) بالبطاقة."},
+      {n:4, title:"استلام الموافقة", desc:"تصل الموافقة عبر البريد الإلكتروني خلال ١–٣ أيام عمل؛ اطبع نسخة منها."},
+      {n:5, title:"السفر إلى عُمان", desc:"أبرز التأشيرة المطبوعة مع جوازك في منفذ الدخول."},
+    ],
+    documents_en:[
+      {item:"Valid passport", note:"At least 6 months validity"},
+      {item:"Passport-size photo", note:"Recent, white background"},
+      {item:"Return ticket", note:"Proof of onward travel"},
+      {item:"Hotel booking or accommodation proof", note:"For the duration of stay"},
+    ],
+    documents_ar:[
+      {item:"جواز سفر ساري المفعول", note:"صالح ٦ أشهر على الأقل"},
+      {item:"صورة شخصية", note:"حديثة بخلفية بيضاء"},
+      {item:"تذكرة العودة", note:"دليل على المغادرة"},
+      {item:"حجز فندقي أو إثبات إقامة", note:"لمدة الإقامة كاملة"},
+    ],
+    faqs_en:[
+      {q:"Can I extend my eVisa inside Oman?", a:"Yes. You can extend your stay at the Royal Oman Police immigration office in Muscat."},
+      {q:"Is Oman safe to visit?", a:"Oman is consistently ranked among the safest countries in the Arab world for tourists."},
+    ],
+    faqs_ar:[
+      {q:"هل يمكن تمديد التأشيرة الإلكترونية داخل عُمان؟", a:"نعم. يمكن تمديد الإقامة في مكتب الهجرة التابع لشرطة عُمان الملكية في مسقط."},
+      {q:"هل عُمان آمنة للزيارة؟", a:"تُصنَّف عُمان باستمرار ضمن أكثر دول العالم العربي أماناً للسياح."},
+    ],
+    tips_en:[
+      "Apply at least 3–4 days before your trip to allow for processing time.",
+      "Muscat, Nizwa, Salalah, and Wahiba Sands are top attractions.",
+      "Dress modestly in public areas, especially near mosques and in souqs.",
+    ],
+    tips_ar:[
+      "قدّم طلبك قبل ٣–٤ أيام على الأقل من رحلتك لضمان وقت كافٍ للمعالجة.",
+      "مسقط ونزوى وصلالة ورمال وهيبة من أبرز المعالم السياحية.",
+      "ارتدِ ملابس محتشمة في الأماكن العامة لا سيما قرب المساجد والأسواق.",
+    ],
+    related:[
+      {name:"UAE",          flag:"🇦🇪", badgeColor:"green"},
+      {name:"Saudi Arabia", flag:"🇸🇦", badgeColor:"amber"},
+      {name:"Kuwait",       flag:"🇰🇼", badgeColor:"green"},
+      {name:"Bahrain",      flag:"🇧🇭", badgeColor:"green"},
+    ],
+  },
+
+  "Saudi Arabia": {
+    region_en:"Middle East", region_ar:"الشرق الأوسط",
+    visaType_en:"eVisa", visaType_ar:"تأشيرة إلكترونية",
+    badge_en:"eVisa", badge_ar:"تأشيرة إلكترونية", badgeColor:"amber",
+    fee:"SAR 440 (approx. USD 117) + insurance",
+    processing_en:"Minutes to a few hours", processing_ar:"دقائق إلى بضع ساعات",
+    maxStay_en:"90 days per visit", maxStay_ar:"٩٠ يوماً لكل زيارة",
+    validity_en:"1 year, multiple entry", validity_ar:"سنة كاملة، متعدد الدخول",
+    capital_en:"Riyadh", capital_ar:"الرياض",
+    currency_en:"Saudi Riyal (SAR)", currency_ar:"الريال السعودي",
+    language_en:"Arabic", language_ar:"العربية",
+    timezone_en:"AST (UTC+3)", timezone_ar:"AST (UTC+3)",
+    embassyPhone:"+962 6 592 3154",
+    embassyAddress_en:"Umm Uthainah, Amman, Jordan", embassyAddress_ar:"أم أذينة، عمّان، الأردن",
+    embassyHours_en:"Sun–Thu 09:00–14:00", embassyHours_ar:"الأحد–الخميس ٠٩:٠٠–١٤:٠٠",
+    overview_en:"Jordanian passport holders can apply for a Saudi Tourist eVisa (Visit Visa) online through the Saudi Arabia eVisa portal. The visa is valid for 1 year with multiple entries, and allows stays of up to 90 days per visit. Travel insurance is mandatory and can be purchased as part of the application.",
+    overview_ar:"يمكن لحاملي الجواز الأردني التقديم على تأشيرة زيارة سياحية إلكترونية للمملكة العربية السعودية عبر بوابة التأشيرات الإلكترونية السعودية. التأشيرة صالحة لسنة كاملة بدخول متعدد وتتيح البقاء حتى ٩٠ يوماً لكل زيارة. التأمين على السفر إلزامي ويمكن شراؤه ضمن الطلب.",
+    steps_en:[
+      {n:1, title:"Apply Online", desc:"Visit visa.visitsaudi.com and create an account to begin the eVisa application."},
+      {n:2, title:"Fill Application", desc:"Enter personal details, travel information, and upload your passport scan and photo."},
+      {n:3, title:"Purchase Insurance", desc:"Buy the mandatory travel insurance through the portal (usually bundled with the fee)."},
+      {n:4, title:"Pay the Fee", desc:"Pay SAR 440 plus applicable taxes by card."},
+      {n:5, title:"Receive Visa", desc:"Visa is typically approved within hours. Download and keep the eVisa confirmation."},
+    ],
+    steps_ar:[
+      {n:1, title:"التقديم إلكترونياً", desc:"زر visa.visitsaudi.com وأنشئ حساباً لبدء طلب التأشيرة الإلكترونية."},
+      {n:2, title:"تعبئة الطلب", desc:"أدخل بياناتك الشخصية ومعلومات السفر وارفع صورة جوازك وصورتك الشخصية."},
+      {n:3, title:"شراء التأمين", desc:"اشترِ تأمين السفر الإلزامي عبر البوابة (يُضمَّن عادةً مع الرسوم)."},
+      {n:4, title:"دفع الرسوم", desc:"ادفع ٤٤٠ ريالاً سعودياً والضرائب المطبّقة بالبطاقة."},
+      {n:5, title:"استلام التأشيرة", desc:"تُعتمد التأشيرة عادةً خلال ساعات. حمّل تأكيد التأشيرة الإلكترونية واحتفظ به."},
+    ],
+    documents_en:[
+      {item:"Valid passport", note:"At least 6 months validity"},
+      {item:"Passport-size photo", note:"White background, recent"},
+      {item:"Travel insurance", note:"Mandatory — purchased through visa portal"},
+      {item:"Return ticket (recommended)", note:"Not always required but advisable"},
+    ],
+    documents_ar:[
+      {item:"جواز سفر ساري المفعول", note:"صالح ٦ أشهر على الأقل"},
+      {item:"صورة شخصية", note:"خلفية بيضاء وحديثة"},
+      {item:"تأمين السفر", note:"إلزامي — يُشترى عبر بوابة التأشيرات"},
+      {item:"تذكرة العودة (موصى بها)", note:"غير مطلوبة دائماً لكن يُنصح بها"},
+    ],
+    faqs_en:[
+      {q:"Can Jordanians visit Mecca and Medina?", a:"Non-Muslims are not permitted to enter Mecca or Medina. Muslim Jordanian visitors may enter but should note that Umrah requires a separate Umrah visa, not the tourist eVisa."},
+      {q:"Is the Saudi eVisa available year-round?", a:"Yes. The tourist eVisa is available year-round, though Hajj season sees additional pilgrim-specific visas."},
+    ],
+    faqs_ar:[
+      {q:"هل يمكن للأردنيين زيارة مكة المكرمة والمدينة المنورة؟", a:"غير المسلمين ممنوعون من دخول مكة والمدينة. الأردنيون المسلمون قد يدخلون لكن عليهم الانتباه إلى أن العمرة تستلزم تأشيرة عمرة منفصلة لا تأشيرة السياحة."},
+      {q:"هل التأشيرة الإلكترونية السعودية متاحة طوال العام؟", a:"نعم. تأشيرة السياحة متاحة على مدار العام وإن كان موسم الحج يشهد تأشيرات حج إضافية خاصة بالحجاج."},
+    ],
+    tips_en:[
+      "Riyadh, Jeddah, AlUla, and NEOM are major tourist destinations currently being developed.",
+      "Dress code is more relaxed than in previous years but modest dress is still recommended in public.",
+      "The eVisa also covers transit through Saudi Arabia if needed.",
+    ],
+    tips_ar:[
+      "الرياض وجدة والعُلا ونيوم وجهات سياحية رئيسية يجري تطويرها حالياً.",
+      "قواعد اللباس أكثر مرونة مقارنةً بالسنوات الماضية لكن اللباس المحتشم لا يزال موصى به في الأماكن العامة.",
+      "التأشيرة الإلكترونية تشمل أيضاً العبور عبر المملكة العربية السعودية إذا لزم.",
+    ],
+    related:[
+      {name:"UAE",    flag:"🇦🇪", badgeColor:"green"},
+      {name:"Oman",   flag:"🇴🇲", badgeColor:"amber"},
+      {name:"Kuwait", flag:"🇰🇼", badgeColor:"green"},
+      {name:"Egypt",  flag:"🇪🇬", badgeColor:"amber"},
+    ],
+  },
+
+  "Tunisia": {
+    region_en:"Africa", region_ar:"أفريقيا",
+    visaType_en:"Visa Free", visaType_ar:"بدون تأشيرة",
+    badge_en:"Visa Free", badge_ar:"بدون تأشيرة", badgeColor:"green",
+    fee:"Free",
+    processing_en:"No wait", processing_ar:"فوري",
+    maxStay_en:"90 days", maxStay_ar:"٩٠ يوماً",
+    validity_en:"No visa required", validity_ar:"لا تأشيرة مطلوبة",
+    capital_en:"Tunis", capital_ar:"تونس",
+    currency_en:"Tunisian Dinar (TND)", currency_ar:"الدينار التونسي",
+    language_en:"Arabic, French", language_ar:"العربية، الفرنسية",
+    timezone_en:"CET (UTC+1)", timezone_ar:"CET (UTC+1)",
+    embassyPhone:"+962 6 593 5033",
+    embassyAddress_en:"Shmeisani, Amman, Jordan", embassyAddress_ar:"الشميساني، عمّان، الأردن",
+    embassyHours_en:"Sun–Thu 09:00–14:00", embassyHours_ar:"الأحد–الخميس ٠٩:٠٠–١٤:٠٠",
+    overview_en:"Jordanian passport holders can enter Tunisia without a visa and stay for up to 90 days. No advance application is required — simply present your valid passport at the port of entry.",
+    overview_ar:"يمكن لحاملي الجواز الأردني دخول تونس بدون تأشيرة والبقاء حتى ٩٠ يوماً. لا يلزم التقديم المسبق — ما عليك سوى إبراز جوازك الساري عند منفذ الدخول.",
+    steps_en:[
+      {n:1, title:"Book Your Trip", desc:"No visa needed. Book flights and accommodation freely."},
+      {n:2, title:"Arrive at Port of Entry", desc:"Present your valid Jordanian passport at immigration."},
+      {n:3, title:"Entry Stamp", desc:"Receive a 90-day entry stamp and enjoy your stay."},
+    ],
+    steps_ar:[
+      {n:1, title:"احجز رحلتك", desc:"لا تأشيرة مطلوبة. احجز رحلاتك وإقامتك بحرية."},
+      {n:2, title:"الوصول إلى منفذ الدخول", desc:"أبرز جوازك الأردني الساري في الهجرة."},
+      {n:3, title:"ختم الدخول", desc:"تحصل على ختم دخول لـ٩٠ يوماً واستمتع بإقامتك."},
+    ],
+    documents_en:[
+      {item:"Valid Jordanian passport", note:"At least 6 months validity recommended"},
+      {item:"Return ticket", note:"Recommended proof of departure"},
+      {item:"Sufficient funds", note:"Not strictly required but advisable"},
+    ],
+    documents_ar:[
+      {item:"جواز سفر أردني ساري", note:"يُوصى بصلاحية ٦ أشهر على الأقل"},
+      {item:"تذكرة عودة", note:"يُوصى بها كدليل على المغادرة"},
+      {item:"أموال كافية", note:"غير مطلوبة رسمياً لكن يُنصح بها"},
+    ],
+    faqs_en:[
+      {q:"Do I need a visa to visit Tunisia as a Jordanian?", a:"No. Jordanian passport holders are visa-exempt and can stay up to 90 days."},
+      {q:"Can I work in Tunisia without a visa?", a:"The visa exemption covers tourism only. Working requires a separate work permit."},
+    ],
+    faqs_ar:[
+      {q:"هل أحتاج تأشيرة لزيارة تونس كأردني؟", a:"لا. حاملو الجواز الأردني معفيون من التأشيرة ويمكنهم البقاء حتى ٩٠ يوماً."},
+      {q:"هل يمكنني العمل في تونس بدون تأشيرة؟", a:"الإعفاء مخصص للسياحة فقط؛ العمل يستلزم تصريح عمل منفصل."},
+    ],
+    tips_en:[
+      "Tunis, Djerba, Hammamet, and Carthage are top tourist destinations.",
+      "Tunisia is Arabic-speaking with French widely used — communication is easy for Jordanians.",
+      "The Tunisian Dinar cannot be taken out of the country — exchange remaining currency before departure.",
+    ],
+    tips_ar:[
+      "تونس العاصمة وجربة والحمامات وقرطاج من أبرز الوجهات السياحية.",
+      "تونس ناطقة بالعربية والفرنسية شائعة — التواصل سهل للأردنيين.",
+      "لا يمكن إخراج الدينار التونسي خارج البلاد — استبدل ما تبقى من عملة قبل المغادرة.",
+    ],
+    related:[
+      {name:"Morocco", flag:"🇲🇦", badgeColor:"green"},
+      {name:"Egypt",   flag:"🇪🇬", badgeColor:"amber"},
+      {name:"Turkey",  flag:"🇹🇷", badgeColor:"amber"},
+    ],
+  },
+
+  "Morocco": {
+    region_en:"Africa", region_ar:"أفريقيا",
+    visaType_en:"Visa Free", visaType_ar:"بدون تأشيرة",
+    badge_en:"Visa Free", badge_ar:"بدون تأشيرة", badgeColor:"green",
+    fee:"Free",
+    processing_en:"No wait", processing_ar:"فوري",
+    maxStay_en:"90 days", maxStay_ar:"٩٠ يوماً",
+    validity_en:"No visa required", validity_ar:"لا تأشيرة مطلوبة",
+    capital_en:"Rabat", capital_ar:"الرباط",
+    currency_en:"Moroccan Dirham (MAD)", currency_ar:"الدرهم المغربي",
+    language_en:"Arabic, Amazigh, French", language_ar:"العربية، الأمازيغية، الفرنسية",
+    timezone_en:"WET (UTC+0) / WEST (UTC+1)", timezone_ar:"WET / WEST",
+    embassyPhone:"+962 6 593 2630",
+    embassyAddress_en:"Abdoun, Amman, Jordan", embassyAddress_ar:"عبدون، عمّان، الأردن",
+    embassyHours_en:"Mon–Fri 09:00–14:00", embassyHours_ar:"الإثنين–الجمعة ٠٩:٠٠–١٤:٠٠",
+    overview_en:"Jordanian passport holders can enter Morocco visa-free for up to 90 days. No advance application is required. Simply arrive with your valid passport and you will be admitted at the port of entry.",
+    overview_ar:"يمكن لحاملي الجواز الأردني دخول المغرب بدون تأشيرة لمدة تصل إلى ٩٠ يوماً. لا يلزم التقديم المسبق — ما عليك سوى الوصول بجوازك الساري وستُسمح بالدخول عند المنفذ.",
+    steps_en:[
+      {n:1, title:"Book Your Trip", desc:"No visa needed. Book flights and accommodation freely."},
+      {n:2, title:"Arrive at Port of Entry", desc:"Present your valid Jordanian passport at immigration."},
+      {n:3, title:"Entry Stamp", desc:"Receive a 90-day entry stamp. Enjoy your visit."},
+    ],
+    steps_ar:[
+      {n:1, title:"احجز رحلتك", desc:"لا تأشيرة مطلوبة. احجز رحلاتك وإقامتك بحرية."},
+      {n:2, title:"الوصول إلى منفذ الدخول", desc:"أبرز جوازك الأردني الساري في الهجرة."},
+      {n:3, title:"ختم الدخول", desc:"تحصل على ختم دخول لـ٩٠ يوماً؛ استمتع بزيارتك."},
+    ],
+    documents_en:[
+      {item:"Valid Jordanian passport", note:"At least 6 months validity recommended"},
+      {item:"Return ticket", note:"Recommended proof of departure"},
+      {item:"Proof of accommodation", note:"Hotel booking or host contact"},
+    ],
+    documents_ar:[
+      {item:"جواز سفر أردني ساري", note:"يُوصى بصلاحية ٦ أشهر على الأقل"},
+      {item:"تذكرة عودة", note:"يُوصى بها كدليل على المغادرة"},
+      {item:"إثبات الإقامة", note:"حجز فندقي أو بيانات تواصل المضيف"},
+    ],
+    faqs_en:[
+      {q:"Do I need a visa for Morocco as a Jordanian?", a:"No. Jordanian passport holders are visa-exempt and may stay up to 90 days."},
+      {q:"Is Moroccan Arabic understandable to Jordanians?", a:"Moroccan Darija differs significantly from Levantine Arabic but standard Modern Standard Arabic (فصحى) is understood across the country."},
+    ],
+    faqs_ar:[
+      {q:"هل أحتاج تأشيرة للمغرب كأردني؟", a:"لا. حاملو الجواز الأردني معفيون من التأشيرة ويمكنهم البقاء حتى ٩٠ يوماً."},
+      {q:"هل الدارجة المغربية مفهومة للأردنيين؟", a:"الدارجة المغربية تختلف كثيراً عن العربية اللهجية الشامية لكن الفصحى مفهومة في جميع أنحاء البلاد."},
+    ],
+    tips_en:[
+      "Marrakech, Fes, Casablanca, Chefchaouen, and the Sahara Desert are top destinations.",
+      "The Moroccan Dirham is a restricted currency — exchange within Morocco only.",
+      "Morocco is in the same time zone as Portugal (UTC+0/UTC+1) — ideal for combining both destinations.",
+    ],
+    tips_ar:[
+      "مراكش وفاس والدار البيضاء وشفشاون والصحراء الكبرى من أبرز الوجهات.","الدرهم المغربي عملة مقيّدة — قم بتبادله داخل المغرب فقط.",
+      "المغرب في نفس توقيت البرتغال (UTC+0/UTC+1) — مثالي لدمج الوجهتين.",
+    ],
+    related:[
+      {name:"Tunisia", flag:"🇹🇳", badgeColor:"green"},
+      {name:"Spain",   flag:"🇪🇸", badgeColor:"red"},
+      {name:"Egypt",   flag:"🇪🇬", badgeColor:"amber"},
+      {name:"Turkey",  flag:"🇹🇷", badgeColor:"amber"},
+    ],
+  },
+};
+
+// ─── Read country from URL ────────────────────────────────────────────────────
+const params      = new URLSearchParams(window.location.search);
+const countryName = params.get('country') || '';
+const data        = VISA_DATA[countryName];
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+function badgeClass(c) { return { green:'badge-green', amber:'badge-amber', red:'badge-red' }[c] || 'badge-amber'; }
+
+function sidebarRow(label, value) {
+  return `<div class="sidebar-row">
+    <span class="sidebar-row-label">${label}</span>
+    <span class="sidebar-row-value">${value || '—'}</span>
+  </div>`;
+}
+
+// Pick _en or _ar field, falling back gracefully
+function L(d, key) {
+  return ar() ? (d[key + '_ar'] || d[key + '_en'] || '') : (d[key + '_en'] || '');
+}
+
+// ─── Not found state ──────────────────────────────────────────────────────────
+if (!data) {
+  document.getElementById('heroStrip').style.display   = 'none';
+  document.getElementById('tabBar').style.display      = 'none';
+  document.getElementById('mainContent').style.display = 'none';
+  document.getElementById('notFound').style.display    = 'block';
+  document.title = ar() ? 'الدولة غير موجودة — دليل تأشيرة الأردن' : 'Country not found — Jordan Visa Guide';
+  document.querySelector('.not-found-title').textContent = ar() ? 'الدولة غير موجودة' : 'Country not found';
+  document.querySelector('.not-found-sub').innerHTML   = ar()
+    ? 'ليس لدينا بيانات تأشيرة تفصيلية لهذه الدولة بعد.<br>تابعنا — نضيف دولاً جديدة كل أسبوع.'
+    : "We don't have detailed visa data for this country yet.<br>Check back soon — we're adding new countries every week.";
+  document.querySelector('.back-btn').textContent = ar() ? '← العودة لجميع الدول' : '← Back to all countries';
+
+} else {
+  // ── Build / rebuild all page content ──────────────────────────────────────
+  function rebuildPage() {
+    const isAr = ar();
+
+    // Page title + breadcrumb
+    const displayName = isAr
+      ? (Object.values(VISA_DATA).find(v => v === data) ? countryName : countryName)
+      : countryName;
+    document.title = isAr
+      ? `تأشيرة ${countryName} للأردنيين · دليل تأشيرة الأردن`
+      : `${countryName} Visa for Jordanians · Jordan Visa Guide`;
+    document.getElementById('breadcrumbCountry').textContent = countryName;
+
+    // Tab labels
+    const tabLabels = isAr
+      ? ['نظرة عامة', 'الوثائق', 'الأسئلة الشائعة', 'نصائح']
+      : ['Overview', 'Documents', 'FAQ', 'Tips'];
+    document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+      btn.textContent = tabLabels[i];
+    });
+
+    // Hero
+    document.getElementById('heroFlag').textContent     = data.flag;
+    document.getElementById('heroRegion').textContent   = L(data, 'region');
+    document.getElementById('heroName').textContent     = isAr ? `تأشيرة ${countryName}` : `${countryName} Visa`;
+    document.getElementById('heroBadge').textContent    = L(data, 'badge');
+    document.getElementById('heroBadge').className      = 'badge ' + badgeClass(data.badgeColor);
+    document.getElementById('heroVisaType').textContent = L(data, 'visaType');
+    document.getElementById('statFee').textContent      = isAr && data.fee === 'Free' ? 'مجاني' : data.fee;
+    document.getElementById('statProcessing').textContent = L(data, 'processing');
+    document.getElementById('statStay').textContent     = L(data, 'maxStay');
+
+    // Hero stat labels
+    const statLabels = isAr ? ['الرسوم','المعالجة','أقصى مدة'] : ['Fee','Processing','Max stay'];
+    document.querySelectorAll('.hero-stat-label').forEach((el, i) => { el.textContent = statLabels[i]; });
+
+    // Sidebar: visa snapshot
+    const snapLabels = isAr
+      ? ['نوع التأشيرة','أقصى مدة إقامة','الرسوم','وقت المعالجة','الصلاحية']
+      : ['Visa type','Max stay','Fee','Processing','Validity'];
+    document.getElementById('snapshotRows').innerHTML = [
+      sidebarRow(snapLabels[0], L(data,'visaType')),
+      sidebarRow(snapLabels[1], L(data,'maxStay')),
+      sidebarRow(snapLabels[2], isAr && data.fee==='Free' ? 'مجاني' : data.fee),
+      sidebarRow(snapLabels[3], L(data,'processing')),
+      sidebarRow(snapLabels[4], L(data,'validity')),
+    ].join('');
+    document.querySelector('.sidebar-card:nth-child(1) .sidebar-card-head-label').textContent =
+      isAr ? 'ملخص التأشيرة' : 'Visa snapshot';
+
+    // Sidebar: country info
+    const infoLabels = isAr ? ['العاصمة','العملة','اللغة','المنطقة الزمنية'] : ['Capital','Currency','Language','Timezone'];
+    document.getElementById('countryInfoRows').innerHTML = [
+      sidebarRow(infoLabels[0], L(data,'capital')),
+      sidebarRow(infoLabels[1], L(data,'currency')),
+      sidebarRow(infoLabels[2], L(data,'language')),
+      sidebarRow(infoLabels[3], L(data,'timezone')),
+    ].join('');
+    document.querySelector('.sidebar-card:nth-child(2) .sidebar-card-head-label').textContent =
+      isAr ? 'معلومات البلد' : 'Country info';
+
+    // Sidebar: embassy
+    const embAddr = L(data, 'embassyAddress');
+    if (embAddr) {
+      document.getElementById('embassyBody').innerHTML = `
+        <div class="embassy-row"><span class="embassy-icon">📍</span><span class="embassy-text">${embAddr}</span></div>
+        <div class="embassy-row"><span class="embassy-icon">📞</span><span class="embassy-text"><a href="tel:${data.embassyPhone}">${data.embassyPhone}</a></span></div>
+        <div class="embassy-row"><span class="embassy-icon">🕐</span><span class="embassy-text">${L(data,'embassyHours')}</span></div>`;
+      document.getElementById('embassyCard').style.display = '';
+      document.querySelector('#embassyCard .sidebar-card-head-label').textContent =
+        isAr ? 'السفارة في عمّان' : 'Embassy in Amman';
+    } else {
+      document.getElementById('embassyCard').style.display = 'none';
+    }
+
+    // Sidebar: status card
+    const statusCard = document.getElementById('statusCard');
+    const statusMap = {
+      green: {
+        bg:'#f0fdf4', border:'#bbf7d0', labelColor:'#15803d',
+        label_en:'✅ Easy entry',              label_ar:'✅ دخول سهل',
+        desc_en:'Jordanians can enter with minimal hassle. No advance visa needed.',
+        desc_ar:'يمكن للأردنيين الدخول بسهولة. لا تأشيرة مسبقة مطلوبة.',
+      },
+      amber: {
+        bg:'#fffbeb', border:'#fde68a', labelColor:'#b45309',
+        label_en:'📋 Advance planning needed', label_ar:'📋 يلزم تخطيط مسبق',
+        desc_en:'Apply well ahead. Requirements are clear but the process takes time.',
+        desc_ar:'قدّم مبكراً. المتطلبات واضحة لكن العملية تستغرق وقتاً.',
+      },
+      red: {
+        bg:'#fef2f2', border:'#fecaca', labelColor:'#b91c1c',
+        label_en:'⚠️ Difficult entry',          label_ar:'⚠️ دخول صعب',
+        desc_en:'Significant preparation required. High scrutiny and unpredictable outcomes.',
+        desc_ar:'يتطلب تحضيراً مكثفاً. تدقيق عالٍ ونتائج غير متوقعة.',
+      },
+    };
+    const s = statusMap[data.badgeColor] || statusMap.amber;
+    statusCard.style.cssText = `padding:16px 18px;border-radius:12px;background:${s.bg};border:1px solid ${s.border}`;
+    document.getElementById('statusLabel').style.color = s.labelColor;
+    document.getElementById('statusLabel').textContent = isAr ? s.label_ar : s.label_en;
+    document.getElementById('statusDesc').textContent  = isAr ? s.desc_ar  : s.desc_en;
+
+    // Tab: Overview
+    const steps = isAr ? data.steps_ar : data.steps_en;
+    document.getElementById('tab-overview').innerHTML = `
+      <h2 class="sec-title">${isAr ? 'نظرة عامة' : 'Overview'}</h2>
+      <p class="overview-text">${L(data,'overview')}</p>
+      <h2 class="sec-title">${isAr ? 'كيفية التقديم — خطوة بخطوة' : 'How to apply — step by step'}</h2>
+      <div class="steps">
+        ${steps.map(s => `
+        <div class="step">
+          <div class="step-num">${s.n}</div>
+          <div class="step-body">
+            <div class="step-title">${s.title}</div>
+            <div class="step-desc">${s.desc}</div>
+          </div>
+        </div>`).join('')}
+      </div>`;
+
+    // Tab: Documents
+    const docs = isAr ? data.documents_ar : data.documents_en;
+    document.getElementById('tab-documents').innerHTML = `
+      <h2 class="sec-title">${isAr ? 'الوثائق المطلوبة' : 'Required documents'}</h2>
+      <div class="doc-list">
+        ${docs.map(d => `
+        <div class="doc-item">
+          <div class="doc-check">✓</div>
+          <div>
+            <div class="doc-name">${d.item}</div>
+            ${d.note ? `<div class="doc-note">${d.note}</div>` : ''}
+          </div>
+        </div>`).join('')}
+      </div>
+      <div class="doc-warning">
+        <strong>${isAr ? 'تنبيه:' : 'Important:'}</strong>
+        ${isAr
+          ? 'قد تتغير متطلبات الوثائق. تحقق دائماً من القائمة الحالية على الموقع الرسمي للسفارة قبل التقديم.'
+          : 'Document requirements can change. Always verify the current list on the official embassy website before applying.'}
+      </div>`;
+
+    // Tab: FAQ
+    const faqs = isAr ? data.faqs_ar : data.faqs_en;
+    document.getElementById('tab-faq').innerHTML = `
+      <h2 class="sec-title">${isAr ? 'الأسئلة الشائعة' : 'Frequently asked questions'}</h2>
+      <div class="faq-list">
+        ${faqs.map((f, i) => `
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(${i})">
+            <span class="faq-q-text">${f.q}</span>
+            <span class="faq-icon" id="faq-icon-${i}">+</span>
+          </button>
+          <div class="faq-a" id="faq-a-${i}">${f.a}</div>
+        </div>`).join('')}
+      </div>`;
+
+    // Tab: Tips
+    const tips = isAr ? data.tips_ar : data.tips_en;
+    document.getElementById('tab-tips').innerHTML = `
+      <h2 class="sec-title">${isAr ? `نصائح مفيدة عن ${countryName}` : `Insider tips for ${countryName}`}</h2>
+      <div class="tips-list">
+        ${tips.map(t => `
+        <div class="tip-item">
+          <div class="tip-icon">💡</div>
+          <div class="tip-text">${t}</div>
+        </div>`).join('')}
+      </div>`;
+
+    // Related countries
+    const relatedLabel = isAr ? 'وجهات مشابهة' : 'Similar destinations';
+    const relatedBadgeLabels = { green: isAr?'سهل':'Easy', amber: isAr?'تقديم مسبق':'Apply ahead', red: isAr?'معقد':'Complex' };
+    if (data.related && data.related.length) {
+      document.getElementById('relatedSection').style.display = 'block';
+      document.querySelector('.related-title').textContent = relatedLabel;
+      document.getElementById('relatedGrid').innerHTML = data.related.map(r => `
+        <a href="visa-info.html?country=${encodeURIComponent(r.name)}" class="related-card">
+          <span class="related-flag">${r.flag}</span>
+          <div>
+            <div class="related-name">${r.name}</div>
+            <span class="badge ${badgeClass(r.badgeColor)}" style="font-size:11px;padding:2px 8px">
+              ${relatedBadgeLabels[r.badgeColor] || r.badgeColor}
+            </span>
+          </div>
+        </a>`).join('');
+    }
+  }
+
+  rebuildPage();
+}
+
+// ─── Tab switching ────────────────────────────────────────────────────────────
+const TABS = ['overview','documents','faq','tips'];
+function showTab(name) {
+  TABS.forEach(t => {
+    document.getElementById('tab-' + t).style.display = t === name ? 'block' : 'none';
+  });
+  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', TABS[i] === name);
+  });
+}
+
+// ─── FAQ accordion ────────────────────────────────────────────────────────────
+function toggleFaq(i) {
+  const ans  = document.getElementById('faq-a-' + i);
+  const icon = document.getElementById('faq-icon-' + i);
+  const open = ans.classList.toggle('open');
+  icon.classList.toggle('open', open);
+}
+
+// ─── Boot ─────────────────────────────────────────────────────────────────────
+applyLang();
+</script>
+</body>
+</html>

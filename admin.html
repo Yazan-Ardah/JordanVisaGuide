@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin — Jordan Visa Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', system-ui, sans-serif; background: #f4f4f8; color: #1a1a3e; min-height: 100vh; }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: #1a1a3e; padding: 0 28px; height: 60px;
+    display: flex; align-items: center; gap: 16px;
+    position: sticky; top: 0; z-index: 200;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .topbar-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .topbar-logo-icon {
+    width: 30px; height: 30px; border-radius: 7px;
+    background: linear-gradient(135deg, #e85d2f, #ff8c5a);
+    display: flex; align-items: center; justify-content: center; font-size: 15px;
+  }
+  .topbar-title { font-size: 15px; font-weight: 700; color: #fff; }
+  .topbar-sub   { font-size: 12px; color: rgba(255,255,255,0.4); margin-left: 2px; }
+  .topbar-spacer { flex: 1; }
+  .topbar-btn {
+    padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
+    cursor: pointer; border: none; font-family: 'Inter', sans-serif;
+    display: inline-flex; align-items: center; gap: 6px; transition: all 0.15s;
+  }
+  .btn-ghost  { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.8); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.16); color: #fff; }
+  .btn-coral  { background: #e85d2f; color: #fff; }
+  .btn-coral:hover { background: #cf4a1e; }
+  .btn-green  { background: #16a34a; color: #fff; }
+  .btn-green:hover { background: #15803d; }
+  .btn-outline { background: transparent; color: #1a1a3e; border: 1px solid #d1d5db; }
+  .btn-outline:hover { background: #f3f4f6; }
+
+  /* ── TOOLBAR ── */
+  .toolbar {
+    background: #fff; border-bottom: 1px solid #e5e7eb;
+    padding: 12px 28px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .search-field {
+    display: flex; align-items: center; gap: 8px;
+    background: #f3f4f6; border-radius: 8px; padding: 8px 12px;
+    flex: 1; max-width: 320px;
+  }
+  .search-field input {
+    border: none; outline: none; background: transparent;
+    font-size: 13px; color: #1a1a3e; font-family: 'Inter', sans-serif; width: 100%;
+  }
+  .filter-select {
+    padding: 8px 30px 8px 12px; border-radius: 8px; font-size: 13px;
+    border: 1px solid #e5e7eb; background: #fff url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 10px center;
+    appearance: none; cursor: pointer; font-family: 'Inter', sans-serif; color: #374151;
+  }
+  .toolbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  .count-badge {
+    background: #f3f4f6; color: #6b7280; font-size: 12px; font-weight: 600;
+    padding: 4px 10px; border-radius: 100px;
+  }
+  .override-count {
+    background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa;
+    font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 100px;
+  }
+
+  /* ── TABLE ── */
+  .table-wrap { padding: 20px 28px; }
+  .admin-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .admin-table thead tr { background: #f8f8fc; border-bottom: 1px solid #e8e8f0; }
+  .admin-table th { padding: 11px 14px; font-size: 11px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.05em; text-align: left; white-space: nowrap; }
+  .admin-table td { padding: 13px 14px; font-size: 13px; border-bottom: 1px solid #f0f0f6; vertical-align: middle; }
+  .admin-table tbody tr:last-child td { border-bottom: none; }
+  .admin-table tbody tr:hover td { background: #fafafe; }
+  .admin-table tbody tr.is-edited td { background: #fffbf8; }
+
+  .flag-cell { font-size: 22px; line-height: 1; }
+  .country-cell .cn { font-weight: 600; color: #1a1a3e; display: flex; align-items: center; gap: 6px; }
+  .country-cell .cr { font-size: 11px; color: #9ca3af; margin-top: 1px; }
+  .edited-dot { display:inline-block; width:7px; height:7px; border-radius:50%; background:#e85d2f; }
+  .notes-cell { font-size: 12px; color: #6b7280; max-width: 180px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .badge { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 100px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .badge-green { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+  .badge-amber { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+  .badge-red   { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+
+  .action-btns { display: flex; gap: 6px; }
+  .btn-edit  { padding: 6px 12px; border-radius: 7px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid #c7d2fe; background: #eef2ff; color: #4338ca; font-family: 'Inter', sans-serif; transition: all 0.15s; }
+  .btn-edit:hover { background: #e0e7ff; }
+  .btn-reset { padding: 6px 12px; border-radius: 7px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid #fecaca; background: #fef2f2; color: #dc2626; font-family: 'Inter', sans-serif; transition: all 0.15s; }
+  .btn-reset:hover { background: #fee2e2; }
+
+  /* ── MODAL ── */
+  .modal-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+    z-index: 1000; display: flex; align-items: center; justify-content: center;
+    padding: 20px; backdrop-filter: blur(4px);
+  }
+  .modal-backdrop.hidden { display: none; }
+  .modal {
+    background: #fff; border-radius: 18px; width: 100%; max-width: 540px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.18); overflow: hidden;
+  }
+  .modal-head {
+    padding: 20px 24px 18px; border-bottom: 1px solid #f0f0f6;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .modal-flag { font-size: 36px; line-height: 1; }
+  .modal-head-text h2 { font-size: 18px; font-weight: 700; color: #1a1a3e; }
+  .modal-head-text p  { font-size: 13px; color: #9ca3af; margin-top: 2px; }
+  .modal-close {
+    margin-left: auto; background: #f3f4f6; border: none; border-radius: 8px;
+    width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 16px; color: #6b7280; transition: background 0.15s;
+  }
+  .modal-close:hover { background: #e5e7eb; }
+  .modal-body { padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-label { font-size: 12px; font-weight: 600; color: #374151; text-transform: uppercase; letter-spacing: 0.04em; }
+  .form-control {
+    padding: 9px 12px; border: 1px solid #e5e7eb; border-radius: 8px;
+    font-size: 14px; font-family: 'Inter', sans-serif; color: #1a1a3e;
+    outline: none; transition: border-color 0.15s;
+  }
+  .form-control:focus { border-color: #e85d2f; box-shadow: 0 0 0 3px rgba(232,93,47,0.1); }
+  .form-hint { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+  .modal-foot {
+    padding: 16px 24px; border-top: 1px solid #f0f0f6;
+    display: flex; justify-content: flex-end; gap: 8px;
+  }
+
+  /* ── JSON EXPORT MODAL ── */
+  .json-textarea {
+    width: 100%; height: 340px; padding: 12px; font-family: 'Courier New', monospace;
+    font-size: 12px; border: 1px solid #e5e7eb; border-radius: 8px;
+    background: #f8f8fc; color: #1a1a3e; outline: none; resize: vertical;
+    line-height: 1.5;
+  }
+  .copy-toast {
+    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+    background: #1a1a3e; color: #fff; padding: 10px 20px; border-radius: 10px;
+    font-size: 13px; font-weight: 500; z-index: 2000;
+    opacity: 0; transition: opacity 0.3s; pointer-events: none;
+  }
+  .copy-toast.show { opacity: 1; }
+
+  /* ── EMPTY ── */
+  .empty-row td { text-align: center; padding: 60px 20px; color: #9ca3af; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<!-- ── TOP BAR ────────────────────────────────────────── -->
+<div class="topbar">
+  <a href="JordanVisaGuide_Preview.html" class="topbar-logo">
+    <div class="topbar-logo-icon">🇯🇴</div>
+    <span class="topbar-title">Jordan Visa Guide</span>
+    <span class="topbar-sub">/ Admin</span>
+  </a>
+  <div class="topbar-spacer"></div>
+  <button class="topbar-btn btn-ghost" onclick="openExport()">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Export JSON
+  </button>
+  <button class="topbar-btn btn-ghost" onclick="clearAllOverrides()">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+    Clear all overrides
+  </button>
+  <a href="JordanVisaGuide_Preview.html" class="topbar-btn btn-coral" target="_blank">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    View live site
+  </a>
+</div>
+
+<!-- ── TOOLBAR ─────────────────────────────────────────── -->
+<div class="toolbar">
+  <div class="search-field">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg>
+    <input type="text" id="adminSearch" placeholder="Search countries…" oninput="renderTable()" />
+  </div>
+  <select class="filter-select" id="adminRegion" onchange="renderTable()">
+    <option value="">All regions</option>
+    <option>Middle East</option>
+    <option>Europe</option>
+    <option>Asia</option>
+    <option>Africa</option>
+    <option>Americas</option>
+    <option>Oceania</option>
+  </select>
+  <select class="filter-select" id="adminType" onchange="renderTable()">
+    <option value="">All visa types</option>
+    <option>Visa Free</option>
+    <option>Visa on Arrival</option>
+    <option>eVisa</option>
+    <option>Schengen Visa</option>
+    <option>Standard Visitor</option>
+    <option>Embassy Visa</option>
+    <option>B1/B2 Visa</option>
+  </select>
+  <select class="filter-select" id="adminEdited" onchange="renderTable()">
+    <option value="">All entries</option>
+    <option value="edited">Edited only</option>
+    <option value="base">Unedited only</option>
+  </select>
+  <div class="toolbar-right">
+    <span class="count-badge" id="countBadge">0 countries</span>
+    <span class="override-count" id="overrideBadge" style="display:none">0 edited</span>
+  </div>
+</div>
+
+<!-- ── TABLE ──────────────────────────────────────────── -->
+<div class="table-wrap">
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Country</th>
+        <th>Region</th>
+        <th>Visa type</th>
+        <th>Max stay</th>
+        <th>Fee</th>
+        <th>Processing</th>
+        <th>Status</th>
+        <th>Notes</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="adminTableBody"></tbody>
+  </table>
+</div>
+
+<!-- ── EDIT MODAL ─────────────────────────────────────── -->
+<div class="modal-backdrop hidden" id="editModal" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-head">
+      <div class="modal-flag" id="modalFlag">🌍</div>
+      <div class="modal-head-text">
+        <h2 id="modalTitle">Edit country</h2>
+        <p id="modalSub">Overrides are saved to localStorage</p>
+      </div>
+      <button class="modal-close" onclick="closeEditModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Visa type</label>
+          <select class="form-control" id="f_type">
+            <option>Visa Free</option>
+            <option>Visa on Arrival</option>
+            <option>eVisa</option>
+            <option>Schengen Visa</option>
+            <option>Standard Visitor</option>
+            <option>Embassy Visa</option>
+            <option>B1/B2 Visa</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status badge</label>
+          <select class="form-control" id="f_badge">
+            <option value="auto">Auto (derived from type)</option>
+            <option value="Easy">Easy</option>
+            <option value="eVisa">eVisa</option>
+            <option value="Apply ahead">Apply ahead</option>
+            <option value="Complex">Complex</option>
+          </select>
+          <span class="form-hint">Override the coloured badge if needed</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Max stay</label>
+          <input class="form-control" id="f_stay" type="text" placeholder="e.g. 30 days" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fee</label>
+          <input class="form-control" id="f_fee" type="text" placeholder="e.g. $25 or Free" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Processing time</label>
+          <input class="form-control" id="f_time" type="text" placeholder="e.g. 3–5 days" />
+        </div>
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Arabic name (اسم الدولة بالعربية)</label>
+        <input class="form-control" id="f_name_ar" type="text" placeholder="e.g. تركيا" dir="rtl" />
+        <span class="form-hint">Shown when the site language is set to Arabic</span>
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Notes — English</label>
+        <input class="form-control" id="f_notes_en" type="text" placeholder="e.g. 90 days per 180-day period" />
+        <span class="form-hint">Short English note shown on the main page</span>
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Notes — Arabic (ملاحظات بالعربية)</label>
+        <input class="form-control" id="f_notes_ar" type="text" placeholder="e.g. 90 يوماً لكل فترة 180 يوماً" dir="rtl" />
+        <span class="form-hint">Short Arabic note shown when site language is Arabic</span>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="topbar-btn btn-outline" onclick="closeEditModal()">Cancel</button>
+      <button class="topbar-btn btn-green" onclick="saveEdit()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Save to localStorage
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ── JSON EXPORT MODAL ──────────────────────────────── -->
+<div class="modal-backdrop hidden" id="exportModal" onclick="closeExport(event)">
+  <div class="modal" style="max-width:680px" onclick="event.stopPropagation()">
+    <div class="modal-head">
+      <div class="modal-head-text">
+        <h2>Export JSON</h2>
+        <p>Copy this and paste it back into <code>BASE_COUNTRIES</code> in your source files to make changes permanent.</p>
+      </div>
+      <button class="modal-close" onclick="closeExportModal()">✕</button>
+    </div>
+    <div class="modal-body" style="gap:12px">
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="topbar-btn btn-coral" onclick="copyJSON('full')">Copy full merged array</button>
+        <button class="topbar-btn btn-outline" onclick="copyJSON('overrides')">Copy overrides only</button>
+      </div>
+      <textarea class="json-textarea" id="exportTextarea" readonly></textarea>
+      <p style="font-size:12px;color:#9ca3af;line-height:1.6">
+        <strong>Full merged array</strong> — paste this as <code>BASE_COUNTRIES</code> to permanently bake in all your edits, then clear localStorage.<br>
+        <strong>Overrides only</strong> — paste this into the <code>jvg_overrides</code> key if you prefer keeping the base data separate.
+      </p>
+    </div>
+    <div class="modal-foot">
+      <button class="topbar-btn btn-outline" onclick="closeExportModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── TOAST ──────────────────────────────────────────── -->
+<div class="copy-toast" id="toast"></div>
+
+<script>
+// ── Same BASE_COUNTRIES as JordanVisaGuide_Preview.html ──────────────────────
+// Keep this in sync. When you export and paste into Preview, paste here too.
+const BASE_COUNTRIES = [
+  { code:'AE', name:'UAE',          flag:'🇦🇪', region:'Middle East', type:'Visa Free',       badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',       time:'No wait',     notes:'' },
+  { code:'QA', name:'Qatar',        flag:'🇶🇦', region:'Middle East', type:'Visa Free',       badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',       time:'No wait',     notes:'' },
+  { code:'KW', name:'Kuwait',       flag:'🇰🇼', region:'Middle East', type:'Visa Free',       badge:'Easy',        bc:'green', stay:'3 months',    fee:'Free',       time:'No wait',     notes:'' },
+  { code:'LB', name:'Lebanon',      flag:'🇱🇧', region:'Middle East', type:'Visa Free',       badge:'Easy',        bc:'green', stay:'1 month',     fee:'Free',       time:'No wait',     notes:'' },
+  { code:'TR', name:'Turkey',       flag:'🇹🇷', region:'Middle East', type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'90 days',     fee:'Free',       time:'On arrival',  notes:'90 days per 180-day period' },
+  { code:'BH', name:'Bahrain',      flag:'🇧🇭', region:'Middle East', type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',       time:'On arrival',  notes:'' },
+  { code:'OM', name:'Oman',         flag:'🇴🇲', region:'Middle East', type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',       time:'On arrival',  notes:'' },
+  { code:'IQ', name:'Iraq',         flag:'🇮🇶', region:'Middle East', type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',       time:'On arrival',  notes:'Kurdish region: VOA at Erbil / Sulaymaniyah airports' },
+  { code:'IR', name:'Iran',         flag:'🇮🇷', region:'Middle East', type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',       time:'On arrival',  notes:'Available at most international airports' },
+  { code:'SA', name:'Saudi Arabia', flag:'🇸🇦', region:'Middle East', type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'90 days',     fee:'SAR 440',    time:'Instant',     notes:'Multiple-entry e-Visa valid 1 year' },
+  { code:'YE', name:'Yemen',        flag:'🇾🇪', region:'Middle East', type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',       time:'On arrival',  notes:'Check travel advisories — ongoing conflict' },
+  { code:'EG', name:'Egypt',        flag:'🇪🇬', region:'Africa',      type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'$25',        time:'On arrival',  notes:'' },
+  { code:'MA', name:'Morocco',      flag:'🇲🇦', region:'Africa',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'90 days',     fee:'Free',       time:'No wait',     notes:'' },
+  { code:'TN', name:'Tunisia',      flag:'🇹🇳', region:'Africa',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'90 days',     fee:'Free',       time:'No wait',     notes:'' },
+  { code:'SD', name:'Sudan',        flag:'🇸🇩', region:'Africa',      type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',       time:'On arrival',  notes:'Bilateral agreement with Jordan' },
+  { code:'KE', name:'Kenya',        flag:'🇰🇪', region:'Africa',      type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'90 days',     fee:'$51',        time:'3–5 days',    notes:'' },
+  { code:'TZ', name:'Tanzania',     flag:'🇹🇿', region:'Africa',      type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'90 days',     fee:'$50',        time:'3–5 days',    notes:'' },
+  { code:'ET', name:'Ethiopia',     flag:'🇪🇹', region:'Africa',      type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'30 days',     fee:'$52',        time:'3 days',      notes:'' },
+  { code:'RW', name:'Rwanda',       flag:'🇷🇼', region:'Africa',      type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'30 days',     fee:'$50',        time:'3 days',      notes:'Or VOA at Kigali airport' },
+  { code:'UG', name:'Uganda',       flag:'🇺🇬', region:'Africa',      type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'90 days',     fee:'$50',        time:'3–5 days',    notes:'' },
+  { code:'MU', name:'Mauritius',    flag:'🇲🇺', region:'Africa',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'60 days',     fee:'Free',       time:'No wait',     notes:'' },
+  { code:'ZA', name:'South Africa', flag:'🇿🇦', region:'Africa',      type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'30 days',     fee:'ZAR 425',    time:'5–10 days',   notes:'Apply at SA embassy in Amman' },
+  { code:'DZ', name:'Algeria',      flag:'🇩🇿', region:'Africa',      type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'30 days',     fee:'~$30',       time:'2–4 weeks',   notes:'Apply at Algerian embassy; invite letter helps' },
+  { code:'NG', name:'Nigeria',      flag:'🇳🇬', region:'Africa',      type:'Embassy Visa',    badge:'Complex',     bc:'red',   stay:'30 days',     fee:'$80',        time:'5–10 days',   notes:'' },
+  { code:'DE', name:'Germany',      flag:'🇩🇪', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',        time:'15–30 days',  notes:'Covers all 27 Schengen states' },
+  { code:'FR', name:'France',       flag:'🇫🇷', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',        time:'15–30 days',  notes:'' },
+  { code:'IT', name:'Italy',        flag:'🇮🇹', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',        time:'15–30 days',  notes:'' },
+  { code:'ES', name:'Spain',        flag:'🇪🇸', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',        time:'15–30 days',  notes:'' },
+  { code:'NL', name:'Netherlands',  flag:'🇳🇱', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',        time:'15–30 days',  notes:'' },
+  { code:'SE', name:'Sweden',       flag:'🇸🇪', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',        time:'15–30 days',  notes:'' },
+  { code:'CH', name:'Switzerland',  flag:'🇨🇭', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'CHF 80',     time:'15–30 days',  notes:'' },
+  { code:'AT', name:'Austria',      flag:'🇦🇹', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',        time:'15–30 days',  notes:'' },
+  { code:'BE', name:'Belgium',      flag:'🇧🇪', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',        time:'15–30 days',  notes:'' },
+  { code:'PT', name:'Portugal',     flag:'🇵🇹', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',        time:'15–30 days',  notes:'' },
+  { code:'GR', name:'Greece',       flag:'🇬🇷', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',        time:'15–30 days',  notes:'' },
+  { code:'PL', name:'Poland',       flag:'🇵🇱', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',        time:'15–30 days',  notes:'' },
+  { code:'CZ', name:'Czech Rep.',   flag:'🇨🇿', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',        time:'15–30 days',  notes:'' },
+  { code:'NO', name:'Norway',       flag:'🇳🇴', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',        time:'15–30 days',  notes:'' },
+  { code:'DK', name:'Denmark',      flag:'🇩🇰', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',        time:'15–30 days',  notes:'' },
+  { code:'FI', name:'Finland',      flag:'🇫🇮', region:'Europe',      type:'Schengen Visa',   badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€80',        time:'15–30 days',  notes:'' },
+  { code:'GB', name:'UK',           flag:'🇬🇧', region:'Europe',      type:'Standard Visitor',badge:'Apply ahead', bc:'amber', stay:'6 months',    fee:'£115',       time:'3 weeks',     notes:'Apply at UK Visas online; biometrics required' },
+  { code:'IE', name:'Ireland',      flag:'🇮🇪', region:'Europe',      type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'€100',       time:'8 weeks',     notes:'Not Schengen — separate visa required' },
+  { code:'GE', name:'Georgia',      flag:'🇬🇪', region:'Europe',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'1 year',      fee:'Free',       time:'No wait',     notes:'One of the best for Jordanians — 365 days/year' },
+  { code:'UA', name:'Ukraine',      flag:'🇺🇦', region:'Europe',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'90 days',     fee:'Free',       time:'No wait',     notes:'Check travel advisories — ongoing conflict' },
+  { code:'RS', name:'Serbia',       flag:'🇷🇸', region:'Europe',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',       time:'No wait',     notes:'' },
+  { code:'BA', name:'Bosnia',       flag:'🇧🇦', region:'Europe',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',       time:'No wait',     notes:'' },
+  { code:'AL', name:'Albania',      flag:'🇦🇱', region:'Europe',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'90 days',     fee:'Free',       time:'No wait',     notes:'Summer-only visa-free (Apr–Oct) for some nationalities; confirm' },
+  { code:'ME', name:'Montenegro',   flag:'🇲🇪', region:'Europe',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',       time:'No wait',     notes:'' },
+  { code:'MK', name:'N. Macedonia', flag:'🇲🇰', region:'Europe',      type:'Visa Free',       badge:'Easy',        bc:'green', stay:'90 days',     fee:'Free',       time:'No wait',     notes:'' },
+  { code:'RU', name:'Russia',       flag:'🇷🇺', region:'Europe',      type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'30 days',     fee:'€35',        time:'3–20 days',   notes:'Check sanctions & travel advisories' },
+  { code:'MV', name:'Maldives',     flag:'🇲🇻', region:'Asia',        type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',       time:'On arrival',  notes:'' },
+  { code:'MY', name:'Malaysia',     flag:'🇲🇾', region:'Asia',        type:'Visa Free',       badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',       time:'No wait',     notes:'' },
+  { code:'TH', name:'Thailand',     flag:'🇹🇭', region:'Asia',        type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'THB 2,000',  time:'On arrival',  notes:'Free VOA for many nationalities; verify current fee' },
+  { code:'ID', name:'Indonesia',    flag:'🇮🇩', region:'Asia',        type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'$35',        time:'On arrival',  notes:'Also available as eVisa before travel' },
+  { code:'PH', name:'Philippines',  flag:'🇵🇭', region:'Asia',        type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',       time:'On arrival',  notes:'Extendable up to 59 days' },
+  { code:'NP', name:'Nepal',        flag:'🇳🇵', region:'Asia',        type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'90 days',     fee:'$25–$100',   time:'On arrival',  notes:'15d $25 / 30d $40 / 90d $100' },
+  { code:'PK', name:'Pakistan',     flag:'🇵🇰', region:'Asia',        type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',       time:'On arrival',  notes:'Bilateral VOA for Jordanians' },
+  { code:'BD', name:'Bangladesh',   flag:'🇧🇩', region:'Asia',        type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'$51',        time:'On arrival',  notes:'' },
+  { code:'AM', name:'Armenia',      flag:'🇦🇲', region:'Asia',        type:'Visa Free',       badge:'Easy',        bc:'green', stay:'180 days',    fee:'Free',       time:'No wait',     notes:'Up to 180 days per year' },
+  { code:'AZ', name:'Azerbaijan',   flag:'🇦🇿', region:'Asia',        type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'30 days',     fee:'$26',        time:'3 days',      notes:'Apply at evisa.gov.az' },
+  { code:'UZ', name:'Uzbekistan',   flag:'🇺🇿', region:'Asia',        type:'Visa Free',       badge:'Easy',        bc:'green', stay:'30 days',     fee:'Free',       time:'No wait',     notes:'' },
+  { code:'KZ', name:'Kazakhstan',   flag:'🇰🇿', region:'Asia',        type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'30 days',     fee:'Free',       time:'3–5 days',    notes:'eVisa at eVisa.kz — free of charge' },
+  { code:'IN', name:'India',        flag:'🇮🇳', region:'Asia',        type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'60 days',     fee:'$25',        time:'3–5 days',    notes:'e-Tourist Visa at indianvisaonline.gov.in' },
+  { code:'LK', name:'Sri Lanka',    flag:'🇱🇰', region:'Asia',        type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'30 days',     fee:'$20',        time:'1–2 days',    notes:'ETA at eta.gov.lk' },
+  { code:'VN', name:'Vietnam',      flag:'🇻🇳', region:'Asia',        type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'90 days',     fee:'$25',        time:'3 days',      notes:'evisa.xuatnhapcanh.gov.vn' },
+  { code:'KH', name:'Cambodia',     flag:'🇰🇭', region:'Asia',        type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'30 days',     fee:'$36',        time:'3 days',      notes:'Or VOA at Phnom Penh / Siem Reap airports' },
+  { code:'MM', name:'Myanmar',      flag:'🇲🇲', region:'Asia',        type:'eVisa',           badge:'eVisa',       bc:'amber', stay:'28 days',     fee:'$50',        time:'3 days',      notes:'Check travel advisories — political instability' },
+  { code:'JP', name:'Japan',        flag:'🇯🇵', region:'Asia',        type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'¥3,000',     time:'5–7 days',    notes:'Apply at Japanese Embassy Amman; detailed itinerary required' },
+  { code:'KR', name:'South Korea',  flag:'🇰🇷', region:'Asia',        type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'$45',        time:'5–7 days',    notes:'Apply at Korean Embassy Amman' },
+  { code:'SG', name:'Singapore',    flag:'🇸🇬', region:'Asia',        type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'30 days',     fee:'SGD $30',    time:'3–5 days',    notes:'Apply online at mom.gov.sg' },
+  { code:'CN', name:'China',        flag:'🇨🇳', region:'Asia',        type:'Embassy Visa',    badge:'Complex',     bc:'red',   stay:'30 days',     fee:'~$140',      time:'4–7 days',    notes:'Apply at Chinese Embassy Amman; in-depth background check' },
+  { code:'DO', name:'Dom. Republic',flag:'🇩🇴', region:'Americas',    type:'Visa on Arrival', badge:'Easy',        bc:'green', stay:'30 days',     fee:'$10',        time:'On arrival',  notes:'Tourist card purchased on arrival or online' },
+  { code:'CO', name:'Colombia',     flag:'🇨🇴', region:'Americas',    type:'Visa Free',       badge:'Easy',        bc:'green', stay:'90 days',     fee:'Free',       time:'No wait',     notes:'' },
+  { code:'EC', name:'Ecuador',      flag:'🇪🇨', region:'Americas',    type:'Visa Free',       badge:'Easy',        bc:'green', stay:'90 days',     fee:'Free',       time:'No wait',     notes:'' },
+  { code:'MX', name:'Mexico',       flag:'🇲🇽', region:'Americas',    type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'180 days',    fee:'$36',        time:'3–5 days',    notes:'Or apply via MEXITEL for tourist visa' },
+  { code:'BR', name:'Brazil',       flag:'🇧🇷', region:'Americas',    type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'$80',        time:'10–15 days',  notes:'' },
+  { code:'AR', name:'Argentina',    flag:'🇦🇷', region:'Americas',    type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'$50',        time:'5–10 days',   notes:'' },
+  { code:'CL', name:'Chile',        flag:'🇨🇱', region:'Americas',    type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'90 days',     fee:'$30',        time:'5–7 days',    notes:'' },
+  { code:'CA', name:'Canada',       flag:'🇨🇦', region:'Americas',    type:'Embassy Visa',    badge:'Complex',     bc:'red',   stay:'6 months',    fee:'CAD $100',   time:'4–8 weeks',   notes:'TRV required; strong-ties evidence essential' },
+  { code:'US', name:'USA',          flag:'🇺🇸', region:'Americas',    type:'B1/B2 Visa',      badge:'Complex',     bc:'red',   stay:'Up to 6 mo.', fee:'$185',       time:'2–6 months',  notes:'Interview required at US Embassy Amman' },
+  { code:'AU', name:'Australia',    flag:'🇦🇺', region:'Oceania',     type:'eVisa',           badge:'Apply ahead', bc:'amber', stay:'3 months',    fee:'AUD $145',   time:'4–6 weeks',   notes:'Visitor visa (subclass 600) via ImmiAccount' },
+  { code:'NZ', name:'New Zealand',  flag:'🇳🇿', region:'Oceania',     type:'Embassy Visa',    badge:'Apply ahead', bc:'amber', stay:'9 months',    fee:'NZD $211',   time:'4–6 weeks',   notes:'Visitor visa online at immigration.govt.nz' },
+];
+
+// ── LocalStorage ──────────────────────────────────────────────────────────────
+const LS_KEY = 'jvg_overrides';
+
+function getOverrides() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); }
+  catch { return {}; }
+}
+function saveOverrides(obj) {
+  localStorage.setItem(LS_KEY, JSON.stringify(obj));
+}
+
+function deriveBadge(type) {
+  if (type === 'Visa Free')       return { badge:'Easy',        bc:'green' };
+  if (type === 'Visa on Arrival') return { badge:'Easy',        bc:'green' };
+  if (type === 'eVisa')           return { badge:'eVisa',       bc:'amber' };
+  if (type === 'B1/B2 Visa')      return { badge:'Complex',     bc:'red'   };
+  if (type === 'Embassy Visa')    return { badge:'Complex',     bc:'red'   };
+  if (type === 'Schengen Visa')   return { badge:'Apply ahead', bc:'amber' };
+  return { badge:'Apply ahead', bc:'amber' };
+}
+
+function badgeCSSClass(bc) {
+  return { green:'badge-green', amber:'badge-amber', red:'badge-red' }[bc] || 'badge-amber';
+}
+
+function getMerged() {
+  const overrides = getOverrides();
+  return BASE_COUNTRIES.map(c => {
+    const ov = overrides[c.code];
+    if (!ov) return { ...c, _edited: false };
+    const merged = { ...c, ...ov, _edited: true };
+    if (ov.type && !ov.badge) {
+      const d = deriveBadge(ov.type);
+      merged.badge = d.badge; merged.bc = d.bc;
+    }
+    return merged;
+  });
+}
+
+// ── Table render ──────────────────────────────────────────────────────────────
+function renderTable() {
+  const q       = document.getElementById('adminSearch').value.toLowerCase();
+  const region  = document.getElementById('adminRegion').value;
+  const type    = document.getElementById('adminType').value;
+  const edited  = document.getElementById('adminEdited').value;
+
+  const all      = getMerged();
+  const overrides = getOverrides();
+  const filtered = all.filter(c => {
+    if (q && !c.name.toLowerCase().includes(q) && !c.region.toLowerCase().includes(q)) return false;
+    if (region && c.region !== region) return false;
+    if (type   && c.type !== type)     return false;
+    if (edited === 'edited' && !c._edited) return false;
+    if (edited === 'base'   &&  c._edited) return false;
+    return true;
+  });
+
+  const overrideCount = Object.keys(overrides).length;
+  document.getElementById('countBadge').textContent = `${filtered.length} countr${filtered.length === 1 ? 'y' : 'ies'}`;
+  const ob = document.getElementById('overrideBadge');
+  ob.style.display = overrideCount ? 'inline-flex' : 'none';
+  ob.textContent   = `${overrideCount} edited`;
+
+  const tbody = document.getElementById('adminTableBody');
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr class="empty-row"><td colspan="10">No countries match your filters.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(c => `
+    <tr class="${c._edited ? 'is-edited' : ''}" id="row-${c.code}">
+      <td class="flag-cell">${c.flag}</td>
+      <td class="country-cell">
+        <div class="cn">
+          ${c.name}
+          ${c._edited ? '<span class="edited-dot" title="Has admin override"></span>' : ''}
+        </div>
+        <div class="cr">${c.code}</div>
+      </td>
+      <td>${c.region}</td>
+      <td>${c.type}</td>
+      <td>${c.stay}</td>
+      <td>${c.fee}</td>
+      <td>${c.time}</td>
+      <td><span class="badge ${badgeCSSClass(c.bc)}">${c.badge}</span></td>
+      <td class="notes-cell" title="${c.notes || ''}">${c.notes || '<span style="color:#d1d5db">—</span>'}</td>
+      <td>
+        <div class="action-btns">
+          <button class="btn-edit" onclick="openEdit('${c.code}')">Edit</button>
+          ${c._edited ? `<button class="btn-reset" onclick="resetCountry('${c.code}')">Reset</button>` : ''}
+        </div>
+      </td>
+    </tr>`).join('');
+}
+
+// ── Edit modal ────────────────────────────────────────────────────────────────
+let editingCode = null;
+
+function openEdit(code) {
+  const overrides = getOverrides();
+  const base = BASE_COUNTRIES.find(c => c.code === code);
+  if (!base) return;
+  const merged = overrides[code] ? { ...base, ...overrides[code] } : { ...base };
+
+  editingCode = code;
+  document.getElementById('modalFlag').textContent  = base.flag;
+  document.getElementById('modalTitle').textContent = `Edit — ${base.name}`;
+  document.getElementById('modalSub').textContent   = `${base.region} · ${base.code}`;
+
+  document.getElementById('f_type').value     = merged.type;
+  document.getElementById('f_stay').value     = merged.stay;
+  document.getElementById('f_fee').value      = merged.fee;
+  document.getElementById('f_time').value     = merged.time;
+  document.getElementById('f_name_ar').value  = merged.name_ar  || '';
+  document.getElementById('f_notes_en').value = merged.notes_en || merged.notes || '';
+  document.getElementById('f_notes_ar').value = merged.notes_ar || '';
+
+  // Badge: if the override has an explicit badge, show it; else "auto"
+  const ov = overrides[code] || {};
+  document.getElementById('f_badge').value = ov.badge || 'auto';
+
+  document.getElementById('editModal').classList.remove('hidden');
+  document.getElementById('f_type').focus();
+}
+
+function closeEditModal() {
+  document.getElementById('editModal').classList.add('hidden');
+  editingCode = null;
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('editModal')) closeEditModal();
+}
+
+function saveEdit() {
+  if (!editingCode) return;
+  const overrides = getOverrides();
+  const badgeVal  = document.getElementById('f_badge').value;
+  const newType   = document.getElementById('f_type').value;
+
+  const update = {
+    type:     newType,
+    stay:     document.getElementById('f_stay').value.trim(),
+    fee:      document.getElementById('f_fee').value.trim(),
+    time:     document.getElementById('f_time').value.trim(),
+    notes_en: document.getElementById('f_notes_en').value.trim(),
+    notes_ar: document.getElementById('f_notes_ar').value.trim(),
+    name_ar:  document.getElementById('f_name_ar').value.trim(),
+  };
+
+  // Only store badge if explicitly set (not "auto")
+  if (badgeVal !== 'auto') {
+    update.badge = badgeVal;
+    const bcMap  = { 'Easy':'green', 'eVisa':'amber', 'Apply ahead':'amber', 'Complex':'red' };
+    update.bc    = bcMap[badgeVal] || 'amber';
+  }
+
+  overrides[editingCode] = update;
+  saveOverrides(overrides);
+  closeEditModal();
+  renderTable();
+  showToast(`✓ ${BASE_COUNTRIES.find(c=>c.code===editingCode)?.name} saved`);
+}
+
+function resetCountry(code) {
+  const name = BASE_COUNTRIES.find(c => c.code === code)?.name || code;
+  if (!confirm(`Reset "${name}" back to base data? This removes the admin override.`)) return;
+  const overrides = getOverrides();
+  delete overrides[code];
+  saveOverrides(overrides);
+  renderTable();
+  showToast(`↩ ${name} reset to base data`);
+}
+
+function clearAllOverrides() {
+  const count = Object.keys(getOverrides()).length;
+  if (!count) { showToast('No overrides to clear'); return; }
+  if (!confirm(`Clear all ${count} override(s)? This cannot be undone.`)) return;
+  localStorage.removeItem(LS_KEY);
+  renderTable();
+  showToast('All overrides cleared');
+}
+
+// ── Export modal ──────────────────────────────────────────────────────────────
+let exportMode = 'full';
+
+function openExport() {
+  copyJSON('full');
+  document.getElementById('exportModal').classList.remove('hidden');
+}
+function closeExportModal() {
+  document.getElementById('exportModal').classList.add('hidden');
+}
+function closeExport(e) {
+  if (e.target === document.getElementById('exportModal')) closeExportModal();
+}
+
+function copyJSON(mode) {
+  exportMode = mode;
+  const overrides = getOverrides();
+  let text;
+
+  if (mode === 'overrides') {
+    text = JSON.stringify(overrides, null, 2);
+  } else {
+    // Full merged array — ready to paste as BASE_COUNTRIES
+    const merged = getMerged().map(c => {
+      const { _edited, ...rest } = c;
+      return rest;
+    });
+    text = 'const BASE_COUNTRIES = ' + JSON.stringify(merged, null, 2) + ';';
+  }
+
+  document.getElementById('exportTextarea').value = text;
+
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('📋 Copied to clipboard');
+  }).catch(() => {
+    // clipboard blocked in file:// context — user can copy manually
+    document.getElementById('exportTextarea').select();
+  });
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+// ── Keyboard shortcuts ────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeEditModal();
+    closeExportModal();
+  }
+  if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+    if (!document.getElementById('editModal').classList.contains('hidden')) saveEdit();
+  }
+});
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+renderTable();
+</script>
+</body>
+</html>
