@@ -279,18 +279,12 @@ body { font-family: 'Inter', system-ui, sans-serif; background: #f5f6fa; color: 
       <p>Get official templates, step-by-step guides, and embassy-ready letter drafts — in Arabic & English.</p>
     </div>
     <div class="modal-body">
-      <!-- Tab switcher: Subscribe / Already subscribed -->
-      <div style="display:flex;gap:0;background:#f0f0f8;border-radius:10px;padding:3px;margin-bottom:20px;">
-        <button id="tabSubscribe"  onclick="switchModalTab('subscribe')"  style="flex:1;padding:8px;border:none;border-radius:8px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;transition:all .15s;">Subscribe</button>
-        <button id="tabActivate"   onclick="switchModalTab('activate')"   style="flex:1;padding:8px;border:none;border-radius:8px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;background:transparent;color:#6b7280;transition:all .15s;">Already subscribed?</button>
-      </div>
-
-      <!-- Subscribe panel -->
-      <div id="panelSubscribe">
+      <!-- Upgrade panel -->
+      <div id="panelUpgrade">
         <div class="modal-price-row">
           <span class="modal-price">$6</span>
-          <span class="modal-price-sub">/ month</span>
-          <span class="modal-price-save">Cancel anytime</span>
+          <span class="modal-price-sub">/ one-time</span>
+          <span class="modal-price-save">Lifetime access</span>
         </div>
         <ul class="modal-benefits">
           <li class="modal-benefit">
@@ -314,24 +308,28 @@ body { font-family: 'Inter', system-ui, sans-serif; background: #f5f6fa; color: 
             <div class="benefit-text"><strong>WhatsApp Priority Support</strong><span>Get answers from our visa specialists within 4 hours</span></div>
           </li>
         </ul>
-        <button class="btn-upgrade-modal" onclick="handleUpgradeClick()">
-          ✨ Unlock Premium — $6/mo
+        <button class="btn-upgrade-modal" onclick="handleUpgradeClick()" style="background:linear-gradient(135deg,#25d366,#128c5e);">
+          <svg style="width:18px;height:18px;vertical-align:middle;margin-right:6px" viewBox="0 0 32 32" fill="white"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.82.735 5.467 2.017 7.77L0 32l8.468-2.176A15.93 15.93 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.767-1.853l-.483-.287-5.029 1.292 1.317-4.905-.317-.505A13.233 13.233 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.273-9.92c-.397-.199-2.355-1.163-2.72-1.295-.365-.132-.631-.199-.897.199-.265.397-1.03 1.295-1.262 1.56-.232.265-.465.298-.862.1-.397-.2-1.676-.618-3.193-1.97-1.18-1.053-1.977-2.352-2.209-2.75-.232-.397-.025-.611.174-.809.179-.178.397-.465.596-.697.198-.232.264-.397.397-.662.132-.264.066-.497-.033-.696-.1-.2-.897-2.163-1.23-2.96-.324-.779-.654-.673-.897-.685l-.764-.013c-.265 0-.696.099-1.06.497-.365.397-1.394 1.362-1.394 3.322s1.427 3.853 1.626 4.118c.199.265 2.808 4.286 6.803 6.013.95.41 1.692.655 2.27.838.954.302 1.822.26 2.508.158.765-.114 2.355-.962 2.686-1.891.332-.929.332-1.726.232-1.891-.099-.166-.365-.265-.762-.464z"/></svg>
+          Get Premium via WhatsApp
         </button>
-        <p class="modal-disclaimer">Powered by Stripe · Secure · Cancel anytime</p>
+        <p class="modal-disclaimer">Message us on WhatsApp → pay → receive your unlock code instantly.</p>
+        <div style="display:flex;align-items:center;gap:12px;margin:16px 0 4px;">
+          <div style="flex:1;height:1px;background:#e8e8f0;"></div>
+          <span style="font-size:12px;color:#9ca3af;">Already have a code?</span>
+          <div style="flex:1;height:1px;background:#e8e8f0;"></div>
+        </div>
       </div>
 
-      <!-- Activate panel (already paid) -->
-      <div id="panelActivate" style="display:none;">
-        <p style="font-size:14px;color:#6b7280;margin-bottom:16px;line-height:1.5;">Enter the email address you used to subscribe and we'll unlock premium instantly.</p>
-        <input id="activateEmail" type="email" placeholder="your@email.com"
-          style="width:100%;padding:13px 16px;border:1.5px solid #e8e8f0;border-radius:12px;font-size:14px;font-family:inherit;outline:none;margin-bottom:10px;transition:border-color .15s;"
+      <!-- Code entry -->
+      <div>
+        <input id="unlockCode" type="text" placeholder="Enter your unlock code"
+          style="width:100%;padding:13px 16px;border:1.5px solid #e8e8f0;border-radius:12px;font-size:14px;font-family:inherit;outline:none;margin-bottom:10px;transition:border-color .15s;text-transform:uppercase;letter-spacing:2px;box-sizing:border-box;"
           onkeydown="if(event.key==='Enter')activatePremium()"
           onfocus="this.style.borderColor='#7c3aed'" onblur="this.style.borderColor='#e8e8f0'" />
         <div id="activateError" style="display:none;color:#dc2626;font-size:12px;margin-bottom:10px;padding:8px 12px;background:rgba(239,68,68,.06);border-radius:8px;"></div>
         <button class="btn-upgrade-modal" id="activateBtn" onclick="activatePremium()">
-          Unlock My Premium Access
+          Unlock Premium Access
         </button>
-        <p class="modal-disclaimer">Can't find your subscription? <a href="https://wa.me/962770068980" target="_blank" style="color:#7c3aed;">Contact support</a></p>
       </div>
     </div>
   </div>
@@ -562,40 +560,18 @@ const VISA_DATA = {
 let checked     = {};
 let currentVisa = Object.keys(VISA_DATA)[0];
 
-// Replace with your Stripe Payment Link once created in the Stripe dashboard
-// Dashboard → Payment Links → Create → $6/mo recurring → copy the link
-const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/REPLACE_WITH_YOUR_LINK';
+const WA_NUMBER = '962770068980';
+const WA_PREMIUM_MSG = encodeURIComponent('Hi! I\'d like to unlock the Premium Checklist on visasjo.com. How do I pay?');
 
-// Premium status: persisted in localStorage, verified against /api/check-premium
+// Premium status: persisted in localStorage via unlock code
 let isPremium = false;
 (function checkStoredPremium() {
-  const stored = localStorage.getItem('vj_premium_email');
-  if (stored) {
-    // Re-verify silently on every load — catches cancellations
-    fetch('/api/check-premium', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: stored })
-    })
-    .then(r => r.json())
-    .then(d => {
-      if (d.premium) {
-        isPremium = true;
-        render();
-        showPremiumToast(stored);
-      } else {
-        // Subscription lapsed — clear cache
-        localStorage.removeItem('vj_premium_email');
-      }
-    })
-    .catch(() => {
-      // Network error — trust the cache optimistically for this session
-      isPremium = true;
-    });
+  if (localStorage.getItem('vj_premium_unlocked') === '1') {
+    isPremium = true;
   }
 })();
 
-function showPremiumToast(email) {
+function showPremiumToast() {
   const t = document.createElement('div');
   t.style.cssText = [
     'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:999',
@@ -603,16 +579,16 @@ function showPremiumToast(email) {
     'font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px',
     'box-shadow:0 8px 32px rgba(0,0,0,.2);animation:fadeUp .3s ease'
   ].join(';');
-  t.innerHTML = '✨ Premium active — ' + email;
+  t.innerHTML = '✨ Premium unlocked!';
   document.body.appendChild(t);
   setTimeout(() => t.remove(), 4000);
 }
 
 // ─── MODAL ────────────────────────────────────────────────────────────────────
 function openModal(source) {
-  switchModalTab('subscribe');
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('unlockCode').focus(), 50);
   if (typeof umami !== 'undefined') umami.track('premium-modal-open', { source });
 }
 function closeModal() {
@@ -622,35 +598,20 @@ function closeModal() {
 function closeModalOnBg(e) { if (e.target === e.currentTarget) closeModal(); }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-function switchModalTab(tab) {
-  const isSub = tab === 'subscribe';
-  document.getElementById('panelSubscribe').style.display = isSub ? '' : 'none';
-  document.getElementById('panelActivate').style.display  = isSub ? 'none' : '';
-  const subBtn = document.getElementById('tabSubscribe');
-  const actBtn = document.getElementById('tabActivate');
-  subBtn.style.background = isSub ? 'linear-gradient(135deg,#7c3aed,#a855f7)' : 'transparent';
-  subBtn.style.color      = isSub ? '#fff' : '#6b7280';
-  actBtn.style.background = isSub ? 'transparent' : 'linear-gradient(135deg,#7c3aed,#a855f7)';
-  actBtn.style.color      = isSub ? '#6b7280' : '#fff';
-  if (!isSub) setTimeout(() => document.getElementById('activateEmail').focus(), 50);
-}
-
 function handleUpgradeClick() {
   if (typeof umami !== 'undefined') umami.track('premium-upgrade-click');
-  // Opens Stripe hosted checkout — after payment Stripe fires webhook to /api/stripe-webhook
-  // which saves the email, then user comes back and uses "Already subscribed?" tab
-  window.open(STRIPE_PAYMENT_LINK, '_blank', 'noopener');
+  window.open('https://wa.me/' + WA_NUMBER + '?text=' + WA_PREMIUM_MSG, '_blank', 'noopener');
 }
 
 async function activatePremium() {
-  const emailEl  = document.getElementById('activateEmail');
-  const errorEl  = document.getElementById('activateError');
-  const btn      = document.getElementById('activateBtn');
-  const email    = emailEl.value.trim();
+  const codeEl  = document.getElementById('unlockCode');
+  const errorEl = document.getElementById('activateError');
+  const btn     = document.getElementById('activateBtn');
+  const code    = codeEl.value.trim();
 
   errorEl.style.display = 'none';
-  if (!email || !email.includes('@')) {
-    errorEl.textContent = 'Please enter a valid email address.';
+  if (!code) {
+    errorEl.textContent = 'Please enter your unlock code.';
     errorEl.style.display = 'block';
     return;
   }
@@ -659,30 +620,30 @@ async function activatePremium() {
   btn.disabled = true;
 
   try {
-    const res  = await fetch('/api/check-premium', {
+    const res  = await fetch('/api/unlock-premium', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
+      body: JSON.stringify({ code })
     });
     const data = await res.json();
 
-    if (data.premium) {
-      localStorage.setItem('vj_premium_email', email);
+    if (data.valid) {
+      localStorage.setItem('vj_premium_unlocked', '1');
       isPremium = true;
       closeModal();
       render();
-      showPremiumToast(email);
-      if (typeof umami !== 'undefined') umami.track('premium-activated', { email });
+      showPremiumToast();
+      if (typeof umami !== 'undefined') umami.track('premium-activated');
     } else {
-      errorEl.textContent = 'No active subscription found for this email. Did you use a different address?';
+      errorEl.textContent = 'Invalid code. Message us on WhatsApp if you need help.';
       errorEl.style.display = 'block';
-      btn.textContent = 'Unlock My Premium Access';
+      btn.textContent = 'Unlock Premium Access';
       btn.disabled = false;
     }
   } catch (err) {
     errorEl.textContent = 'Connection error. Please try again.';
     errorEl.style.display = 'block';
-    btn.textContent = 'Unlock My Premium Access';
+    btn.textContent = 'Unlock Premium Access';
     btn.disabled = false;
   }
 }
