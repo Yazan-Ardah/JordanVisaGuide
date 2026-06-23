@@ -509,9 +509,9 @@
 <!-- ── CONSULTATION FORM ─────────────────────────────── -->
 <section class="consult-section" id="consultSection">
   <div class="consult-inner">
-    <div class="consult-eyebrow" id="cf-eyebrow">✉️ Free Consultation</div>
+    <div class="consult-eyebrow" id="cf-eyebrow">💬 Visa Assistance</div>
     <h2 id="cf-heading">Need help with your visa application?</h2>
-    <p class="consult-sub" id="cf-sub">Our partner travel agencies can guide you through the process — from document prep to appointment booking.</p>
+    <p class="consult-sub" id="cf-sub">Leave your details and we'll get back to you on WhatsApp to guide you through the process.</p>
 
     <div class="consult-success" id="consultSuccess">
       <div class="consult-success-icon">✅</div>
@@ -551,11 +551,11 @@
         </div>
       </div>
 
-      <button class="consult-btn" type="submit" id="consultSubmitBtn">Get My Free Consultation</button>
+      <button class="consult-btn" type="submit" id="consultSubmitBtn">Get Visa Assistance</button>
     </form>
 
     <p class="consult-disclaimer" id="cf-disclaimer">
-      We'll reach out on WhatsApp within a few hours. No spam, ever.
+      We'll reach out on WhatsApp. Your info stays private.
     </p>
 
     <div class="consult-divider">OR</div>
@@ -607,9 +607,9 @@ function applyLang() {
   const a = (id, attr, txt) => { const el = document.getElementById(id); if (el) el.setAttribute(attr, txt); };
 
   if (ar()) {
-    s('cf-eyebrow',        '✉️ استشارة مجانية');
+    s('cf-eyebrow',        '💬 مساعدة في التأشيرة');
     s('cf-heading',        'هل تحتاج مساعدة في طلب التأشيرة؟');
-    s('cf-sub',            'وكالات السفر الشريكة لدينا ترافقك في كل خطوة — من إعداد الوثائق حتى حجز الموعد.');
+    s('cf-sub',            'اترك بياناتك وسنتواصل معك على واتساب لمساعدتك في كل خطوة.');
     s('cf-success-title',  'تم استلام طلبك!');
     s('cf-success-sub',    'سيتواصل معك متخصص في التأشيرات خلال 24 ساعة.');
 
@@ -632,11 +632,11 @@ function applyLang() {
     s('cf-opt-other', '🌐 أخرى (يرجى التوضيح في الملاحظات)');
 
     s('consultSubmitBtn', 'احصل على المساعدة');
-    s('cf-disclaimer', 'بتقديم هذا النموذج، توافق على أن تتواصل معك وكالات السفر الشريكة لدينا بشأن المساعدة في التأشيرة.');
+    s('cf-disclaimer', 'سنتواصل معك على واتساب. لن نشارك معلوماتك مع أي طرف آخر.');
   } else {
-    s('cf-eyebrow',        '✉️ Free Consultation');
+    s('cf-eyebrow',        '💬 Visa Assistance');
     s('cf-heading',        'Need help with your visa application?');
-    s('cf-sub',            'Our partner travel agencies can guide you through the process — from document prep to appointment booking.');
+    s('cf-sub',            'Leave your details and we\'ll get back to you on WhatsApp to guide you through the process.');
     s('cf-success-title',  'Request received!');
     s('cf-success-sub',    'A visa specialist will contact you within 24 hours.');
 
@@ -1055,19 +1055,16 @@ applyLang();
 
     const isAr = typeof ar === 'function' && ar();
     const sendingLabel = isAr ? 'جارٍ الإرسال…' : 'Sending…';
-    const errorLabel   = isAr ? 'احصل على المساعدة' : 'Get Assistance';
+    const errorLabel   = isAr ? 'تواصل معنا' : 'Contact Us';
 
     btn.disabled = true;
     btn.textContent = sendingLabel;
 
-    // Collect form values as plain JSON (server uses express.json())
     const payload = {
-      full_name:                     document.getElementById('cf-name').value.trim(),
-      country_code:                  form.querySelector('[name="country_code"]').value,
-      phone_number:                  document.getElementById('cf-phone').value.trim(),
-      destination_country:           document.getElementById('cf-country').value,
-      destination_country_hidden:    document.getElementById('cf-destination-hidden').value,
-      notes:                         document.getElementById('cf-notes').value.trim(),
+      full_name:           document.getElementById('cf-name').value.trim(),
+      country_code:        form.querySelector('[name="country_code"]').value,
+      phone_number:        document.getElementById('cf-phone').value.trim(),
+      destination_country: countryName || 'Unknown',
     };
 
     try {

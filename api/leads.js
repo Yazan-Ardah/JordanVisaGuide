@@ -45,10 +45,6 @@ function validateBody(body) {
     errors.push('phone_number is required');
   }
 
-  if (!destination_country || typeof destination_country !== 'string' || !destination_country.trim()) {
-    errors.push('destination_country is required');
-  }
-
   return errors;
 }
 
