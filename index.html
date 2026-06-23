@@ -410,6 +410,27 @@
     .cat-grid { grid-template-columns: 1fr 1fr; }
   }
 
+  /* ── GLOBE MOBILE ── */
+  @media (max-width: 768px) {
+    #globe-section { padding: 48px 0 0; }
+    .globe-section-header { padding: 0 16px 24px; }
+    .globe-section-header h2 { font-size: 22px; }
+    .globe-section-header p { font-size: 14px; }
+    .globe-stats-row { gap: 6px; padding: 0 12px 20px; }
+    .globe-stat { padding: 6px 12px; font-size: 12px; }
+    .globe-stat strong { font-size: 13px; }
+    #globe-canvas-wrap { height: clamp(280px, 55vw, 380px); }
+    .globe-legend { bottom: 8px; right: 8px; padding: 8px 12px; }
+    .globe-legend-title { font-size: 8px; }
+    .globe-legend-row { font-size: 10px; gap: 6px; margin-bottom: 4px; }
+    .globe-legend-dot { width: 8px; height: 8px; }
+    .globe-hint-bar { font-size: 10px; bottom: 8px; }
+    .globe-fullscreen-btn { margin: 16px auto 0; font-size: 12px; padding: 10px 20px; }
+    .globe-bottom-pad { height: 32px; }
+    /* popup on mobile: full-width */
+    .g-popup-card { width: 100%; max-width: 100%; border-radius: 16px; }
+  }
+
   /* ── GLOBE SECTION ── */
   #globe-section {
     background: #080818;
@@ -1646,8 +1667,8 @@ applyLang();
           .polygonsData(features)
           .polygonCapColor(function(f){ return gCap(f, f===gHover); })
           .polygonSideColor(function(f){ var d=gEntry(+f.id),s=d?d.s:'none'; return GC[s].side; })
-          .polygonStrokeColor(function(){ return 'rgba(255,255,255,0.03)'; })
-          .polygonAltitude(function(f){ return f===gHover ? 0.018 : 0.008; })
+          .polygonStrokeColor(function(){ return 'rgba(255,255,255,0.35)'; })
+          .polygonAltitude(function(f){ return f===gHover ? 0.02 : 0.006; })
           .polygonLabel(function(){ return ''; })
           .onPolygonHover(function(polygon) {
             if (polygon === gHover) return;
@@ -1668,7 +1689,8 @@ applyLang();
             showGPopup(gEntry(+polygon.id));
           });
 
-        globe.pointOfView({lat:27, lng:38, altitude:2.2}, 0);
+        var isMobile = window.innerWidth < 768;
+        globe.pointOfView({lat:27, lng:38, altitude: isMobile ? 2.8 : 2.2}, 0);
         globe.controls().autoRotate = true;
         globe.controls().autoRotateSpeed = 0.35;
         globe.controls().enableZoom = true;
