@@ -667,10 +667,10 @@
   </div>
 
   <div class="hero-tags" style="margin-top:20px">
-    <a href="#countries" class="hero-tag" data-i18n="hero.tag.free"  onclick="heroFilter('Visa Free','All regions')">🟢 Visa-free countries</a>
-    <a href="#countries" class="hero-tag" data-i18n="hero.tag.voa"   onclick="heroFilter('Visa on Arrival','All regions')">⚡ Visa on arrival</a>
-    <a href="#countries" class="hero-tag" data-i18n="hero.tag.evisa" onclick="heroFilter('eVisa','All regions')">📱 eVisa available</a>
-    <a href="#countries" class="hero-tag" data-i18n="hero.tag.arab"  onclick="heroFilter('','Middle East')">🌍 Arab world</a>
+    <a href="#countries" class="hero-tag" data-i18n="hero.tag.free"  onclick="heroFilter(event,'Visa Free','All regions')">🟢 Visa-free countries</a>
+    <a href="#countries" class="hero-tag" data-i18n="hero.tag.voa"   onclick="heroFilter(event,'Visa on Arrival','All regions')">⚡ Visa on arrival</a>
+    <a href="#countries" class="hero-tag" data-i18n="hero.tag.evisa" onclick="heroFilter(event,'eVisa','All regions')">📱 eVisa available</a>
+    <a href="#countries" class="hero-tag" data-i18n="hero.tag.arab"  onclick="heroFilter(event,'','Middle East')">🌍 Arab world</a>
   </div>
 </section>
 
@@ -1337,12 +1337,15 @@ document.getElementById('visaTypeSelect').addEventListener('change', function() 
   activeVisa = this.value; renderResults();
 });
 
-function heroFilter(visaType, region) {
+function heroFilter(e, visaType, region) {
+  e.preventDefault();
   activeVisa   = visaType;
   activeRegion = region;
+  renderVisaSelect();
   document.getElementById('visaTypeSelect').value = visaType;
   renderRegionPills();
   renderResults();
+  document.getElementById('countries').scrollIntoView({ behavior: 'smooth' });
 }
 
 function setRegion(r) {
