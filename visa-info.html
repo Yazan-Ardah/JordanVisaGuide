@@ -318,6 +318,16 @@
   [dir="rtl"] .related-card { flex-direction: row-reverse; }
   [dir="rtl"] .tab-bar-inner { flex-direction: row-reverse; }
   [dir="rtl"] .content-wrap { direction: rtl; }
+  [dir="rtl"] .toolkit-grid { direction: rtl; }
+  [dir="rtl"] .tool-card-top { flex-direction: row-reverse; text-align: right; }
+  [dir="rtl"] .tool-card-meta { flex-direction: row-reverse; }
+  [dir="rtl"] .tool-cta { flex-direction: row-reverse; }
+  [dir="rtl"] .tool-cta-arrow { transform: scaleX(-1); }
+  [dir="rtl"] .tool-card:hover .tool-cta-arrow { transform: scaleX(-1) translateX(3px); }
+  [dir="rtl"] .sticky-cta { flex-direction: row-reverse; }
+  [dir="rtl"] .sticky-cta-text { text-align: right; }
+  [dir="rtl"] .sticky-cta-btns { flex-direction: row-reverse; }
+  [dir="rtl"] .hook-btn { margin-left: 0; margin-right: 8px; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 860px) {
@@ -1153,6 +1163,35 @@ if (!data) {
           <div class="tip-text">${t}</div>
         </div>`).join('')}
       </div>`;
+
+    // Toolkit section i18n
+    const tk = document.getElementById('toolkitSection');
+    if (tk) {
+      tk.querySelector('.toolkit-heading').textContent = isAr
+        ? 'تجاوز الأوراق — دع الذكاء الاصطناعي يفعلها عنك'
+        : 'Skip the paperwork — let AI do it for you';
+      tk.querySelector('.toolkit-sub').textContent = isAr
+        ? 'المتطلبات أعلاه معقدة. أدواتنا تحوّلها إلى وثائق جاهزة للتقديم في أقل من 60 ثانية.'
+        : 'The requirements above are complex. Our tools turn them into ready-to-submit documents in under 60 seconds.';
+      // Checklist card
+      tk.querySelector('#toolChecklist .tool-card-title').textContent   = isAr ? 'قائمة المستندات' : 'Document Checklist';
+      tk.querySelector('#toolChecklist .tool-card-desc').textContent    = isAr ? 'احصل على قائمة مستندات مخصصة لبلدك دون أي نقص. صدّرها كـ PDF.' : 'Get a personalised, country-specific document checklist with nothing missing. Export as PDF.';
+      tk.querySelector('#toolChecklist .tool-cta-text').textContent     = isAr ? 'إنشاء قائمتي' : 'Build my checklist';
+      // Generator card
+      tk.querySelector('#toolGenerator .tool-card-title').textContent   = isAr ? 'مولّد وثائق التأشيرة بالذكاء الاصطناعي' : 'AI Document Generator';
+      tk.querySelector('#toolGenerator .tool-card-desc').textContent    = isAr ? 'أنشئ خطاب تغطية رسمي وبرنامج رحلة يومي — صاغه الذكاء الاصطناعي بخبرة قانون الهجرة.' : 'Generate a formal cover letter and day-by-day itinerary — drafted by AI trained on immigration law.';
+      tk.querySelector('#toolGenerator .tool-cta-text').textContent     = isAr ? 'توليد وثائقي' : 'Generate my documents';
+    }
+
+    // Sticky CTA i18n
+    const stickyTitle    = document.getElementById('stickyTitle');
+    const stickySubtitle = document.getElementById('stickySubtitle');
+    if (stickyTitle)    stickyTitle.textContent    = isAr ? 'هل أربكتك المتطلبات؟' : 'Overwhelmed by the requirements?';
+    if (stickySubtitle) stickySubtitle.textContent = isAr ? 'دع الذكاء الاصطناعي يبني ملف طلبك كاملاً.' : 'Let AI build your full application package.';
+    document.querySelectorAll('.sticky-cta-btns .sticky-btn').forEach((btn, i) => {
+      if (i === 0) btn.textContent = isAr ? '📋 قائمة المستندات' : '📋 Checklist';
+      if (i === 1) btn.textContent = isAr ? '✨ توليد الوثائق'   : '✨ Generate Docs';
+    });
 
     // Related countries
     const relatedLabel = isAr ? 'وجهات مشابهة' : 'Similar destinations';
