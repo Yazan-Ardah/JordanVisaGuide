@@ -185,6 +185,72 @@
   .status-card-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
   .status-card-desc { font-size: 13px; line-height: 1.55; color: #4b5563; }
 
+  /* ── TOOLKIT SECTION ── */
+  .toolkit-section { background: linear-gradient(135deg, #f0f0ff 0%, #f5f0ff 100%); border-top: 2px solid #e0d9ff; padding: 52px 32px; }
+  .toolkit-inner { max-width: 1100px; margin: 0 auto; }
+  .toolkit-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: rgba(124,58,237,.1); border: 1px solid rgba(124,58,237,.2); color: #7c3aed; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: 5px 12px; border-radius: 100px; margin-bottom: 14px; }
+  .toolkit-heading { font-family: 'Sora', sans-serif; font-size: clamp(20px,3vw,28px); font-weight: 800; color: #1a1a3e; margin-bottom: 8px; }
+  .toolkit-sub { font-size: 15px; color: #6b7280; margin-bottom: 32px; max-width: 540px; line-height: 1.6; }
+  .toolkit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .tool-card {
+    background: #fff; border-radius: 20px; padding: 28px;
+    box-shadow: 0 4px 24px rgba(124,58,237,.08), 0 1px 4px rgba(0,0,0,.04);
+    border: 1.5px solid rgba(124,58,237,.1);
+    display: flex; flex-direction: column; gap: 16px;
+    transition: transform .2s, box-shadow .2s;
+    text-decoration: none; color: inherit;
+  }
+  .tool-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(124,58,237,.14), 0 2px 8px rgba(0,0,0,.06); }
+  .tool-card-top { display: flex; align-items: flex-start; gap: 14px; }
+  .tool-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
+  .tool-icon-purple { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+  .tool-icon-green  { background: linear-gradient(135deg, #059669, #10b981); }
+  .tool-card-title { font-family: 'Sora', sans-serif; font-size: 17px; font-weight: 800; color: #1a1a3e; margin-bottom: 4px; }
+  .tool-card-desc { font-size: 13px; color: #6b7280; line-height: 1.55; }
+  .tool-card-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tool-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 100px; }
+  .tool-pill-time { background: #f0fdf4; color: #059669; border: 1px solid #bbf7d0; }
+  .tool-pill-ai   { background: rgba(124,58,237,.08); color: #7c3aed; border: 1px solid rgba(124,58,237,.2); }
+  .tool-pill-free { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+  .tool-cta { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 16px; border-top: 1px solid #f0f0f8; }
+  .tool-cta-text { font-size: 14px; font-weight: 700; color: #7c3aed; }
+  .tool-cta-arrow { width: 32px; height: 32px; background: linear-gradient(135deg,#7c3aed,#a855f7); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 16px; transition: transform .15s; }
+  .tool-card:hover .tool-cta-arrow { transform: translateX(3px); }
+  .tool-card-green .tool-cta-text { color: #059669; }
+  .tool-card-green .tool-cta-arrow { background: linear-gradient(135deg,#059669,#10b981); }
+
+  /* ── STICKY BANNER ── */
+  .sticky-cta {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+    background: linear-gradient(135deg, #1a1a3e, #2d1b69);
+    padding: 14px 20px; display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 -4px 24px rgba(0,0,0,.18);
+    transform: translateY(100%); transition: transform .35s cubic-bezier(.4,0,.2,1);
+  }
+  .sticky-cta.visible { transform: translateY(0); }
+  .sticky-cta-text { flex: 1; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.85); line-height: 1.3; }
+  .sticky-cta-text strong { color: #fff; display: block; font-size: 14px; }
+  .sticky-cta-btns { display: flex; gap: 8px; flex-shrink: 0; }
+  .sticky-btn { border: none; border-radius: 10px; padding: 9px 14px; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer; white-space: nowrap; transition: opacity .15s; }
+  .sticky-btn:hover { opacity: .88; }
+  .sticky-btn-primary { background: linear-gradient(135deg,#7c3aed,#a855f7); color: #fff; }
+  .sticky-btn-secondary { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.2); }
+  .sticky-close { background: none; border: none; color: rgba(255,255,255,.4); font-size: 20px; cursor: pointer; padding: 0 0 0 4px; line-height: 1; flex-shrink: 0; }
+  .sticky-close:hover { color: rgba(255,255,255,.7); }
+  @media (min-width: 860px) {
+    .sticky-cta { max-width: 480px; left: auto; right: 24px; bottom: 24px; border-radius: 16px; }
+  }
+
+  /* ── INLINE HOOK BUTTON ── */
+  .hook-btn {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: rgba(124,58,237,.08); border: 1px solid rgba(124,58,237,.2);
+    color: #7c3aed; font-size: 11px; font-weight: 700; padding: 2px 9px;
+    border-radius: 100px; cursor: pointer; margin-left: 8px; vertical-align: middle;
+    font-family: inherit; transition: background .15s; white-space: nowrap;
+  }
+  .hook-btn:hover { background: rgba(124,58,237,.15); }
+
   /* ── RELATED ── */
   .related-section { background: #fff; border-top: 1px solid #e8e8f0; padding: 48px 32px; }
   .related-inner { max-width: 1100px; margin: 0 auto; }
@@ -520,6 +586,69 @@
     <div class="related-title">Similar destinations</div>
     <div class="related-grid" id="relatedGrid"></div>
   </div>
+</div>
+
+<!-- ── VISASJO TOOLKIT ────────────────────────────────── -->
+<div class="toolkit-section" id="toolkitSection">
+  <div class="toolkit-inner">
+    <div class="toolkit-eyebrow">✨ VisasJO Toolkit</div>
+    <h2 class="toolkit-heading">Skip the paperwork — let AI do it for you</h2>
+    <p class="toolkit-sub">The requirements above are complex. Our tools turn them into ready-to-submit documents in under 60 seconds.</p>
+    <div class="toolkit-grid">
+
+      <!-- Checklist card -->
+      <a class="tool-card" href="/checklist" id="toolChecklist">
+        <div class="tool-card-top">
+          <div class="tool-icon tool-icon-purple">📋</div>
+          <div>
+            <div class="tool-card-title">Document Checklist</div>
+            <div class="tool-card-desc">Get a personalised, country-specific document checklist with nothing missing. Export as PDF.</div>
+          </div>
+        </div>
+        <div class="tool-card-meta">
+          <span class="tool-pill tool-pill-time">⏱ Takes 30 seconds</span>
+          <span class="tool-pill tool-pill-free">Free</span>
+        </div>
+        <div class="tool-cta">
+          <span class="tool-cta-text">Build my checklist</span>
+          <span class="tool-cta-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Generator card -->
+      <a class="tool-card tool-card-green" href="/generator" id="toolGenerator">
+        <div class="tool-card-top">
+          <div class="tool-icon tool-icon-green">✨</div>
+          <div>
+            <div class="tool-card-title">AI Document Generator</div>
+            <div class="tool-card-desc">Generate a formal cover letter and day-by-day itinerary — drafted by AI trained on immigration law.</div>
+          </div>
+        </div>
+        <div class="tool-card-meta">
+          <span class="tool-pill tool-pill-time">⏱ Under 60 seconds</span>
+          <span class="tool-pill tool-pill-ai">✨ AI-powered</span>
+        </div>
+        <div class="tool-cta">
+          <span class="tool-cta-text">Generate my documents</span>
+          <span class="tool-cta-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── STICKY CTA BANNER ──────────────────────────────── -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta-text">
+    <strong id="stickyTitle">Overwhelmed by the requirements?</strong>
+    <span id="stickySubtitle">Let AI build your full application package.</span>
+  </div>
+  <div class="sticky-cta-btns">
+    <button class="sticky-btn sticky-btn-secondary" onclick="scrollToToolkit('checklist')">📋 Checklist</button>
+    <button class="sticky-btn sticky-btn-primary" onclick="scrollToToolkit('generator')">✨ Generate Docs</button>
+  </div>
+  <button class="sticky-close" onclick="dismissSticky()" aria-label="Dismiss">×</button>
 </div>
 
 <!-- ── NOT FOUND (hidden by default) ────────────────── -->
@@ -951,6 +1080,27 @@ if (!data) {
 
     // Tab: Documents
     const docs = isAr ? data.documents_ar : data.documents_en;
+
+    // Keywords that trigger an inline "Generate Template" hook button
+    const hookKeywords = [
+      { match: /sponsor|كفالة/i,      label: isAr ? '✨ توليد نموذج' : '✨ Generate Template', tool: 'generator' },
+      { match: /cover letter|خطاب/i,  label: isAr ? '✨ توليد الخطاب' : '✨ Generate Letter',   tool: 'generator' },
+      { match: /itinerary|برنامج/i,   label: isAr ? '✨ توليد البرنامج' : '✨ Build Itinerary',  tool: 'generator' },
+      { match: /bank|بنك|financial|مالي/i, label: isAr ? '📋 دليل المستندات' : '📋 See Checklist', tool: 'checklist' },
+      { match: /employ|عمل|contract|عقد/i, label: isAr ? '✨ توليد نموذج' : '✨ Generate Template', tool: 'generator' },
+      { match: /attestat|تصديق/i,     label: isAr ? '📋 دليل التصديق' : '📋 Attestation Guide', tool: 'checklist' },
+      { match: /photo|صور/i,          label: isAr ? '📋 قائمة التحقق' : '📋 Full Checklist',    tool: 'checklist' },
+    ];
+
+    function addHook(text) {
+      for (const h of hookKeywords) {
+        if (h.match.test(text)) {
+          return `<button class="hook-btn" onclick="scrollToToolkit('${h.tool}')">${h.label}</button>`;
+        }
+      }
+      return '';
+    }
+
     document.getElementById('tab-documents').innerHTML = `
       <h2 class="sec-title">${isAr ? 'الوثائق المطلوبة' : 'Required documents'}</h2>
       <div class="doc-list">
@@ -958,7 +1108,7 @@ if (!data) {
         <div class="doc-item">
           <div class="doc-check">✓</div>
           <div>
-            <div class="doc-name">${d.item}</div>
+            <div class="doc-name">${d.item}${addHook(d.item + ' ' + (d.note || ''))}</div>
             ${d.note ? `<div class="doc-note">${d.note}</div>` : ''}
           </div>
         </div>`).join('')}
@@ -968,6 +1118,13 @@ if (!data) {
         ${isAr
           ? 'قد تتغير متطلبات الوثائق. تحقق دائماً من القائمة الحالية على الموقع الرسمي للسفارة قبل التقديم.'
           : 'Document requirements can change. Always verify the current list on the official embassy website before applying.'}
+      </div>
+      <div style="margin-top:24px;padding:20px;background:linear-gradient(135deg,#f5f0ff,#f0f0ff);border-radius:16px;border:1.5px solid rgba(124,58,237,.15);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:14px;font-weight:700;color:#1a1a3e;margin-bottom:3px;">${isAr ? 'هل تريد قائمة تحقق جاهزة للطباعة؟' : 'Want a print-ready checklist for all of these?'}</div>
+          <div style="font-size:12px;color:#6b7280;">${isAr ? 'أداتنا تولّد قائمة شاملة في 30 ثانية' : 'Our tool generates a complete list in 30 seconds'}</div>
+        </div>
+        <button onclick="scrollToToolkit('checklist')" style="background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;white-space:nowrap;">📋 ${isAr ? 'إنشاء القائمة' : 'Build My Checklist'}</button>
       </div>`;
 
     // Tab: FAQ
@@ -1026,6 +1183,47 @@ if (!data) {
       rebuildPage();
     });
 }
+
+// ─── Toolkit scroll & sticky CTA ─────────────────────────────────────────────
+function scrollToToolkit(tool) {
+  const el = document.getElementById('toolkitSection');
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Briefly highlight the chosen card
+  setTimeout(() => {
+    const card = document.getElementById(tool === 'generator' ? 'toolGenerator' : 'toolChecklist');
+    if (card) {
+      card.style.transition = 'box-shadow .3s';
+      card.style.boxShadow = '0 0 0 3px #7c3aed, 0 12px 40px rgba(124,58,237,.2)';
+      setTimeout(() => { card.style.boxShadow = ''; }, 1800);
+    }
+  }, 600);
+  if (typeof umami !== 'undefined') umami.track('toolkit-cta-click', { tool });
+}
+
+let stickyDismissed = false;
+function dismissSticky() {
+  stickyDismissed = true;
+  document.getElementById('stickyCta').classList.remove('visible');
+  sessionStorage.setItem('sticky_dismissed', '1');
+}
+
+(function initSticky() {
+  if (sessionStorage.getItem('sticky_dismissed')) return;
+  const sticky = document.getElementById('stickyCta');
+  let shown = false;
+  window.addEventListener('scroll', () => {
+    if (stickyDismissed) return;
+    const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+    if (!shown && scrolled > 0.3) {
+      shown = true;
+      sticky.classList.add('visible');
+    } else if (shown && scrolled < 0.1) {
+      sticky.classList.remove('visible');
+      shown = false;
+    }
+  }, { passive: true });
+})();
 
 // ─── Tab switching ────────────────────────────────────────────────────────────
 const TABS = ['overview','documents','faq','tips'];
