@@ -354,10 +354,32 @@
   .consult-success-icon { font-size: 48px; margin-bottom: 12px; }
   .consult-success h3 { color: #fff; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
   .consult-success p { color: rgba(255,255,255,0.5); font-size: 14px; }
+  .consult-divider {
+    display: flex; align-items: center; gap: 12px;
+    margin: 20px 0; color: rgba(255,255,255,0.3); font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+  }
+  .consult-divider::before, .consult-divider::after {
+    content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.1);
+  }
+  .wa-btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; padding: 15px 24px;
+    background: #25d366; color: #fff;
+    border: none; border-radius: 14px;
+    font-size: 15px; font-weight: 700; font-family: inherit;
+    text-decoration: none; cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+    letter-spacing: -0.01em;
+  }
+  .wa-btn:hover { background: #1ebe5d; transform: translateY(-1px); box-shadow: 0 6px 28px rgba(37,211,102,0.4); }
+  .wa-btn:active { transform: translateY(0); }
+  .wa-btn svg { flex-shrink: 0; }
   @media (max-width: 600px) {
     .consult-section { padding: 48px 16px; }
     .consult-inner { padding: 28px 20px 24px; border-radius: 18px; }
     .phone-code { width: 96px; }
+    .wa-btn { font-size: 16px; padding: 17px 24px; }
   }
 </style>
 <script>
@@ -499,18 +521,16 @@
 
     <form class="consult-form" id="consultForm" novalidate>
 
-      <input type="hidden" name="destination_country" id="cf-destination-hidden" value="" />
-
       <!-- Name -->
       <div class="consult-field">
-        <label class="consult-label" for="cf-name" id="cf-label-name">Full Name <span style="color:#ef4444">*</span></label>
+        <label class="consult-label" for="cf-name" id="cf-label-name">Your Name <span style="color:#ef4444">*</span></label>
         <input class="consult-input" type="text" id="cf-name" name="full_name"
                placeholder="e.g. Ahmad Al-Hassan" required autocomplete="name" />
       </div>
 
-      <!-- Phone -->
+      <!-- WhatsApp Number -->
       <div class="consult-field">
-        <label class="consult-label" for="cf-phone" id="cf-label-phone">Phone Number <span style="color:#ef4444">*</span></label>
+        <label class="consult-label" for="cf-phone" id="cf-label-phone">WhatsApp Number <span style="color:#ef4444">*</span></label>
         <div class="phone-group">
           <select class="phone-code" name="country_code" aria-label="Country code">
             <option value="+962">🇯🇴 +962</option>
@@ -522,21 +542,8 @@
             <option value="+973">🇧🇭 +973</option>
             <option value="+20">🇪🇬 +20</option>
             <option value="+961">🇱🇧 +961</option>
-            <option value="+963">🇸🇾 +963</option>
-            <option value="+964">🇮🇶 +964</option>
-            <option value="+90">🇹🇷 +90</option>
-            <option value="+44">🇬🇧 +44</option>
-            <option value="+49">🇩🇪 +49</option>
-            <option value="+33">🇫🇷 +33</option>
-            <option value="+39">🇮🇹 +39</option>
-            <option value="+34">🇪🇸 +34</option>
             <option value="+1">🇺🇸 +1</option>
-            <option value="+61">🇦🇺 +61</option>
-            <option value="+81">🇯🇵 +81</option>
-            <option value="+82">🇰🇷 +82</option>
-            <option value="+66">🇹🇭 +66</option>
-            <option value="+60">🇲🇾 +60</option>
-            <option value="+91">🇮🇳 +91</option>
+            <option value="+44">🇬🇧 +44</option>
           </select>
           <input class="consult-input phone-number" type="tel" id="cf-phone" name="phone_number"
                  placeholder="7X XXX XXXX" required autocomplete="tel-national"
@@ -544,92 +551,23 @@
         </div>
       </div>
 
-      <!-- Destination Country -->
-      <div class="consult-field">
-        <label class="consult-label" for="cf-country" id="cf-label-dest">Destination Country <span style="color:#ef4444">*</span></label>
-        <select class="consult-input consult-select" id="cf-country" name="destination_country_visible" required>
-          <option value="" disabled selected id="cf-dest-placeholder">Select your destination</option>
-
-          <optgroup id="cf-grp-gulf" label="🌙 Middle East &amp; Gulf">
-            <option value="UAE">🇦🇪 United Arab Emirates</option>
-            <option value="Saudi Arabia">🇸🇦 Saudi Arabia</option>
-            <option value="Qatar">🇶🇦 Qatar</option>
-            <option value="Kuwait">🇰🇼 Kuwait</option>
-            <option value="Oman">🇴🇲 Oman</option>
-            <option value="Bahrain">🇧🇭 Bahrain</option>
-            <option value="Turkey">🇹🇷 Turkey</option>
-            <option value="Lebanon">🇱🇧 Lebanon</option>
-            <option value="Egypt">🇪🇬 Egypt</option>
-            <option value="Georgia">🇬🇪 Georgia</option>
-          </optgroup>
-
-          <optgroup id="cf-grp-europe" label="🇪🇺 Europe">
-            <option value="Germany">🇩🇪 Germany</option>
-            <option value="UK">🇬🇧 United Kingdom</option>
-            <option value="France">🇫🇷 France</option>
-            <option value="Italy">🇮🇹 Italy</option>
-            <option value="Spain">🇪🇸 Spain</option>
-            <option value="Greece">🇬🇷 Greece</option>
-            <option value="Netherlands">🇳🇱 Netherlands</option>
-            <option value="Switzerland">🇨🇭 Switzerland</option>
-            <option value="Austria">🇦🇹 Austria</option>
-            <option value="Belgium">🇧🇪 Belgium</option>
-            <option value="Portugal">🇵🇹 Portugal</option>
-            <option value="Sweden">🇸🇪 Sweden</option>
-            <option value="Norway">🇳🇴 Norway</option>
-            <option value="Denmark">🇩🇰 Denmark</option>
-            <option value="Finland">🇫🇮 Finland</option>
-            <option value="Poland">🇵🇱 Poland</option>
-            <option value="Czech Republic">🇨🇿 Czech Republic</option>
-            <option value="Croatia">🇭🇷 Croatia</option>
-            <option value="Hungary">🇭🇺 Hungary</option>
-            <option value="Cyprus">🇨🇾 Cyprus</option>
-            <option value="Bosnia">🇧🇦 Bosnia &amp; Herzegovina</option>
-            <option value="Serbia">🇷🇸 Serbia</option>
-          </optgroup>
-
-          <optgroup id="cf-grp-americas" label="🌎 Americas">
-            <option value="USA">🇺🇸 United States</option>
-            <option value="Canada">🇨🇦 Canada</option>
-            <option value="Mexico">🇲🇽 Mexico</option>
-          </optgroup>
-
-          <optgroup id="cf-grp-asia" label="🌏 Asia &amp; Pacific">
-            <option value="Japan">🇯🇵 Japan</option>
-            <option value="South Korea">🇰🇷 South Korea</option>
-            <option value="Thailand">🇹🇭 Thailand</option>
-            <option value="Malaysia">🇲🇾 Malaysia</option>
-            <option value="Indonesia">🇮🇩 Indonesia</option>
-            <option value="India">🇮🇳 India</option>
-            <option value="China">🇨🇳 China</option>
-            <option value="Australia">🇦🇺 Australia</option>
-          </optgroup>
-
-          <optgroup id="cf-grp-africa" label="🌍 Africa">
-            <option value="Morocco">🇲🇦 Morocco</option>
-            <option value="Tunisia">🇹🇳 Tunisia</option>
-            <option value="South Africa">🇿🇦 South Africa</option>
-            <option value="Kenya">🇰🇪 Kenya</option>
-          </optgroup>
-
-          <option value="Other" id="cf-opt-other">🌐 Other (please specify in notes)</option>
-        </select>
-      </div>
-
-      <!-- Notes -->
-      <div class="consult-field">
-        <label class="consult-label" for="cf-notes" id="cf-label-notes">Additional Notes <span id="cf-optional-tag" style="color:rgba(255,255,255,0.3);font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
-        <textarea class="consult-input" id="cf-notes" name="notes"
-                  placeholder="e.g. Travel dates, number of travellers, specific questions…"
-                  rows="3" style="resize:vertical;min-height:80px"></textarea>
-      </div>
-
-      <button class="consult-btn" type="submit" id="consultSubmitBtn">Get Assistance</button>
+      <button class="consult-btn" type="submit" id="consultSubmitBtn">Get My Free Consultation</button>
     </form>
 
     <p class="consult-disclaimer" id="cf-disclaimer">
-      By submitting this form, you agree to be contacted by our partner travel agencies regarding visa assistance.
+      We'll reach out on WhatsApp within a few hours. No spam, ever.
     </p>
+
+    <div class="consult-divider">OR</div>
+
+    <a class="wa-btn" id="waDirectBtn"
+       href="https://wa.me/YOUR_PHONE_NUMBER?text=Hi%2C%20I%20would%20like%20a%20free%20visa%20consultation"
+       target="_blank" rel="noopener noreferrer">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Chat on WhatsApp
+    </a>
   </div>
 </section>
 
@@ -794,8 +732,19 @@ if (!data) {
 
 } else {
   // ── Build / rebuild all page content ──────────────────────────────────────
+  const WA_NUMBER = 'YOUR_PHONE_NUMBER'; // e.g. 96279XXXXXXX — no + or spaces
+
   function rebuildPage() {
     const isAr = ar();
+
+    // Update WhatsApp direct button with country context
+    const waBtn = document.getElementById('waDirectBtn');
+    if (waBtn) {
+      const msg = isAr
+        ? `مرحباً، أريد استشارة مجانية بخصوص تأشيرة ${countryName}`
+        : `Hi, I would like a free visa consultation for ${countryName}`;
+      waBtn.href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+    }
 
     // Page title + breadcrumb
     document.title = isAr
