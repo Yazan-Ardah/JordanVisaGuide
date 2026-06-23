@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Visa Access Map — Jordan Passport Guide</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;800&display=swap" rel="stylesheet" />
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #080818;
+  color: #fff;
+}
+
+/* ── NAV ── */
+.site-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px;
+  height: 56px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  background: rgba(8,8,24,0.95);
+  backdrop-filter: blur(12px);
+  position: sticky; top: 0; z-index: 50;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; color: #fff;
+  font-weight: 700; font-size: 15px;
+}
+.nav-logo-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: linear-gradient(135deg, #e85d2f, #c94a20);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.nav-back {
+  display: flex; align-items: center; gap: 6px;
+  color: rgba(255,255,255,0.5); font-size: 13px; font-weight: 500;
+  text-decoration: none; transition: color 0.15s;
+}
+.nav-back:hover { color: #fff; }
+.nav-back svg { width: 16px; height: 16px; }
+
+/* ── HEADER ── */
+.map-header {
+  text-align: center;
+  padding: 52px 24px 28px;
+}
+.map-header .eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px;
+  padding: 5px 16px; margin-bottom: 18px;
+  font-size: 12px; font-weight: 600;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.03em; text-transform: uppercase;
+}
+.map-header h1 {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(30px, 5.5vw, 54px);
+  font-weight: 800; line-height: 1.1;
+  letter-spacing: -0.03em; margin-bottom: 12px;
+  background: linear-gradient(135deg, #fff 35%, rgba(255,255,255,0.45));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.map-header p {
+  font-size: clamp(14px, 2vw, 17px);
+  color: rgba(255,255,255,0.45);
+  max-width: 500px; margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ── STATS BAR ── */
+.stats-bar {
+  display: flex; justify-content: center; gap: 10px;
+  flex-wrap: wrap; padding: 0 24px 36px;
+}
+.stat-pill {
+  display: flex; align-items: center; gap: 8px;
+  padding: 9px 20px; border-radius: 100px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  font-size: 13px; color: rgba(255,255,255,0.7);
+  transition: background 0.15s, border-color 0.15s;
+  cursor: default;
+}
+.stat-pill:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.14); }
+.stat-dot {
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}
+.stat-dot.green  { background: #22c55e; box-shadow: 0 0 8px rgba(34,197,94,0.6); }
+.stat-dot.yellow { background: #f59e0b; box-shadow: 0 0 8px rgba(245,158,11,0.6); }
+.stat-dot.red    { background: #ef4444; box-shadow: 0 0 8px rgba(239,68,68,0.6); }
+.stat-num { font-weight: 800; font-size: 16px; color: #fff; }
+
+/* ── GLOBE WRAP ── */
+#globe-wrap {
+  position: relative;
+  width: 100%;
+  height: clamp(360px, 68vh, 700px);
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+#globe-el { width: 100%; height: 100%; }
+#globe-el canvas { display: block; }
+
+/* Loading overlay */
+#globe-loading {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 16px;
+  background: #080818; z-index: 5; pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+#globe-loading.hidden { opacity: 0; }
+.loading-spinner {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.08);
+  border-top-color: #e85d2f;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { font-size: 13px; color: rgba(255,255,255,0.35); font-weight: 500; }
+
+/* ── LEGEND ── */
+.legend {
+  position: absolute;
+  bottom: 20px; right: 20px;
+  background: rgba(6, 6, 20, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 14px;
+  padding: 14px 18px;
+  z-index: 10; min-width: 190px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.legend-title {
+  font-size: 10px; font-weight: 700;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 11px;
+}
+.legend-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12.5px; color: rgba(255,255,255,0.7); font-weight: 500;
+  margin-bottom: 8px;
+}
+.legend-item:last-child { margin-bottom: 0; }
+.legend-dot {
+  width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0;
+}
+.legend-dot.green  { background: #22c55e; }
+.legend-dot.yellow { background: #f59e0b; }
+.legend-dot.red    { background: #ef4444; }
+.legend-dot.gray   { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.15); }
+
+/* ── GLOBE HINT ── */
+.globe-hint {
+  position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+  font-size: 12px; color: rgba(255,255,255,0.2); pointer-events: none;
+  white-space: nowrap; z-index: 10;
+}
+@media (pointer: coarse) { .globe-hint { display: none; } }
+
+/* ── TOOLTIP ── */
+#tooltip {
+  position: fixed; pointer-events: none; z-index: 100;
+  background: rgba(6, 6, 20, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 11px 15px;
+  max-width: 230px;
+  opacity: 0; transition: opacity 0.12s ease;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+}
+#tooltip.visible { opacity: 1; }
+.tt-name { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+.tt-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11.5px; font-weight: 600;
+  padding: 3px 9px; border-radius: 6px; margin-bottom: 5px;
+}
+.tt-badge.green  { background: rgba(34,197,94,0.14);  color: #4ade80; border: 1px solid rgba(34,197,94,0.2); }
+.tt-badge.yellow { background: rgba(245,158,11,0.14); color: #fbbf24; border: 1px solid rgba(245,158,11,0.2); }
+.tt-badge.red    { background: rgba(239,68,68,0.14);  color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
+.tt-badge.gray   { background: rgba(100,116,139,0.14);color: #94a3b8; border: 1px solid rgba(100,116,139,0.2); }
+.tt-badge.jordan { background: rgba(45,42,114,0.4);   color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3); }
+.tt-note { font-size: 11px; color: rgba(255,255,255,0.38); line-height: 1.4; }
+.tt-hint { font-size: 10.5px; color: rgba(255,255,255,0.2); margin-top: 6px; font-style: italic; }
+
+/* ── POPUP ── */
+.popup-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.popup-overlay.open { opacity: 1; pointer-events: all; }
+.popup-card {
+  background: #0e0e28;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 22px;
+  padding: 32px 28px 26px;
+  max-width: 360px; width: 100%;
+  position: relative;
+  transform: translateY(16px) scale(0.96);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+}
+.popup-overlay.open .popup-card { transform: translateY(0) scale(1); }
+.popup-close {
+  position: absolute; top: 14px; right: 16px;
+  background: rgba(255,255,255,0.07); border: none;
+  color: rgba(255,255,255,0.45); font-size: 18px; font-weight: 700;
+  width: 32px; height: 32px; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s, color 0.15s; line-height: 1;
+}
+.popup-close:hover { background: rgba(255,255,255,0.13); color: #fff; }
+.popup-flag { font-size: 56px; margin-bottom: 14px; line-height: 1; display: block; }
+.popup-name {
+  font-family: 'Sora', sans-serif;
+  font-size: 24px; font-weight: 800; color: #fff;
+  margin-bottom: 8px; line-height: 1.15;
+}
+.popup-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600;
+  padding: 4px 13px; border-radius: 8px; margin-bottom: 12px;
+}
+.popup-badge.green  { background: rgba(34,197,94,0.12);  color: #4ade80; border: 1px solid rgba(34,197,94,0.22); }
+.popup-badge.yellow { background: rgba(245,158,11,0.12); color: #fbbf24; border: 1px solid rgba(245,158,11,0.22); }
+.popup-badge.red    { background: rgba(239,68,68,0.12);  color: #f87171; border: 1px solid rgba(239,68,68,0.22); }
+.popup-badge.gray   { background: rgba(100,116,139,0.12);color: #94a3b8; border: 1px solid rgba(100,116,139,0.22); }
+.popup-note {
+  font-size: 14px; color: rgba(255,255,255,0.5);
+  margin-bottom: 22px; line-height: 1.6;
+}
+.popup-btn {
+  display: block; text-align: center;
+  background: #e85d2f; color: #fff;
+  text-decoration: none; font-weight: 700; font-size: 14px;
+  padding: 13px 20px; border-radius: 12px;
+  transition: background 0.15s, transform 0.1s;
+  letter-spacing: -0.01em;
+}
+.popup-btn:hover { background: #cf4920; transform: translateY(-1px); }
+.popup-btn:active { transform: translateY(0); }
+.popup-btn.muted {
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.45);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.popup-btn.muted:hover { background: rgba(255,255,255,0.09); transform: none; }
+
+/* ── FOOTER NOTE ── */
+.map-footer {
+  text-align: center;
+  padding: 24px 24px 52px;
+  font-size: 12px; color: rgba(255,255,255,0.18);
+  line-height: 1.7; max-width: 520px; margin: 0 auto;
+}
+.map-footer a { color: rgba(255,255,255,0.35); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
+.map-footer a:hover { color: rgba(255,255,255,0.6); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .legend { bottom: 12px; right: 12px; padding: 11px 14px; min-width: 168px; }
+  .legend-item { font-size: 11.5px; }
+  .legend-dot { width: 10px; height: 10px; }
+  #globe-wrap { height: clamp(300px, 60vw, 440px); }
+  .popup-card { padding: 24px 20px 20px; }
+  .popup-name { font-size: 20px; }
+  .map-header { padding: 36px 20px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🇯🇴</div>
+    <span>Jordan Visa Guide</span>
+  </a>
+  <a href="index.html" class="nav-back">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 12L6 8l4-4"/></svg>
+    Back to Countries
+  </a>
+</nav>
+
+<!-- Header -->
+<div class="map-header">
+  <div class="eyebrow">🇯🇴 Jordanian Passport Holders</div>
+  <h1>World Visa Access Map</h1>
+  <p>Tap any country to see entry requirements instantly. Color-coded for Jordanian passport holders.</p>
+</div>
+
+<!-- Stats -->
+<div class="stats-bar">
+  <div class="stat-pill">
+    <span class="stat-dot green"></span>
+    <span class="stat-num" id="count-free">—</span>
+    <span>Visa Free</span>
+  </div>
+  <div class="stat-pill">
+    <span class="stat-dot yellow"></span>
+    <span class="stat-num" id="count-evisa">—</span>
+    <span>eVisa / On Arrival</span>
+  </div>
+  <div class="stat-pill">
+    <span class="stat-dot red"></span>
+    <span class="stat-num" id="count-required">—</span>
+    <span>Visa Required</span>
+  </div>
+</div>
+
+<!-- Globe -->
+<div id="globe-wrap">
+  <div id="globe-el"></div>
+
+  <!-- Loading state -->
+  <div id="globe-loading">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Loading interactive globe…</div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-title">Visa Status</div>
+    <div class="legend-item"><span class="legend-dot green"></span>Visa Free / Easy Entry</div>
+    <div class="legend-item"><span class="legend-dot yellow"></span>eVisa / Visa on Arrival</div>
+    <div class="legend-item"><span class="legend-dot red"></span>Visa Required (Apply Ahead)</div>
+    <div class="legend-item"><span class="legend-dot gray"></span>No Data</div>
+  </div>
+
+  <div class="globe-hint">Drag to rotate · Scroll to zoom · Click a country</div>
+</div>
+
+<!-- Tooltip -->
+<div id="tooltip">
+  <div class="tt-name" id="tt-name"></div>
+  <div class="tt-badge" id="tt-badge"></div>
+  <div class="tt-note" id="tt-note"></div>
+  <div class="tt-hint" id="tt-hint">Click for details</div>
+</div>
+
+<!-- Popup -->
+<div class="popup-overlay" id="popup-overlay">
+  <div class="popup-card">
+    <button class="popup-close" id="popup-close" aria-label="Close">×</button>
+    <span class="popup-flag" id="pop-flag">🌍</span>
+    <div class="popup-name" id="pop-name">Country</div>
+    <div class="popup-badge" id="pop-badge">Status</div>
+    <div class="popup-note" id="pop-note"></div>
+    <a href="#" id="pop-link" class="popup-btn">View Full Requirements →</a>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="map-footer">
+  Visa requirements are for Jordanian passport holders as of 2026 and subject to change.
+  Always confirm with the official embassy or consulate before travelling.<br/>
+  <a href="index.html">← Browse all countries with full details</a>
+</div>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/globe.gl@2.26.3/dist/globe.gl.min.js"></script>
+<script src="https://unpkg.com/topojson-client@3/dist/topojson-client.min.js"></script>
+
+<script>
+// ─── VISA DATABASE ────────────────────────────────────────────────────────────
+// ISO 3166-1 numeric codes → visa entry data for Jordanian passport holders
+// status: 'free' | 'evisa' | 'required' | 'jordan'
+const VISA = {
+
+  // ══ GREEN — Visa Free / Extremely Easy ══════════════════════════════════════
+  792: { name:'Turkey',               flag:'🇹🇷', status:'free',     label:'Visa Free',               note:'Up to 90 days · No application needed',         slug:'Turkey' },
+  818: { name:'Egypt',                flag:'🇪🇬', status:'free',     label:'Visa Free',               note:'Up to 3 months on arrival',                     slug:'Egypt' },
+  784: { name:'United Arab Emirates', flag:'🇦🇪', status:'free',     label:'Visa Free',               note:'30-day stamp granted on arrival',                slug:'UAE' },
+  268: { name:'Georgia',              flag:'🇬🇪', status:'free',     label:'Visa Free',               note:'Up to 1 full year · Health insurance advised',   slug:'Georgia' },
+  422: { name:'Lebanon',              flag:'🇱🇧', status:'free',     label:'Visa Free',               note:'Up to 3 months on arrival',                     slug:'Lebanon' },
+  504: { name:'Morocco',              flag:'🇲🇦', status:'free',     label:'Visa Free',               note:'Up to 90 days',                                 slug:'Morocco' },
+  788: { name:'Tunisia',              flag:'🇹🇳', status:'free',     label:'Visa Free',               note:'Up to 90 days',                                 slug:'Tunisia' },
+  598: { name:'Mauritius',            flag:'🇲🇺', status:'free',     label:'Visa Free',               note:'Up to 60 days on arrival',                      slug:null },
+  688: { name:'Serbia',               flag:'🇷🇸', status:'free',     label:'Visa Free',               note:'Up to 30 days',                                 slug:null },
+  804: { name:'Ukraine',              flag:'🇺🇦', status:'free',     label:'Visa Free',               note:'Check current travel advisories before visiting',slug:null },
+  8:   { name:'Albania',              flag:'🇦🇱', status:'free',     label:'Visa Free (Seasonal)',     note:'Visa-free Apr–Oct · Verify for winter travel',   slug:null },
+  499: { name:'Montenegro',           flag:'🇲🇪', status:'free',     label:'Visa Free',               note:'Up to 30 days',                                 slug:null },
+  807: { name:'North Macedonia',      flag:'🇲🇰', status:'free',     label:'Visa Free',               note:'Up to 90 days',                                 slug:null },
+  706: { name:'Somalia',              flag:'🇸🇴', status:'free',     label:'Visa Free on Arrival',    note:'On arrival at Mogadishu · Check safety advisories',slug:null },
+  484: { name:'Mexico',               flag:'🇲🇽', status:'free',     label:'Visa Free',               note:'Up to 180 days',                                slug:null },
+  340: { name:'Honduras',             flag:'🇭🇳', status:'free',     label:'Visa Free',               note:'Up to 90 days',                                 slug:null },
+  214: { name:'Dominican Republic',   flag:'🇩🇴', status:'free',     label:'Visa Free',               note:'On arrival',                                    slug:null },
+  462: { name:'Maldives',             flag:'🇲🇻', status:'free',     label:'Visa Free on Arrival',    note:'30 days on arrival, extendable',                slug:null },
+  690: { name:'Seychelles',           flag:'🇸🇨', status:'free',     label:'Visa Free',               note:'Up to 3 months on arrival',                     slug:null },
+  626: { name:'Timor-Leste',          flag:'🇹🇱', status:'free',     label:'Visa on Arrival',         note:'30 days on arrival',                            slug:null },
+  192: { name:'Cuba',                 flag:'🇨🇺', status:'free',     label:'Tourist Card on Arrival', note:'30 days · Tourist card issued at airport',       slug:null },
+
+  // ══ YELLOW — eVisa / Visa on Arrival / Simple Online ════════════════════════
+  682: { name:'Saudi Arabia',         flag:'🇸🇦', status:'evisa',    label:'eVisa / Visa on Arrival', note:'Apply via Tasheer or on arrival at airports',    slug:'Saudi Arabia' },
+  634: { name:'Qatar',                flag:'🇶🇦', status:'evisa',    label:'Visa on Arrival / eVisa', note:'30 days on arrival or Hayya A1 online',          slug:'Qatar' },
+  512: { name:'Oman',                 flag:'🇴🇲', status:'evisa',    label:'eVisa / Visa on Arrival', note:'30 days eVisa online or 14-day free on arrival', slug:'Oman' },
+  48:  { name:'Bahrain',              flag:'🇧🇭', status:'evisa',    label:'Visa on Arrival',         note:'30 days on arrival, free of charge',             slug:null },
+  368: { name:'Iraq',                 flag:'🇮🇶', status:'evisa',    label:'Visa on Arrival',         note:'30 days at major international airports',        slug:null },
+  364: { name:'Iran',                 flag:'🇮🇷', status:'evisa',    label:'Visa on Arrival',         note:'30 days at most international airports',         slug:null },
+  736: { name:'Sudan',                flag:'🇸🇩', status:'evisa',    label:'Visa on Arrival',         note:'30 days · Bilateral agreement with Jordan',      slug:null },
+  404: { name:'Kenya',                flag:'🇰🇪', status:'evisa',    label:'eVisa',                   note:'Apply online · $51 fee · 3–5 day processing',    slug:null },
+  834: { name:'Tanzania',             flag:'🇹🇿', status:'evisa',    label:'eVisa',                   note:'Apply online · $50 fee · 3–5 day processing',    slug:null },
+  231: { name:'Ethiopia',             flag:'🇪🇹', status:'evisa',    label:'eVisa',                   note:'Apply online · $52 fee · 3 day processing',      slug:null },
+  646: { name:'Rwanda',               flag:'🇷🇼', status:'evisa',    label:'eVisa / Visa on Arrival', note:'$50 eVisa online or on arrival at Kigali',       slug:null },
+  800: { name:'Uganda',               flag:'🇺🇬', status:'evisa',    label:'eVisa',                   note:'Apply online · $50 fee · 3–5 day processing',    slug:null },
+  764: { name:'Thailand',             flag:'🇹🇭', status:'evisa',    label:'Visa on Arrival',         note:'Available at major Thai international airports', slug:'Thailand' },
+  360: { name:'Indonesia',            flag:'🇮🇩', status:'evisa',    label:'Visa on Arrival',         note:'30 days on arrival · extendable once',           slug:'Indonesia' },
+  458: { name:'Malaysia',             flag:'🇲🇾', status:'evisa',    label:'Visa Free',               note:'30 days visa-free',                              slug:null },
+  144: { name:'Sri Lanka',            flag:'🇱🇰', status:'evisa',    label:'eVisa',                   note:'Apply online before travel',                     slug:null },
+  524: { name:'Nepal',                flag:'🇳🇵', status:'evisa',    label:'Visa on Arrival',         note:'On arrival or eVisa online',                     slug:null },
+  356: { name:'India',                flag:'🇮🇳', status:'evisa',    label:'eVisa (e-Tourist Visa)',   note:'Apply online min. 4 days before travel',         slug:null },
+  262: { name:'Djibouti',             flag:'🇩🇯', status:'evisa',    label:'eVisa',                   note:'Apply online before travel',                     slug:null },
+  174: { name:'Comoros',              flag:'🇰🇲', status:'evisa',    label:'Visa on Arrival',         note:'On arrival at Moroni airport',                   slug:null },
+  728: { name:'South Sudan',          flag:'🇸🇸', status:'evisa',    label:'Visa on Arrival',         note:'Check safety advisories before visiting',        slug:null },
+  764: { name:'Thailand',             flag:'🇹🇭', status:'evisa',    label:'Visa on Arrival',         note:'Available at major international airports',      slug:'Thailand' },
+  496: { name:'Mongolia',             flag:'🇲🇳', status:'evisa',    label:'eVisa',                   note:'Apply online before travel',                     slug:null },
+  50:  { name:'Bangladesh',           flag:'🇧🇩', status:'evisa',    label:'Visa on Arrival',         note:'On arrival at Dhaka airport',                    slug:null },
+  144: { name:'Sri Lanka',            flag:'🇱🇰', status:'evisa',    label:'eVisa',                   note:'Apply online via ETA system',                    slug:null },
+
+  // ══ RED — Visa Required / Complex Application ════════════════════════════════
+  276: { name:'Germany',              flag:'🇩🇪', status:'required', label:'Schengen Visa Required',  note:'Apply via VFS Global Amman · €90 fee',           slug:'Germany' },
+  300: { name:'Greece',               flag:'🇬🇷', status:'required', label:'Schengen Visa Required',  note:'Apply via VFS Global Amman · €90 fee',           slug:'Greece' },
+  826: { name:'United Kingdom',       flag:'🇬🇧', status:'required', label:'Visa Required',           note:'Standard Visitor Visa · £115 fee · ~3 weeks',    slug:'UK' },
+  414: { name:'Kuwait',               flag:'🇰🇼', status:'required', label:'Visa Required (Sponsor)', note:'A Kuwaiti sponsor must apply on your behalf',     slug:'Kuwait' },
+  196: { name:'Cyprus',               flag:'🇨🇾', status:'required', label:'National Visa Required',  note:'Apply via VFS Global Amman · €80 fee',           slug:'Cyprus' },
+  70:  { name:'Bosnia & Herzegovina', flag:'🇧🇦', status:'required', label:'Visa Required',           note:'Apply at embassy in Amman · €31–€57 fee',        slug:'Bosnia' },
+  40:  { name:'Austria',              flag:'🇦🇹', status:'required', label:'Schengen Visa Required',  note:'Apply via VFS Global Amman · €90 fee',           slug:null },
+  56:  { name:'Belgium',              flag:'🇧🇪', status:'required', label:'Schengen Visa Required',  note:'Apply via BLS International Amman · €90 fee',    slug:null },
+  203: { name:'Czech Republic',       flag:'🇨🇿', status:'required', label:'Schengen Visa Required',  note:'Apply via VFS Global Amman · €90 fee',           slug:null },
+  208: { name:'Denmark',              flag:'🇩🇰', status:'required', label:'Schengen Visa Required',  note:'Apply via VFS Global Amman · €90 fee',           slug:null },
+  233: { name:'Estonia',              flag:'🇪🇪', status:'required', label:'Schengen Visa Required',  note:'Apply via Finnish Embassy · €90 fee',            slug:null },
+  246: { name:'Finland',              flag:'🇫🇮', status:'required', label:'Schengen Visa Required',  note:'Apply at Finnish Embassy Amman · €90 fee',       slug:null },
+  250: { name:'France',               flag:'🇫🇷', status:'required', label:'Schengen Visa Required',  note:'Apply via TLScontact Amman · €90 fee',           slug:'France' },
+  348: { name:'Hungary',              flag:'🇭🇺', status:'required', label:'Schengen Visa Required',  note:'Apply at Hungarian Embassy Amman · €90 fee',     slug:null },
+  352: { name:'Iceland',              flag:'🇮🇸', status:'required', label:'Schengen Visa Required',  note:'Apply via Danish Embassy Amman · €90 fee',       slug:null },
+  380: { name:'Italy',                flag:'🇮🇹', status:'required', label:'Schengen Visa Required',  note:'Apply via VFS Global Amman · €90 fee',           slug:'Italy' },
+  428: { name:'Latvia',               flag:'🇱🇻', status:'required', label:'Schengen Visa Required',  note:'Apply via Lithuanian Embassy · €90 fee',         slug:null },
+  438: { name:'Liechtenstein',        flag:'🇱🇮', status:'required', label:'Schengen Visa Required',  note:'Apply via Swiss Embassy Amman · €90 fee',        slug:null },
+  440: { name:'Lithuania',            flag:'🇱🇹', status:'required', label:'Schengen Visa Required',  note:'Apply at Lithuanian Embassy · €90 fee',          slug:null },
+  442: { name:'Luxembourg',           flag:'🇱🇺', status:'required', label:'Schengen Visa Required',  note:'Apply via Belgian Embassy Amman · €90 fee',      slug:null },
+  470: { name:'Malta',                flag:'🇲🇹', status:'required', label:'Schengen Visa Required',  note:'Apply via VFS Global Amman · €90 fee',           slug:null },
+  528: { name:'Netherlands',          flag:'🇳🇱', status:'required', label:'Schengen Visa Required',  note:'Apply via VFS Global Amman · €90 fee',           slug:'Netherlands' },
+  578: { name:'Norway',               flag:'🇳🇴', status:'required', label:'Schengen Visa Required',  note:'Apply via VFS Global Amman · €90 fee',           slug:null },
+  616: { name:'Poland',               flag:'🇵🇱', status:'required', label:'Schengen Visa Required',  note:'Apply at Polish Embassy Amman · €90 fee',        slug:null },
+  620: { name:'Portugal',             flag:'🇵🇹', status:'required', label:'Schengen Visa Required',  note:'Apply via VFS Global Amman · €90 fee',           slug:null },
+  703: { name:'Slovakia',             flag:'🇸🇰', status:'required', label:'Schengen Visa Required',  note:'Apply at Slovak Embassy · €90 fee',              slug:null },
+  705: { name:'Slovenia',             flag:'🇸🇮', status:'required', label:'Schengen Visa Required',  note:'Apply via Austrian Embassy · €90 fee',           slug:null },
+  724: { name:'Spain',                flag:'🇪🇸', status:'required', label:'Schengen Visa Required',  note:'Apply via BLS International Amman · €90 fee',    slug:'Spain' },
+  752: { name:'Sweden',               flag:'🇸🇪', status:'required', label:'Schengen Visa Required',  note:'Apply via VFS Global Amman · €90 fee',           slug:null },
+  756: { name:'Switzerland',          flag:'🇨🇭', status:'required', label:'Schengen Visa Required',  note:'Apply via TLScontact Amman · CHF 80 fee',        slug:'Switzerland' },
+  191: { name:'Croatia',              flag:'🇭🇷', status:'required', label:'Schengen Visa Required',  note:'Apply at Croatian Embassy · €90 fee',            slug:null },
+  100: { name:'Bulgaria',             flag:'🇧🇬', status:'required', label:'Schengen Visa Required',  note:'Apply at Bulgarian Embassy · €90 fee',           slug:null },
+  642: { name:'Romania',              flag:'🇷🇴', status:'required', label:'Schengen Visa Required',  note:'Apply at Romanian Embassy · €90 fee',            slug:null },
+  372: { name:'Ireland',              flag:'🇮🇪', status:'required', label:'Visa Required',           note:'Not Schengen · €100 · Apply at Irish Embassy',   slug:null },
+  643: { name:'Russia',               flag:'🇷🇺', status:'required', label:'Visa Required',           note:'Check current sanctions & travel advisories',    slug:null },
+  840: { name:'United States',        flag:'🇺🇸', status:'required', label:'Visa Required (B1/B2)',   note:'Interview required · $185 fee · 2–6 months',     slug:'USA' },
+  124: { name:'Canada',               flag:'🇨🇦', status:'required', label:'Visa Required (TRV)',     note:'Apply online · CAD 100 fee · 8–12 weeks',        slug:null },
+  36:  { name:'Australia',            flag:'🇦🇺', status:'required', label:'Visa Required',           note:'Tourist Visa · AUD 145 · Apply online',          slug:'Australia' },
+  554: { name:'New Zealand',          flag:'🇳🇿', status:'required', label:'Visa Required',           note:'Apply online before travel',                     slug:null },
+  392: { name:'Japan',                flag:'🇯🇵', status:'required', label:'Visa Required',           note:'Apply at Japanese Embassy · ¥3,000 · 5–7 days', slug:'Japan' },
+  410: { name:'South Korea',          flag:'🇰🇷', status:'required', label:'Visa Required',           note:'Apply at Korean Embassy in Amman',               slug:null },
+  156: { name:'China',                flag:'🇨🇳', status:'required', label:'Visa Required',           note:'Apply at Chinese Embassy in Amman',              slug:null },
+  710: { name:'South Africa',         flag:'🇿🇦', status:'required', label:'Visa Required',           note:'Apply at SA Embassy · ZAR 425 · 5–10 days',     slug:null },
+  12:  { name:'Algeria',              flag:'🇩🇿', status:'required', label:'Visa Required',           note:'Apply at Algerian Embassy in Amman · ~$30',      slug:null },
+  566: { name:'Nigeria',              flag:'🇳🇬', status:'required', label:'Visa Required',           note:'Apply at Nigerian Embassy · $80 · 5–10 days',    slug:null },
+  434: { name:'Libya',                flag:'🇱🇾', status:'required', label:'Visa Required',           note:'Check safety advisories · Contact embassy',      slug:null },
+  586: { name:'Pakistan',             flag:'🇵🇰', status:'required', label:'Visa Required',           note:'Apply at Pakistani Embassy or online',           slug:null },
+  4:   { name:'Afghanistan',          flag:'🇦🇫', status:'required', label:'Visa Required',           note:'Check travel advisories before visiting',        slug:null },
+  760: { name:'Syria',                flag:'🇸🇾', status:'required', label:'Visa Required',           note:'Active conflict — check safety advisories',      slug:null },
+  887: { name:'Yemen',                flag:'🇾🇪', status:'required', label:'Visa Required',           note:'Active conflict — check safety advisories',      slug:null },
+};
+
+// ─── COLORS ──────────────────────────────────────────────────────────────────
+const C = {
+  free:     { base: '#15803d', lit: '#22c55e', side: 'rgba(21,128,61,0.35)' },
+  evisa:    { base: '#b45309', lit: '#f59e0b', side: 'rgba(180,83,9,0.35)'  },
+  required: { base: '#b91c1c', lit: '#ef4444', side: 'rgba(185,28,28,0.35)' },
+  jordan:   { base: '#4338ca', lit: '#6366f1', side: 'rgba(67,56,202,0.4)'  },
+  none:     { base: '#1e293b', lit: '#334155', side: 'rgba(30,41,59,0.2)'   },
+};
+
+function getEntry(numId) {
+  if (numId === 400) return { name:'Jordan', flag:'🇯🇴', status:'jordan', label:'Your Home Country', note:'', slug:null };
+  return VISA[numId] || null;
+}
+
+function capColor(feat, hovered) {
+  const d = getEntry(+feat.id);
+  const s = d ? d.status : 'none';
+  return hovered ? C[s].lit : C[s].base;
+}
+
+function sideColor(feat) {
+  const d = getEntry(+feat.id);
+  const s = d ? d.status : 'none';
+  return C[s].side;
+}
+
+// ─── COUNT STATS ─────────────────────────────────────────────────────────────
+const counts = { free: 0, evisa: 0, required: 0 };
+Object.values(VISA).forEach(v => { if (counts[v.status] !== undefined) counts[v.status]++; });
+document.getElementById('count-free').textContent     = counts.free;
+document.getElementById('count-evisa').textContent    = counts.evisa;
+document.getElementById('count-required').textContent = counts.required;
+
+// ─── TOOLTIP ELEMENTS ────────────────────────────────────────────────────────
+const tooltip = document.getElementById('tooltip');
+const ttName  = document.getElementById('tt-name');
+const ttBadge = document.getElementById('tt-badge');
+const ttNote  = document.getElementById('tt-note');
+const ttHint  = document.getElementById('tt-hint');
+
+let mouseX = 0, mouseY = 0;
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  if (tooltip.classList.contains('visible')) positionTooltip();
+});
+
+function positionTooltip() {
+  const m = 18, w = 240, h = 110;
+  let x = mouseX + m, y = mouseY + m;
+  if (x + w > window.innerWidth)  x = mouseX - w - m;
+  if (y + h > window.innerHeight) y = mouseY - h - m;
+  tooltip.style.left = x + 'px';
+  tooltip.style.top  = y + 'px';
+}
+
+function showTooltip(d) {
+  if (!d) {
+    ttName.textContent = 'Country (no data)';
+    ttBadge.textContent = 'No data available';
+    ttBadge.className = 'tt-badge gray';
+    ttNote.textContent = '';
+    ttHint.style.display = 'none';
+  } else {
+    ttName.textContent = (d.flag || '') + ' ' + d.name;
+    ttBadge.textContent = d.label;
+    ttBadge.className = 'tt-badge ' + (d.status === 'jordan' ? 'jordan' : d.status === 'free' ? 'green' : d.status === 'evisa' ? 'yellow' : 'red');
+    ttNote.textContent = d.note || '';
+    ttHint.style.display = d.status !== 'jordan' ? '' : 'none';
+  }
+  positionTooltip();
+  tooltip.classList.add('visible');
+}
+
+function hideTooltip() {
+  tooltip.classList.remove('visible');
+}
+
+// ─── POPUP ELEMENTS ──────────────────────────────────────────────────────────
+const overlay  = document.getElementById('popup-overlay');
+const popFlag  = document.getElementById('pop-flag');
+const popName  = document.getElementById('pop-name');
+const popBadge = document.getElementById('pop-badge');
+const popNote  = document.getElementById('pop-note');
+const popLink  = document.getElementById('pop-link');
+
+function showPopup(d) {
+  hideTooltip();
+  if (!d) {
+    popFlag.textContent   = '🌍';
+    popName.textContent   = 'Unknown Country';
+    popBadge.textContent  = 'No data available';
+    popBadge.className    = 'popup-badge gray';
+    popNote.textContent   = 'We don\'t have specific visa data for this country yet.';
+    popLink.href          = 'index.html';
+    popLink.textContent   = 'Browse All Countries →';
+    popLink.className     = 'popup-btn muted';
+  } else {
+    popFlag.textContent   = d.flag || '🌍';
+    popName.textContent   = d.name;
+    popBadge.textContent  = d.label;
+    popBadge.className    = 'popup-badge ' + (d.status === 'free' ? 'green' : d.status === 'evisa' ? 'yellow' : d.status === 'jordan' ? 'gray' : 'red');
+    popNote.textContent   = d.note || '';
+    if (d.slug) {
+      popLink.href        = 'visa-info.html?country=' + encodeURIComponent(d.slug);
+      popLink.textContent = 'View Full Requirements →';
+      popLink.className   = 'popup-btn';
+    } else {
+      popLink.href        = 'index.html#countries';
+      popLink.textContent = 'Browse All Countries →';
+      popLink.className   = 'popup-btn muted';
+    }
+  }
+  overlay.classList.add('open');
+  if (globeReady) globe.controls().autoRotate = false;
+}
+
+function closePopup() {
+  overlay.classList.remove('open');
+  if (globeReady) globe.controls().autoRotate = !userInteracted;
+}
+
+document.getElementById('popup-close').addEventListener('click', closePopup);
+overlay.addEventListener('click', e => { if (e.target === overlay) closePopup(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+
+// ─── GLOBE ───────────────────────────────────────────────────────────────────
+let globeReady = false;
+let hoverD = null;
+let userInteracted = false;
+const globeEl = document.getElementById('globe-el');
+const loading  = document.getElementById('globe-loading');
+
+const isMobile = window.matchMedia('(max-width: 600px)').matches;
+const globe = Globe()(globeEl);
+
+globe
+  .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
+  .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
+  .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png')
+  .atmosphereColor('rgba(79, 70, 229, 0.45)')
+  .atmosphereAltitude(0.2)
+  .showAtmosphere(true)
+  .showGraticules(false);
+
+fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+  .then(r => r.json())
+  .then(world => {
+    const features = topojson.feature(world, world.objects.countries).features;
+
+    globe
+      .polygonsData(features)
+      .polygonCapColor(feat => capColor(feat, feat === hoverD))
+      .polygonSideColor(feat => sideColor(feat))
+      .polygonStrokeColor(() => 'rgba(255,255,255,0.035)')
+      .polygonAltitude(feat => feat === hoverD ? 0.018 : 0.008)
+      .polygonLabel(() => '') // custom tooltip
+      .onPolygonHover(polygon => {
+        if (polygon === hoverD) return;
+        hoverD = polygon;
+        globe
+          .polygonAltitude(feat => feat === polygon ? 0.018 : 0.008)
+          .polygonCapColor(feat => capColor(feat, feat === polygon));
+        if (polygon) {
+          showTooltip(getEntry(+polygon.id));
+          globeEl.style.cursor = 'pointer';
+        } else {
+          hideTooltip();
+          globeEl.style.cursor = '';
+        }
+      })
+      .onPolygonClick(polygon => {
+        if (!polygon) return;
+        showPopup(getEntry(+polygon.id));
+      });
+
+    // Initial camera: Middle East
+    globe.pointOfView({ lat: 27, lng: 38, altitude: isMobile ? 2.8 : 2.2 }, 0);
+
+    // Auto-rotate
+    globe.controls().autoRotate = true;
+    globe.controls().autoRotateSpeed = 0.35;
+    globe.controls().enableZoom = true;
+    globe.controls().minDistance = isMobile ? 280 : 200;
+    globe.controls().maxDistance = isMobile ? 700 : 550;
+    globe.controls().enableDamping = true;
+    globe.controls().dampingFactor = 0.1;
+
+    // Pause rotation on user interaction
+    globe.controls().addEventListener('start', () => {
+      userInteracted = true;
+      globe.controls().autoRotate = false;
+    });
+
+    globeReady = true;
+
+    // Hide loading
+    loading.classList.add('hidden');
+    setTimeout(() => { loading.style.display = 'none'; }, 500);
+  })
+  .catch(() => {
+    loading.querySelector('.loading-text').textContent = 'Failed to load map. Please refresh.';
+    loading.querySelector('.loading-spinner').style.display = 'none';
+  });
+
+// Responsive resize
+function onResize() {
+  const wrap = document.getElementById('globe-wrap');
+  globe.width(wrap.offsetWidth).height(wrap.offsetHeight);
+}
+window.addEventListener('resize', onResize);
+setTimeout(onResize, 0);
+</script>
+</body>
+</html>

@@ -433,6 +433,96 @@ faqsRouter.get('/', async (req, res) => {
 });
 
 // ─────────────────────────────────────────────────────────
+// ROUTES: /api/v1/leads  (consultation form submissions)
+// ─────────────────────────────────────────────────────────
+
+const leadsRouter = express.Router();
+
+const LeadSchema = z.object({
+  full_name:                  z.string().min(1).max(200),
+  country_code:               z.string().max(10).default('+962'),
+  phone_number:               z.string().min(5).max(30),
+  destination_country:        z.string().min(1).max(100),
+  destination_country_hidden: z.string().max(100).optional().nullable(),
+  notes:                      z.string().max(1000).optional().nullable(),
+});
+
+const leadsLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,  // 1 hour
+  max: 5,                      // 5 submissions per IP per hour
+  message: { error: 'Too many submissions. Please try again later.' },
+});
+
+/**
+ * POST /api/v1/leads
+ * Store a consultation request from the visa guide form.
+ */
+leadsRouter.post('/', leadsLimiter, async (req, res) => {
+  try {
+    const parsed = LeadSchema.safeParse(req.body);
+    if (!parsed.success) {
+      return res.status(400).json({ error: 'Validation failed', details: parsed.error.issues });
+    }
+
+    const d = parsed.data;
+    const ipRaw = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.ip;
+    const ipHash = ipRaw
+      ? Buffer.from(ipRaw).toString('base64').substring(0, 64)
+      : null;
+
+    const { rows } = await query(
+      `INSERT INTO consultation_leads
+         (full_name, country_code, phone_number, destination_country, page_country, notes, source_url, ip_hash)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+       RETURNING id, created_at`,
+      [
+        d.full_name.trim(),
+        d.country_code,
+        d.phone_number.trim(),
+        d.destination_country.trim(),
+        d.destination_country_hidden?.trim() || null,
+        d.notes?.trim() || null,
+        req.headers.referer || null,
+        ipHash,
+      ]
+    );
+
+    logger.info('New consultation lead', { id: rows[0].id, destination: d.destination_country });
+    return res.status(200).json({ success: true, id: rows[0].id });
+  } catch (err) {
+    logger.error('POST /leads failed', { err });
+    return res.status(500).json({ error: 'Failed to save your request. Please try again.' });
+  }
+});
+
+/**
+ * GET /api/v1/leads  (admin only — returns all leads)
+ */
+leadsRouter.get('/', requireAdmin, async (req, res) => {
+  try {
+    const { status, destination, limit = 100, offset = 0 } = req.query;
+    const conditions = [];
+    const params = [];
+    let p = 1;
+
+    if (status) { conditions.push(`status = $${p++}`); params.push(status); }
+    if (destination) { conditions.push(`destination_country ILIKE $${p++}`); params.push(`%${destination}%`); }
+
+    const where = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
+    const { rows } = await query(
+      `SELECT * FROM leads_dashboard ${where}
+       LIMIT $${p++} OFFSET $${p++}`,
+      [...params, parseInt(limit), parseInt(offset)]
+    );
+
+    res.json({ data: rows, count: rows.length });
+  } catch (err) {
+    logger.error('GET /leads failed', { err });
+    res.status(500).json({ error: 'Failed to fetch leads' });
+  }
+});
+
+// ─────────────────────────────────────────────────────────
 // ADMIN ROUTES: /api/v1/admin (protected)
 // ─────────────────────────────────────────────────────────
 
@@ -547,6 +637,7 @@ adminRouter.post('/cache/clear', async (req, res) => {
 app.use('/api/v1/countries', countriesRouter);
 app.use('/api/v1/visas', visasRouter);
 app.use('/api/v1/faqs', faqsRouter);
+app.use('/api/v1/leads', leadsRouter);
 app.use('/api/v1/admin', adminRouter);
 
 // Health check

@@ -297,6 +297,67 @@ INSERT INTO countries (iso2, iso3, name, name_ar, region, flag_emoji, is_arab_le
 ON CONFLICT DO NOTHING;
 
 -- ============================================================
+-- TABLE: consultation_leads
+-- Stores every form submission from the visa guide pages.
+-- No foreign keys on purpose — country names are free-text from
+-- the dropdown so they survive schema changes.
+-- ============================================================
+CREATE TABLE consultation_leads (
+  id                   UUID         PRIMARY KEY DEFAULT uuid_generate_v4(),
+
+  -- Contact details
+  full_name            VARCHAR(200) NOT NULL,
+  country_code         VARCHAR(10)  NOT NULL DEFAULT '+962',  -- e.g. '+962'
+  phone_number         VARCHAR(30)  NOT NULL,
+
+  -- Lead intent
+  destination_country  VARCHAR(100) NOT NULL,   -- free-text from dropdown
+  page_country         VARCHAR(100),            -- the ?country= param on the page
+  notes                TEXT,                    -- optional free-text
+
+  -- Attribution / deduplication
+  source_url           TEXT,                    -- Referer header
+  ip_hash              VARCHAR(64),             -- base64(ip) for dedup, never raw IP
+
+  -- Pipeline management
+  status               VARCHAR(30)  NOT NULL DEFAULT 'new',
+  -- 'new' | 'contacted' | 'qualified' | 'converted' | 'closed'
+  assigned_to          VARCHAR(100),            -- agency partner email
+  notes_internal       TEXT,                    -- CRM notes, not shown to user
+
+  created_at           TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
+  updated_at           TIMESTAMPTZ  NOT NULL DEFAULT NOW()
+);
+
+-- Trigger: keep updated_at fresh
+CREATE TRIGGER set_updated_at_consultation_leads
+  BEFORE UPDATE ON consultation_leads
+  FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+
+-- Indices for the most common admin queries
+CREATE INDEX idx_leads_status      ON consultation_leads(status, created_at DESC);
+CREATE INDEX idx_leads_destination ON consultation_leads(destination_country);
+CREATE INDEX idx_leads_created     ON consultation_leads(created_at DESC);
+CREATE INDEX idx_leads_phone       ON consultation_leads(phone_number);
+
+-- ============================================================
+-- VIEW: leads_dashboard  (quick CRM overview)
+-- ============================================================
+CREATE OR REPLACE VIEW leads_dashboard AS
+SELECT
+  id,
+  full_name,
+  country_code || phone_number AS full_phone,
+  destination_country,
+  page_country,
+  notes,
+  status,
+  assigned_to,
+  created_at
+FROM consultation_leads
+ORDER BY created_at DESC;
+
+-- ============================================================
 -- VIEW: visa_summary  (fast read for API layer)
 -- ============================================================
 CREATE OR REPLACE VIEW visa_summary AS
