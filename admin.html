@@ -375,6 +375,17 @@
       </div>
 
       <div class="form-group full">
+        <label class="form-label">How to apply steps — English</label>
+        <span class="form-hint" style="margin-bottom:5px;display:block">One step per line: <code>Step title | Step description</code></span>
+        <textarea class="form-control" id="d_steps_en" rows="7" placeholder="Complete the application form | Fill out the form online and print it&#10;Gather your documents | Compile originals and photocopies" style="resize:vertical;font-family:monospace;font-size:12px"></textarea>
+      </div>
+      <div class="form-group full">
+        <label class="form-label">How to apply steps — Arabic</label>
+        <span class="form-hint" style="margin-bottom:5px;display:block">نفس التنسيق: عنوان الخطوة | وصف الخطوة</span>
+        <textarea class="form-control" id="d_steps_ar" rows="7" placeholder="أكمل طلب التأشيرة | امل الاستمارة وأرسلها" dir="rtl" style="resize:vertical;font-family:monospace;font-size:12px"></textarea>
+      </div>
+
+      <div class="form-group full">
         <label class="form-label">Tips — English</label>
         <span class="form-hint" style="margin-bottom:5px;display:block">One tip per line.</span>
         <textarea class="form-control" id="d_tips_en" rows="5" placeholder="Apply at least 3 weeks before your travel date&#10;Book refundable accommodation while your visa is pending" style="resize:vertical"></textarea>
@@ -786,6 +797,17 @@ function serializeDocs(arr) {
 function parseTips(text) {
   return text.split('\n').map(l => l.trim()).filter(Boolean);
 }
+function parseSteps(text) {
+  return text.split('\n').map(l => l.trim()).filter(Boolean).map((l, i) => {
+    const [title, desc] = l.split('|').map(s => s.trim());
+    const n = String(i + 1).padStart(2, '0');
+    return { n, title: title || '', desc: desc || '' };
+  });
+}
+function serializeSteps(arr) {
+  if (!arr || !arr.length) return '';
+  return arr.map(s => s.desc ? `${s.title} | ${s.desc}` : s.title).join('\n');
+}
 
 let detailsCode = null;
 
@@ -812,6 +834,8 @@ function openDetails(code) {
   document.getElementById('d_overview_ar').value = merged.overview_ar   || '';
   document.getElementById('d_docs_en').value     = serializeDocs(merged.documents_en);
   document.getElementById('d_docs_ar').value     = serializeDocs(merged.documents_ar);
+  document.getElementById('d_steps_en').value    = serializeSteps(merged.steps_en);
+  document.getElementById('d_steps_ar').value    = serializeSteps(merged.steps_ar);
   document.getElementById('d_tips_en').value     = (merged.tips_en || []).join('\n');
   document.getElementById('d_tips_ar').value     = (merged.tips_ar || []).join('\n');
 
@@ -853,6 +877,10 @@ async function saveDetails() {
   if (ov_ar)      update.overview_ar   = ov_ar;
   if (docs_en)    update.documents_en  = parseDocs(docs_en);
   if (docs_ar)    update.documents_ar  = parseDocs(docs_ar);
+  const steps_en   = document.getElementById('d_steps_en').value.trim();
+  const steps_ar   = document.getElementById('d_steps_ar').value.trim();
+  if (steps_en)   update.steps_en      = parseSteps(steps_en);
+  if (steps_ar)   update.steps_ar      = parseSteps(steps_ar);
   if (tips_en)    update.tips_en       = parseTips(tips_en);
   if (tips_ar)    update.tips_ar       = parseTips(tips_ar);
 
