@@ -28,8 +28,8 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Missing required fields.' });
   }
 
-  if (!process.env.GEMINI_API_KEY) {
-    return res.status(500).json({ error: 'Gemini API key not configured.' });
+  if (!process.env.GROQ_API_KEY) {
+    return res.status(500).json({ error: 'Groq API key not configured.' });
   }
 
   const entry = new Date(entryDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -75,29 +75,32 @@ Include: arrival logistics on Day 1, a mix of morning/afternoon/evening activiti
 `;
   }
 
-  const fullPrompt = `${systemPrompt}\n\n${userPrompt.trim()}`;
-
   try {
-    const geminiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: fullPrompt }] }],
-          generationConfig: { temperature: 0.7, maxOutputTokens: 2000 },
-        }),
-      }
-    );
+    const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user',   content: userPrompt.trim() },
+        ],
+        temperature: 0.7,
+        max_tokens: 2000,
+      }),
+    });
 
-    if (!geminiRes.ok) {
-      const err = await geminiRes.json().catch(() => ({}));
-      console.error('[generate-document] Gemini error:', err);
-      return res.status(502).json({ error: err.error?.message || 'Gemini request failed.' });
+    if (!groqRes.ok) {
+      const err = await groqRes.json().catch(() => ({}));
+      console.error('[generate-document] Groq error:', err);
+      return res.status(502).json({ error: err.error?.message || 'Generation failed.' });
     }
 
-    const data = await geminiRes.json();
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    const data = await groqRes.json();
+    const text = data.choices?.[0]?.message?.content || '';
     return res.status(200).json({ text });
 
   } catch (err) {
