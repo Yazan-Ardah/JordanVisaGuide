@@ -279,37 +279,60 @@ body { font-family: 'Inter', system-ui, sans-serif; background: #f5f6fa; color: 
       <p>Get official templates, step-by-step guides, and embassy-ready letter drafts — in Arabic & English.</p>
     </div>
     <div class="modal-body">
-      <div class="modal-price-row">
-        <span class="modal-price">$6</span>
-        <span class="modal-price-sub">/ month</span>
-        <span class="modal-price-save">Save 40% annually</span>
+      <!-- Tab switcher: Subscribe / Already subscribed -->
+      <div style="display:flex;gap:0;background:#f0f0f8;border-radius:10px;padding:3px;margin-bottom:20px;">
+        <button id="tabSubscribe"  onclick="switchModalTab('subscribe')"  style="flex:1;padding:8px;border:none;border-radius:8px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;transition:all .15s;">Subscribe</button>
+        <button id="tabActivate"   onclick="switchModalTab('activate')"   style="flex:1;padding:8px;border:none;border-radius:8px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;background:transparent;color:#6b7280;transition:all .15s;">Already subscribed?</button>
       </div>
-      <ul class="modal-benefits">
-        <li class="modal-benefit">
-          <div class="benefit-icon"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="benefit-text"><strong>Official Government Letter Templates</strong><span>Arabic + English drafts for sponsor, employment & attestation letters</span></div>
-        </li>
-        <li class="modal-benefit">
-          <div class="benefit-icon"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="benefit-text"><strong>Jordan → KSA Attestation Workflow</strong><span>Step-by-step guide: MoE → MoFA → Saudi embassy → MOFA KSA</span></div>
-        </li>
-        <li class="modal-benefit">
-          <div class="benefit-icon"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="benefit-text"><strong>Country-Specific CV & Cover Letter</strong><span>Optimised CV template for Saudi, UAE, UK, Schengen applications</span></div>
-        </li>
-        <li class="modal-benefit">
-          <div class="benefit-icon"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="benefit-text"><strong>Unlimited PDF Checklist Exports</strong><span>Full checklists including all premium items — no watermark</span></div>
-        </li>
-        <li class="modal-benefit">
-          <div class="benefit-icon"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="benefit-text"><strong>WhatsApp Priority Support</strong><span>Get answers from our visa specialists within 4 hours</span></div>
-        </li>
-      </ul>
-      <button class="btn-upgrade-modal" onclick="handleUpgradeClick()">
-        ✨ Unlock Premium — $6/mo
-      </button>
-      <p class="modal-disclaimer">Cancel anytime · Secure payment · Instant access</p>
+
+      <!-- Subscribe panel -->
+      <div id="panelSubscribe">
+        <div class="modal-price-row">
+          <span class="modal-price">$6</span>
+          <span class="modal-price-sub">/ month</span>
+          <span class="modal-price-save">Cancel anytime</span>
+        </div>
+        <ul class="modal-benefits">
+          <li class="modal-benefit">
+            <div class="benefit-icon"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="benefit-text"><strong>Official Government Letter Templates</strong><span>Arabic + English drafts for sponsor, employment & attestation letters</span></div>
+          </li>
+          <li class="modal-benefit">
+            <div class="benefit-icon"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="benefit-text"><strong>Jordan → KSA Attestation Workflow</strong><span>Step-by-step guide: MoE → MoFA → Saudi embassy → MOFA KSA</span></div>
+          </li>
+          <li class="modal-benefit">
+            <div class="benefit-icon"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="benefit-text"><strong>Country-Specific CV & Cover Letter</strong><span>Optimised CV template for Saudi, UAE, UK, Schengen applications</span></div>
+          </li>
+          <li class="modal-benefit">
+            <div class="benefit-icon"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="benefit-text"><strong>Unlimited PDF Checklist Exports</strong><span>Full checklists including all premium items — no watermark</span></div>
+          </li>
+          <li class="modal-benefit">
+            <div class="benefit-icon"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="benefit-text"><strong>WhatsApp Priority Support</strong><span>Get answers from our visa specialists within 4 hours</span></div>
+          </li>
+        </ul>
+        <button class="btn-upgrade-modal" onclick="handleUpgradeClick()">
+          ✨ Unlock Premium — $6/mo
+        </button>
+        <p class="modal-disclaimer">Powered by Stripe · Secure · Cancel anytime</p>
+      </div>
+
+      <!-- Activate panel (already paid) -->
+      <div id="panelActivate" style="display:none;">
+        <p style="font-size:14px;color:#6b7280;margin-bottom:16px;line-height:1.5;">Enter the email address you used to subscribe and we'll unlock premium instantly.</p>
+        <input id="activateEmail" type="email" placeholder="your@email.com"
+          style="width:100%;padding:13px 16px;border:1.5px solid #e8e8f0;border-radius:12px;font-size:14px;font-family:inherit;outline:none;margin-bottom:10px;transition:border-color .15s;"
+          onkeydown="if(event.key==='Enter')activatePremium()"
+          onfocus="this.style.borderColor='#7c3aed'" onblur="this.style.borderColor='#e8e8f0'" />
+        <div id="activateError" style="display:none;color:#dc2626;font-size:12px;margin-bottom:10px;padding:8px 12px;background:rgba(239,68,68,.06);border-radius:8px;"></div>
+        <button class="btn-upgrade-modal" id="activateBtn" onclick="activatePremium()">
+          Unlock My Premium Access
+        </button>
+        <p class="modal-disclaimer">Can't find your subscription? <a href="https://wa.me/962770068980" target="_blank" style="color:#7c3aed;">Contact support</a></p>
+      </div>
     </div>
   </div>
 </div>
@@ -536,12 +559,58 @@ const VISA_DATA = {
 };
 
 // ─── STATE ────────────────────────────────────────────────────────────────────
-let checked      = {};
-let currentVisa  = Object.keys(VISA_DATA)[0];
-const isPremium  = false; // flip to true once payment is verified
+let checked     = {};
+let currentVisa = Object.keys(VISA_DATA)[0];
+
+// Replace with your Stripe Payment Link once created in the Stripe dashboard
+// Dashboard → Payment Links → Create → $6/mo recurring → copy the link
+const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/REPLACE_WITH_YOUR_LINK';
+
+// Premium status: persisted in localStorage, verified against /api/check-premium
+let isPremium = false;
+(function checkStoredPremium() {
+  const stored = localStorage.getItem('vj_premium_email');
+  if (stored) {
+    // Re-verify silently on every load — catches cancellations
+    fetch('/api/check-premium', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: stored })
+    })
+    .then(r => r.json())
+    .then(d => {
+      if (d.premium) {
+        isPremium = true;
+        render();
+        showPremiumToast(stored);
+      } else {
+        // Subscription lapsed — clear cache
+        localStorage.removeItem('vj_premium_email');
+      }
+    })
+    .catch(() => {
+      // Network error — trust the cache optimistically for this session
+      isPremium = true;
+    });
+  }
+})();
+
+function showPremiumToast(email) {
+  const t = document.createElement('div');
+  t.style.cssText = [
+    'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:999',
+    'background:#1a1a3e;color:#fff;padding:10px 20px;border-radius:100px',
+    'font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px',
+    'box-shadow:0 8px 32px rgba(0,0,0,.2);animation:fadeUp .3s ease'
+  ].join(';');
+  t.innerHTML = '✨ Premium active — ' + email;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 4000);
+}
 
 // ─── MODAL ────────────────────────────────────────────────────────────────────
 function openModal(source) {
+  switchModalTab('subscribe');
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
   if (typeof umami !== 'undefined') umami.track('premium-modal-open', { source });
@@ -553,11 +622,69 @@ function closeModal() {
 function closeModalOnBg(e) { if (e.target === e.currentTarget) closeModal(); }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
+function switchModalTab(tab) {
+  const isSub = tab === 'subscribe';
+  document.getElementById('panelSubscribe').style.display = isSub ? '' : 'none';
+  document.getElementById('panelActivate').style.display  = isSub ? 'none' : '';
+  const subBtn = document.getElementById('tabSubscribe');
+  const actBtn = document.getElementById('tabActivate');
+  subBtn.style.background = isSub ? 'linear-gradient(135deg,#7c3aed,#a855f7)' : 'transparent';
+  subBtn.style.color      = isSub ? '#fff' : '#6b7280';
+  actBtn.style.background = isSub ? 'transparent' : 'linear-gradient(135deg,#7c3aed,#a855f7)';
+  actBtn.style.color      = isSub ? '#6b7280' : '#fff';
+  if (!isSub) setTimeout(() => document.getElementById('activateEmail').focus(), 50);
+}
+
 function handleUpgradeClick() {
-  // Replace this URL with your Stripe Payment Link or Gumroad/Lemon Squeezy link
-  const UPGRADE_URL = 'https://wa.me/962770068980?text=' + encodeURIComponent('Hi, I want to upgrade to VisasJo Premium (checklist)');
   if (typeof umami !== 'undefined') umami.track('premium-upgrade-click');
-  window.open(UPGRADE_URL, '_blank', 'noopener');
+  // Opens Stripe hosted checkout — after payment Stripe fires webhook to /api/stripe-webhook
+  // which saves the email, then user comes back and uses "Already subscribed?" tab
+  window.open(STRIPE_PAYMENT_LINK, '_blank', 'noopener');
+}
+
+async function activatePremium() {
+  const emailEl  = document.getElementById('activateEmail');
+  const errorEl  = document.getElementById('activateError');
+  const btn      = document.getElementById('activateBtn');
+  const email    = emailEl.value.trim();
+
+  errorEl.style.display = 'none';
+  if (!email || !email.includes('@')) {
+    errorEl.textContent = 'Please enter a valid email address.';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  btn.textContent = 'Checking…';
+  btn.disabled = true;
+
+  try {
+    const res  = await fetch('/api/check-premium', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    const data = await res.json();
+
+    if (data.premium) {
+      localStorage.setItem('vj_premium_email', email);
+      isPremium = true;
+      closeModal();
+      render();
+      showPremiumToast(email);
+      if (typeof umami !== 'undefined') umami.track('premium-activated', { email });
+    } else {
+      errorEl.textContent = 'No active subscription found for this email. Did you use a different address?';
+      errorEl.style.display = 'block';
+      btn.textContent = 'Unlock My Premium Access';
+      btn.disabled = false;
+    }
+  } catch (err) {
+    errorEl.textContent = 'Connection error. Please try again.';
+    errorEl.style.display = 'block';
+    btn.textContent = 'Unlock My Premium Access';
+    btn.disabled = false;
+  }
 }
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
