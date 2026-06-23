@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About VisasJo — Jordan's #1 Visa Resource for Jordanian Passport Holders</title>
+<meta name="description" content="VisasJo is the most comprehensive visa information platform for Jordanian passport holders. Learn about our mission, audience, and partnership opportunities." />
+<link rel="canonical" href="https://visasjo.com/about" />
+<meta property="og:title" content="About VisasJo — Jordan's #1 Visa Resource" />
+<meta property="og:description" content="The definitive visa guide for Jordanian passport holders. 193 countries, bilingual, no ads." />
+<meta property="og:url" content="https://visasjo.com/about" />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@400;600;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a3e; background: #fff; }
+
+  /* ── NAV ── */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(16px);
+    border-bottom: 1px solid #e8e8f0; padding: 0 32px; height: 64px;
+    display: flex; align-items: center;
+  }
+  .nav-inner { max-width: 1100px; margin: 0 auto; width: 100%; display: flex; align-items: center; gap: 16px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+  .logo-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, #e85d2f, #ff8c5a);
+    display: flex; align-items: center; justify-content: center; font-size: 16px;
+  }
+  .logo-text { font-size: 15px; font-weight: 700; color: #1a1a3e; }
+  .logo-text span { font-weight: 400; color: #6b7280; }
+  .nav-links { margin-left: auto; display: flex; gap: 4px; }
+  .nav-link { color: #374151; text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 12px; border-radius: 8px; transition: background 0.15s; }
+  .nav-link:hover { background: #f3f4f6; }
+  .nav-link.active { background: #f3f4f6; color: #1a1a3e; font-weight: 600; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(150deg, #0f0f2e 0%, #1a1a3e 40%, #2d1b69 100%);
+    padding: 96px 32px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 60% 50%, rgba(232,93,47,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    background: rgba(232,93,47,0.15); border: 1px solid rgba(232,93,47,0.3);
+    color: #fb923c; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 6px 18px; border-radius: 100px; margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800; color: #fff;
+    letter-spacing: -0.03em; line-height: 1.1;
+    margin-bottom: 20px; max-width: 760px; margin-left: auto; margin-right: auto;
+  }
+  .hero h1 em { font-style: normal; color: #fb923c; }
+  .hero-sub {
+    font-size: 18px; color: rgba(255,255,255,0.55);
+    max-width: 560px; margin: 0 auto 44px; line-height: 1.65;
+  }
+  .hero-cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: #e85d2f; color: #fff; border: none;
+    padding: 14px 28px; border-radius: 12px;
+    font-size: 15px; font-weight: 700; cursor: pointer;
+    text-decoration: none; transition: background 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #d14e22; }
+  .btn-outline {
+    background: transparent; color: rgba(255,255,255,0.75);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 14px 28px; border-radius: 12px;
+    font-size: 15px; font-weight: 600; cursor: pointer;
+    text-decoration: none; transition: all 0.15s;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.08); color: #fff; }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    background: #f5f0e8; border-bottom: 1px solid #ece6da;
+    padding: 0 32px;
+  }
+  .stats-strip-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-block {
+    padding: 32px 24px; text-align: center;
+    border-right: 1px solid #ddd5c8;
+  }
+  .stat-block:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Sora', sans-serif;
+    font-size: 36px; font-weight: 800; color: #1a1a3e;
+    letter-spacing: -0.02em; margin-bottom: 4px;
+  }
+  .stat-num span { color: #e85d2f; }
+  .stat-label { font-size: 13px; color: #6b7280; font-weight: 500; }
+  .stat-sub { font-size: 11px; color: #9ca3af; margin-top: 3px; }
+
+  /* ── SECTION ── */
+  .section { padding: 80px 32px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px; font-weight: 700; color: #e85d2f;
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 800; color: #1a1a3e;
+    letter-spacing: -0.02em; margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 16px; color: #6b7280; line-height: 1.7;
+    max-width: 640px; margin-bottom: 48px;
+  }
+
+  /* ── STRENGTHS GRID ── */
+  .strengths-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .strength-card {
+    background: #fff;
+    border: 1px solid #e8e8f0;
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: box-shadow 0.15s;
+  }
+  .strength-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
+  .strength-icon { font-size: 28px; margin-bottom: 14px; }
+  .strength-title { font-size: 16px; font-weight: 700; color: #1a1a3e; margin-bottom: 8px; }
+  .strength-desc { font-size: 14px; color: #6b7280; line-height: 1.65; }
+
+  /* ── AUDIENCE ── */
+  .audience-section { background: #0f0f2e; padding: 80px 32px; }
+  .audience-inner { max-width: 1100px; margin: 0 auto; }
+  .audience-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 64px; align-items: center;
+  }
+  .audience-label { font-size: 11px; font-weight: 700; color: #fb923c; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+  .audience-title {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 800; color: #fff;
+    letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.2;
+  }
+  .audience-sub { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 32px; }
+  .audience-stats { display: flex; flex-direction: column; gap: 16px; }
+  .aud-stat {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+  }
+  .aud-stat-icon { font-size: 24px; flex-shrink: 0; }
+  .aud-stat-num { font-size: 22px; font-weight: 800; color: #fff; font-family: 'Sora', sans-serif; }
+  .aud-stat-label { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+  .demo-bars { display: flex; flex-direction: column; gap: 20px; }
+  .demo-bar-row { }
+  .demo-bar-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+  .demo-bar-label { font-size: 13px; color: rgba(255,255,255,0.7); font-weight: 500; }
+  .demo-bar-pct { font-size: 13px; font-weight: 700; color: #fff; }
+  .demo-bar-track { height: 6px; background: rgba(255,255,255,0.07); border-radius: 100px; overflow: hidden; }
+  .demo-bar-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, #e85d2f, #fb923c); }
+
+  /* ── GOALS ── */
+  .goals-section { background: #fafafa; padding: 80px 32px; }
+  .goals-inner { max-width: 1100px; margin: 0 auto; }
+  .goals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .goal-card {
+    background: #fff; border: 1px solid #e8e8f0;
+    border-radius: 16px; padding: 32px 28px;
+    position: relative; overflow: hidden;
+  }
+  .goal-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .goal-card.orange::before { background: linear-gradient(90deg, #e85d2f, #fb923c); }
+  .goal-card.blue::before   { background: linear-gradient(90deg, #2563eb, #60a5fa); }
+  .goal-card.green::before  { background: linear-gradient(90deg, #16a34a, #4ade80); }
+  .goal-phase {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; margin-bottom: 10px;
+  }
+  .goal-card.orange .goal-phase { color: #e85d2f; }
+  .goal-card.blue   .goal-phase { color: #2563eb; }
+  .goal-card.green  .goal-phase { color: #16a34a; }
+  .goal-title { font-size: 20px; font-weight: 800; color: #1a1a3e; margin-bottom: 12px; font-family: 'Sora', sans-serif; }
+  .goal-desc { font-size: 14px; color: #6b7280; line-height: 1.65; margin-bottom: 20px; }
+  .goal-milestones { display: flex; flex-direction: column; gap: 8px; }
+  .goal-milestone {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13px; color: #374151;
+  }
+  .goal-milestone-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    margin-top: 6px; flex-shrink: 0;
+  }
+  .goal-card.orange .goal-milestone-dot { background: #e85d2f; }
+  .goal-card.blue   .goal-milestone-dot { background: #2563eb; }
+  .goal-card.green  .goal-milestone-dot { background: #16a34a; }
+
+  /* ── WHY PARTNER ── */
+  .partner-section { padding: 80px 32px; background: #fff; }
+  .partner-inner { max-width: 1100px; margin: 0 auto; }
+  .partner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .partner-list { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
+  .partner-item { display: flex; gap: 16px; align-items: flex-start; }
+  .partner-item-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: #fef3ee; display: flex; align-items: center;
+    justify-content: center; font-size: 18px; flex-shrink: 0;
+  }
+  .partner-item-title { font-size: 15px; font-weight: 700; color: #1a1a3e; margin-bottom: 4px; }
+  .partner-item-desc { font-size: 14px; color: #6b7280; line-height: 1.6; }
+
+  /* ── CONTACT CARD ── */
+  .contact-card {
+    background: linear-gradient(150deg, #0f0f2e, #1a1a3e);
+    border-radius: 24px; padding: 48px;
+    border: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+  }
+  .contact-card h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 28px; font-weight: 800; color: #fff;
+    letter-spacing: -0.02em; margin-bottom: 12px;
+  }
+  .contact-card p { font-size: 15px; color: rgba(255,255,255,0.5); margin-bottom: 32px; line-height: 1.65; }
+  .contact-methods { display: flex; flex-direction: column; gap: 12px; }
+  .contact-method {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; text-decoration: none;
+    transition: background 0.15s;
+  }
+  .contact-method:hover { background: rgba(255,255,255,0.09); }
+  .contact-method-icon { font-size: 20px; flex-shrink: 0; }
+  .contact-method-label { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 2px; }
+  .contact-method-value { font-size: 14px; font-weight: 600; color: #fff; }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: #f5f0e8; border-top: 1px solid #ece6da; border-bottom: 1px solid #ece6da;
+    padding: 24px 32px; text-align: center;
+  }
+  .trust-bar p { font-size: 13px; color: #9ca3af; }
+  .trust-bar strong { color: #6b7280; }
+
+  /* ── FOOTER ── */
+  footer { background: #0e0e22; padding: 36px 32px; }
+  .footer-bottom { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.28); }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.28); text-decoration: none; }
+  .footer-links a:hover { color: rgba(255,255,255,0.6); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav { padding: 0 16px; }
+    .hero { padding: 72px 20px 60px; }
+    .hero-sub { font-size: 16px; }
+    .stats-strip-inner { grid-template-columns: repeat(2, 1fr); }
+    .stat-block { border-right: none; border-bottom: 1px solid #ddd5c8; }
+    .stat-block:nth-child(2n) { border-left: 1px solid #ddd5c8; }
+    .stat-block:last-child { border-bottom: none; }
+    .section { padding: 56px 20px; }
+    .strengths-grid { grid-template-columns: 1fr; }
+    .audience-grid { grid-template-columns: 1fr; gap: 40px; }
+    .goals-grid { grid-template-columns: 1fr; }
+    .partner-grid { grid-template-columns: 1fr; gap: 40px; }
+    .contact-card { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="/">
+      <div class="logo-icon">🇯🇴</div>
+      <div class="logo-text"><strong>Jordan</strong><span> Visa Guide</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">All countries</a>
+      <a href="/about" class="nav-link active">About</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-eyebrow">About VisasJo</div>
+  <h1>Jordan's <em>most trusted</em> visa resource — built for Jordanians</h1>
+  <p class="hero-sub">We help Jordanian passport holders cut through the confusion of international visa requirements. Free, bilingual, and accurate.</p>
+  <div class="hero-cta-row">
+    <a href="mailto:yazanmta213@gmail.com" class="btn-primary">Partner with us</a>
+    <a href="/" class="btn-outline">Explore the guide →</a>
+  </div>
+</section>
+
+<!-- ── STATS STRIP ── -->
+<div class="stats-strip">
+  <div class="stats-strip-inner">
+    <div class="stat-block">
+      <div class="stat-num">193<span>+</span></div>
+      <div class="stat-label">Countries covered</div>
+      <div class="stat-sub">Every UN member state</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">10<span>M</span></div>
+      <div class="stat-label">Addressable audience</div>
+      <div class="stat-sub">Jordanian passport holders worldwide</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">2<span>x</span></div>
+      <div class="stat-label">Language coverage</div>
+      <div class="stat-sub">Full English & Arabic content</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">0<span>$</span></div>
+      <div class="stat-label">Cost to users</div>
+      <div class="stat-sub">Free forever, no ads cluttering results</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── STRENGTHS ── -->
+<section class="section" style="background:#fff;">
+  <div class="section-inner">
+    <div class="section-label">Our strengths</div>
+    <h2 class="section-title">Why users choose VisasJo</h2>
+    <p class="section-sub">We built the resource we wished existed when planning international travel with a Jordanian passport.</p>
+    <div class="strengths-grid">
+      <div class="strength-card">
+        <div class="strength-icon">🎯</div>
+        <div class="strength-title">Built for one audience</div>
+        <div class="strength-desc">Every page is written specifically for Jordanian passport holders. No generic global content — every fee, processing time, and embassy detail is tailored to Jordan.</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">🌐</div>
+        <div class="strength-title">Fully bilingual</div>
+        <div class="strength-desc">All content available in English and Arabic. Language toggles everywhere. We reach Jordanians abroad and Arabic speakers across the Gulf and MENA region.</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">🔍</div>
+        <div class="strength-title">Built for search</div>
+        <div class="strength-desc">Every page is a dedicated URL with unique meta tags, schema markup, and structured data — designed to rank for high-intent visa queries on Google.</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">📱</div>
+        <div class="strength-title">Mobile-first</div>
+        <div class="strength-desc">Fully responsive across all devices. Most Jordanian internet users are on mobile — the experience is optimised for how they actually browse.</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">⚡</div>
+        <div class="strength-title">Fast & ad-free</div>
+        <div class="strength-desc">No banner ads, no pop-ups, no third-party trackers slowing the page down. Users trust VisasJo because it feels like a tool, not a website trying to sell them something.</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">🛡️</div>
+        <div class="strength-title">High-intent traffic</div>
+        <div class="strength-desc">Users arrive actively planning a trip or filing a visa application. This is the highest-intent travel audience possible — they need insurance, hotels, and flights right now.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AUDIENCE ── -->
+<section class="audience-section">
+  <div class="audience-inner">
+    <div class="audience-grid">
+      <div>
+        <div class="audience-label">Our audience</div>
+        <h2 class="audience-title">Who uses VisasJo</h2>
+        <p class="audience-sub">Our readers are Jordanian passport holders at the exact moment they need travel products — planning a trip, preparing a visa application, or researching their options.</p>
+        <div class="audience-stats">
+          <div class="aud-stat">
+            <div class="aud-stat-icon">🇯🇴</div>
+            <div>
+              <div class="aud-stat-num">~10M</div>
+              <div class="aud-stat-label">Jordanian passport holders globally</div>
+            </div>
+          </div>
+          <div class="aud-stat">
+            <div class="aud-stat-icon">🌍</div>
+            <div>
+              <div class="aud-stat-num">3M+</div>
+              <div class="aud-stat-label">Jordanian expats in Gulf countries</div>
+            </div>
+          </div>
+          <div class="aud-stat">
+            <div class="aud-stat-icon">✈️</div>
+            <div>
+              <div class="aud-stat-num">High intent</div>
+              <div class="aud-stat-label">Users arrive actively planning travel or applying for a visa</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="demo-bars">
+          <div class="demo-bar-row">
+            <div class="demo-bar-header">
+              <span class="demo-bar-label">🇯🇴 Jordan (residents)</span>
+              <span class="demo-bar-pct">55%</span>
+            </div>
+            <div class="demo-bar-track"><div class="demo-bar-fill" style="width:55%"></div></div>
+          </div>
+          <div class="demo-bar-row">
+            <div class="demo-bar-header">
+              <span class="demo-bar-label">🇸🇦 🇦🇪 Gulf region expats</span>
+              <span class="demo-bar-pct">25%</span>
+            </div>
+            <div class="demo-bar-track"><div class="demo-bar-fill" style="width:25%"></div></div>
+          </div>
+          <div class="demo-bar-row">
+            <div class="demo-bar-header">
+              <span class="demo-bar-label">🇩🇪 🇬🇧 Europe & diaspora</span>
+              <span class="demo-bar-pct">12%</span>
+            </div>
+            <div class="demo-bar-track"><div class="demo-bar-fill" style="width:12%"></div></div>
+          </div>
+          <div class="demo-bar-row">
+            <div class="demo-bar-header">
+              <span class="demo-bar-label">🌍 Rest of world</span>
+              <span class="demo-bar-pct">8%</span>
+            </div>
+            <div class="demo-bar-track"><div class="demo-bar-fill" style="width:8%"></div></div>
+          </div>
+          <div style="margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);">
+            <div class="demo-bar-header" style="margin-bottom:16px">
+              <span class="demo-bar-label" style="font-weight:600">Top visited country pages</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <span style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);font-size:12px;font-weight:600;padding:5px 12px;border-radius:100px">🇩🇪 Germany</span>
+              <span style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);font-size:12px;font-weight:600;padding:5px 12px;border-radius:100px">🇺🇸 USA</span>
+              <span style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);font-size:12px;font-weight:600;padding:5px 12px;border-radius:100px">🇬🇧 UK</span>
+              <span style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);font-size:12px;font-weight:600;padding:5px 12px;border-radius:100px">🇹🇷 Turkey</span>
+              <span style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);font-size:12px;font-weight:600;padding:5px 12px;border-radius:100px">🇦🇪 UAE</span>
+              <span style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);font-size:12px;font-weight:600;padding:5px 12px;border-radius:100px">🇨🇦 Canada</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BUSINESS GOALS ── -->
+<section class="goals-section">
+  <div class="goals-inner">
+    <div class="section-label">Business goals</div>
+    <h2 class="section-title">Where we're headed</h2>
+    <p class="section-sub">We're building the definitive visa resource for the Arab world, starting with Jordanian passport holders.</p>
+    <div class="goals-grid">
+      <div class="goal-card orange">
+        <div class="goal-phase">Now — 2025</div>
+        <div class="goal-title">Establish authority</div>
+        <div class="goal-desc">Become the #1 Google result for every major "visa for Jordanians" query. Build trust with an audience that has no reliable alternative.</div>
+        <div class="goal-milestones">
+          <div class="goal-milestone"><div class="goal-milestone-dot"></div>193 country pages indexed on Google</div>
+          <div class="goal-milestone"><div class="goal-milestone-dot"></div>Full English + Arabic bilingual coverage</div>
+          <div class="goal-milestone"><div class="goal-milestone-dot"></div>Consultation lead pipeline with travel agencies</div>
+          <div class="goal-milestone"><div class="goal-milestone-dot"></div>Travel insurance + hotel affiliate integration</div>
+        </div>
+      </div>
+      <div class="goal-card blue">
+        <div class="goal-phase">2026</div>
+        <div class="goal-title">Scale to 50,000 monthly visitors</div>
+        <div class="goal-desc">Expand Arabic content, add embassy appointment guides, and build the largest visa resource for MENA travelers in Arabic.</div>
+        <div class="goal-milestones">
+          <div class="goal-milestone"><div class="goal-milestone-dot"></div>Arabic-first pages for all 193 countries</div>
+          <div class="goal-milestone"><div class="goal-milestone-dot"></div>Embassy directory with live appointment links</div>
+          <div class="goal-milestone"><div class="goal-milestone-dot"></div>Visa processing tracker</div>
+          <div class="goal-milestone"><div class="goal-milestone-dot"></div>Newsletter with 10,000 subscribers</div>
+        </div>
+      </div>
+      <div class="goal-card green">
+        <div class="goal-phase">2027</div>
+        <div class="goal-title">Expand to all Arab passports</div>
+        <div class="goal-desc">Launch passport-specific versions for Egyptian, Lebanese, Palestinian, and Iraqi passport holders — 80M+ total addressable audience.</div>
+        <div class="goal-milestones">
+          <div class="goal-milestone"><div class="goal-milestone-dot"></div>Multi-passport architecture</div>
+          <div class="goal-milestone"><div class="goal-milestone-dot"></div>Visa application status API</div>
+          <div class="goal-milestone"><div class="goal-milestone-dot"></div>Direct partnerships with embassies</div>
+          <div class="goal-milestone"><div class="goal-milestone-dot"></div>$10,000+/month sustainable revenue</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY PARTNER ── -->
+<section class="partner-section">
+  <div class="partner-inner">
+    <div class="partner-grid">
+      <div>
+        <div class="section-label">Partnership opportunities</div>
+        <h2 class="section-title">Work with us</h2>
+        <p class="section-sub">We connect travel and financial products with Jordanians at the exact moment they need them.</p>
+        <div class="partner-list">
+          <div class="partner-item">
+            <div class="partner-item-icon">🛡️</div>
+            <div>
+              <div class="partner-item-title">Travel insurance</div>
+              <div class="partner-item-desc">Schengen visa applicants are legally required to purchase insurance. Every European country page surfaces your product as a required step.</div>
+            </div>
+          </div>
+          <div class="partner-item">
+            <div class="partner-item-icon">🏨</div>
+            <div>
+              <div class="partner-item-title">Hotel booking</div>
+              <div class="partner-item-desc">Hotel reservations are required for most visa applications. Users need to book before submitting — we put your link at exactly that moment.</div>
+            </div>
+          </div>
+          <div class="partner-item">
+            <div class="partner-item-icon">📋</div>
+            <div>
+              <div class="partner-item-title">Visa consultancy</div>
+              <div class="partner-item-desc">Our consultation form generates qualified leads — users who need help with their application right now. We can refer exclusively to your agency.</div>
+            </div>
+          </div>
+          <div class="partner-item">
+            <div class="partner-item-icon">📱</div>
+            <div>
+              <div class="partner-item-title">eSIM & connectivity</div>
+              <div class="partner-item-desc">Every traveler needs a SIM. We feature eSIM products on every country page to users who have just confirmed their destination.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="contact-card">
+          <h3>Let's talk</h3>
+          <p>Whether you're a travel agency, insurance provider, or affiliate network — reach out and we'll find a structure that works.</p>
+          <div class="contact-methods">
+            <a href="mailto:yazanmta213@gmail.com" class="contact-method">
+              <div class="contact-method-icon">✉️</div>
+              <div>
+                <div class="contact-method-label">Email</div>
+                <div class="contact-method-value">yazanmta213@gmail.com</div>
+              </div>
+            </a>
+            <a href="https://visasjo.com" class="contact-method">
+              <div class="contact-method-icon">🌐</div>
+              <div>
+                <div class="contact-method-label">Website</div>
+                <div class="contact-method-value">visasjo.com</div>
+              </div>
+            </a>
+            <a href="/" class="contact-method">
+              <div class="contact-method-icon">📊</div>
+              <div>
+                <div class="contact-method-label">Traffic</div>
+                <div class="contact-method-value">Growing — check Search Console data on request</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST BAR ── -->
+<div class="trust-bar">
+  <p>VisasJo is an independent resource. <strong>We are not affiliated with any government, embassy, or official body.</strong> Always verify requirements on official embassy websites before applying.</p>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 VisasJo · All rights reserved</div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="mailto:yazanmta213@gmail.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

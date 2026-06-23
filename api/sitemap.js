@@ -37,8 +37,8 @@ const VISA_PAGES = [
 ];
 
 const STATIC_PAGES = [
-  { path: '/',               priority: '1.0', changefreq: 'weekly'  },
-  { path: '/visa-map.html',  priority: '0.7', changefreq: 'monthly' },
+  { path: '/',        priority: '1.0', changefreq: 'weekly'  },
+  { path: '/about',   priority: '0.6', changefreq: 'monthly' },
 ];
 
 function url(loc, priority = '0.8', changefreq = 'monthly') {

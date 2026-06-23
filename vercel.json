@@ -1,7 +1,8 @@
 {
   "rewrites": [
     { "source": "/visa/:country", "destination": "/visa-info.html" },
-    { "source": "/sitemap.xml",   "destination": "/api/sitemap"    }
+    { "source": "/sitemap.xml",   "destination": "/api/sitemap"    },
+    { "source": "/about",         "destination": "/about.html"     }
   ],
   "headers": [
     {
