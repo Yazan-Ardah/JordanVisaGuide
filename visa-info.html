@@ -1087,7 +1087,6 @@ applyLang();
       console.error('[consult form]', err.message);
       btn.disabled = false;
       btn.textContent = errorLabel;
-      // Show inline error instead of alert
       let errEl = document.getElementById('cf-error-msg');
       if (!errEl) {
         errEl = document.createElement('p');
@@ -1095,9 +1094,7 @@ applyLang();
         errEl.style.cssText = 'color:#f87171;font-size:13px;text-align:center;margin-top:10px;';
         btn.parentNode.insertBefore(errEl, btn.nextSibling);
       }
-      errEl.textContent = isAr
-        ? 'حدث خطأ. يرجى المحاولة مرة أخرى.'
-        : 'Something went wrong. Please try again.';
+      errEl.textContent = err.message || 'Something went wrong. Please try again.';
     }
   });
 })();
