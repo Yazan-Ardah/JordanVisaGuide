@@ -2577,6 +2577,12 @@ const countryName = SLUG_MAP[_pathSlug.toLowerCase()] || _legacyQS || _pathSlug;
 const countrySlug = Object.keys(SLUG_MAP).find(k => SLUG_MAP[k] === countryName) || _pathSlug.toLowerCase();
 const data        = VISA_DATA[countryName];
 
+// Apply any admin detail overrides saved in localStorage
+try {
+  const _detailOv = JSON.parse(localStorage.getItem('jvg_detail_overrides') || '{}');
+  if (data && _detailOv[countryName]) Object.assign(data, _detailOv[countryName]);
+} catch(e) {}
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 function badgeClass(c) { return { green:'badge-green', amber:'badge-amber', red:'badge-red' }[c] || 'badge-amber'; }
 
