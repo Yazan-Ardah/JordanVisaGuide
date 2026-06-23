@@ -2540,9 +2540,41 @@ const VISA_DATA = {
   },
 };
 
-// ─── Read country from URL ────────────────────────────────────────────────────
-const params      = new URLSearchParams(window.location.search);
-const countryName = params.get('country') || '';
+// ─── Slug → VISA_DATA key mapping ────────────────────────────────────────────
+const SLUG_MAP = {
+  'germany':      'Germany',
+  'usa':          'USA',
+  'uae':          'UAE',
+  'japan':        'Japan',
+  'uk':           'UK',
+  'france':       'France',
+  'italy':        'Italy',
+  'spain':        'Spain',
+  'switzerland':  'Switzerland',
+  'netherlands':  'Netherlands',
+  'thailand':     'Thailand',
+  'indonesia':    'Indonesia',
+  'oman':         'Oman',
+  'saudi-arabia': 'Saudi Arabia',
+  'tunisia':      'Tunisia',
+  'morocco':      'Morocco',
+  'turkey':       'Turkey',
+  'egypt':        'Egypt',
+  'kuwait':       'Kuwait',
+  'georgia':      'Georgia',
+  'bosnia':       'Bosnia',
+  'qatar':        'Qatar',
+  'greece':       'Greece',
+  'lebanon':      'Lebanon',
+  'cyprus':       'Cyprus',
+};
+
+// ─── Read country from URL path (/visa/germany) or legacy ?country= param ────
+const _pathSlug   = window.location.pathname.split('/').filter(Boolean).pop() || '';
+const _legacyQS   = new URLSearchParams(window.location.search).get('country') || '';
+// Resolve: path slug takes priority over query string
+const countryName = SLUG_MAP[_pathSlug.toLowerCase()] || _legacyQS || _pathSlug;
+const countrySlug = Object.keys(SLUG_MAP).find(k => SLUG_MAP[k] === countryName) || _pathSlug.toLowerCase();
 const data        = VISA_DATA[countryName];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -2579,13 +2611,76 @@ if (!data) {
     const isAr = ar();
 
     // Page title + breadcrumb
-    const displayName = isAr
-      ? (Object.values(VISA_DATA).find(v => v === data) ? countryName : countryName)
-      : countryName;
     document.title = isAr
-      ? `تأشيرة ${countryName} للأردنيين · دليل تأشيرة الأردن`
-      : `${countryName} Visa for Jordanians · Jordan Visa Guide`;
+      ? `تأشيرة ${countryName} للأردنيين ${new Date().getFullYear()} · دليل تأشيرة الأردن`
+      : `${countryName} Visa for Jordanians ${new Date().getFullYear()} — Requirements, Fees & How to Apply`;
     document.getElementById('breadcrumbCountry').textContent = countryName;
+
+    // Dynamic meta description
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.content = isAr
+        ? `دليل شامل للحصول على تأشيرة ${countryName} للأردنيين. المتطلبات، الرسوم (${data.fee})، وقت المعالجة، وخطوات التقديم ${new Date().getFullYear()}.`
+        : `Complete guide: ${countryName} visa for Jordanian passport holders. Documents checklist, ${data.fee} fee, ${data.processing_en || ''} processing. Updated ${new Date().getFullYear()}.`;
+    }
+
+    // Canonical URL + OG tags
+    const canonicalUrl = `https://visasjo.com/visa/${countrySlug}`;
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.appendChild(canonical); }
+    canonical.href = canonicalUrl;
+
+    let ogUrl = document.querySelector('meta[property="og:url"]');
+    if (!ogUrl) { ogUrl = document.createElement('meta'); ogUrl.setAttribute('property','og:url'); document.head.appendChild(ogUrl); }
+    ogUrl.content = canonicalUrl;
+
+    let ogTitle = document.querySelector('meta[property="og:title"]');
+    if (!ogTitle) { ogTitle = document.createElement('meta'); ogTitle.setAttribute('property','og:title'); document.head.appendChild(ogTitle); }
+    ogTitle.content = `${countryName} Visa for Jordanians ${new Date().getFullYear()} — VisasJo`;
+
+    let ogDesc = document.querySelector('meta[property="og:description"]');
+    if (!ogDesc) { ogDesc = document.createElement('meta'); ogDesc.setAttribute('property','og:description'); document.head.appendChild(ogDesc); }
+    ogDesc.content = `${countryName} visa requirements, fees (${data.fee}), documents checklist and step-by-step application guide for Jordanian passport holders.`;
+
+    // Inject JSON-LD schema (Article + FAQPage + BreadcrumbList)
+    document.querySelectorAll('script[data-schema]').forEach(s => s.remove());
+    const faqSchema = data.faqs && data.faqs.length ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": data.faqs.slice(0, 8).map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    } : null;
+    const schemas = [
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": `${countryName} Visa for Jordanians ${new Date().getFullYear()}`,
+        "description": `Visa requirements and application guide for ${countryName} — Jordanian passport holders`,
+        "dateModified": new Date().toISOString().split('T')[0],
+        "author": { "@type": "Organization", "name": "VisasJo", "url": "https://visasjo.com" },
+        "publisher": { "@type": "Organization", "name": "VisasJo", "url": "https://visasjo.com" }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://visasjo.com" },
+          { "@type": "ListItem", "position": 2, "name": "Visa Guides", "item": "https://visasjo.com" },
+          { "@type": "ListItem", "position": 3, "name": `${countryName} Visa`, "item": canonicalUrl }
+        ]
+      },
+      ...(faqSchema ? [faqSchema] : [])
+    ];
+    schemas.forEach(schema => {
+      const s = document.createElement('script');
+      s.type = 'application/ld+json';
+      s.setAttribute('data-schema', '1');
+      s.textContent = JSON.stringify(schema);
+      document.head.appendChild(s);
+    });
 
     // Tab labels
     const tabLabels = isAr
@@ -2749,7 +2844,7 @@ if (!data) {
       document.getElementById('relatedSection').style.display = 'block';
       document.querySelector('.related-title').textContent = relatedLabel;
       document.getElementById('relatedGrid').innerHTML = data.related.map(r => `
-        <a href="visa-info.html?country=${encodeURIComponent(r.name)}" class="related-card">
+        <a href="/visa/${Object.keys(SLUG_MAP).find(k=>SLUG_MAP[k]===r.name)||r.name.toLowerCase().replace(/\s+/g,'-')}" class="related-card">
           <span class="related-flag">${r.flag}</span>
           <div>
             <div class="related-name">${r.name}</div>
@@ -2789,16 +2884,15 @@ applyLang();
 // ─── Consultation Form ────────────────────────────────────────────────────────
 (function() {
   // Pre-select the current country in the dropdown
-  const countryParam = new URLSearchParams(window.location.search).get('country') || '';
-  if (countryParam) {
+  // Use already-resolved countryName (works for both /visa/germany and ?country=Germany)
+  if (countryName) {
     const hidden = document.getElementById('cf-destination-hidden');
-    if (hidden) hidden.value = countryParam;
+    if (hidden) hidden.value = countryName;
 
     const sel = document.getElementById('cf-country');
     if (sel) {
-      // Try to match an option value
       for (let i = 0; i < sel.options.length; i++) {
-        if (sel.options[i].value.toLowerCase() === countryParam.toLowerCase()) {
+        if (sel.options[i].value.toLowerCase() === countryName.toLowerCase()) {
           sel.selectedIndex = i;
           break;
         }

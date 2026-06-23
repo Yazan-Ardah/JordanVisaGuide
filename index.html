@@ -4,17 +4,45 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- Main Browser Title (Max 60 characters) -->
-<title>Jordan Visa Guide | فيزا الأردنيين متطلبات تأشيرة السفر</title>
+<title>Visa Free Countries for Jordanians 2026 — Jordan Visa Guide</title>
+<meta name="description" content="Check visa requirements for every country with a Jordanian passport. Visa-free, eVisa, and embassy visa info — updated 2026, no ads, free to use.">
+<link rel="canonical" href="https://visasjo.com/" />
 
-<!-- Search Engine Description (Max 160 characters) -->
-<meta name="description" content="Check visa requirements for Jordanian passport holders. فيزا تركيا للأردنيين 2026، متطلبات فيزا شينغن، وتأشيرة الإمارات ومصر المحدثة بدقة وبدون إعلانات.">
-
-<!-- Open Graph Tags (This makes your link look beautiful and highly clickable when shared on WhatsApp!) -->
-<meta property="og:title" content="Jordan Visa Guide | دليل تأشيرات السفر للأردنيين">
-<meta property="og:description" content="اكتشف متطلبات التأشيرة لأي وجهة بجواز سفرك الأردني. تحديثات 2026 كاملة بدون إعلانات.">
+<!-- Open Graph -->
+<meta property="og:title" content="Visa Free Countries for Jordanians 2026 — VisasJo">
+<meta property="og:description" content="Instantly check which countries Jordanians can visit visa-free, on arrival, or with an eVisa. Updated 2026.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://jordan-visa-guide.vercel.app">
-<title>Jordan Visa Guide — Preview</title>
+<meta property="og:url" content="https://visasjo.com/">
+<meta property="og:site_name" content="VisasJo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Visa Free Countries for Jordanians 2026 — VisasJo">
+<meta name="twitter:description" content="Check visa requirements for every country with a Jordanian passport. Free, updated, no ads.">
+
+<!-- Schema: WebSite + SearchAction -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "VisasJo",
+  "url": "https://visasjo.com",
+  "description": "Visa requirements for Jordanian passport holders — updated 2026",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://visasjo.com/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "VisasJo",
+  "url": "https://visasjo.com",
+  "logo": "https://visasjo.com/favicon.ico",
+  "sameAs": []
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@400;600;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
@@ -1354,7 +1382,7 @@ function renderResults() {
           <span>${T('table.processing')}</span><span>${T('table.status')}</span>
         </div>
         ${filtered.map(c => `
-        <a href="visa-info.html?country=${encodeURIComponent(c.name)}" class="results-row">
+        <a href="/visa/${c.name.toLowerCase().replace(/\s+/g,'-')}" class="results-row">
           <div class="row-country">
             <span class="row-flag">${c.flag}</span>
             <div>
@@ -1376,7 +1404,7 @@ function renderResults() {
     container.innerHTML = `
       <div class="results-grid">
         ${filtered.map(c => `
-        <a href="visa-info.html?country=${encodeURIComponent(c.name)}" class="country-card">
+        <a href="/visa/${c.name.toLowerCase().replace(/\s+/g,'-')}" class="country-card">
           <div class="country-top">
             <span class="country-flag">${c.flag}</span>
             <div>
@@ -1561,7 +1589,7 @@ applyLang();
       badge.className='g-popup-badge '+(d.s==='free'?'green':d.s==='evisa'?'yellow':d.s==='jordan'?'gray':'red');
       note.textContent=d.note||'';
       if (d.slug) {
-        link.href='visa-info.html?country='+encodeURIComponent(d.slug);
+        link.href='/visa/'+(d.slug||d.name||'').toLowerCase().replace(/\s+/g,'-');
         link.textContent='View Full Requirements →'; link.className='g-popup-btn';
       } else {
         link.href='#countries'; link.textContent='Browse All Countries →'; link.className='g-popup-btn muted';
