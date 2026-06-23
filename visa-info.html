@@ -762,13 +762,7 @@ const _legacyQS   = new URLSearchParams(window.location.search).get('country') |
 // Resolve: path slug takes priority over query string
 const countryName = SLUG_MAP[_pathSlug.toLowerCase()] || _legacyQS || _pathSlug;
 const countrySlug = Object.keys(SLUG_MAP).find(k => SLUG_MAP[k] === countryName) || _pathSlug.toLowerCase();
-const data        = VISA_DATA[countryName];
-
-// Apply any admin detail overrides saved in localStorage
-try {
-  const _detailOv = JSON.parse(localStorage.getItem('jvg_detail_overrides') || '{}');
-  if (data && _detailOv[countryName]) Object.assign(data, _detailOv[countryName]);
-} catch(e) {}
+const data = VISA_DATA[countryName];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 function badgeClass(c) { return { green:'badge-green', amber:'badge-amber', red:'badge-red' }[c] || 'badge-amber'; }
@@ -1050,7 +1044,14 @@ if (!data) {
 
   }
 
-  rebuildPage();
+  // Fetch DB overrides, merge into data, then build page
+  fetch('/api/visa-overrides')
+    .then(r => r.ok ? r.json() : {})
+    .catch(() => ({}))
+    .then(overrides => {
+      if (overrides[countryName]) Object.assign(data, overrides[countryName]);
+      rebuildPage();
+    });
 }
 
 // ─── Tab switching ────────────────────────────────────────────────────────────

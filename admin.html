@@ -174,7 +174,10 @@
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
     Clear all overrides
   </button>
-  <a href="index.html" class="topbar-btn btn-coral" target="_blank">
+  <input id="adminKeyInput" type="password" placeholder="Admin key…"
+    style="padding:7px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);color:#fff;font-size:13px;font-family:Inter,sans-serif;outline:none;width:140px"
+    oninput="sessionStorage.setItem('jvg_admin_key',this.value)" />
+  <a href="/" class="topbar-btn btn-coral" target="_blank">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
     View live site
   </a>
@@ -755,15 +758,19 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// ── Detail overrides (visa page content) ─────────────────────────────────────
-const LS_DETAIL_KEY = 'jvg_detail_overrides';
+// ── Detail overrides — backed by /api/visa-overrides ─────────────────────────
+let _dbOverrides = {};  // cache loaded from API on init
 
-function getDetailOverrides() {
-  try { return JSON.parse(localStorage.getItem(LS_DETAIL_KEY) || '{}'); }
-  catch { return {}; }
+function adminKey() {
+  return sessionStorage.getItem('jvg_admin_key') || '';
 }
-function saveDetailOverrides(obj) {
-  localStorage.setItem(LS_DETAIL_KEY, JSON.stringify(obj));
+
+async function loadDbOverrides() {
+  try {
+    const r = await fetch('/api/visa-overrides');
+    if (r.ok) _dbOverrides = await r.json();
+  } catch(e) { console.warn('Could not load visa overrides:', e); }
+  renderTable();
 }
 
 function parseDocs(text) {
@@ -787,15 +794,15 @@ function openDetails(code) {
   if (!base) return;
   detailsCode = code;
 
-  const overrides = getDetailOverrides();
-  const ov = overrides[base.name] || {};
-  // Start from live VISA_DATA so fields are pre-filled with current requirements
+  const ov = _dbOverrides[base.name] || {};
   const vd = (typeof VISA_DATA !== 'undefined' && VISA_DATA[base.name]) || {};
   const merged = { ...vd, ...ov };
 
   document.getElementById('dModalFlag').textContent  = base.flag;
   document.getElementById('dModalTitle').textContent = `Details — ${base.name}`;
-  document.getElementById('dModalSub').textContent   = `${base.region} · saved to localStorage`;
+  document.getElementById('dModalSub').textContent   = _dbOverrides[base.name]
+    ? `${base.region} · has saved overrides in database`
+    : `${base.region} · showing current visa-data.js values`;
 
   document.getElementById('d_fee').value         = merged.fee           || base.fee  || '';
   document.getElementById('d_processing').value  = merged.processing_en || base.time || '';
@@ -808,7 +815,7 @@ function openDetails(code) {
   document.getElementById('d_tips_en').value     = (merged.tips_en || []).join('\n');
   document.getElementById('d_tips_ar').value     = (merged.tips_ar || []).join('\n');
 
-  document.getElementById('dResetBtn').style.display = overrides[base.name] ? 'inline-flex' : 'none';
+  document.getElementById('dResetBtn').style.display = _dbOverrides[base.name] ? 'inline-flex' : 'none';
   document.getElementById('detailsModal').classList.remove('hidden');
   document.getElementById('d_fee').focus();
 }
@@ -819,14 +826,14 @@ function closeDetailsModal(e) {
   detailsCode = null;
 }
 
-function saveDetails() {
+async function saveDetails() {
   if (!detailsCode) return;
   const base = BASE_COUNTRIES.find(c => c.code === detailsCode);
   if (!base) return;
 
-  const overrides = getDetailOverrides();
-  const update = {};
+  if (!adminKey()) { showToast('⚠ Enter your admin key first'); return; }
 
+  const update = {};
   const fee        = document.getElementById('d_fee').value.trim();
   const processing = document.getElementById('d_processing').value.trim();
   const vt_en      = document.getElementById('d_visaType_en').value.trim();
@@ -838,39 +845,61 @@ function saveDetails() {
   const tips_en    = document.getElementById('d_tips_en').value.trim();
   const tips_ar    = document.getElementById('d_tips_ar').value.trim();
 
-  if (fee)        update.fee            = fee;
-  if (processing) update.processing_en  = processing;
-  if (vt_en)      update.visaType_en    = vt_en;
-  if (vt_ar)      update.visaType_ar    = vt_ar;
-  if (ov_en)      update.overview_en    = ov_en;
-  if (ov_ar)      update.overview_ar    = ov_ar;
-  if (docs_en)    update.documents_en   = parseDocs(docs_en);
-  if (docs_ar)    update.documents_ar   = parseDocs(docs_ar);
-  if (tips_en)    update.tips_en        = parseTips(tips_en);
-  if (tips_ar)    update.tips_ar        = parseTips(tips_ar);
+  if (fee)        update.fee           = fee;
+  if (processing) update.processing_en = processing;
+  if (vt_en)      update.visaType_en   = vt_en;
+  if (vt_ar)      update.visaType_ar   = vt_ar;
+  if (ov_en)      update.overview_en   = ov_en;
+  if (ov_ar)      update.overview_ar   = ov_ar;
+  if (docs_en)    update.documents_en  = parseDocs(docs_en);
+  if (docs_ar)    update.documents_ar  = parseDocs(docs_ar);
+  if (tips_en)    update.tips_en       = parseTips(tips_en);
+  if (tips_ar)    update.tips_ar       = parseTips(tips_ar);
 
-  overrides[base.name] = update;
-  saveDetailOverrides(overrides);
-  document.getElementById('detailsModal').classList.add('hidden');
-  detailsCode = null;
-  showToast(`✓ ${base.name} details saved`);
+  try {
+    const r = await fetch('/api/visa-overrides', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey() },
+      body: JSON.stringify({ country: base.name, data: update }),
+    });
+    if (!r.ok) { const e = await r.json(); showToast(`✗ ${e.error || r.status}`); return; }
+    _dbOverrides[base.name] = update;
+    document.getElementById('detailsModal').classList.add('hidden');
+    detailsCode = null;
+    showToast(`✓ ${base.name} saved to database`);
+  } catch(e) {
+    showToast('✗ Network error');
+  }
 }
 
-function resetDetails() {
+async function resetDetails() {
   if (!detailsCode) return;
   const base = BASE_COUNTRIES.find(c => c.code === detailsCode);
   if (!base) return;
-  if (!confirm(`Reset all detail overrides for "${base.name}"?`)) return;
-  const overrides = getDetailOverrides();
-  delete overrides[base.name];
-  saveDetailOverrides(overrides);
-  document.getElementById('detailsModal').classList.add('hidden');
-  detailsCode = null;
-  showToast(`↩ ${base.name} details reset`);
+  if (!adminKey()) { showToast('⚠ Enter your admin key first'); return; }
+  if (!confirm(`Remove all overrides for "${base.name}"? The page will revert to the default data.`)) return;
+
+  try {
+    const r = await fetch(`/api/visa-overrides?country=${encodeURIComponent(base.name)}`, {
+      method: 'DELETE',
+      headers: { 'x-admin-key': adminKey() },
+    });
+    if (!r.ok) { const e = await r.json(); showToast(`✗ ${e.error || r.status}`); return; }
+    delete _dbOverrides[base.name];
+    document.getElementById('detailsModal').classList.add('hidden');
+    detailsCode = null;
+    showToast(`↩ ${base.name} reset to defaults`);
+  } catch(e) {
+    showToast('✗ Network error');
+  }
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
-renderTable();
+// Restore key from previous session
+const _savedKey = sessionStorage.getItem('jvg_admin_key');
+if (_savedKey) document.getElementById('adminKeyInput').value = _savedKey;
+
+loadDbOverrides();
 </script>
 </body>
 </html>
