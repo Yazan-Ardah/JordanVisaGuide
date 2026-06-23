@@ -92,7 +92,7 @@ export default async function handler(req, res) {
         full_name.trim().substring(0, 200),
         (country_code || '+962').substring(0, 10),
         phone_number.trim().substring(0, 30),
-        destination_country.trim().substring(0, 100),
+        (destination_country || '').trim().substring(0, 100) || null,
         destination_country_hidden?.trim().substring(0, 100) || null,
         notes?.trim().substring(0, 1000) || null,
         req.headers.referer?.substring(0, 500) || null,
