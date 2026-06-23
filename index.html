@@ -380,6 +380,194 @@
     .section-head-row { flex-direction: column; }
     .cat-grid { grid-template-columns: 1fr 1fr; }
   }
+
+  /* ── GLOBE SECTION ── */
+  #globe-section {
+    background: #080818;
+    padding: 72px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .globe-section-header {
+    text-align: center;
+    padding: 0 24px 36px;
+  }
+  .globe-section-header .section-label { color: #e85d2f; }
+  .globe-section-header h2 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 800; color: #fff;
+    letter-spacing: -0.02em; margin-bottom: 10px;
+  }
+  .globe-section-header p { font-size: 16px; color: rgba(255,255,255,0.4); }
+  .globe-stats-row {
+    display: flex; justify-content: center; gap: 10px;
+    flex-wrap: wrap; padding: 0 24px 32px;
+  }
+  .globe-stat {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 18px; border-radius: 100px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    font-size: 13px; color: rgba(255,255,255,0.65);
+  }
+  .globe-stat-dot {
+    width: 9px; height: 9px; border-radius: 50%;
+  }
+  .globe-stat-dot.g { background: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,0.6); }
+  .globe-stat-dot.y { background: #f59e0b; box-shadow: 0 0 6px rgba(245,158,11,0.6); }
+  .globe-stat-dot.r { background: #ef4444; box-shadow: 0 0 6px rgba(239,68,68,0.6); }
+  .globe-stat strong { font-weight: 800; color: #fff; font-size: 15px; }
+  #globe-canvas-wrap {
+    position: relative;
+    width: 100%;
+    height: clamp(340px, 65vh, 640px);
+    overflow: hidden;
+  }
+  #globe-canvas-el { width: 100%; height: 100%; }
+  #globe-canvas-el canvas { display: block; }
+  #globe-spinner {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 14px;
+    background: #080818; z-index: 5;
+    transition: opacity 0.4s ease;
+  }
+  #globe-spinner.done { opacity: 0; pointer-events: none; display: none; }
+  .g-spinner-ring {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.07);
+    border-top-color: #e85d2f;
+    animation: gspin 0.8s linear infinite;
+  }
+  @keyframes gspin { to { transform: rotate(360deg); } }
+  #globe-spinner p { font-size: 12px; color: rgba(255,255,255,0.3); }
+  .globe-legend {
+    position: absolute; bottom: 16px; right: 16px;
+    background: rgba(6,6,20,0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 12px; padding: 12px 16px;
+    z-index: 10;
+  }
+  .globe-legend-title {
+    font-size: 9px; font-weight: 700;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase; letter-spacing: 0.12em;
+    margin-bottom: 9px;
+  }
+  .globe-legend-row {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11.5px; color: rgba(255,255,255,0.65);
+    font-weight: 500; margin-bottom: 6px;
+  }
+  .globe-legend-row:last-child { margin-bottom: 0; }
+  .globe-legend-dot {
+    width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0;
+  }
+  .gldr-green  { background: #22c55e; }
+  .gldr-yellow { background: #f59e0b; }
+  .gldr-red    { background: #ef4444; }
+  .gldr-gray   { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); }
+  .globe-hint-bar {
+    position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+    font-size: 11px; color: rgba(255,255,255,0.18);
+    pointer-events: none; white-space: nowrap; z-index: 10;
+  }
+  .globe-fullscreen-btn {
+    display: block; text-align: center;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.5);
+    font-size: 13px; font-weight: 600;
+    padding: 12px 28px; border-radius: 12px;
+    text-decoration: none; margin: 24px auto 0;
+    width: fit-content; transition: background 0.15s, color 0.15s;
+  }
+  .globe-fullscreen-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .globe-bottom-pad { height: 56px; background: #080818; }
+
+  /* Globe popup */
+  #g-popup-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  #g-popup-overlay.open { opacity: 1; pointer-events: all; }
+  .g-popup-card {
+    background: #0e0e28;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 28px 24px 22px;
+    max-width: 340px; width: 100%;
+    position: relative;
+    transform: translateY(14px) scale(0.96);
+    transition: transform 0.25s cubic-bezier(0.16,1,0.3,1);
+    box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+  }
+  #g-popup-overlay.open .g-popup-card { transform: translateY(0) scale(1); }
+  .g-popup-close {
+    position: absolute; top: 12px; right: 14px;
+    background: rgba(255,255,255,0.07); border: none;
+    color: rgba(255,255,255,0.45); font-size: 18px; font-weight: 700;
+    width: 30px; height: 30px; border-radius: 50%;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s, color 0.15s;
+  }
+  .g-popup-close:hover { background: rgba(255,255,255,0.13); color: #fff; }
+  .g-popup-flag { font-size: 48px; margin-bottom: 12px; display: block; }
+  .g-popup-name { font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 7px; }
+  .g-popup-badge {
+    display: inline-flex; align-items: center;
+    font-size: 12px; font-weight: 600;
+    padding: 3px 11px; border-radius: 7px; margin-bottom: 10px;
+  }
+  .g-popup-badge.green  { background: rgba(34,197,94,0.13);  color: #4ade80; border: 1px solid rgba(34,197,94,0.22); }
+  .g-popup-badge.yellow { background: rgba(245,158,11,0.13); color: #fbbf24; border: 1px solid rgba(245,158,11,0.22); }
+  .g-popup-badge.red    { background: rgba(239,68,68,0.13);  color: #f87171; border: 1px solid rgba(239,68,68,0.22); }
+  .g-popup-badge.gray   { background: rgba(100,116,139,0.13);color: #94a3b8; border: 1px solid rgba(100,116,139,0.22); }
+  .g-popup-note { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 18px; line-height: 1.6; }
+  .g-popup-btn {
+    display: block; text-align: center;
+    background: #e85d2f; color: #fff;
+    text-decoration: none; font-weight: 700; font-size: 14px;
+    padding: 12px; border-radius: 11px;
+    transition: background 0.15s;
+  }
+  .g-popup-btn:hover { background: #cf4920; }
+  .g-popup-btn.muted {
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.4);
+    border: 1px solid rgba(255,255,255,0.09);
+  }
+
+  /* Globe tooltip */
+  #g-tooltip {
+    position: fixed; pointer-events: none; z-index: 500;
+    background: rgba(6,6,20,0.94);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 11px; padding: 10px 14px;
+    max-width: 220px;
+    opacity: 0; transition: opacity 0.12s ease;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  }
+  #g-tooltip.on { opacity: 1; }
+  .g-tt-name { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .g-tt-badge {
+    display: inline-flex; font-size: 11px; font-weight: 600;
+    padding: 2px 8px; border-radius: 5px; margin-bottom: 3px;
+  }
+  .g-tt-badge.green  { background: rgba(34,197,94,0.14);  color: #4ade80; }
+  .g-tt-badge.yellow { background: rgba(245,158,11,0.14); color: #fbbf24; }
+  .g-tt-badge.red    { background: rgba(239,68,68,0.14);  color: #f87171; }
+  .g-tt-badge.gray   { background: rgba(100,116,139,0.14);color: #94a3b8; }
+  .g-tt-note { font-size: 10.5px; color: rgba(255,255,255,0.35); }
 </style>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -478,6 +666,52 @@
     </div>
   </div>
 </section>
+
+<!-- ── VISA GLOBE ───────────────────────────────────────── -->
+<section id="globe-section">
+  <div class="globe-section-header">
+    <div class="section-label">Interactive Map</div>
+    <h2>Explore visa access visually</h2>
+    <p>Drag &amp; rotate the globe · Click any country for requirements</p>
+  </div>
+  <div class="globe-stats-row">
+    <div class="globe-stat"><span class="globe-stat-dot g"></span><strong>42</strong>&nbsp;Visa Free</div>
+    <div class="globe-stat"><span class="globe-stat-dot y"></span><strong>56</strong>&nbsp;eVisa / On Arrival</div>
+    <div class="globe-stat"><span class="globe-stat-dot r"></span><strong>50</strong>&nbsp;Visa Required</div>
+  </div>
+  <div id="globe-canvas-wrap">
+    <div id="globe-canvas-el"></div>
+    <div id="globe-spinner"><div class="g-spinner-ring"></div><p>Loading globe…</p></div>
+    <div class="globe-legend">
+      <div class="globe-legend-title">Visa Status</div>
+      <div class="globe-legend-row"><span class="globe-legend-dot gldr-green"></span>Visa Free</div>
+      <div class="globe-legend-row"><span class="globe-legend-dot gldr-yellow"></span>eVisa / On Arrival</div>
+      <div class="globe-legend-row"><span class="globe-legend-dot gldr-red"></span>Visa Required</div>
+      <div class="globe-legend-row"><span class="globe-legend-dot gldr-gray"></span>No Data</div>
+    </div>
+    <div class="globe-hint-bar">Drag to rotate · Scroll to zoom · Click a country</div>
+  </div>
+  <div style="text-align:center;background:#080818;padding:20px 24px 56px;">
+    <a href="visa-map.html" class="globe-fullscreen-btn">Open Full-Screen Map →</a>
+  </div>
+</section>
+
+<!-- Globe popup -->
+<div id="g-popup-overlay">
+  <div class="g-popup-card">
+    <button class="g-popup-close" id="g-popup-close">×</button>
+    <span class="g-popup-flag" id="g-pop-flag">🌍</span>
+    <div class="g-popup-name" id="g-pop-name">Country</div>
+    <div class="g-popup-badge" id="g-pop-badge">Status</div>
+    <div class="g-popup-note" id="g-pop-note"></div>
+    <a href="#" id="g-pop-link" class="g-popup-btn">View Requirements →</a>
+  </div>
+</div>
+<div id="g-tooltip">
+  <div class="g-tt-name" id="g-tt-name"></div>
+  <div class="g-tt-badge" id="g-tt-badge"></div>
+  <div class="g-tt-note" id="g-tt-note"></div>
+</div>
 
 <!-- ── SEARCH CONTROLS ─────────────────────────────────── -->
 <div class="search-controls" id="searchControls">
@@ -1178,6 +1412,256 @@ document.getElementById('searchInput').addEventListener('input', function() {
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
 applyLang();
+</script>
+
+<!-- ── GLOBE SCRIPTS ───────────────────────────────────────────────────────── -->
+<script src="https://unpkg.com/globe.gl@2.26.3/dist/globe.gl.min.js"></script>
+<script src="https://unpkg.com/topojson-client@3/dist/topojson-client.min.js"></script>
+<script>
+(function() {
+  // Visa data keyed by ISO 3166-1 numeric code
+  var GV = {
+    792:{name:'Turkey',flag:'🇹🇷',s:'free',label:'Visa Free',note:'Up to 90 days',slug:'Turkey'},
+    818:{name:'Egypt',flag:'🇪🇬',s:'free',label:'Visa Free',note:'Up to 3 months on arrival',slug:'Egypt'},
+    784:{name:'United Arab Emirates',flag:'🇦🇪',s:'free',label:'Visa Free',note:'30-day stamp on arrival',slug:'UAE'},
+    268:{name:'Georgia',flag:'🇬🇪',s:'free',label:'Visa Free',note:'Up to 1 year',slug:'Georgia'},
+    422:{name:'Lebanon',flag:'🇱🇧',s:'free',label:'Visa Free',note:'Up to 3 months',slug:'Lebanon'},
+    504:{name:'Morocco',flag:'🇲🇦',s:'free',label:'Visa Free',note:'Up to 90 days',slug:'Morocco'},
+    788:{name:'Tunisia',flag:'🇹🇳',s:'free',label:'Visa Free',note:'Up to 90 days',slug:'Tunisia'},
+    598:{name:'Mauritius',flag:'🇲🇺',s:'free',label:'Visa Free',note:'Up to 60 days',slug:null},
+    688:{name:'Serbia',flag:'🇷🇸',s:'free',label:'Visa Free',note:'Up to 30 days',slug:null},
+    804:{name:'Ukraine',flag:'🇺🇦',s:'free',label:'Visa Free',note:'Check travel advisories',slug:null},
+    8:{name:'Albania',flag:'🇦🇱',s:'free',label:'Visa Free (Seasonal)',note:'Apr–Oct visa-free',slug:null},
+    499:{name:'Montenegro',flag:'🇲🇪',s:'free',label:'Visa Free',note:'Up to 30 days',slug:null},
+    807:{name:'North Macedonia',flag:'🇲🇰',s:'free',label:'Visa Free',note:'Up to 90 days',slug:null},
+    484:{name:'Mexico',flag:'🇲🇽',s:'free',label:'Visa Free',note:'Up to 180 days',slug:null},
+    462:{name:'Maldives',flag:'🇲🇻',s:'free',label:'Visa Free on Arrival',note:'30 days on arrival',slug:null},
+    690:{name:'Seychelles',flag:'🇸🇨',s:'free',label:'Visa Free',note:'Up to 3 months',slug:null},
+    682:{name:'Saudi Arabia',flag:'🇸🇦',s:'evisa',label:'eVisa / Visa on Arrival',note:'Apply via Tasheer or on arrival',slug:'Saudi Arabia'},
+    634:{name:'Qatar',flag:'🇶🇦',s:'evisa',label:'Visa on Arrival / eVisa',note:'30 days on arrival or Hayya A1',slug:'Qatar'},
+    512:{name:'Oman',flag:'🇴🇲',s:'evisa',label:'eVisa / Visa on Arrival',note:'30 days eVisa or 14-day free',slug:'Oman'},
+    48:{name:'Bahrain',flag:'🇧🇭',s:'evisa',label:'Visa on Arrival',note:'30 days, free of charge',slug:null},
+    368:{name:'Iraq',flag:'🇮🇶',s:'evisa',label:'Visa on Arrival',note:'30 days at major airports',slug:null},
+    364:{name:'Iran',flag:'🇮🇷',s:'evisa',label:'Visa on Arrival',note:'30 days at most airports',slug:null},
+    404:{name:'Kenya',flag:'🇰🇪',s:'evisa',label:'eVisa',note:'Apply online · $51 fee',slug:null},
+    834:{name:'Tanzania',flag:'🇹🇿',s:'evisa',label:'eVisa',note:'Apply online · $50 fee',slug:null},
+    646:{name:'Rwanda',flag:'🇷🇼',s:'evisa',label:'eVisa / Visa on Arrival',note:'$50 eVisa or on arrival',slug:null},
+    764:{name:'Thailand',flag:'🇹🇭',s:'evisa',label:'Visa on Arrival',note:'At major international airports',slug:'Thailand'},
+    360:{name:'Indonesia',flag:'🇮🇩',s:'evisa',label:'Visa on Arrival',note:'30 days, extendable',slug:'Indonesia'},
+    458:{name:'Malaysia',flag:'🇲🇾',s:'evisa',label:'Visa Free',note:'30 days',slug:null},
+    356:{name:'India',flag:'🇮🇳',s:'evisa',label:'eVisa',note:'Apply online before travel',slug:null},
+    524:{name:'Nepal',flag:'🇳🇵',s:'evisa',label:'Visa on Arrival',note:'On arrival or eVisa',slug:null},
+    276:{name:'Germany',flag:'🇩🇪',s:'required',label:'Schengen Visa Required',note:'Apply via VFS Global Amman · €90',slug:'Germany'},
+    300:{name:'Greece',flag:'🇬🇷',s:'required',label:'Schengen Visa Required',note:'Apply via VFS Global Amman · €90',slug:'Greece'},
+    826:{name:'United Kingdom',flag:'🇬🇧',s:'required',label:'Visa Required',note:'Standard Visitor Visa · £115',slug:'UK'},
+    414:{name:'Kuwait',flag:'🇰🇼',s:'required',label:'Visa Required (Sponsor)',note:'A Kuwaiti sponsor must apply',slug:'Kuwait'},
+    196:{name:'Cyprus',flag:'🇨🇾',s:'required',label:'National Visa Required',note:'Apply via VFS Global · €80',slug:'Cyprus'},
+    70:{name:'Bosnia & Herzegovina',flag:'🇧🇦',s:'required',label:'Visa Required',note:'Apply at embassy in Amman',slug:'Bosnia'},
+    40:{name:'Austria',flag:'🇦🇹',s:'required',label:'Schengen Visa Required',note:'Apply via VFS Global Amman · €90',slug:null},
+    56:{name:'Belgium',flag:'🇧🇪',s:'required',label:'Schengen Visa Required',note:'Apply via BLS International · €90',slug:null},
+    203:{name:'Czech Republic',flag:'🇨🇿',s:'required',label:'Schengen Visa Required',note:'Apply via VFS Global Amman · €90',slug:null},
+    208:{name:'Denmark',flag:'🇩🇰',s:'required',label:'Schengen Visa Required',note:'Apply via VFS Global Amman · €90',slug:null},
+    233:{name:'Estonia',flag:'🇪🇪',s:'required',label:'Schengen Visa Required',note:'Apply via Finnish Embassy · €90',slug:null},
+    246:{name:'Finland',flag:'🇫🇮',s:'required',label:'Schengen Visa Required',note:'Apply at Finnish Embassy · €90',slug:null},
+    250:{name:'France',flag:'🇫🇷',s:'required',label:'Schengen Visa Required',note:'Apply via TLScontact Amman · €90',slug:'France'},
+    348:{name:'Hungary',flag:'🇭🇺',s:'required',label:'Schengen Visa Required',note:'Apply at Hungarian Embassy · €90',slug:null},
+    352:{name:'Iceland',flag:'🇮🇸',s:'required',label:'Schengen Visa Required',note:'Apply via Danish Embassy · €90',slug:null},
+    380:{name:'Italy',flag:'🇮🇹',s:'required',label:'Schengen Visa Required',note:'Apply via VFS Global Amman · €90',slug:'Italy'},
+    528:{name:'Netherlands',flag:'🇳🇱',s:'required',label:'Schengen Visa Required',note:'Apply via VFS Global Amman · €90',slug:'Netherlands'},
+    578:{name:'Norway',flag:'🇳🇴',s:'required',label:'Schengen Visa Required',note:'Apply via VFS Global Amman · €90',slug:null},
+    616:{name:'Poland',flag:'🇵🇱',s:'required',label:'Schengen Visa Required',note:'Apply at Polish Embassy · €90',slug:null},
+    620:{name:'Portugal',flag:'🇵🇹',s:'required',label:'Schengen Visa Required',note:'Apply via VFS Global Amman · €90',slug:null},
+    703:{name:'Slovakia',flag:'🇸🇰',s:'required',label:'Schengen Visa Required',note:'Apply at Slovak Embassy · €90',slug:null},
+    705:{name:'Slovenia',flag:'🇸🇮',s:'required',label:'Schengen Visa Required',note:'Apply via Austrian Embassy · €90',slug:null},
+    724:{name:'Spain',flag:'🇪🇸',s:'required',label:'Schengen Visa Required',note:'Apply via BLS International · €90',slug:'Spain'},
+    752:{name:'Sweden',flag:'🇸🇪',s:'required',label:'Schengen Visa Required',note:'Apply via VFS Global Amman · €90',slug:null},
+    756:{name:'Switzerland',flag:'🇨🇭',s:'required',label:'Schengen Visa Required',note:'Apply via TLScontact Amman',slug:'Switzerland'},
+    191:{name:'Croatia',flag:'🇭🇷',s:'required',label:'Schengen Visa Required',note:'Apply at Croatian Embassy · €90',slug:null},
+    100:{name:'Bulgaria',flag:'🇧🇬',s:'required',label:'Schengen Visa Required',note:'Apply at Bulgarian Embassy · €90',slug:null},
+    642:{name:'Romania',flag:'🇷🇴',s:'required',label:'Schengen Visa Required',note:'Apply at Romanian Embassy · €90',slug:null},
+    372:{name:'Ireland',flag:'🇮🇪',s:'required',label:'Visa Required',note:'Not Schengen · €100',slug:null},
+    840:{name:'United States',flag:'🇺🇸',s:'required',label:'Visa Required (B1/B2)',note:'Interview required · $185 fee',slug:'USA'},
+    124:{name:'Canada',flag:'🇨🇦',s:'required',label:'Visa Required (TRV)',note:'Apply online · CAD 100',slug:null},
+    36:{name:'Australia',flag:'🇦🇺',s:'required',label:'Visa Required',note:'Tourist Visa · AUD 145',slug:'Australia'},
+    392:{name:'Japan',flag:'🇯🇵',s:'required',label:'Visa Required',note:'Apply at Japanese Embassy · ¥3,000',slug:'Japan'},
+    410:{name:'South Korea',flag:'🇰🇷',s:'required',label:'Visa Required',note:'Apply at Korean Embassy',slug:null},
+    156:{name:'China',flag:'🇨🇳',s:'required',label:'Visa Required',note:'Apply at Chinese Embassy',slug:null},
+    710:{name:'South Africa',flag:'🇿🇦',s:'required',label:'Visa Required',note:'ZAR 425 · 5–10 days',slug:null},
+    643:{name:'Russia',flag:'🇷🇺',s:'required',label:'Visa Required',note:'Check sanctions & advisories',slug:null},
+    442:{name:'Luxembourg',flag:'🇱🇺',s:'required',label:'Schengen Visa Required',note:'Apply via Belgian Embassy · €90',slug:null},
+    470:{name:'Malta',flag:'🇲🇹',s:'required',label:'Schengen Visa Required',note:'Apply via VFS Global Amman · €90',slug:null},
+    438:{name:'Liechtenstein',flag:'🇱🇮',s:'required',label:'Schengen Visa Required',note:'Apply via Swiss Embassy · €90',slug:null},
+    428:{name:'Latvia',flag:'🇱🇻',s:'required',label:'Schengen Visa Required',note:'Apply via Lithuanian Embassy · €90',slug:null},
+    440:{name:'Lithuania',flag:'🇱🇹',s:'required',label:'Schengen Visa Required',note:'Apply at Lithuanian Embassy · €90',slug:null},
+  };
+
+  var GC = {
+    free:     {base:'#15803d',lit:'#22c55e',side:'rgba(21,128,61,0.35)'},
+    evisa:    {base:'#b45309',lit:'#f59e0b',side:'rgba(180,83,9,0.35)'},
+    required: {base:'#b91c1c',lit:'#ef4444',side:'rgba(185,28,28,0.35)'},
+    jordan:   {base:'#4338ca',lit:'#6366f1',side:'rgba(67,56,202,0.4)'},
+    none:     {base:'#1e293b',lit:'#334155',side:'rgba(30,41,59,0.2)'},
+  };
+
+  function gEntry(id) {
+    if (id === 400) return {name:'Jordan',flag:'🇯🇴',s:'jordan',label:'Your Home Country',note:'',slug:null};
+    return GV[id] || null;
+  }
+  function gCap(feat, hover) {
+    var d = gEntry(+feat.id), s = d ? d.s : 'none';
+    return hover ? GC[s].lit : GC[s].base;
+  }
+
+  var gHover = null;
+  var gEl = document.getElementById('globe-canvas-el');
+  var gSpinner = document.getElementById('globe-spinner');
+  var gTooltip = document.getElementById('g-tooltip');
+  var gTTName = document.getElementById('g-tt-name');
+  var gTTBadge = document.getElementById('g-tt-badge');
+  var gTTNote = document.getElementById('g-tt-note');
+  var gOverlay = document.getElementById('g-popup-overlay');
+  var mx = 0, my = 0;
+
+  document.addEventListener('mousemove', function(e) {
+    mx = e.clientX; my = e.clientY;
+    if (gTooltip.classList.contains('on')) posGTT();
+  });
+
+  function posGTT() {
+    var m=16, w=220, h=90;
+    var x = mx+m, y = my+m;
+    if (x+w > window.innerWidth)  x = mx-w-m;
+    if (y+h > window.innerHeight) y = my-h-m;
+    gTooltip.style.left = x+'px'; gTooltip.style.top = y+'px';
+  }
+
+  function showGTT(d) {
+    gTTName.textContent = (d ? (d.flag+' '+d.name) : 'No data');
+    gTTBadge.textContent = d ? d.label : 'Unknown';
+    gTTBadge.className = 'g-tt-badge '+(d ? (d.s==='free'?'green':d.s==='evisa'?'yellow':'red') : 'gray');
+    gTTNote.textContent = d ? (d.note||'') : '';
+    posGTT(); gTooltip.classList.add('on');
+  }
+
+  function showGPopup(d) {
+    gTooltip.classList.remove('on');
+    var flag=document.getElementById('g-pop-flag');
+    var name=document.getElementById('g-pop-name');
+    var badge=document.getElementById('g-pop-badge');
+    var note=document.getElementById('g-pop-note');
+    var link=document.getElementById('g-pop-link');
+    if (!d) {
+      flag.textContent='🌍'; name.textContent='Unknown Country';
+      badge.textContent='No data'; badge.className='g-popup-badge gray';
+      note.textContent='No visa data available for this country.';
+      link.href='#countries'; link.textContent='Browse Countries →'; link.className='g-popup-btn muted';
+    } else {
+      flag.textContent=d.flag||'🌍'; name.textContent=d.name;
+      badge.textContent=d.label;
+      badge.className='g-popup-badge '+(d.s==='free'?'green':d.s==='evisa'?'yellow':d.s==='jordan'?'gray':'red');
+      note.textContent=d.note||'';
+      if (d.slug) {
+        link.href='visa-info.html?country='+encodeURIComponent(d.slug);
+        link.textContent='View Full Requirements →'; link.className='g-popup-btn';
+      } else {
+        link.href='#countries'; link.textContent='Browse All Countries →'; link.className='g-popup-btn muted';
+      }
+    }
+    gOverlay.classList.add('open');
+    if (window._globe) window._globe.controls().autoRotate = false;
+  }
+
+  document.getElementById('g-popup-close').addEventListener('click', function() {
+    gOverlay.classList.remove('open');
+    if (window._globe) window._globe.controls().autoRotate = true;
+  });
+  gOverlay.addEventListener('click', function(e) {
+    if (e.target === gOverlay) {
+      gOverlay.classList.remove('open');
+      if (window._globe) window._globe.controls().autoRotate = true;
+    }
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      gOverlay.classList.remove('open');
+      if (window._globe) window._globe.controls().autoRotate = true;
+    }
+  });
+
+  // Use IntersectionObserver so the heavy globe only initialises when visible
+  var gObserver = new IntersectionObserver(function(entries) {
+    if (!entries[0].isIntersecting) return;
+    gObserver.disconnect();
+    initGlobe();
+  }, { threshold: 0.1 });
+  gObserver.observe(document.getElementById('globe-section'));
+
+  function initGlobe() {
+    var globe = Globe()(gEl);
+    window._globe = globe;
+
+    globe
+      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
+      .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
+      .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png')
+      .atmosphereColor('rgba(79,70,229,0.4)')
+      .atmosphereAltitude(0.18)
+      .showAtmosphere(true)
+      .showGraticules(false);
+
+    fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+      .then(function(r){ return r.json(); })
+      .then(function(world) {
+        var features = topojson.feature(world, world.objects.countries).features;
+        globe
+          .polygonsData(features)
+          .polygonCapColor(function(f){ return gCap(f, f===gHover); })
+          .polygonSideColor(function(f){ var d=gEntry(+f.id),s=d?d.s:'none'; return GC[s].side; })
+          .polygonStrokeColor(function(){ return 'rgba(255,255,255,0.03)'; })
+          .polygonAltitude(function(f){ return f===gHover ? 0.018 : 0.008; })
+          .polygonLabel(function(){ return ''; })
+          .onPolygonHover(function(polygon) {
+            if (polygon === gHover) return;
+            gHover = polygon;
+            globe
+              .polygonAltitude(function(f){ return f===polygon?0.018:0.008; })
+              .polygonCapColor(function(f){ return gCap(f, f===polygon); });
+            if (polygon) {
+              showGTT(gEntry(+polygon.id));
+              gEl.style.cursor = 'pointer';
+            } else {
+              gTooltip.classList.remove('on');
+              gEl.style.cursor = '';
+            }
+          })
+          .onPolygonClick(function(polygon) {
+            if (!polygon) return;
+            showGPopup(gEntry(+polygon.id));
+          });
+
+        globe.pointOfView({lat:27, lng:38, altitude:2.2}, 0);
+        globe.controls().autoRotate = true;
+        globe.controls().autoRotateSpeed = 0.35;
+        globe.controls().enableZoom = true;
+        globe.controls().minDistance = 200;
+        globe.controls().maxDistance = 550;
+        globe.controls().enableDamping = true;
+        globe.controls().dampingFactor = 0.1;
+        globe.controls().addEventListener('start', function() {
+          globe.controls().autoRotate = false;
+        });
+
+        gSpinner.classList.add('done');
+      });
+
+    function resizeGlobe() {
+      var wrap = document.getElementById('globe-canvas-wrap');
+      globe.width(wrap.offsetWidth).height(wrap.offsetHeight);
+    }
+    window.addEventListener('resize', resizeGlobe);
+    setTimeout(resizeGlobe, 0);
+  }
+})();
 </script>
 </body>
 </html>
