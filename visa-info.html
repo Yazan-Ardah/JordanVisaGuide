@@ -487,33 +487,32 @@
 <!-- ── CONSULTATION FORM ─────────────────────────────── -->
 <section class="consult-section" id="consultSection">
   <div class="consult-inner">
-    <div class="consult-eyebrow">✉️ Free Consultation</div>
-    <h2>Need help with your visa application?</h2>
-    <p class="consult-sub">Our partner travel agencies can guide you through the process — from document prep to appointment booking.</p>
+    <div class="consult-eyebrow" id="cf-eyebrow">✉️ Free Consultation</div>
+    <h2 id="cf-heading">Need help with your visa application?</h2>
+    <p class="consult-sub" id="cf-sub">Our partner travel agencies can guide you through the process — from document prep to appointment booking.</p>
 
     <div class="consult-success" id="consultSuccess">
       <div class="consult-success-icon">✅</div>
-      <h3>Request received!</h3>
-      <p>A visa specialist will contact you within 24 hours.</p>
+      <h3 id="cf-success-title">Request received!</h3>
+      <p id="cf-success-sub">A visa specialist will contact you within 24 hours.</p>
     </div>
 
     <form class="consult-form" id="consultForm"
           action="https://formspree.io/f/YOUR_FORM_ID"
           method="POST">
 
-      <!-- Hidden: country pre-filled from the page -->
       <input type="hidden" name="destination_country" id="cf-destination-hidden" value="" />
 
       <!-- Name -->
       <div class="consult-field">
-        <label class="consult-label" for="cf-name">Full Name <span style="color:#ef4444">*</span></label>
+        <label class="consult-label" for="cf-name" id="cf-label-name">Full Name <span style="color:#ef4444">*</span></label>
         <input class="consult-input" type="text" id="cf-name" name="full_name"
                placeholder="e.g. Ahmad Al-Hassan" required autocomplete="name" />
       </div>
 
       <!-- Phone -->
       <div class="consult-field">
-        <label class="consult-label" for="cf-phone">Phone Number <span style="color:#ef4444">*</span></label>
+        <label class="consult-label" for="cf-phone" id="cf-label-phone">Phone Number <span style="color:#ef4444">*</span></label>
         <div class="phone-group">
           <select class="phone-code" name="country_code" aria-label="Country code">
             <option value="+962">🇯🇴 +962</option>
@@ -522,15 +521,24 @@
             <option value="+965">🇰🇼 +965</option>
             <option value="+974">🇶🇦 +974</option>
             <option value="+968">🇴🇲 +968</option>
+            <option value="+973">🇧🇭 +973</option>
             <option value="+20">🇪🇬 +20</option>
             <option value="+961">🇱🇧 +961</option>
+            <option value="+963">🇸🇾 +963</option>
+            <option value="+964">🇮🇶 +964</option>
             <option value="+90">🇹🇷 +90</option>
             <option value="+44">🇬🇧 +44</option>
             <option value="+49">🇩🇪 +49</option>
             <option value="+33">🇫🇷 +33</option>
+            <option value="+39">🇮🇹 +39</option>
+            <option value="+34">🇪🇸 +34</option>
             <option value="+1">🇺🇸 +1</option>
             <option value="+61">🇦🇺 +61</option>
             <option value="+81">🇯🇵 +81</option>
+            <option value="+82">🇰🇷 +82</option>
+            <option value="+66">🇹🇭 +66</option>
+            <option value="+60">🇲🇾 +60</option>
+            <option value="+91">🇮🇳 +91</option>
           </select>
           <input class="consult-input phone-number" type="tel" id="cf-phone" name="phone_number"
                  placeholder="7X XXX XXXX" required autocomplete="tel-national"
@@ -540,25 +548,31 @@
 
       <!-- Destination Country -->
       <div class="consult-field">
-        <label class="consult-label" for="cf-country">Destination Country <span style="color:#ef4444">*</span></label>
+        <label class="consult-label" for="cf-country" id="cf-label-dest">Destination Country <span style="color:#ef4444">*</span></label>
         <select class="consult-input consult-select" id="cf-country" name="destination_country_visible" required>
-          <option value="" disabled selected>Select your destination</option>
-          <optgroup label="Middle East &amp; Gulf">
+          <option value="" disabled selected id="cf-dest-placeholder">Select your destination</option>
+
+          <optgroup id="cf-grp-gulf" label="🌙 Middle East &amp; Gulf">
             <option value="UAE">🇦🇪 United Arab Emirates</option>
             <option value="Saudi Arabia">🇸🇦 Saudi Arabia</option>
             <option value="Qatar">🇶🇦 Qatar</option>
             <option value="Kuwait">🇰🇼 Kuwait</option>
             <option value="Oman">🇴🇲 Oman</option>
             <option value="Bahrain">🇧🇭 Bahrain</option>
+            <option value="Turkey">🇹🇷 Turkey</option>
             <option value="Lebanon">🇱🇧 Lebanon</option>
+            <option value="Egypt">🇪🇬 Egypt</option>
+            <option value="Georgia">🇬🇪 Georgia</option>
           </optgroup>
-          <optgroup label="Europe (Schengen)">
+
+          <optgroup id="cf-grp-europe" label="🇪🇺 Europe">
             <option value="Germany">🇩🇪 Germany</option>
+            <option value="UK">🇬🇧 United Kingdom</option>
             <option value="France">🇫🇷 France</option>
             <option value="Italy">🇮🇹 Italy</option>
             <option value="Spain">🇪🇸 Spain</option>
-            <option value="Netherlands">🇳🇱 Netherlands</option>
             <option value="Greece">🇬🇷 Greece</option>
+            <option value="Netherlands">🇳🇱 Netherlands</option>
             <option value="Switzerland">🇨🇭 Switzerland</option>
             <option value="Austria">🇦🇹 Austria</option>
             <option value="Belgium">🇧🇪 Belgium</option>
@@ -571,34 +585,42 @@
             <option value="Czech Republic">🇨🇿 Czech Republic</option>
             <option value="Croatia">🇭🇷 Croatia</option>
             <option value="Hungary">🇭🇺 Hungary</option>
-          </optgroup>
-          <optgroup label="Europe (Other)">
-            <option value="UK">🇬🇧 United Kingdom</option>
             <option value="Cyprus">🇨🇾 Cyprus</option>
             <option value="Bosnia">🇧🇦 Bosnia &amp; Herzegovina</option>
             <option value="Serbia">🇷🇸 Serbia</option>
-            <option value="Georgia">🇬🇪 Georgia</option>
           </optgroup>
-          <optgroup label="Africa &amp; Other">
-            <option value="Turkey">🇹🇷 Turkey</option>
-            <option value="Egypt">🇪🇬 Egypt</option>
+
+          <optgroup id="cf-grp-americas" label="🌎 Americas">
+            <option value="USA">🇺🇸 United States</option>
+            <option value="Canada">🇨🇦 Canada</option>
+            <option value="Mexico">🇲🇽 Mexico</option>
+          </optgroup>
+
+          <optgroup id="cf-grp-asia" label="🌏 Asia &amp; Pacific">
+            <option value="Japan">🇯🇵 Japan</option>
+            <option value="South Korea">🇰🇷 South Korea</option>
+            <option value="Thailand">🇹🇭 Thailand</option>
+            <option value="Malaysia">🇲🇾 Malaysia</option>
+            <option value="Indonesia">🇮🇩 Indonesia</option>
+            <option value="India">🇮🇳 India</option>
+            <option value="China">🇨🇳 China</option>
+            <option value="Australia">🇦🇺 Australia</option>
+          </optgroup>
+
+          <optgroup id="cf-grp-africa" label="🌍 Africa">
             <option value="Morocco">🇲🇦 Morocco</option>
             <option value="Tunisia">🇹🇳 Tunisia</option>
+            <option value="South Africa">🇿🇦 South Africa</option>
+            <option value="Kenya">🇰🇪 Kenya</option>
           </optgroup>
-          <optgroup label="Asia &amp; Pacific">
-            <option value="Japan">🇯🇵 Japan</option>
-            <option value="USA">🇺🇸 United States</option>
-            <option value="Australia">🇦🇺 Australia</option>
-            <option value="Thailand">🇹🇭 Thailand</option>
-            <option value="Indonesia">🇮🇩 Indonesia</option>
-          </optgroup>
-          <option value="Other">🌍 Other (specify in notes)</option>
+
+          <option value="Other" id="cf-opt-other">🌐 Other (please specify in notes)</option>
         </select>
       </div>
 
-      <!-- Optional notes -->
+      <!-- Notes -->
       <div class="consult-field">
-        <label class="consult-label" for="cf-notes">Additional Notes <span style="color:rgba(255,255,255,0.3);font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+        <label class="consult-label" for="cf-notes" id="cf-label-notes">Additional Notes <span id="cf-optional-tag" style="color:rgba(255,255,255,0.3);font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
         <textarea class="consult-input" id="cf-notes" name="notes"
                   placeholder="e.g. Travel dates, number of travellers, specific questions…"
                   rows="3" style="resize:vertical;min-height:80px"></textarea>
@@ -607,7 +629,7 @@
       <button class="consult-btn" type="submit" id="consultSubmitBtn">Get Assistance</button>
     </form>
 
-    <p class="consult-disclaimer">
+    <p class="consult-disclaimer" id="cf-disclaimer">
       By submitting this form, you agree to be contacted by our partner travel agencies regarding visa assistance.
     </p>
   </div>
@@ -642,6 +664,64 @@ function applyLang() {
   document.getElementById('langToggle').textContent = ar() ? 'English' : 'عربي';
   document.getElementById('navAllCountries').textContent = ar() ? 'جميع الدول' : 'All countries';
   document.getElementById('navFaq').textContent          = ar() ? 'الأسئلة الشائعة' : 'FAQ';
+
+  // ── Consultation form i18n ──
+  const s = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
+  const a = (id, attr, txt) => { const el = document.getElementById(id); if (el) el.setAttribute(attr, txt); };
+
+  if (ar()) {
+    s('cf-eyebrow',        '✉️ استشارة مجانية');
+    s('cf-heading',        'هل تحتاج مساعدة في طلب التأشيرة؟');
+    s('cf-sub',            'وكالات السفر الشريكة لدينا ترافقك في كل خطوة — من إعداد الوثائق حتى حجز الموعد.');
+    s('cf-success-title',  'تم استلام طلبك!');
+    s('cf-success-sub',    'سيتواصل معك متخصص في التأشيرات خلال 24 ساعة.');
+
+    // Labels — keep the asterisk via innerHTML
+    document.getElementById('cf-label-name').innerHTML  = 'الاسم الكامل <span style="color:#ef4444">*</span>';
+    document.getElementById('cf-label-phone').innerHTML = 'رقم الهاتف <span style="color:#ef4444">*</span>';
+    document.getElementById('cf-label-dest').innerHTML  = 'دولة الوجهة <span style="color:#ef4444">*</span>';
+    document.getElementById('cf-label-notes').innerHTML = 'ملاحظات إضافية <span style="color:rgba(255,255,255,0.3);font-weight:400;text-transform:none;letter-spacing:0">(اختياري)</span>';
+
+    a('cf-name',  'placeholder', 'مثال: أحمد الحسن');
+    a('cf-notes', 'placeholder', 'مثال: تواريخ السفر، عدد المسافرين، أسئلة محددة…');
+    s('cf-dest-placeholder', 'اختر وجهتك');
+
+    // Optgroup labels
+    document.getElementById('cf-grp-gulf').label    = '🌙 الشرق الأوسط والخليج';
+    document.getElementById('cf-grp-europe').label  = '🇪🇺 أوروبا';
+    document.getElementById('cf-grp-americas').label= '🌎 الأمريكتان';
+    document.getElementById('cf-grp-asia').label    = '🌏 آسيا والمحيط الهادئ';
+    document.getElementById('cf-grp-africa').label  = '🌍 أفريقيا';
+    s('cf-opt-other', '🌐 أخرى (يرجى التوضيح في الملاحظات)');
+
+    s('consultSubmitBtn', 'احصل على المساعدة');
+    s('cf-disclaimer', 'بتقديم هذا النموذج، توافق على أن تتواصل معك وكالات السفر الشريكة لدينا بشأن المساعدة في التأشيرة.');
+  } else {
+    s('cf-eyebrow',        '✉️ Free Consultation');
+    s('cf-heading',        'Need help with your visa application?');
+    s('cf-sub',            'Our partner travel agencies can guide you through the process — from document prep to appointment booking.');
+    s('cf-success-title',  'Request received!');
+    s('cf-success-sub',    'A visa specialist will contact you within 24 hours.');
+
+    document.getElementById('cf-label-name').innerHTML  = 'Full Name <span style="color:#ef4444">*</span>';
+    document.getElementById('cf-label-phone').innerHTML = 'Phone Number <span style="color:#ef4444">*</span>';
+    document.getElementById('cf-label-dest').innerHTML  = 'Destination Country <span style="color:#ef4444">*</span>';
+    document.getElementById('cf-label-notes').innerHTML = 'Additional Notes <span style="color:rgba(255,255,255,0.3);font-weight:400;text-transform:none;letter-spacing:0">(optional)</span>';
+
+    a('cf-name',  'placeholder', 'e.g. Ahmad Al-Hassan');
+    a('cf-notes', 'placeholder', 'e.g. Travel dates, number of travellers, specific questions…');
+    s('cf-dest-placeholder', 'Select your destination');
+
+    document.getElementById('cf-grp-gulf').label    = '🌙 Middle East & Gulf';
+    document.getElementById('cf-grp-europe').label  = '🇪🇺 Europe';
+    document.getElementById('cf-grp-americas').label= '🌎 Americas';
+    document.getElementById('cf-grp-asia').label    = '🌏 Asia & Pacific';
+    document.getElementById('cf-grp-africa').label  = '🌍 Africa';
+    s('cf-opt-other', '🌐 Other (please specify in notes)');
+
+    s('consultSubmitBtn', 'Get Assistance');
+    s('cf-disclaimer', 'By submitting this form, you agree to be contacted by our partner travel agencies regarding visa assistance.');
+  }
 }
 
 // ─── Visa data store ──────────────────────────────────────────────────────────
