@@ -519,7 +519,7 @@
       <p id="cf-success-sub">A visa specialist will contact you within 24 hours.</p>
     </div>
 
-    <form class="consult-form" id="consultForm" novalidate>
+    <form class="consult-form" id="consultForm" method="post" action="/api/leads" novalidate onsubmit="return handleConsultSubmit(event)">
 
       <!-- Name -->
       <div class="consult-field">
@@ -1026,78 +1026,54 @@ function toggleFaq(i) {
 applyLang();
 
 // ─── Consultation Form ────────────────────────────────────────────────────────
-(function() {
-  // Pre-select the current country in the dropdown
-  // Use already-resolved countryName (works for both /visa/germany and ?country=Germany)
-  if (countryName) {
-    const hidden = document.getElementById('cf-destination-hidden');
-    if (hidden) hidden.value = countryName;
+async function handleConsultSubmit(e) {
+  e.preventDefault();
 
-    const sel = document.getElementById('cf-country');
-    if (sel) {
-      for (let i = 0; i < sel.options.length; i++) {
-        if (sel.options[i].value.toLowerCase() === countryName.toLowerCase()) {
-          sel.selectedIndex = i;
-          break;
-        }
-      }
-    }
-  }
-
-  // AJAX submit → POST JSON to /api/leads (Vercel serverless function)
   const form    = document.getElementById('consultForm');
   const success = document.getElementById('consultSuccess');
   const btn     = document.getElementById('consultSubmitBtn');
-  if (!form) return;
+  const isAr    = typeof ar === 'function' && ar();
 
-  form.addEventListener('submit', async function(e) {
-    e.preventDefault();
+  btn.disabled = true;
+  btn.textContent = isAr ? 'جارٍ الإرسال…' : 'Sending…';
 
-    const isAr = typeof ar === 'function' && ar();
-    const sendingLabel = isAr ? 'جارٍ الإرسال…' : 'Sending…';
-    const errorLabel   = isAr ? 'تواصل معنا' : 'Contact Us';
+  const payload = {
+    full_name:           document.getElementById('cf-name').value.trim(),
+    country_code:        form.querySelector('[name="country_code"]').value,
+    phone_number:        document.getElementById('cf-phone').value.trim(),
+    destination_country: countryName || 'Unknown',
+  };
 
-    btn.disabled = true;
-    btn.textContent = sendingLabel;
+  try {
+    const res  = await fetch('/api/leads', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body:    JSON.stringify(payload),
+    });
+    const data = await res.json().catch(() => ({}));
 
-    const payload = {
-      full_name:           document.getElementById('cf-name').value.trim(),
-      country_code:        form.querySelector('[name="country_code"]').value,
-      phone_number:        document.getElementById('cf-phone').value.trim(),
-      destination_country: countryName || 'Unknown',
-    };
-
-    try {
-      const res = await fetch('/api/leads', {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body:    JSON.stringify(payload),
-      });
-
-      const data = await res.json().catch(() => ({}));
-
-      if (res.ok && data.success) {
-        form.style.display = 'none';
-        success.style.display = 'block';
-        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } else {
-        throw new Error(data.error || `HTTP ${res.status}`);
-      }
-    } catch (err) {
-      console.error('[consult form]', err.message);
-      btn.disabled = false;
-      btn.textContent = errorLabel;
-      let errEl = document.getElementById('cf-error-msg');
-      if (!errEl) {
-        errEl = document.createElement('p');
-        errEl.id = 'cf-error-msg';
-        errEl.style.cssText = 'color:#f87171;font-size:13px;text-align:center;margin-top:10px;';
-        btn.parentNode.insertBefore(errEl, btn.nextSibling);
-      }
-      errEl.textContent = err.message || 'Something went wrong. Please try again.';
+    if (res.ok && data.success) {
+      form.style.display    = 'none';
+      success.style.display = 'block';
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      throw new Error(data.error || `HTTP ${res.status}`);
     }
-  });
-})();
+  } catch (err) {
+    console.error('[consult form]', err.message);
+    btn.disabled    = false;
+    btn.textContent = isAr ? 'تواصل معنا' : 'Get Visa Assistance';
+    let errEl = document.getElementById('cf-error-msg');
+    if (!errEl) {
+      errEl = document.createElement('p');
+      errEl.id = 'cf-error-msg';
+      errEl.style.cssText = 'color:#f87171;font-size:13px;text-align:center;margin-top:10px;';
+      btn.parentNode.insertBefore(errEl, btn.nextSibling);
+    }
+    errEl.textContent = err.message || 'Something went wrong. Please try again.';
+  }
+  return false;
+}
 </script>
 </body>
 </html>
