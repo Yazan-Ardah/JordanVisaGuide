@@ -4,6 +4,29 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Visa Info — Jordan Visa Guide</title>
+<meta name="description" content="Visa requirements for Jordanian passport holders." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" id="meta-canonical" href="https://visasjo.com/" />
+
+<!-- Open Graph (values updated dynamically by rebuildPage) -->
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Jordan Visa Guide" />
+<meta property="og:image" content="https://visasjo.com/og-cover.png" />
+<meta property="og:url" id="meta-og-url" content="https://visasjo.com/" />
+<meta property="og:title" id="meta-og-title" content="Visa Info — Jordan Visa Guide" />
+<meta property="og:description" id="meta-og-desc" content="Visa requirements for Jordanian passport holders." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://visasjo.com/og-cover.png" />
+
+<!-- Vercel Analytics -->
+<script>window.va = window.va || function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<!-- Umami analytics -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="UMAMI_SITE_ID"></script>
+
+<!-- Per-page Article schema (filled by JS) -->
+<script type="application/ld+json" id="schema-article">{}</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@400;600;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
@@ -1074,6 +1097,78 @@ async function handleConsultSubmit(e) {
   }
   return false;
 }
+
+// ── Analytics ─────────────────────────────────────────────────────────────
+(function() {
+  function utrack(event, props) {
+    if (typeof umami !== 'undefined') umami.track(event, props);
+  }
+
+  // Page view with visa type
+  window.addEventListener('load', function() {
+    utrack('visa-page-view', { country: countryName, visaType: (VISA_DATA[countryName] || {}).visaType_en || 'unknown' });
+  });
+
+  // Form start (first focus on name field)
+  var nameEl = document.getElementById('cf-name');
+  if (nameEl) nameEl.addEventListener('focus', function() {
+    utrack('consultation-form-start', { country: countryName });
+  }, { once: true });
+
+  // WhatsApp button click
+  var waBtn = document.getElementById('waDirectBtn');
+  if (waBtn) waBtn.addEventListener('click', function() {
+    utrack('whatsapp-click', { country: countryName, source: 'visa-page' });
+  });
+
+  // Tab switches
+  document.querySelectorAll('.tab-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      utrack('tab-switch', { country: countryName, tab: btn.dataset.tab || btn.textContent.trim() });
+    });
+  });
+})();
+
+// ── Agency CTA (shown on high-friction visa types after scroll) ────────────
+(function() {
+  var data = VISA_DATA[countryName];
+  if (!data) return;
+  var highFriction = ['Embassy Visa', 'eVisa', 'Apply ahead', 'Complex'];
+  if (!highFriction.includes(data.visaType_en)) return;
+
+  var ctaEl = document.createElement('div');
+  ctaEl.id = 'agency-cta';
+  ctaEl.style.cssText = [
+    'display:none;position:fixed;bottom:20px;right:20px;z-index:999',
+    'background:#fff;border:1px solid #e8e8f0;border-radius:16px',
+    'padding:16px 20px;box-shadow:0 8px 32px rgba(0,0,0,0.12)',
+    'max-width:280px;font-family:Inter,sans-serif'
+  ].join(';');
+  ctaEl.innerHTML = `
+    <button onclick="document.getElementById('agency-cta').remove()" style="position:absolute;top:8px;right:10px;background:none;border:none;font-size:16px;color:#9ca3af;cursor:pointer">×</button>
+    <div style="font-size:12px;font-weight:700;color:#e85d2f;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Need help?</div>
+    <div style="font-size:14px;font-weight:600;color:#1a1a3e;margin-bottom:4px">Getting a ${countryName} visa can be tricky</div>
+    <div style="font-size:12px;color:#6b7280;margin-bottom:12px">We can connect you with a vetted travel specialist.</div>
+    <a href="#consultSection" onclick="document.getElementById('agency-cta').remove();document.getElementById('cf-name').focus();"
+       style="display:block;text-align:center;background:#e85d2f;color:#fff;border-radius:10px;padding:9px 16px;font-size:13px;font-weight:700;text-decoration:none">
+      Get Visa Assistance →
+    </a>
+  `;
+  document.body.appendChild(ctaEl);
+
+  var shown = false;
+  window.addEventListener('scroll', function() {
+    if (shown) return;
+    var pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+    if (pct > 0.45) {
+      shown = true;
+      ctaEl.style.display = 'block';
+      setTimeout(function() {
+        if (ctaEl.parentNode) ctaEl.style.display = 'none';
+      }, 12000);
+    }
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>

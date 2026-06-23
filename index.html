@@ -19,17 +19,26 @@
 <meta name="twitter:title" content="Visa Free Countries for Jordanians 2026 — VisasJo">
 <meta name="twitter:description" content="Check visa requirements for every country with a Jordanian passport. Free, updated, no ads.">
 
+<!-- OG image -->
+<meta property="og:image" content="https://visasjo.com/og-cover.png" />
+<meta name="twitter:image" content="https://visasjo.com/og-cover.png" />
+
 <!-- Schema: WebSite + SearchAction -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "VisasJo",
+  "name": "Jordan Visa Guide",
+  "alternateName": "VisasJo",
   "url": "https://visasjo.com",
-  "description": "Visa requirements for Jordanian passport holders — updated 2026",
+  "description": "Instant visa requirements for 193 countries for Jordanian passport holders — updated 2026",
+  "inLanguage": ["en", "ar"],
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://visasjo.com/?q={search_term_string}",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://visasjo.com/visa/{search_term_string}"
+    },
     "query-input": "required name=search_term_string"
   }
 }
@@ -37,11 +46,24 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "VisasJo",
-  "url": "https://visasjo.com",
-  "logo": "https://visasjo.com/favicon.ico",
-  "sameAs": []
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many countries can Jordanians visit without a visa?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Jordanian passport holders can visit 42 countries visa-free as of 2026." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which countries offer visa on arrival for Jordanians?",
+      "acceptedAnswer": { "@type": "Answer", "text": "56 countries offer visa on arrival for Jordanian passport holders, including Bahrain, Oman, Iraq, and many more." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do Jordanians need a visa for Turkey?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Jordan passport holders can visit Turkey visa-free for up to 90 days per 180-day period." }
+    }
+  ]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -623,6 +645,8 @@
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<!-- Umami analytics — privacy-first, GDPR-safe -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="UMAMI_SITE_ID"></script>
 </head>
 <body>
 
@@ -1476,12 +1500,70 @@ document.getElementById('searchInput').addEventListener('input', function() {
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
 applyLang();
+
+// ── Analytics events ──────────────────────────────────────────────────────
+(function() {
+  function utrack(event, props) {
+    if (typeof umami !== 'undefined') umami.track(event, props);
+  }
+
+  // Track hero filter tag clicks
+  document.querySelectorAll('.hero-tag').forEach(function(el) {
+    el.addEventListener('click', function() {
+      utrack('hero-filter-click', { label: el.textContent.trim() });
+    });
+  });
+
+  // Track country card / table row clicks
+  document.addEventListener('click', function(e) {
+    var card = e.target.closest('[data-country]');
+    if (card) utrack('country-click', { country: card.dataset.country });
+  });
+
+  // Track search usage
+  var searchInput = document.getElementById('heroSearch');
+  if (searchInput) {
+    searchInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && searchInput.value.trim()) {
+        utrack('search', { query: searchInput.value.trim() });
+      }
+    }, { passive: true });
+  }
+
+  // Track WhatsApp CTA in footer / nav (if any)
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      utrack('whatsapp-click', { source: 'homepage' });
+    });
+  });
+})();
 </script>
 
-<!-- ── GLOBE SCRIPTS ───────────────────────────────────────────────────────── -->
-<script src="https://unpkg.com/globe.gl@2.26.3/dist/globe.gl.min.js"></script>
-<script src="https://unpkg.com/topojson-client@3/dist/topojson-client.min.js"></script>
+<!-- ── GLOBE SCRIPTS (lazy-loaded on scroll) ───────────────────────────────── -->
 <script>
+(function() {
+  var globeLoaded = false;
+  var observer = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && !globeLoaded) {
+      globeLoaded = true;
+      observer.disconnect();
+      var s1 = document.createElement('script');
+      s1.src = 'https://unpkg.com/globe.gl@2.26.3/dist/globe.gl.min.js';
+      s1.onload = function() {
+        var s2 = document.createElement('script');
+        s2.src = 'https://unpkg.com/topojson-client@3/dist/topojson-client.min.js';
+        s2.onload = function() { initGlobe(); };
+        document.body.appendChild(s2);
+      };
+      document.body.appendChild(s1);
+    }
+  }, { rootMargin: '200px' });
+  var target = document.getElementById('globe-section') || document.getElementById('globe-canvas-wrap');
+  if (target) observer.observe(target);
+})();
+</script>
+<script>
+function initGlobe() {
 (function() {
   // Visa data keyed by ISO 3166-1 numeric code
   var GV = {
@@ -1727,6 +1809,7 @@ applyLang();
     setTimeout(resizeGlobe, 0);
   }
 })();
+} // end initGlobe
 </script>
 </body>
 </html>
