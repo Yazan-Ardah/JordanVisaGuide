@@ -2671,6 +2671,17 @@ if (!data) {
   function rebuildPage() {
     const isAr = ar();
 
+    // Affiliate context — defined early so all tabs can use them
+    const AFF = {
+      insurance: { url: 'https://www.heymondo.com/?utm_source=visasjo', providers: 'Heymondo · AXA · Allianz' },
+      hotel:     { url: 'https://www.booking.com/?aid=YOUR_AFF_ID' },
+      esim:      { url: 'https://ref.airalo.com/YOUR_REF_CODE' },
+      flight:    { url: 'https://www.skyscanner.com/flights/?utm_source=visasjo' },
+    };
+    const needsInsurance = !!(data.documents_en && data.documents_en.some(d => /insurance/i.test(d.item)));
+    const needsHotel     = !!(data.documents_en && data.documents_en.some(d => /hotel|accommodation|reservation/i.test(d.item)));
+    const isSchengen     = !!(data.visaType_en && /schengen/i.test(data.visaType_en));
+
     // Page title + breadcrumb
     document.title = isAr
       ? `تأشيرة ${countryName} للأردنيين ${new Date().getFullYear()} · دليل تأشيرة الأردن`
@@ -2935,27 +2946,6 @@ if (!data) {
     }
 
     // ── Affiliate cards ────────────────────────────────────────────────────────
-    // Affiliate links — replace # with real partner URLs when you join programs
-    const AFF = {
-      insurance: {
-        url: 'https://www.heymondo.com/?utm_source=visasjo',   // replace with your affiliate link
-        providers: 'Heymondo · AXA · Allianz',
-      },
-      hotel: {
-        url: 'https://www.booking.com/?aid=YOUR_AFF_ID',       // replace with Booking.com affiliate link
-      },
-      esim: {
-        url: 'https://ref.airalo.com/YOUR_REF_CODE',           // replace with Airalo referral
-      },
-      flight: {
-        url: 'https://www.skyscanner.com/flights/?utm_source=visasjo', // replace with Skyscanner affiliate
-      },
-    };
-
-    const needsInsurance = !!(data.documents_en && data.documents_en.some(d => /insurance/i.test(d.item)));
-    const needsHotel     = !!(data.documents_en && data.documents_en.some(d => /hotel|accommodation|reservation/i.test(d.item)));
-    const isSchengen     = !!(data.visaType_en && /schengen/i.test(data.visaType_en));
-
     const T = (en, ar) => isAr ? ar : en;
 
     function affCard(cls, icon, label, title, desc, badge, badgeCls, ctaText, url) {
