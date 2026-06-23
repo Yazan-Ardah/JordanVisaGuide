@@ -193,6 +193,64 @@
     padding: 12px 28px; font-weight: 600; font-size: 15px; text-decoration: none;
   }
 
+  /* ── AFFILIATE CARDS ── */
+  .aff-card {
+    border-radius: 14px; overflow: hidden;
+    border: 1px solid #e8e8f0; background: #fff;
+    text-decoration: none; display: block;
+    transition: box-shadow 0.15s, transform 0.15s;
+  }
+  .aff-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.09); transform: translateY(-1px); }
+  .aff-card-head {
+    padding: 12px 16px; display: flex; align-items: center; gap: 10px;
+  }
+  .aff-card-icon { font-size: 22px; flex-shrink: 0; line-height: 1; }
+  .aff-card-label { font-size: 9px; font-weight: 700; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1px; }
+  .aff-card-title { font-size: 13px; font-weight: 700; color: #1a1a3e; line-height: 1.3; }
+  .aff-card-body { padding: 0 16px 14px; }
+  .aff-card-desc { font-size: 12px; color: #6b7280; line-height: 1.55; margin-bottom: 10px; }
+  .aff-card-badge {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    padding: 3px 10px; border-radius: 100px; margin-bottom: 10px;
+  }
+  .aff-required { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+  .aff-recommended { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+  .aff-cta {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 9px 14px; border-radius: 9px;
+    font-size: 12px; font-weight: 700;
+    transition: opacity 0.15s;
+  }
+  .aff-cta:hover { opacity: 0.88; }
+  .aff-cta-arrow { font-size: 14px; }
+  /* color themes */
+  .aff-ins  .aff-card-head { background: linear-gradient(135deg,#fef9f0,#fff7ed); border-bottom: 1px solid #fed7aa; }
+  .aff-ins  .aff-cta       { background: #f97316; color: #fff; }
+  .aff-hotel .aff-card-head { background: linear-gradient(135deg,#eff6ff,#f0f9ff); border-bottom: 1px solid #bfdbfe; }
+  .aff-hotel .aff-cta       { background: #2563eb; color: #fff; }
+  .aff-esim .aff-card-head  { background: linear-gradient(135deg,#f0fdf4,#ecfdf5); border-bottom: 1px solid #bbf7d0; }
+  .aff-esim .aff-cta        { background: #16a34a; color: #fff; }
+  .aff-flight .aff-card-head { background: linear-gradient(135deg,#faf5ff,#f5f3ff); border-bottom: 1px solid #ddd6fe; }
+  .aff-flight .aff-cta       { background: #7c3aed; color: #fff; }
+  .aff-photo .aff-card-head  { background: linear-gradient(135deg,#fff0f3,#fdf2f8); border-bottom: 1px solid #fbcfe8; }
+  .aff-photo .aff-cta        { background: #db2777; color: #fff; }
+  /* inline doc-required callout */
+  .aff-inline {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 16px; border-radius: 12px;
+    border: 1px solid #fed7aa; background: #fff7ed;
+    margin-top: 10px; text-decoration: none;
+  }
+  .aff-inline:hover { border-color: #fb923c; }
+  .aff-inline-icon { font-size: 20px; flex-shrink: 0; }
+  .aff-inline-text { flex: 1; }
+  .aff-inline-title { font-size: 13px; font-weight: 700; color: #1a1a3e; margin-bottom: 2px; }
+  .aff-inline-sub   { font-size: 12px; color: #6b7280; }
+  .aff-inline-btn   { font-size: 12px; font-weight: 700; color: #f97316; white-space: nowrap; align-self: center; }
+  [dir="rtl"] .aff-card-head { flex-direction: row-reverse; }
+  [dir="rtl"] .aff-cta { flex-direction: row-reverse; }
+  [dir="rtl"] .aff-inline { flex-direction: row-reverse; text-align: right; }
+
   /* ── FOOTER ── */
   footer { background: #0e0e22; padding: 36px 32px; }
   .footer-bottom { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
@@ -464,6 +522,9 @@
       <div class="status-card-label" id="statusLabel">—</div>
       <div class="status-card-desc" id="statusDesc">—</div>
     </div>
+
+    <!-- Affiliate cards — injected by JS based on country -->
+    <div id="affCards"></div>
 
   </aside>
 </div>
@@ -2803,6 +2864,24 @@ if (!data) {
           </div>
         </div>`).join('')}
       </div>
+      ${(needsInsurance || isSchengen) ? `
+      <a href="${AFF.insurance.url}" target="_blank" rel="noopener sponsored" class="aff-inline" style="margin-top:20px">
+        <div class="aff-inline-icon">🛡️</div>
+        <div class="aff-inline-text">
+          <div class="aff-inline-title">${isAr ? 'تأمين السفر — وثيقة إلزامية' : 'Travel Insurance — required document'}</div>
+          <div class="aff-inline-sub">${isAr ? `احصل على شهادة تأمين فورية (${AFF.insurance.providers}) — مطلوب للتقديم` : `Get an instant certificate (${AFF.insurance.providers}) — needed for your application`}</div>
+        </div>
+        <div class="aff-inline-btn">${isAr ? 'احصل عليه ←' : 'Get it →'}</div>
+      </a>` : ''}
+      ${needsHotel ? `
+      <a href="${AFF.hotel.url}" target="_blank" rel="noopener sponsored" class="aff-inline" style="margin-top:10px;border-color:#bfdbfe;background:#eff6ff">
+        <div class="aff-inline-icon">🏨</div>
+        <div class="aff-inline-text">
+          <div class="aff-inline-title">${isAr ? 'حجز فندق — مطلوب للتأشيرة' : 'Hotel reservation — required for visa'}</div>
+          <div class="aff-inline-sub">${isAr ? 'احجز فندقاً قابل للاسترداد لإرفاقه بطلبك' : 'Book a refundable hotel to attach to your application'}</div>
+        </div>
+        <div class="aff-inline-btn" style="color:#2563eb">${isAr ? 'ابحث ←' : 'Search →'}</div>
+      </a>` : ''}
       <div class="doc-warning">
         <strong>${isAr ? 'تنبيه:' : 'Important:'}</strong>
         ${isAr
@@ -2854,6 +2933,101 @@ if (!data) {
           </div>
         </a>`).join('');
     }
+
+    // ── Affiliate cards ────────────────────────────────────────────────────────
+    // Affiliate links — replace # with real partner URLs when you join programs
+    const AFF = {
+      insurance: {
+        url: 'https://www.heymondo.com/?utm_source=visasjo',   // replace with your affiliate link
+        providers: 'Heymondo · AXA · Allianz',
+      },
+      hotel: {
+        url: 'https://www.booking.com/?aid=YOUR_AFF_ID',       // replace with Booking.com affiliate link
+      },
+      esim: {
+        url: 'https://ref.airalo.com/YOUR_REF_CODE',           // replace with Airalo referral
+      },
+      flight: {
+        url: 'https://www.skyscanner.com/flights/?utm_source=visasjo', // replace with Skyscanner affiliate
+      },
+    };
+
+    const needsInsurance = !!(data.documents_en && data.documents_en.some(d => /insurance/i.test(d.item)));
+    const needsHotel     = !!(data.documents_en && data.documents_en.some(d => /hotel|accommodation|reservation/i.test(d.item)));
+    const isSchengen     = !!(data.visaType_en && /schengen/i.test(data.visaType_en));
+
+    const T = (en, ar) => isAr ? ar : en;
+
+    function affCard(cls, icon, label, title, desc, badge, badgeCls, ctaText, url) {
+      return `<a href="${url}" target="_blank" rel="noopener sponsored" class="aff-card ${cls}">
+        <div class="aff-card-head">
+          <div class="aff-card-icon">${icon}</div>
+          <div>
+            <div class="aff-card-label">${label}</div>
+            <div class="aff-card-title">${title}</div>
+          </div>
+        </div>
+        <div class="aff-card-body">
+          <div class="aff-card-desc">${desc}</div>
+          ${badge ? `<div class="aff-card-badge ${badgeCls}">${badge}</div>` : ''}
+          <div class="aff-cta"><span>${ctaText}</span><span class="aff-cta-arrow">→</span></div>
+        </div>
+      </a>`;
+    }
+
+    let cards = '';
+
+    if (needsInsurance || isSchengen) {
+      cards += affCard(
+        'aff-ins', '🛡️',
+        T('Required for your visa', 'مطلوب للتأشيرة'),
+        T('Travel Insurance', 'تأمين سفر'),
+        T(`Minimum €30,000 coverage required for ${countryName}. Get an instant certificate from ${AFF.insurance.providers}.`,
+           `التأمين مطلوب بحد أدنى €30,000. احصل على شهادة فورية.`),
+        T('Required document', 'وثيقة إلزامية'), 'aff-required',
+        T('Compare & buy →', 'قارن واشترِ →'),
+        AFF.insurance.url
+      );
+    }
+
+    if (needsHotel) {
+      cards += affCard(
+        'aff-hotel', '🏨',
+        T('Required for your visa', 'مطلوب للتأشيرة'),
+        T('Hotel Reservation', 'حجز فندق'),
+        T(`${countryName} requires proof of accommodation. Book refundable hotels to attach to your application.`,
+           `${countryName} يتطلب إثبات الإقامة. احجز بخيار الاسترداد.`),
+        T('Needed for application', 'مطلوب للطلب'), 'aff-required',
+        T('Search hotels →', 'ابحث عن فنادق →'),
+        AFF.hotel.url
+      );
+    }
+
+    cards += affCard(
+      'aff-esim', '📱',
+      T('Travel smarter', 'سافر بذكاء'),
+      T('eSIM for ' + countryName, 'شريحة eSIM لـ' + countryName),
+      T('Stay connected from the moment you land — no roaming fees, instant activation.',
+        'ابقَ متصلاً فور وصولك — بدون رسوم تجوال، تفعيل فوري.'),
+      null, '',
+      T('Get your eSIM →', 'احصل على eSIM →'),
+      AFF.esim.url
+    );
+
+    if (!needsHotel) {
+      cards += affCard(
+        'aff-flight', '✈️',
+        T('Plan your trip', 'خطط لرحلتك'),
+        T('Flights to ' + countryName, 'رحلات إلى ' + countryName),
+        T('Compare flights and find the best fares from Amman (AMM).',
+          'قارن الرحلات وابحث عن أفضل الأسعار من عمّان.'),
+        null, '',
+        T('Search flights →', 'ابحث عن رحلات →'),
+        AFF.flight.url
+      );
+    }
+
+    document.getElementById('affCards').innerHTML = cards;
   }
 
   rebuildPage();
