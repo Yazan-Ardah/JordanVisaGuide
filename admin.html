@@ -423,6 +423,7 @@
 <!-- ── TOAST ──────────────────────────────────────────── -->
 <div class="copy-toast" id="toast"></div>
 
+<script src="/visa-data.js"></script>
 <script>
 // ── Same BASE_COUNTRIES as JordanVisaGuide_Preview.html ──────────────────────
 // Keep this in sync. When you export and paste into Preview, paste here too.
@@ -788,21 +789,24 @@ function openDetails(code) {
 
   const overrides = getDetailOverrides();
   const ov = overrides[base.name] || {};
+  // Start from live VISA_DATA so fields are pre-filled with current requirements
+  const vd = (typeof VISA_DATA !== 'undefined' && VISA_DATA[base.name]) || {};
+  const merged = { ...vd, ...ov };
 
   document.getElementById('dModalFlag').textContent  = base.flag;
   document.getElementById('dModalTitle').textContent = `Details — ${base.name}`;
   document.getElementById('dModalSub').textContent   = `${base.region} · saved to localStorage`;
 
-  document.getElementById('d_fee').value        = ov.fee        || base.fee  || '';
-  document.getElementById('d_processing').value = ov.processing_en || base.time || '';
-  document.getElementById('d_visaType_en').value = ov.visaType_en || '';
-  document.getElementById('d_visaType_ar').value = ov.visaType_ar || '';
-  document.getElementById('d_overview_en').value = ov.overview_en || '';
-  document.getElementById('d_overview_ar').value = ov.overview_ar || '';
-  document.getElementById('d_docs_en').value     = serializeDocs(ov.documents_en);
-  document.getElementById('d_docs_ar').value     = serializeDocs(ov.documents_ar);
-  document.getElementById('d_tips_en').value     = (ov.tips_en || []).join('\n');
-  document.getElementById('d_tips_ar').value     = (ov.tips_ar || []).join('\n');
+  document.getElementById('d_fee').value         = merged.fee           || base.fee  || '';
+  document.getElementById('d_processing').value  = merged.processing_en || base.time || '';
+  document.getElementById('d_visaType_en').value = merged.visaType_en   || '';
+  document.getElementById('d_visaType_ar').value = merged.visaType_ar   || '';
+  document.getElementById('d_overview_en').value = merged.overview_en   || '';
+  document.getElementById('d_overview_ar').value = merged.overview_ar   || '';
+  document.getElementById('d_docs_en').value     = serializeDocs(merged.documents_en);
+  document.getElementById('d_docs_ar').value     = serializeDocs(merged.documents_ar);
+  document.getElementById('d_tips_en').value     = (merged.tips_en || []).join('\n');
+  document.getElementById('d_tips_ar').value     = (merged.tips_ar || []).join('\n');
 
   document.getElementById('dResetBtn').style.display = overrides[base.name] ? 'inline-flex' : 'none';
   document.getElementById('detailsModal').classList.remove('hidden');
