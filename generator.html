@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Visa Document Generator — Jordan Visa Guide</title>
+  <meta name="description" content="Generate a professional Schengen visa cover letter and day-by-day travel itinerary instantly using AI."/>
+  <link rel="canonical" href="https://visasjo.com/generator"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <script defer src="https://analytics.umami.is/script.js" data-website-id="46e86288-8575-4c4c-9f77-239962aaa6c0"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --brand: #1a1a3e;
+      --accent: #7c3aed;
+      --accent2: #a855f7;
+      --green: #25d366;
+      --green-d: #128c5e;
+      --radius: 16px;
+    }
+    body { font-family: 'Inter', sans-serif; background: #f5f5fa; color: #1a1a3e; min-height: 100vh; }
+
+    /* NAV */
+    nav { background: #fff; border-bottom: 1px solid #eee; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 18px; color: var(--brand); text-decoration: none; }
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: #6b7280; text-decoration: none; }
+    .nav-links a:hover { color: var(--brand); }
+
+    /* HERO */
+    .hero { background: linear-gradient(135deg, #1a1a3e 0%, #2d1b69 100%); padding: 56px 24px 48px; text-align: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); color: #fff; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 100px; margin-bottom: 20px; }
+    .hero h1 { font-family: 'Sora', sans-serif; font-size: clamp(26px, 5vw, 40px); font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 14px; }
+    .hero p { font-size: 16px; color: rgba(255,255,255,.7); max-width: 520px; margin: 0 auto; line-height: 1.6; }
+
+    /* MAIN */
+    main { max-width: 740px; margin: 0 auto; padding: 40px 20px 80px; }
+
+    /* PREMIUM GATE */
+    #premiumGate { background: #fff; border-radius: var(--radius); padding: 40px 32px; text-align: center; box-shadow: 0 4px 24px rgba(0,0,0,.06); }
+    #premiumGate h2 { font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+    #premiumGate p { font-size: 14px; color: #6b7280; line-height: 1.6; margin-bottom: 24px; max-width: 400px; margin-left: auto; margin-right: auto; }
+    .gate-actions { display: flex; flex-direction: column; gap: 12px; max-width: 340px; margin: 0 auto; }
+    .btn-wa { display: flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, var(--green), var(--green-d)); color: #fff; font-size: 15px; font-weight: 700; font-family: inherit; border: none; border-radius: 14px; padding: 14px 24px; cursor: pointer; text-decoration: none; }
+    .btn-wa:hover { opacity: .92; }
+    .gate-divider { display: flex; align-items: center; gap: 12px; }
+    .gate-divider::before, .gate-divider::after { content: ''; flex: 1; height: 1px; background: #e8e8f0; }
+    .gate-divider span { font-size: 12px; color: #9ca3af; }
+    .gate-code-row { display: flex; gap: 8px; }
+    .gate-code-row input { flex: 1; padding: 12px 14px; border: 1.5px solid #e8e8f0; border-radius: 12px; font-size: 14px; font-family: inherit; outline: none; text-transform: uppercase; letter-spacing: 2px; }
+    .gate-code-row input:focus { border-color: var(--accent); }
+    .btn-unlock { background: var(--accent); color: #fff; border: none; border-radius: 12px; padding: 12px 20px; font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer; white-space: nowrap; }
+    .btn-unlock:hover { opacity: .9; }
+    #gateError { display: none; color: #dc2626; font-size: 12px; text-align: left; margin-top: 4px; padding: 8px 12px; background: rgba(239,68,68,.06); border-radius: 8px; }
+
+    /* GENERATOR */
+    #generator { display: none; }
+
+    /* STEPS */
+    .steps-bar { display: flex; align-items: center; margin-bottom: 32px; }
+    .step-dot { width: 32px; height: 32px; border-radius: 50%; background: #e8e8f0; color: #9ca3af; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all .2s; }
+    .step-dot.active { background: var(--accent); color: #fff; }
+    .step-dot.done { background: #10b981; color: #fff; }
+    .step-line { flex: 1; height: 2px; background: #e8e8f0; margin: 0 8px; transition: background .2s; }
+    .step-line.done { background: #10b981; }
+
+    /* CARD */
+    .card { background: #fff; border-radius: var(--radius); padding: 32px; box-shadow: 0 4px 24px rgba(0,0,0,.06); }
+    .card-title { font-family: 'Sora', sans-serif; font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+    .card-sub { font-size: 14px; color: #6b7280; margin-bottom: 28px; }
+
+    /* FORM */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-grid .full { grid-column: 1 / -1; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label { font-size: 13px; font-weight: 600; color: #374151; }
+    .field input, .field select, .field textarea {
+      padding: 12px 14px; border: 1.5px solid #e8e8f0; border-radius: 12px;
+      font-size: 14px; font-family: inherit; outline: none; transition: border-color .15s;
+      background: #fff; color: #1a1a3e;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); }
+    .field textarea { resize: vertical; min-height: 80px; }
+
+    /* DOC TYPE */
+    .doc-types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .doc-type { border: 2px solid #e8e8f0; border-radius: 14px; padding: 16px 12px; cursor: pointer; text-align: center; transition: all .15s; }
+    .doc-type:hover { border-color: var(--accent2); }
+    .doc-type.selected { border-color: var(--accent); background: rgba(124,58,237,.05); }
+    .doc-type input { display: none; }
+    .doc-type-icon { font-size: 28px; margin-bottom: 8px; }
+    .doc-type-name { font-size: 13px; font-weight: 700; color: var(--brand); }
+    .doc-type-desc { font-size: 11px; color: #9ca3af; margin-top: 3px; }
+
+    /* NAV BUTTONS */
+    .form-nav { display: flex; justify-content: space-between; margin-top: 28px; gap: 12px; }
+    .btn-back { background: #f5f5fa; color: #6b7280; border: none; border-radius: 12px; padding: 13px 24px; font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer; }
+    .btn-back:hover { background: #e8e8f0; }
+    .btn-next { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border: none; border-radius: 12px; padding: 13px 28px; font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer; flex: 1; }
+    .btn-next:hover { opacity: .9; }
+    .btn-next:disabled { opacity: .5; cursor: not-allowed; }
+
+    /* RESULT */
+    #resultSection { display: none; }
+    .result-actions { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+    .btn-pdf { display: flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border: none; border-radius: 12px; padding: 12px 22px; font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer; }
+    .btn-pdf:hover { opacity: .9; }
+    .btn-regen { display: flex; align-items: center; gap: 8px; background: #f5f5fa; color: var(--brand); border: none; border-radius: 12px; padding: 12px 22px; font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer; }
+    .btn-regen:hover { background: #e8e8f0; }
+
+    #docOutput { background: #fff; border-radius: var(--radius); padding: 36px 40px; box-shadow: 0 4px 24px rgba(0,0,0,.06); white-space: pre-wrap; font-family: 'Times New Roman', serif; font-size: 15px; line-height: 1.8; color: #1a1a3e; }
+    #docOutput h2 { font-size: 18px; font-weight: 700; margin: 28px 0 10px; font-family: 'Sora', sans-serif; }
+
+    /* LOADING */
+    #loadingSection { display: none; text-align: center; padding: 60px 20px; }
+    .spinner { width: 48px; height: 48px; border: 4px solid #e8e8f0; border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 20px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-steps { display: flex; flex-direction: column; gap: 8px; max-width: 280px; margin: 16px auto 0; }
+    .loading-step { font-size: 13px; color: #9ca3af; display: flex; align-items: center; gap: 8px; }
+    .loading-step.active { color: var(--accent); font-weight: 600; }
+    .loading-step.done { color: #10b981; }
+
+    /* TOAST */
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #1a1a3e; color: #fff; padding: 12px 24px; border-radius: 100px; font-size: 13px; font-weight: 600; z-index: 999; animation: fadeUp .3s ease; white-space: nowrap; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateX(-50%) translateY(12px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
+    @media (max-width: 560px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .doc-types { grid-template-columns: 1fr; }
+      #docOutput { padding: 24px 20px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">🇯🇴 Jordan Visa Guide</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/checklist">Checklist</a>
+    <a href="/generator" style="color:var(--accent);font-weight:700;">Generator</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">✨ Premium Feature</div>
+  <h1>AI Visa Document Generator</h1>
+  <p>Generate a professional cover letter and day-by-day itinerary for your visa application — in seconds.</p>
+</div>
+
+<main>
+
+  <!-- PREMIUM GATE -->
+  <div id="premiumGate">
+    <div style="font-size:48px;margin-bottom:16px;">🔒</div>
+    <h2>Premium Feature</h2>
+    <p>This tool is available to premium members. Message us on WhatsApp to get access, then enter your unlock code below.</p>
+    <div class="gate-actions">
+      <a class="btn-wa" href="https://wa.me/962770068980?text=Hi!%20I%27d%20like%20to%20unlock%20the%20AI%20Document%20Generator%20on%20visasjo.com." target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 32 32" fill="white"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.82.735 5.467 2.017 7.77L0 32l8.468-2.176A15.93 15.93 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.767-1.853l-.483-.287-5.029 1.292 1.317-4.905-.317-.505A13.233 13.233 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.273-9.92c-.397-.199-2.355-1.163-2.72-1.295-.365-.132-.631-.199-.897.199-.265.397-1.03 1.295-1.262 1.56-.232.265-.465.298-.862.1-.397-.2-1.676-.618-3.193-1.97-1.18-1.053-1.977-2.352-2.209-2.75-.232-.397-.025-.611.174-.809.179-.178.397-.465.596-.697.198-.232.264-.397.397-.662.132-.264.066-.497-.033-.696-.1-.2-.897-2.163-1.23-2.96-.324-.779-.654-.673-.897-.685l-.764-.013c-.265 0-.696.099-1.06.497-.365.397-1.394 1.362-1.394 3.322s1.427 3.853 1.626 4.118c.199.265 2.808 4.286 6.803 6.013.95.41 1.692.655 2.27.838.954.302 1.822.26 2.508.158.765-.114 2.355-.962 2.686-1.891.332-.929.332-1.726.232-1.891-.099-.166-.365-.265-.762-.464z"/></svg>
+        Get Premium via WhatsApp
+      </a>
+      <div class="gate-divider"><span>Already have a code?</span></div>
+      <div class="gate-code-row">
+        <input id="gateCode" type="text" placeholder="Enter unlock code" autocomplete="off"
+          onkeydown="if(event.key==='Enter')verifyCode()"
+          onfocus="this.style.borderColor='#7c3aed'" onblur="this.style.borderColor='#e8e8f0'"/>
+        <button class="btn-unlock" onclick="verifyCode()">Unlock</button>
+      </div>
+      <div id="gateError"></div>
+    </div>
+  </div>
+
+  <!-- GENERATOR (shown after unlock) -->
+  <div id="generator">
+
+    <!-- Steps bar -->
+    <div class="steps-bar" id="stepsBar">
+      <div class="step-dot active" id="sd1">1</div>
+      <div class="step-line" id="sl1"></div>
+      <div class="step-dot" id="sd2">2</div>
+      <div class="step-line" id="sl2"></div>
+      <div class="step-dot" id="sd3">3</div>
+    </div>
+
+    <!-- Step 1: Document type -->
+    <div class="card" id="step1">
+      <div class="card-title">What do you need?</div>
+      <div class="card-sub">Choose which documents to generate</div>
+      <div class="doc-types">
+        <label class="doc-type selected" id="dt-both">
+          <input type="radio" name="docType" value="both" checked onchange="selectDocType(this)"/>
+          <div class="doc-type-icon">📄✈️</div>
+          <div class="doc-type-name">Both</div>
+          <div class="doc-type-desc">Cover letter + itinerary</div>
+        </label>
+        <label class="doc-type" id="dt-cover_letter">
+          <input type="radio" name="docType" value="cover_letter" onchange="selectDocType(this)"/>
+          <div class="doc-type-icon">📄</div>
+          <div class="doc-type-name">Cover Letter</div>
+          <div class="doc-type-desc">Formal letter to embassy</div>
+        </label>
+        <label class="doc-type" id="dt-itinerary">
+          <input type="radio" name="docType" value="itinerary" onchange="selectDocType(this)"/>
+          <div class="doc-type-icon">✈️</div>
+          <div class="doc-type-name">Itinerary</div>
+          <div class="doc-type-desc">Day-by-day travel plan</div>
+        </label>
+      </div>
+      <div class="form-nav">
+        <div></div>
+        <button class="btn-next" onclick="goStep(2)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Personal details -->
+    <div class="card" id="step2" style="display:none;">
+      <div class="card-title">Your Details</div>
+      <div class="card-sub">As they appear on your passport</div>
+      <div class="form-grid">
+        <div class="field full">
+          <label>Full Name (as on passport) *</label>
+          <input id="fullName" type="text" placeholder="Ahmad Mohammed Al-Rashidi"/>
+        </div>
+        <div class="field">
+          <label>Passport Number</label>
+          <input id="passportNumber" type="text" placeholder="A12345678"/>
+        </div>
+        <div class="field">
+          <label>Job Title</label>
+          <input id="jobTitle" type="text" placeholder="Software Engineer"/>
+        </div>
+        <div class="field full">
+          <label>Purpose of Travel *</label>
+          <textarea id="purpose" placeholder="e.g. Tourism — visiting historical sites in Paris and attending a friend's wedding in Lyon"></textarea>
+        </div>
+      </div>
+      <div class="form-nav">
+        <button class="btn-back" onclick="goStep(1)">← Back</button>
+        <button class="btn-next" onclick="goStep(3)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Trip details -->
+    <div class="card" id="step3" style="display:none;">
+      <div class="card-title">Trip Details</div>
+      <div class="card-sub">Your destination and travel dates</div>
+      <div class="form-grid">
+        <div class="field full">
+          <label>Destination Country *</label>
+          <select id="destination">
+            <option value="">— Select country —</option>
+            <optgroup label="Schengen Area">
+              <option>France</option><option>Germany</option><option>Italy</option>
+              <option>Spain</option><option>Netherlands</option><option>Austria</option>
+              <option>Belgium</option><option>Czech Republic</option><option>Denmark</option>
+              <option>Finland</option><option>Greece</option><option>Hungary</option>
+              <option>Luxembourg</option><option>Malta</option><option>Norway</option>
+              <option>Poland</option><option>Portugal</option><option>Slovakia</option>
+              <option>Slovenia</option><option>Sweden</option><option>Switzerland</option>
+            </optgroup>
+            <optgroup label="Other">
+              <option>United Kingdom</option><option>United Arab Emirates</option>
+              <option>Saudi Arabia</option><option>United States</option>
+              <option>Canada</option><option>Turkey</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="field">
+          <label>Entry Date *</label>
+          <input id="entryDate" type="date"/>
+        </div>
+        <div class="field">
+          <label>Exit Date *</label>
+          <input id="exitDate" type="date"/>
+        </div>
+      </div>
+      <div class="form-nav">
+        <button class="btn-back" onclick="goStep(2)">← Back</button>
+        <button class="btn-next" id="generateBtn" onclick="generate()">✨ Generate Documents</button>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div id="loadingSection">
+      <div class="spinner"></div>
+      <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:var(--brand);">Drafting your documents…</div>
+      <div style="font-size:14px;color:#6b7280;margin-top:8px;">Our AI immigration lawyer is at work</div>
+      <div class="loading-steps">
+        <div class="loading-step active" id="ls1">📋 Analysing your trip details</div>
+        <div class="loading-step" id="ls2">✍️ Drafting cover letter</div>
+        <div class="loading-step" id="ls3">✈️ Building day-by-day itinerary</div>
+        <div class="loading-step" id="ls4">✅ Finalising documents</div>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div id="resultSection">
+      <div class="result-actions">
+        <button class="btn-pdf" onclick="downloadPDF()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PDF
+        </button>
+        <button class="btn-regen" onclick="generate()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+          Regenerate
+        </button>
+        <button class="btn-regen" onclick="goStep(1)" style="margin-left:auto;">New Document</button>
+      </div>
+      <div id="docOutput"></div>
+    </div>
+
+  </div>
+</main>
+
+<!-- PDF library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous"></script>
+
+<script>
+const WA_NUMBER = '962770068980';
+let unlockCode = '';
+let currentStep = 1;
+let docType = 'both';
+
+// Check stored premium
+(function() {
+  const stored = localStorage.getItem('vj_generator_code');
+  if (stored) {
+    unlockCode = stored;
+    showGenerator();
+  }
+})();
+
+async function verifyCode() {
+  const input = document.getElementById('gateCode');
+  const errorEl = document.getElementById('gateError');
+  const code = input.value.trim();
+  errorEl.style.display = 'none';
+
+  if (!code) { showGateError('Please enter your unlock code.'); return; }
+
+  const btn = document.querySelector('.btn-unlock');
+  btn.textContent = '…';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('/api/unlock-premium', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code })
+    });
+    const data = await res.json();
+    if (data.valid) {
+      unlockCode = code.toUpperCase();
+      localStorage.setItem('vj_generator_code', unlockCode);
+      showGenerator();
+      if (typeof umami !== 'undefined') umami.track('generator-unlocked');
+    } else {
+      showGateError('Invalid code. Message us on WhatsApp if you need help.');
+      btn.textContent = 'Unlock';
+      btn.disabled = false;
+    }
+  } catch {
+    showGateError('Connection error. Please try again.');
+    btn.textContent = 'Unlock';
+    btn.disabled = false;
+  }
+}
+
+function showGateError(msg) {
+  const el = document.getElementById('gateError');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function showGenerator() {
+  document.getElementById('premiumGate').style.display = 'none';
+  document.getElementById('generator').style.display = 'block';
+}
+
+function selectDocType(radio) {
+  docType = radio.value;
+  document.querySelectorAll('.doc-type').forEach(el => el.classList.remove('selected'));
+  document.getElementById('dt-' + docType).classList.add('selected');
+}
+
+function goStep(n) {
+  if (n === 2) {
+    // validate step 1 — nothing required, just doc type selection
+  }
+  if (n === 3) {
+    const name = document.getElementById('fullName').value.trim();
+    const purpose = document.getElementById('purpose').value.trim();
+    if (!name) { showToast('Please enter your full name.'); return; }
+    if (!purpose) { showToast('Please describe your purpose of travel.'); return; }
+  }
+
+  ['step1','step2','step3'].forEach((id, i) => {
+    document.getElementById(id).style.display = (i + 1 === n) ? '' : 'none';
+  });
+  document.getElementById('resultSection').style.display = 'none';
+  document.getElementById('loadingSection').style.display = 'none';
+
+  // Update step dots
+  for (let i = 1; i <= 3; i++) {
+    const dot = document.getElementById('sd' + i);
+    dot.className = 'step-dot' + (i < n ? ' done' : i === n ? ' active' : '');
+    dot.textContent = i < n ? '✓' : i;
+  }
+  for (let i = 1; i <= 2; i++) {
+    document.getElementById('sl' + i).className = 'step-line' + (i < n ? ' done' : '');
+  }
+
+  currentStep = n;
+}
+
+async function generate() {
+  const destination = document.getElementById('destination').value;
+  const entryDate   = document.getElementById('entryDate').value;
+  const exitDate    = document.getElementById('exitDate').value;
+
+  if (!destination) { showToast('Please select a destination country.'); return; }
+  if (!entryDate)   { showToast('Please enter your entry date.'); return; }
+  if (!exitDate)    { showToast('Please enter your exit date.'); return; }
+  if (exitDate <= entryDate) { showToast('Exit date must be after entry date.'); return; }
+
+  // Hide steps, show loading
+  ['step1','step2','step3'].forEach(id => document.getElementById(id).style.display = 'none');
+  document.getElementById('resultSection').style.display = 'none';
+  document.getElementById('loadingSection').style.display = 'block';
+
+  // Animate loading steps
+  const steps = ['ls1','ls2','ls3','ls4'];
+  let si = 0;
+  const loadInterval = setInterval(() => {
+    if (si > 0) document.getElementById(steps[si-1]).className = 'loading-step done';
+    if (si < steps.length) document.getElementById(steps[si]).className = 'loading-step active';
+    si++;
+    if (si > steps.length) clearInterval(loadInterval);
+  }, 1400);
+
+  if (typeof umami !== 'undefined') umami.track('generator-generate', { type: docType, destination });
+
+  try {
+    const res = await fetch('/api/generate-document', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type:           docType,
+        fullName:       document.getElementById('fullName').value.trim(),
+        passportNumber: document.getElementById('passportNumber').value.trim(),
+        destination,
+        entryDate,
+        exitDate,
+        jobTitle:       document.getElementById('jobTitle').value.trim(),
+        purpose:        document.getElementById('purpose').value.trim(),
+        unlockCode,
+      })
+    });
+
+    clearInterval(loadInterval);
+    steps.forEach(id => document.getElementById(id).className = 'loading-step done');
+
+    const data = await res.json();
+    if (!res.ok) {
+      document.getElementById('loadingSection').style.display = 'none';
+      goStep(3);
+      if (data.error?.includes('unlock')) {
+        localStorage.removeItem('vj_generator_code');
+        location.reload();
+      }
+      showToast(data.error || 'Something went wrong. Please try again.');
+      return;
+    }
+
+    setTimeout(() => {
+      document.getElementById('loadingSection').style.display = 'none';
+      renderResult(data.text);
+    }, 600);
+
+  } catch (err) {
+    clearInterval(loadInterval);
+    document.getElementById('loadingSection').style.display = 'none';
+    goStep(3);
+    showToast('Connection error. Please try again.');
+  }
+}
+
+function renderResult(text) {
+  // Convert markdown-ish headings to styled HTML
+  const html = text
+    .replace(/^---+$/gm, '<hr style="border:none;border-top:1.5px solid #e8e8f0;margin:24px 0;">')
+    .replace(/^### (.+)$/gm, '<h3 style="font-size:15px;font-weight:700;margin:20px 0 6px;font-family:Sora,sans-serif;">$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2 style="font-size:18px;font-weight:800;margin:28px 0 10px;font-family:Sora,sans-serif;">$1</h2>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n/g, '<br>');
+
+  document.getElementById('docOutput').innerHTML = html;
+  document.getElementById('resultSection').style.display = 'block';
+  document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function downloadPDF() {
+  if (typeof umami !== 'undefined') umami.track('generator-pdf-download', { type: docType });
+
+  const name = document.getElementById('fullName').value.trim() || 'Visa';
+  const dest  = document.getElementById('destination').value || 'Application';
+  const filename = `${name.replace(/\s+/g, '_')}_${dest.replace(/\s+/g, '_')}_Visa_Documents.pdf`;
+
+  const content = document.getElementById('docOutput');
+  const opt = {
+    margin:      [15, 20, 15, 20],
+    filename,
+    image:       { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF:       { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    pagebreak:   { mode: ['avoid-all', 'css', 'legacy'] },
+  };
+
+  // Add print header
+  const header = document.createElement('div');
+  header.style.cssText = 'font-family:Times New Roman,serif;font-size:11px;color:#9ca3af;text-align:right;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid #e8e8f0;';
+  header.textContent = `Generated by visasjo.com — Jordan Visa Guide`;
+  content.prepend(header);
+
+  html2pdf().set(opt).from(content).save().then(() => {
+    header.remove();
+  });
+}
+
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3500);
+}
+
+// Set today as min date for date inputs
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('entryDate').min = today;
+document.getElementById('exitDate').min = today;
+</script>
+</body>
+</html>
