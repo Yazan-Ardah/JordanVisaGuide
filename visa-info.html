@@ -185,72 +185,6 @@
   .status-card-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
   .status-card-desc { font-size: 13px; line-height: 1.55; color: #4b5563; }
 
-  /* ── TOOLKIT SECTION ── */
-  .toolkit-section { background: linear-gradient(135deg, #f0f0ff 0%, #f5f0ff 100%); border-top: 2px solid #e0d9ff; padding: 52px 32px; }
-  .toolkit-inner { max-width: 1100px; margin: 0 auto; }
-  .toolkit-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: rgba(124,58,237,.1); border: 1px solid rgba(124,58,237,.2); color: #7c3aed; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: 5px 12px; border-radius: 100px; margin-bottom: 14px; }
-  .toolkit-heading { font-family: 'Sora', sans-serif; font-size: clamp(20px,3vw,28px); font-weight: 800; color: #1a1a3e; margin-bottom: 8px; }
-  .toolkit-sub { font-size: 15px; color: #6b7280; margin-bottom: 32px; max-width: 540px; line-height: 1.6; }
-  .toolkit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .tool-card {
-    background: #fff; border-radius: 20px; padding: 28px;
-    box-shadow: 0 4px 24px rgba(124,58,237,.08), 0 1px 4px rgba(0,0,0,.04);
-    border: 1.5px solid rgba(124,58,237,.1);
-    display: flex; flex-direction: column; gap: 16px;
-    transition: transform .2s, box-shadow .2s;
-    text-decoration: none; color: inherit;
-  }
-  .tool-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(124,58,237,.14), 0 2px 8px rgba(0,0,0,.06); }
-  .tool-card-top { display: flex; align-items: flex-start; gap: 14px; }
-  .tool-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
-  .tool-icon-purple { background: linear-gradient(135deg, #7c3aed, #a855f7); }
-  .tool-icon-green  { background: linear-gradient(135deg, #059669, #10b981); }
-  .tool-card-title { font-family: 'Sora', sans-serif; font-size: 17px; font-weight: 800; color: #1a1a3e; margin-bottom: 4px; }
-  .tool-card-desc { font-size: 13px; color: #6b7280; line-height: 1.55; }
-  .tool-card-meta { display: flex; gap: 8px; flex-wrap: wrap; }
-  .tool-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 100px; }
-  .tool-pill-time { background: #f0fdf4; color: #059669; border: 1px solid #bbf7d0; }
-  .tool-pill-ai   { background: rgba(124,58,237,.08); color: #7c3aed; border: 1px solid rgba(124,58,237,.2); }
-  .tool-pill-free { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
-  .tool-cta { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 16px; border-top: 1px solid #f0f0f8; }
-  .tool-cta-text { font-size: 14px; font-weight: 700; color: #7c3aed; }
-  .tool-cta-arrow { width: 32px; height: 32px; background: linear-gradient(135deg,#7c3aed,#a855f7); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 16px; transition: transform .15s; }
-  .tool-card:hover .tool-cta-arrow { transform: translateX(3px); }
-  .tool-card-green .tool-cta-text { color: #059669; }
-  .tool-card-green .tool-cta-arrow { background: linear-gradient(135deg,#059669,#10b981); }
-
-  /* ── STICKY BANNER ── */
-  .sticky-cta {
-    position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
-    background: linear-gradient(135deg, #1a1a3e, #2d1b69);
-    padding: 14px 20px; display: flex; align-items: center; gap: 12px;
-    box-shadow: 0 -4px 24px rgba(0,0,0,.18);
-    transform: translateY(100%); transition: transform .35s cubic-bezier(.4,0,.2,1);
-  }
-  .sticky-cta.visible { transform: translateY(0); }
-  .sticky-cta-text { flex: 1; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.85); line-height: 1.3; }
-  .sticky-cta-text strong { color: #fff; display: block; font-size: 14px; }
-  .sticky-cta-btns { display: flex; gap: 8px; flex-shrink: 0; }
-  .sticky-btn { border: none; border-radius: 10px; padding: 9px 14px; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer; white-space: nowrap; transition: opacity .15s; }
-  .sticky-btn:hover { opacity: .88; }
-  .sticky-btn-primary { background: linear-gradient(135deg,#7c3aed,#a855f7); color: #fff; }
-  .sticky-btn-secondary { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.2); }
-  .sticky-close { background: none; border: none; color: rgba(255,255,255,.4); font-size: 20px; cursor: pointer; padding: 0 0 0 4px; line-height: 1; flex-shrink: 0; }
-  .sticky-close:hover { color: rgba(255,255,255,.7); }
-  @media (min-width: 860px) {
-    .sticky-cta { max-width: 480px; left: auto; right: 24px; bottom: 24px; border-radius: 16px; }
-  }
-
-  /* ── INLINE HOOK BUTTON ── */
-  .hook-btn {
-    display: inline-flex; align-items: center; gap: 4px;
-    background: rgba(124,58,237,.08); border: 1px solid rgba(124,58,237,.2);
-    color: #7c3aed; font-size: 11px; font-weight: 700; padding: 2px 9px;
-    border-radius: 100px; cursor: pointer; margin-left: 8px; vertical-align: middle;
-    font-family: inherit; transition: background .15s; white-space: nowrap;
-  }
-  .hook-btn:hover { background: rgba(124,58,237,.15); }
-
   /* ── RELATED ── */
   .related-section { background: #fff; border-top: 1px solid #e8e8f0; padding: 48px 32px; }
   .related-inner { max-width: 1100px; margin: 0 auto; }
@@ -318,17 +252,6 @@
   [dir="rtl"] .related-card { flex-direction: row-reverse; }
   [dir="rtl"] .tab-bar-inner { flex-direction: row-reverse; }
   [dir="rtl"] .content-wrap { direction: rtl; }
-  [dir="rtl"] .toolkit-grid { direction: rtl; }
-  [dir="rtl"] .tool-card-top { flex-direction: row-reverse; text-align: right; }
-  [dir="rtl"] .tool-card-meta { flex-direction: row-reverse; }
-  [dir="rtl"] .tool-cta { flex-direction: row-reverse; }
-  [dir="rtl"] .tool-cta-arrow { transform: scaleX(-1); }
-  [dir="rtl"] .tool-card:hover .tool-cta-arrow { transform: scaleX(-1) translateX(3px); }
-  [dir="rtl"] .sticky-cta { flex-direction: row-reverse; }
-  [dir="rtl"] .sticky-cta-text { text-align: right; }
-  [dir="rtl"] .sticky-cta-btns { flex-direction: row-reverse; }
-  [dir="rtl"] .hook-btn { margin-left: 0; margin-right: 8px; }
-
   /* ── RESPONSIVE ── */
   @media (max-width: 860px) {
     .content-wrap { grid-template-columns: 1fr; }
@@ -341,145 +264,6 @@
     .hero-strip { padding-top: 32px; padding-bottom: 32px; }
   }
 
-  /* ── CONSULTATION FORM ── */
-  .consult-section {
-    background: linear-gradient(135deg, #0e0e28 0%, #1a1040 100%);
-    padding: 64px 32px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-  }
-  .consult-inner {
-    max-width: 600px;
-    margin: 0 auto;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 24px;
-    padding: 40px 40px 36px;
-    box-shadow: 0 24px 80px rgba(0,0,0,0.4);
-  }
-  .consult-eyebrow {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(232,93,47,0.12);
-    border: 1px solid rgba(232,93,47,0.25);
-    border-radius: 100px;
-    padding: 4px 14px; margin-bottom: 16px;
-    font-size: 11px; font-weight: 700;
-    color: #e85d2f; text-transform: uppercase; letter-spacing: 0.08em;
-  }
-  .consult-inner h2 {
-    font-family: 'Sora', sans-serif;
-    font-size: clamp(22px, 4vw, 30px);
-    font-weight: 800; color: #fff;
-    letter-spacing: -0.02em; margin-bottom: 8px; line-height: 1.2;
-  }
-  .consult-sub {
-    font-size: 14px; color: rgba(255,255,255,0.45);
-    margin-bottom: 32px; line-height: 1.6;
-  }
-  .consult-form { display: flex; flex-direction: column; gap: 16px; }
-  .consult-field { display: flex; flex-direction: column; gap: 6px; }
-  .consult-label {
-    font-size: 12px; font-weight: 600;
-    color: rgba(255,255,255,0.55);
-    text-transform: uppercase; letter-spacing: 0.07em;
-  }
-  .consult-input {
-    width: 100%;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 12px;
-    padding: 13px 16px;
-    font-size: 14px; font-weight: 500;
-    color: #fff; outline: none;
-    transition: border-color 0.15s, background 0.15s;
-    font-family: inherit;
-    -webkit-appearance: none; appearance: none;
-  }
-  .consult-input::placeholder { color: rgba(255,255,255,0.25); }
-  .consult-input:focus {
-    border-color: rgba(232,93,47,0.6);
-    background: rgba(255,255,255,0.09);
-    box-shadow: 0 0 0 3px rgba(232,93,47,0.12);
-  }
-  .consult-input option { background: #1a1040; color: #fff; }
-  .phone-group { display: flex; gap: 10px; }
-  .phone-code {
-    width: 110px; flex-shrink: 0;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 12px;
-    padding: 13px 12px;
-    font-size: 14px; font-weight: 600; color: #fff;
-    cursor: pointer; outline: none;
-    transition: border-color 0.15s, background 0.15s;
-    font-family: inherit;
-    -webkit-appearance: none; appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    padding-right: 28px;
-  }
-  .phone-code option { background: #1a1040; }
-  .phone-code:focus { border-color: rgba(232,93,47,0.6); background-color: rgba(255,255,255,0.09); box-shadow: 0 0 0 3px rgba(232,93,47,0.12); }
-  .phone-number { flex: 1; }
-  .consult-select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    padding-right: 36px; cursor: pointer;
-  }
-  .consult-btn {
-    width: 100%; margin-top: 8px;
-    background: #e85d2f; color: #fff;
-    border: none; border-radius: 14px;
-    padding: 15px 24px;
-    font-size: 15px; font-weight: 700;
-    font-family: inherit; cursor: pointer;
-    transition: background 0.15s, transform 0.1s;
-    letter-spacing: -0.01em;
-  }
-  .consult-btn:hover { background: #cf4920; transform: translateY(-1px); }
-  .consult-btn:active { transform: translateY(0); }
-  .consult-btn:disabled {
-    background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.3);
-    cursor: not-allowed; transform: none;
-  }
-  .consult-disclaimer {
-    font-size: 11px; color: rgba(255,255,255,0.25);
-    text-align: center; margin-top: 14px; line-height: 1.6;
-  }
-  .consult-success {
-    display: none; text-align: center; padding: 24px 0 8px;
-  }
-  .consult-success-icon { font-size: 48px; margin-bottom: 12px; }
-  .consult-success h3 { color: #fff; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
-  .consult-success p { color: rgba(255,255,255,0.5); font-size: 14px; }
-  .consult-divider {
-    display: flex; align-items: center; gap: 12px;
-    margin: 20px 0; color: rgba(255,255,255,0.3); font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
-  }
-  .consult-divider::before, .consult-divider::after {
-    content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.1);
-  }
-  .wa-btn {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    width: 100%; padding: 15px 24px;
-    background: #25d366; color: #fff;
-    border: none; border-radius: 14px;
-    font-size: 15px; font-weight: 700; font-family: inherit;
-    text-decoration: none; cursor: pointer;
-    transition: background 0.15s, transform 0.1s;
-    box-shadow: 0 4px 20px rgba(37,211,102,0.3);
-    letter-spacing: -0.01em;
-  }
-  .wa-btn:hover { background: #1ebe5d; transform: translateY(-1px); box-shadow: 0 6px 28px rgba(37,211,102,0.4); }
-  .wa-btn:active { transform: translateY(0); }
-  .wa-btn svg { flex-shrink: 0; }
-  @media (max-width: 600px) {
-    .consult-section { padding: 48px 16px; }
-    .consult-inner { padding: 28px 20px 24px; border-radius: 18px; }
-    .phone-code { width: 96px; }
-    .wa-btn { font-size: 16px; padding: 17px 24px; }
-  }
 </style>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -504,7 +288,6 @@
     <button class="lang-toggle" id="langToggle" onclick="toggleLang()">عربي</button>
     <div class="nav-links">
       <a href="/" class="nav-link" id="navAllCountries">All countries</a>
-      <a href="/checklist" class="nav-link">📋 Checklist</a>
       <a href="#" class="nav-link" id="navFaq">FAQ</a>
     </div>
   </div>
@@ -598,69 +381,6 @@
   </div>
 </div>
 
-<!-- ── VISASJO TOOLKIT ────────────────────────────────── -->
-<div class="toolkit-section" id="toolkitSection">
-  <div class="toolkit-inner">
-    <div class="toolkit-eyebrow">✨ VisasJO Toolkit</div>
-    <h2 class="toolkit-heading">Skip the paperwork — let AI do it for you</h2>
-    <p class="toolkit-sub">The requirements above are complex. Our tools turn them into ready-to-submit documents in under 60 seconds.</p>
-    <div class="toolkit-grid">
-
-      <!-- Checklist card -->
-      <a class="tool-card" href="/checklist" id="toolChecklist">
-        <div class="tool-card-top">
-          <div class="tool-icon tool-icon-purple">📋</div>
-          <div>
-            <div class="tool-card-title">Document Checklist</div>
-            <div class="tool-card-desc">Get a personalised, country-specific document checklist with nothing missing. Export as PDF.</div>
-          </div>
-        </div>
-        <div class="tool-card-meta">
-          <span class="tool-pill tool-pill-time">⏱ Takes 30 seconds</span>
-          <span class="tool-pill tool-pill-free">Free</span>
-        </div>
-        <div class="tool-cta">
-          <span class="tool-cta-text">Build my checklist</span>
-          <span class="tool-cta-arrow">→</span>
-        </div>
-      </a>
-
-      <!-- Generator card -->
-      <a class="tool-card tool-card-green" href="/generator" id="toolGenerator">
-        <div class="tool-card-top">
-          <div class="tool-icon tool-icon-green">✨</div>
-          <div>
-            <div class="tool-card-title">AI Document Generator</div>
-            <div class="tool-card-desc">Generate a formal cover letter and day-by-day itinerary — drafted by AI trained on immigration law.</div>
-          </div>
-        </div>
-        <div class="tool-card-meta">
-          <span class="tool-pill tool-pill-time">⏱ Under 60 seconds</span>
-          <span class="tool-pill tool-pill-ai">✨ AI-powered</span>
-        </div>
-        <div class="tool-cta">
-          <span class="tool-cta-text">Generate my documents</span>
-          <span class="tool-cta-arrow">→</span>
-        </div>
-      </a>
-
-    </div>
-  </div>
-</div>
-
-<!-- ── STICKY CTA BANNER ──────────────────────────────── -->
-<div class="sticky-cta" id="stickyCta">
-  <div class="sticky-cta-text">
-    <strong id="stickyTitle">Overwhelmed by the requirements?</strong>
-    <span id="stickySubtitle">Let AI build your full application package.</span>
-  </div>
-  <div class="sticky-cta-btns">
-    <button class="sticky-btn sticky-btn-secondary" onclick="scrollToToolkit('checklist')">📋 Checklist</button>
-    <button class="sticky-btn sticky-btn-primary" onclick="scrollToToolkit('generator')">✨ Generate Docs</button>
-  </div>
-  <button class="sticky-close" onclick="dismissSticky()" aria-label="Dismiss">×</button>
-</div>
-
 <!-- ── NOT FOUND (hidden by default) ────────────────── -->
 <div class="not-found" id="notFound" style="display:none">
   <div class="not-found-icon">🔍</div>
@@ -668,71 +388,6 @@
   <p class="not-found-sub">We don't have detailed visa data for this country yet.<br>Check back soon — we're adding new countries every week.</p>
   <a href="index.html" class="back-btn">← Back to all countries</a>
 </div>
-
-<!-- ── CONSULTATION FORM ─────────────────────────────── -->
-<section class="consult-section" id="consultSection">
-  <div class="consult-inner">
-    <div class="consult-eyebrow" id="cf-eyebrow">💬 Visa Assistance</div>
-    <h2 id="cf-heading">Need help with your visa application?</h2>
-    <p class="consult-sub" id="cf-sub">Leave your details and we'll get back to you on WhatsApp to guide you through the process.</p>
-
-    <div class="consult-success" id="consultSuccess">
-      <div class="consult-success-icon">✅</div>
-      <h3 id="cf-success-title">Request received!</h3>
-      <p id="cf-success-sub">A visa specialist will contact you within 24 hours.</p>
-    </div>
-
-    <form class="consult-form" id="consultForm" method="post" action="/api/leads" novalidate onsubmit="return handleConsultSubmit(event)">
-
-      <!-- Name -->
-      <div class="consult-field">
-        <label class="consult-label" for="cf-name" id="cf-label-name">Your Name <span style="color:#ef4444">*</span></label>
-        <input class="consult-input" type="text" id="cf-name" name="full_name"
-               placeholder="e.g. Ahmad Al-Hassan" required autocomplete="name" />
-      </div>
-
-      <!-- WhatsApp Number -->
-      <div class="consult-field">
-        <label class="consult-label" for="cf-phone" id="cf-label-phone">WhatsApp Number <span style="color:#ef4444">*</span></label>
-        <div class="phone-group">
-          <select class="phone-code" name="country_code" aria-label="Country code">
-            <option value="+962">🇯🇴 +962</option>
-            <option value="+971">🇦🇪 +971</option>
-            <option value="+966">🇸🇦 +966</option>
-            <option value="+965">🇰🇼 +965</option>
-            <option value="+974">🇶🇦 +974</option>
-            <option value="+968">🇴🇲 +968</option>
-            <option value="+973">🇧🇭 +973</option>
-            <option value="+20">🇪🇬 +20</option>
-            <option value="+961">🇱🇧 +961</option>
-            <option value="+1">🇺🇸 +1</option>
-            <option value="+44">🇬🇧 +44</option>
-          </select>
-          <input class="consult-input phone-number" type="tel" id="cf-phone" name="phone_number"
-                 placeholder="7X XXX XXXX" required autocomplete="tel-national"
-                 pattern="[0-9\s\-]{6,15}" title="Enter a valid phone number" />
-        </div>
-      </div>
-
-      <button class="consult-btn" type="submit" id="consultSubmitBtn">Get Visa Assistance</button>
-    </form>
-
-    <p class="consult-disclaimer" id="cf-disclaimer">
-      We'll reach out on WhatsApp. Your info stays private.
-    </p>
-
-    <div class="consult-divider">OR</div>
-
-    <a class="wa-btn" id="waDirectBtn"
-       href="https://wa.me/962770068980?text=Hi%2C%20I%20would%20like%20a%20free%20visa%20consultation"
-       target="_blank" rel="noopener noreferrer">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
-      Chat on WhatsApp
-    </a>
-  </div>
-</section>
 
 <!-- ── FOOTER ────────────────────────────────────────── -->
 <footer>
@@ -765,63 +420,6 @@ function applyLang() {
   document.getElementById('navAllCountries').textContent = ar() ? 'جميع الدول' : 'All countries';
   document.getElementById('navFaq').textContent          = ar() ? 'الأسئلة الشائعة' : 'FAQ';
 
-  // ── Consultation form i18n ──
-  const s = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
-  const a = (id, attr, txt) => { const el = document.getElementById(id); if (el) el.setAttribute(attr, txt); };
-
-  if (ar()) {
-    s('cf-eyebrow',        '💬 مساعدة في التأشيرة');
-    s('cf-heading',        'هل تحتاج مساعدة في طلب التأشيرة؟');
-    s('cf-sub',            'اترك بياناتك وسنتواصل معك على واتساب لمساعدتك في كل خطوة.');
-    s('cf-success-title',  'تم استلام طلبك!');
-    s('cf-success-sub',    'سيتواصل معك متخصص في التأشيرات خلال 24 ساعة.');
-
-    // Labels — keep the asterisk via innerHTML
-    document.getElementById('cf-label-name').innerHTML  = 'الاسم الكامل <span style="color:#ef4444">*</span>';
-    document.getElementById('cf-label-phone').innerHTML = 'رقم الهاتف <span style="color:#ef4444">*</span>';
-    document.getElementById('cf-label-dest').innerHTML  = 'دولة الوجهة <span style="color:#ef4444">*</span>';
-    document.getElementById('cf-label-notes').innerHTML = 'ملاحظات إضافية <span style="color:rgba(255,255,255,0.3);font-weight:400;text-transform:none;letter-spacing:0">(اختياري)</span>';
-
-    a('cf-name',  'placeholder', 'مثال: أحمد الحسن');
-    a('cf-notes', 'placeholder', 'مثال: تواريخ السفر، عدد المسافرين، أسئلة محددة…');
-    s('cf-dest-placeholder', 'اختر وجهتك');
-
-    // Optgroup labels
-    document.getElementById('cf-grp-gulf').label    = '🌙 الشرق الأوسط والخليج';
-    document.getElementById('cf-grp-europe').label  = '🇪🇺 أوروبا';
-    document.getElementById('cf-grp-americas').label= '🌎 الأمريكتان';
-    document.getElementById('cf-grp-asia').label    = '🌏 آسيا والمحيط الهادئ';
-    document.getElementById('cf-grp-africa').label  = '🌍 أفريقيا';
-    s('cf-opt-other', '🌐 أخرى (يرجى التوضيح في الملاحظات)');
-
-    s('consultSubmitBtn', 'احصل على المساعدة');
-    s('cf-disclaimer', 'سنتواصل معك على واتساب. لن نشارك معلوماتك مع أي طرف آخر.');
-  } else {
-    s('cf-eyebrow',        '💬 Visa Assistance');
-    s('cf-heading',        'Need help with your visa application?');
-    s('cf-sub',            'Leave your details and we\'ll get back to you on WhatsApp to guide you through the process.');
-    s('cf-success-title',  'Request received!');
-    s('cf-success-sub',    'A visa specialist will contact you within 24 hours.');
-
-    document.getElementById('cf-label-name').innerHTML  = 'Full Name <span style="color:#ef4444">*</span>';
-    document.getElementById('cf-label-phone').innerHTML = 'Phone Number <span style="color:#ef4444">*</span>';
-    document.getElementById('cf-label-dest').innerHTML  = 'Destination Country <span style="color:#ef4444">*</span>';
-    document.getElementById('cf-label-notes').innerHTML = 'Additional Notes <span style="color:rgba(255,255,255,0.3);font-weight:400;text-transform:none;letter-spacing:0">(optional)</span>';
-
-    a('cf-name',  'placeholder', 'e.g. Ahmad Al-Hassan');
-    a('cf-notes', 'placeholder', 'e.g. Travel dates, number of travellers, specific questions…');
-    s('cf-dest-placeholder', 'Select your destination');
-
-    document.getElementById('cf-grp-gulf').label    = '🌙 Middle East & Gulf';
-    document.getElementById('cf-grp-europe').label  = '🇪🇺 Europe';
-    document.getElementById('cf-grp-americas').label= '🌎 Americas';
-    document.getElementById('cf-grp-asia').label    = '🌏 Asia & Pacific';
-    document.getElementById('cf-grp-africa').label  = '🌍 Africa';
-    s('cf-opt-other', '🌐 Other (please specify in notes)');
-
-    s('consultSubmitBtn', 'Get Assistance');
-    s('cf-disclaimer', 'By submitting this form, you agree to be contacted by our partner travel agencies regarding visa assistance.');
-  }
 }
 
 
@@ -895,19 +493,8 @@ if (!data) {
 
 } else {
   // ── Build / rebuild all page content ──────────────────────────────────────
-  const WA_NUMBER = '962770068980'; // e.g. 96279XXXXXXX — no + or spaces
-
   function rebuildPage() {
     const isAr = ar();
-
-    // Update WhatsApp direct button with country context
-    const waBtn = document.getElementById('waDirectBtn');
-    if (waBtn) {
-      const msg = isAr
-        ? `مرحباً، أريد استشارة مجانية بخصوص تأشيرة ${countryName}`
-        : `Hi, I would like a free visa consultation for ${countryName}`;
-      waBtn.href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
-    }
 
     // Page title + breadcrumb
     document.title = isAr
@@ -1091,26 +678,6 @@ if (!data) {
     // Tab: Documents
     const docs = isAr ? data.documents_ar : data.documents_en;
 
-    // Keywords that trigger an inline "Generate Template" hook button
-    const hookKeywords = [
-      { match: /sponsor|كفالة/i,      label: isAr ? '✨ توليد نموذج' : '✨ Generate Template', tool: 'generator' },
-      { match: /cover letter|خطاب/i,  label: isAr ? '✨ توليد الخطاب' : '✨ Generate Letter',   tool: 'generator' },
-      { match: /itinerary|برنامج/i,   label: isAr ? '✨ توليد البرنامج' : '✨ Build Itinerary',  tool: 'generator' },
-      { match: /bank|بنك|financial|مالي/i, label: isAr ? '📋 دليل المستندات' : '📋 See Checklist', tool: 'checklist' },
-      { match: /employ|عمل|contract|عقد/i, label: isAr ? '✨ توليد نموذج' : '✨ Generate Template', tool: 'generator' },
-      { match: /attestat|تصديق/i,     label: isAr ? '📋 دليل التصديق' : '📋 Attestation Guide', tool: 'checklist' },
-      { match: /photo|صور/i,          label: isAr ? '📋 قائمة التحقق' : '📋 Full Checklist',    tool: 'checklist' },
-    ];
-
-    function addHook(text) {
-      for (const h of hookKeywords) {
-        if (h.match.test(text)) {
-          return `<button class="hook-btn" onclick="scrollToToolkit('${h.tool}')">${h.label}</button>`;
-        }
-      }
-      return '';
-    }
-
     document.getElementById('tab-documents').innerHTML = `
       <h2 class="sec-title">${isAr ? 'الوثائق المطلوبة' : 'Required documents'}</h2>
       <div class="doc-list">
@@ -1118,7 +685,7 @@ if (!data) {
         <div class="doc-item">
           <div class="doc-check">✓</div>
           <div>
-            <div class="doc-name">${d.item}${addHook(d.item + ' ' + (d.note || ''))}</div>
+            <div class="doc-name">${d.item}</div>
             ${d.note ? `<div class="doc-note">${d.note}</div>` : ''}
           </div>
         </div>`).join('')}
@@ -1128,13 +695,6 @@ if (!data) {
         ${isAr
           ? 'قد تتغير متطلبات الوثائق. تحقق دائماً من القائمة الحالية على الموقع الرسمي للسفارة قبل التقديم.'
           : 'Document requirements can change. Always verify the current list on the official embassy website before applying.'}
-      </div>
-      <div style="margin-top:24px;padding:20px;background:linear-gradient(135deg,#f5f0ff,#f0f0ff);border-radius:16px;border:1.5px solid rgba(124,58,237,.15);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-        <div>
-          <div style="font-size:14px;font-weight:700;color:#1a1a3e;margin-bottom:3px;">${isAr ? 'هل تريد قائمة تحقق جاهزة للطباعة؟' : 'Want a print-ready checklist for all of these?'}</div>
-          <div style="font-size:12px;color:#6b7280;">${isAr ? 'أداتنا تولّد قائمة شاملة في 30 ثانية' : 'Our tool generates a complete list in 30 seconds'}</div>
-        </div>
-        <button onclick="scrollToToolkit('checklist')" style="background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;white-space:nowrap;">📋 ${isAr ? 'إنشاء القائمة' : 'Build My Checklist'}</button>
       </div>`;
 
     // Tab: FAQ
@@ -1163,35 +723,6 @@ if (!data) {
           <div class="tip-text">${t}</div>
         </div>`).join('')}
       </div>`;
-
-    // Toolkit section i18n
-    const tk = document.getElementById('toolkitSection');
-    if (tk) {
-      tk.querySelector('.toolkit-heading').textContent = isAr
-        ? 'تجاوز الأوراق — دع الذكاء الاصطناعي يفعلها عنك'
-        : 'Skip the paperwork — let AI do it for you';
-      tk.querySelector('.toolkit-sub').textContent = isAr
-        ? 'المتطلبات أعلاه معقدة. أدواتنا تحوّلها إلى وثائق جاهزة للتقديم في أقل من 60 ثانية.'
-        : 'The requirements above are complex. Our tools turn them into ready-to-submit documents in under 60 seconds.';
-      // Checklist card
-      tk.querySelector('#toolChecklist .tool-card-title').textContent   = isAr ? 'قائمة المستندات' : 'Document Checklist';
-      tk.querySelector('#toolChecklist .tool-card-desc').textContent    = isAr ? 'احصل على قائمة مستندات مخصصة لبلدك دون أي نقص. صدّرها كـ PDF.' : 'Get a personalised, country-specific document checklist with nothing missing. Export as PDF.';
-      tk.querySelector('#toolChecklist .tool-cta-text').textContent     = isAr ? 'إنشاء قائمتي' : 'Build my checklist';
-      // Generator card
-      tk.querySelector('#toolGenerator .tool-card-title').textContent   = isAr ? 'مولّد وثائق التأشيرة بالذكاء الاصطناعي' : 'AI Document Generator';
-      tk.querySelector('#toolGenerator .tool-card-desc').textContent    = isAr ? 'أنشئ خطاب تغطية رسمي وبرنامج رحلة يومي — صاغه الذكاء الاصطناعي بخبرة قانون الهجرة.' : 'Generate a formal cover letter and day-by-day itinerary — drafted by AI trained on immigration law.';
-      tk.querySelector('#toolGenerator .tool-cta-text').textContent     = isAr ? 'توليد وثائقي' : 'Generate my documents';
-    }
-
-    // Sticky CTA i18n
-    const stickyTitle    = document.getElementById('stickyTitle');
-    const stickySubtitle = document.getElementById('stickySubtitle');
-    if (stickyTitle)    stickyTitle.textContent    = isAr ? 'هل أربكتك المتطلبات؟' : 'Overwhelmed by the requirements?';
-    if (stickySubtitle) stickySubtitle.textContent = isAr ? 'دع الذكاء الاصطناعي يبني ملف طلبك كاملاً.' : 'Let AI build your full application package.';
-    document.querySelectorAll('.sticky-cta-btns .sticky-btn').forEach((btn, i) => {
-      if (i === 0) btn.textContent = isAr ? '📋 قائمة المستندات' : '📋 Checklist';
-      if (i === 1) btn.textContent = isAr ? '✨ توليد الوثائق'   : '✨ Generate Docs';
-    });
 
     // Related countries
     const relatedLabel = isAr ? 'وجهات مشابهة' : 'Similar destinations';
@@ -1223,47 +754,6 @@ if (!data) {
     });
 }
 
-// ─── Toolkit scroll & sticky CTA ─────────────────────────────────────────────
-function scrollToToolkit(tool) {
-  const el = document.getElementById('toolkitSection');
-  if (!el) return;
-  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  // Briefly highlight the chosen card
-  setTimeout(() => {
-    const card = document.getElementById(tool === 'generator' ? 'toolGenerator' : 'toolChecklist');
-    if (card) {
-      card.style.transition = 'box-shadow .3s';
-      card.style.boxShadow = '0 0 0 3px #7c3aed, 0 12px 40px rgba(124,58,237,.2)';
-      setTimeout(() => { card.style.boxShadow = ''; }, 1800);
-    }
-  }, 600);
-  if (typeof umami !== 'undefined') umami.track('toolkit-cta-click', { tool });
-}
-
-let stickyDismissed = false;
-function dismissSticky() {
-  stickyDismissed = true;
-  document.getElementById('stickyCta').classList.remove('visible');
-  sessionStorage.setItem('sticky_dismissed', '1');
-}
-
-(function initSticky() {
-  if (sessionStorage.getItem('sticky_dismissed')) return;
-  const sticky = document.getElementById('stickyCta');
-  let shown = false;
-  window.addEventListener('scroll', () => {
-    if (stickyDismissed) return;
-    const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-    if (!shown && scrolled > 0.3) {
-      shown = true;
-      sticky.classList.add('visible');
-    } else if (shown && scrolled < 0.1) {
-      sticky.classList.remove('visible');
-      shown = false;
-    }
-  }, { passive: true });
-})();
-
 // ─── Tab switching ────────────────────────────────────────────────────────────
 const TABS = ['overview','documents','faq','tips'];
 function showTab(name) {
@@ -1286,126 +776,19 @@ function toggleFaq(i) {
 // ─── Boot ─────────────────────────────────────────────────────────────────────
 applyLang();
 
-// ─── Consultation Form ────────────────────────────────────────────────────────
-async function handleConsultSubmit(e) {
-  e.preventDefault();
-
-  const form    = document.getElementById('consultForm');
-  const success = document.getElementById('consultSuccess');
-  const btn     = document.getElementById('consultSubmitBtn');
-  const isAr    = typeof ar === 'function' && ar();
-
-  btn.disabled = true;
-  btn.textContent = isAr ? 'جارٍ الإرسال…' : 'Sending…';
-
-  const payload = {
-    full_name:           document.getElementById('cf-name').value.trim(),
-    country_code:        form.querySelector('[name="country_code"]').value,
-    phone_number:        document.getElementById('cf-phone').value.trim(),
-    destination_country: countryName || 'Unknown',
-  };
-
-  try {
-    const res  = await fetch('/api/leads', {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body:    JSON.stringify(payload),
-    });
-    const data = await res.json().catch(() => ({}));
-
-    if (res.ok && data.success) {
-      form.style.display    = 'none';
-      success.style.display = 'block';
-      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    } else {
-      throw new Error(data.error || `HTTP ${res.status}`);
-    }
-  } catch (err) {
-    console.error('[consult form]', err.message);
-    btn.disabled    = false;
-    btn.textContent = isAr ? 'تواصل معنا' : 'Get Visa Assistance';
-    let errEl = document.getElementById('cf-error-msg');
-    if (!errEl) {
-      errEl = document.createElement('p');
-      errEl.id = 'cf-error-msg';
-      errEl.style.cssText = 'color:#f87171;font-size:13px;text-align:center;margin-top:10px;';
-      btn.parentNode.insertBefore(errEl, btn.nextSibling);
-    }
-    errEl.textContent = err.message || 'Something went wrong. Please try again.';
-  }
-  return false;
-}
-
 // ── Analytics ─────────────────────────────────────────────────────────────
 (function() {
   function utrack(event, props) {
     if (typeof umami !== 'undefined') umami.track(event, props);
   }
-
-  // Page view with visa type
   window.addEventListener('load', function() {
     utrack('visa-page-view', { country: countryName, visaType: (VISA_DATA[countryName] || {}).visaType_en || 'unknown' });
   });
-
-  // Form start (first focus on name field)
-  var nameEl = document.getElementById('cf-name');
-  if (nameEl) nameEl.addEventListener('focus', function() {
-    utrack('consultation-form-start', { country: countryName });
-  }, { once: true });
-
-  // WhatsApp button click
-  var waBtn = document.getElementById('waDirectBtn');
-  if (waBtn) waBtn.addEventListener('click', function() {
-    utrack('whatsapp-click', { country: countryName, source: 'visa-page' });
-  });
-
-  // Tab switches
   document.querySelectorAll('.tab-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
       utrack('tab-switch', { country: countryName, tab: btn.dataset.tab || btn.textContent.trim() });
     });
   });
-})();
-
-// ── Agency CTA (shown on high-friction visa types after scroll) ────────────
-(function() {
-  var data = VISA_DATA[countryName];
-  if (!data) return;
-  var highFriction = ['Embassy Visa', 'eVisa', 'Apply ahead', 'Complex'];
-  if (!highFriction.includes(data.visaType_en)) return;
-
-  var ctaEl = document.createElement('div');
-  ctaEl.id = 'agency-cta';
-  ctaEl.style.cssText = [
-    'display:none;position:fixed;bottom:20px;right:20px;z-index:999',
-    'background:#fff;border:1px solid #e8e8f0;border-radius:16px',
-    'padding:16px 20px;box-shadow:0 8px 32px rgba(0,0,0,0.12)',
-    'max-width:280px;font-family:Inter,sans-serif'
-  ].join(';');
-  ctaEl.innerHTML = `
-    <button onclick="document.getElementById('agency-cta').remove()" style="position:absolute;top:8px;right:10px;background:none;border:none;font-size:16px;color:#9ca3af;cursor:pointer">×</button>
-    <div style="font-size:12px;font-weight:700;color:#e85d2f;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Need help?</div>
-    <div style="font-size:14px;font-weight:600;color:#1a1a3e;margin-bottom:4px">Getting a ${countryName} visa can be tricky</div>
-    <div style="font-size:12px;color:#6b7280;margin-bottom:12px">We can connect you with a vetted travel specialist.</div>
-    <a href="#consultSection" onclick="document.getElementById('agency-cta').remove();document.getElementById('cf-name').focus();"
-       style="display:block;text-align:center;background:#e85d2f;color:#fff;border-radius:10px;padding:9px 16px;font-size:13px;font-weight:700;text-decoration:none">
-      Get Visa Assistance →
-    </a>
-  `;
-  document.body.appendChild(ctaEl);
-
-  var shown = false;
-  window.addEventListener('scroll', function() {
-    if (shown) return;
-    var pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-    if (pct > 0.45) {
-      shown = true;
-      ctaEl.style.display = 'block';
-      setTimeout(function() {
-        if (ctaEl.parentNode) ctaEl.style.display = 'none';
-      }, 12000);
-    }
-  }, { passive: true });
 })();
 </script>
 </body>
